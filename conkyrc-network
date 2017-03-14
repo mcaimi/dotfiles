@@ -1,0 +1,65 @@
+conky.config = {
+-- ARCHLINUX CONKY CONFIGURATION 
+
+  own_window = true,
+  own_window_transparent = true,
+--own_window_type override
+  own_window_type = 'desktop',
+  own_window_argb_visual = true,
+--own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
+  background = true,
+  double_buffer = true,
+  use_spacer = 'right',
+  use_xft = true,
+  update_interval = 4.0,
+  maximum_height = '850',
+  maximum_width = '300',
+
+  draw_shades = true,
+-- amplifies text if yes
+  draw_outline = false,
+  draw_borders = false,
+-- set to yes if you want all text to be in uppercase
+  uppercase = false,
+  stippled_borders = 8,
+
+  border_width = 1,
+  default_color = 'white',
+  default_shade_color = 'black',
+  default_outline_color = 'black',
+-- own_window_colour = 'brown',
+  own_window_transparent = true,
+
+  alignment = 'top_right',
+  gap_x = 10,
+  gap_y = 10,
+  override_utf8_locale = false,
+  font = 'Iosevka Term Medium:regular:size=10',
+  xftalpha = 0.8,
+};
+
+conky.text = [[
+${voffset 50}${font Iosevka Term Medium:regular:size=16}${color yellow}${alignc}Network Interfaces${font}
+${if_up enp0s25}
+${color slate grey}${font Iosevka Term Medium}ETHERNET (enp0s25)$hr$font
+    ${color slate grey}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed enp0s25}
+    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed enp0s25}
+    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup enp0s25}
+    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown enp0s25}
+
+    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr enp0s25}
+${endif}
+${if_up wlo1}
+${color slate grey}${font Iosevka Term Medium}WLAN (wlo1)$hr$font
+    ${color slate grey}${font Iosevka Term Medium}ESSID$font${color }$alignr${wireless_essid wlo1}
+    ${color slate grey}${font Iosevka Term Medium}Bit Rate$font${color }$alignr${wireless_bitrate wlo1}
+    ${color slate grey}${font Iosevka Term Medium}Strength$font${color }$alignr${wireless_link_qual_perc wlo1}%
+    ${color slate grey}${font Iosevka Term Medium}        $font${color }$alignr${wireless_link_bar 6,150 wlo1}
+    ${color slate grey}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed wlo1}
+    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed wlo1}
+    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup wlo1}
+    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown wlo1}
+
+    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr wlo1}
+${endif}
+]];

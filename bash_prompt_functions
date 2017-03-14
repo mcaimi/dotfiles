@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# source symbols
+source ~/Work/dotfiles/bash_symbols
+
+# source color theme
+source ~/Work/dotfiles/bash_colorscheme
+
+# set window title
+function __set_window_title()
+{
+  TITLE="$1"
+  echo -e '\033]2;'$TITLE'\007'
+}
+
+# prompt elements #
+# GIT status element
+function __git_status_element()
+{
+  # checks if we have git installed
+  GIT_BIN=$(which git)
+  [ -x "$GIT_BIN" ] || return
+
+  # git command
+  local git_branch=$($GIT_BIN symbolic-ref --short HEAD 2>/dev/null)
+  [ -n "$git_branch" ] || return # not a git repo
+
+  # prepare git status line placeholder
+  local git_current_repo_status="$GIT_BRANCH_SYMBOL $FG_GREEN$git_branch$RESET"
+
+  # check branch status (commits are present?)
+  [ -n "$(git status --porcelain 2>/dev/null)" ] && git_current_repo_status+=" ($GIT_BRANCH_CHANGED_SYMBOL)"
+
+  # check how many commits we are ahead or behind remote master
+  local remote_diff=$(git rev-list --left-right --count origin/$git_branch...$git_branch 2>/dev/null)
+  if [ ! -z "$remote_diff" ]; then
+    local behind_commits="$(echo $remote_diff|awk '{print $1}')"
+    local ahead_commits="$(echo $remote_diff|awk '{print $2}')"
+    # update git status
+    [ "$ahead_commits" -ne 0 ] && git_current_repo_status+=" $GIT_NEED_PUSH_SYMBOL $ahead_commits"
+    [ "$behind_commits" -ne 0 ] && git_current_repo_status+=" $GIT_NEED_PULL_SYMBOL $behind_commits"
+  fi
+
+  # print git line
+  echo $git_current_repo_status
+}
+
+# Previous command return code element
+function __previous_command_retcode_element()
+{
+  if [ $? -eq 0 ]; then
+    local prev="$FG_GREEN$BASH_SYMBOL_CIRCLE $? $RESET"
+  else
+    local prev="$FG_RED$BASH_SYMBOL_CIRCLE $? $RESET"
+  fi
+
+  # print element
+  echo $prev
+}
+
+# CWD element
+function __cwd_element()
+{
+  local cwd_element="$BG_BASE02$FG_WHITE$BASH_SYMBOL_CUBE: $BG_BASE02$FG_YELLOW[\w]$RESET"
+
+  # print element
+  echo $cwd_element
+}
+
+# user and host element
+function __user_host_element()
+{
+  local user_host_element="$BG_BASE02$FG_BLUE$BASH_SYMBOL_USER  \u@\h $RESET$BASH_SYMBOL_FORWARD_ARROW"
+
+  # print element
+  echo $user_host_element
+}
+
+# generate custom PS1 string
+function draw_ps1()
+{
+  # render external elements
+  local prev_cmd_line=$(__previous_command_retcode_element)
+  local git_status_line=$(__git_status_element)
+  local cwd_element=$(__cwd_element)
+  local user_element=$(__user_host_element)
+
+  # render top PS1 element
+  local ps1_top_section="$prev_cmd_line$BASH_SYMBOL_FORWARD_ARROW $user_element $cwd_element $git_status_line $RESET"
+
+  # render bottom PS1 element
+  local ps1_bottom_section="$BASH_SYMBOL_SHARP $BASH_SYMBOL_FORWARD_ARROW "
+
+  # build final PS1
+  local ps1_elements="$ps1_top_section\n$ps1_bottom_section"
+  PS1=$ps1_elements
+}
+
+

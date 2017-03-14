@@ -1,0 +1,79 @@
+conky.config = {
+-- ARCHLINUX CONKY CONFIGURATION 
+
+  own_window = true,
+  own_window_transparent = true,
+--own_window_type override
+  own_window_type = 'desktop',
+  own_window_argb_visual = true,
+--own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
+  background = true,
+  double_buffer = true,
+  use_spacer = 'right',
+  use_xft = true,
+  update_interval = 4.0,
+  maximum_height = '850',
+  maximum_width = '300',
+
+  draw_shades = true,
+-- amplifies text if yes
+  draw_outline = false,
+  draw_borders = false,
+-- set to yes if you want all text to be in uppercase
+  uppercase = false,
+  stippled_borders = 8,
+
+  border_width = 1,
+  default_color = 'white',
+  default_shade_color = 'black',
+  default_outline_color = 'black',
+-- own_window_colour = 'brown',
+  own_window_transparent = true,
+
+  alignment = 'top_right',
+  gap_x = 300,
+  gap_y = 10,
+  override_utf8_locale = false,
+  font = 'Iosevka Term Medium:regular:size=10',
+  xftalpha = 0.8,
+};
+
+conky.text = [[
+${voffset 50}${font Iosevka Term Medium:regular:size=16}${color yellow}${alignc}Bridges and VPN  ${font}
+${if_up docker0}
+${color slate grey}${font Iosevka Term Medium}Docker Container Bridge  $hr$font
+    ${color slate grey}${font Pizzadude Bullets}Rx$font${color }$alignr${downspeed docker0}
+    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed docker0}
+    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup docker0}
+    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown docker0}
+
+    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr docker0}
+${endif}
+${if_up virbr0}
+${color slate grey}${font Iosevka Term Medium}KVM Virtual Bridge  $hr$font
+    ${color slate grey}${font Pizzadude Bullets}Rx$font${color }$alignr${downspeed virbr0}
+    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed virbr0}
+    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup virbr0}
+    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown virbr0}
+
+    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr virbr0}
+${endif}
+${if_up tun0}
+${color slate grey}${font Iosevka Term Medium}OpenVPN  $hr$font
+    ${color slate grey}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed tun0}
+    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed tun0}
+    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup tun0}
+    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown tun0}
+
+    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr tun0}
+${endif}
+${if_up vpn0}
+${color slate grey}${font Iosevka Term Medium}Cisco Anyconnect  $hr$font
+    ${color slate grey}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed vpn0}
+    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed vpn0}
+    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup vpn0}
+    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown vpn0}
+
+    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr vpn0}
+${endif}
+]];
