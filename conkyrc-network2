@@ -76,4 +76,14 @@ ${color slate grey}${font Iosevka Term Medium}Cisco Anyconnect  $hr$font
 
     ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr vpn0}
 ${endif}
+${if_up openvpn0}
+${color slate grey}${font Iosevka Term Medium}OpenVPN Channel  $hr$font
+    ${color slate grey}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed openvpn0}
+    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed openvpn0}
+    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup openvpn0}
+    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown openvpn0}
+
+    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr openvpn0}
+${endif}
+
 ]];

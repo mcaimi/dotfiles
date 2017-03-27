@@ -49,7 +49,8 @@ alias pkgsearch='pacman -Ss'
 alias pkginstall='sudo pacman -U'
 alias pkgqry='pacman -Q'
 alias vim='nvim'
-alias pastebin="curl -F 'sprunge=<-' http://sprunge.us"
+#alias pastebin="curl -F 'sprunge=<-' http://sprunge.us"
+alias pastebin='curl -F c=@- https://ptpb.pw/'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -77,6 +78,10 @@ base16_eighties
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 bind -x '"\C-p": vim $(fzf);'
 
+# w3m default homepage
+WWW_HOME="https://start.duckduckgo.com"
+export WWW_HOME
+
 # GPG Agent stuff
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -89,7 +94,7 @@ source ~/Work/dotfiles/fastweb-aliases
 eval $(thefuck --alias)
 
 # set vi mode
-set -o vi
+#set -o vi
 
 # Draw PS1
 PROMPT_COMMAND=draw_ps1

@@ -51,6 +51,7 @@ call dein#add("chriskempson/base16-vim.git")
 call dein#add("jiangmiao/auto-pairs.git")
 call dein#add('blindFS/vim-taskwarrior')
 call dein#add('arcticicestudio/nord-vim')
+call dein#add('ryanss/vim-hackernews')
 " call dein#add('valloric/YouCompleteMe')
 
 " You can specify revision/branch/tag.
@@ -177,7 +178,7 @@ set statusline+=%*
 autocmd! BufWritePost *.py retab! 4
 autocmd! BufWritePost * Neomake
 autocmd VimEnter * GitGutterLineHighlightsDisable
-autocmd VimEnter * TagbarToggle
+"autocmd VimEnter * TagbarToggle
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
