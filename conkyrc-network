@@ -39,7 +39,7 @@ conky.config = {
 };
 
 conky.text = [[
-${voffset 50}${font Iosevka Term Medium:regular:size=16}${color yellow}${alignc}Network Interfaces${font}
+${voffset 20}${font Iosevka Term Medium:regular:size=16}${color yellow}${alignc}Network Interfaces${font}
 ${if_up enp0s25}
 ${color slate grey}${font Iosevka Term Medium}ETHERNET (enp0s25)$hr$font
     ${color slate grey}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed enp0s25}

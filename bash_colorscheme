@@ -18,6 +18,7 @@ readonly BG_BASE0="\[$(tput setab 12)\]"
 readonly BG_BASE1="\[$(tput setab 14)\]"
 readonly BG_BASE2="\[$(tput setab 7)\]"
 readonly BG_BASE3="\[$(tput setab 15)\]"
+
 readonly FG_YELLOW="\[$(tput setaf 3)\]"
 readonly FG_ORANGE="\[$(tput setaf 9)\]"
 readonly FG_RED="\[$(tput setaf 1)\]"
@@ -40,3 +41,4 @@ readonly DIM="\[$(tput dim)\]"
 readonly REVERSE="\[$(tput rev)\]"
 readonly RESET="\[$(tput sgr0)\]"
 readonly BOLD="\[$(tput bold)\]"
+

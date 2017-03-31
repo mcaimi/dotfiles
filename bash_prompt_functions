@@ -13,6 +13,12 @@ function __set_window_title()
   echo -e '\033]2;'$TITLE'\007'
 }
 
+# write text on the right side of the console
+function justify_right()
+{
+  printf "%*s" $COLUMNS "$1"
+}
+
 # prompt elements #
 # GIT status element
 function __git_status_element()
@@ -29,7 +35,7 @@ function __git_status_element()
   local git_current_repo_status="$GIT_BRANCH_SYMBOL $FG_GREEN$git_branch$RESET"
 
   # check branch status (commits are present?)
-  [ -n "$(git status --porcelain 2>/dev/null)" ] && git_current_repo_status+=" ($GIT_BRANCH_CHANGED_SYMBOL)"
+  [ -n "$(git status --porcelain 2>/dev/null)" ] && git_current_repo_status+=" $FG_MAGENTA($GIT_BRANCH_CHANGED_SYMBOL)$RESET"
 
   # check how many commits we are ahead or behind remote master
   local remote_diff=$(git rev-list --left-right --count origin/$git_branch...$git_branch 2>/dev/null)
@@ -37,25 +43,25 @@ function __git_status_element()
     local behind_commits="$(echo $remote_diff|awk '{print $1}')"
     local ahead_commits="$(echo $remote_diff|awk '{print $2}')"
     # update git status
-    [ "$ahead_commits" -ne 0 ] && git_current_repo_status+=" $GIT_NEED_PUSH_SYMBOL $ahead_commits"
-    [ "$behind_commits" -ne 0 ] && git_current_repo_status+=" $GIT_NEED_PULL_SYMBOL $behind_commits"
+    [ "$ahead_commits" -ne 0 ] && git_current_repo_status+=" $FG_MAGENTA$GIT_NEED_PUSH_SYMBOL $ahead_commits$RESET"
+    [ "$behind_commits" -ne 0 ] && git_current_repo_status+=" $FG_MAGENTA$GIT_NEED_PULL_SYMBOL $behind_commits$RESET"
   fi
 
   # print git line
-  echo $git_current_repo_status
+  echo -En "$git_current_repo_status"
 }
 
 # Previous command return code element
 function __previous_command_retcode_element()
 {
   if [ $? -eq 0 ]; then
-    local prev="$FG_GREEN$BASH_SYMBOL_CIRCLE $? $RESET"
+    local prev="$FG_GREEN$BASH_SYMBOL_THUMBUP ($?) $RESET"
   else
-    local prev="$FG_RED$BASH_SYMBOL_CIRCLE $? $RESET"
+    local prev="$FG_RED$BASH_SYMBOL_THUMBDOWN ($?) $RESET"
   fi
 
   # print element
-  echo $prev
+  echo -En $prev
 }
 
 # CWD element
@@ -64,7 +70,7 @@ function __cwd_element()
   local cwd_element="$BG_BASE02$FG_WHITE$BASH_SYMBOL_CUBE: $BG_BASE02$FG_YELLOW[\w]$RESET"
 
   # print element
-  echo $cwd_element
+  echo -En $cwd_element
 }
 
 # user and host element
@@ -73,7 +79,7 @@ function __user_host_element()
   local user_host_element="$BG_BASE02$FG_BLUE$BASH_SYMBOL_USER  \u@\h $RESET$BASH_SYMBOL_FORWARD_ARROW"
 
   # print element
-  echo $user_host_element
+  echo -En $user_host_element
 }
 
 # generate custom PS1 string
@@ -86,10 +92,10 @@ function draw_ps1()
   local user_element=$(__user_host_element)
 
   # render top PS1 element
-  local ps1_top_section="$prev_cmd_line$BASH_SYMBOL_FORWARD_ARROW $user_element $cwd_element $git_status_line $RESET"
+  local ps1_top_section="$prev_cmd_line$BASH_SYMBOL_FORWARD_ARROW $user_element $cwd_element"
 
   # render bottom PS1 element
-  local ps1_bottom_section="$BASH_SYMBOL_SHARP $BASH_SYMBOL_FORWARD_ARROW "
+  local ps1_bottom_section="$BASH_SYMBOL_SHARP $git_status_line $BASH_SYMBOL_FORWARD_ARROW "
 
   # build final PS1
   local ps1_elements="$ps1_top_section\n$ps1_bottom_section"

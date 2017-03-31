@@ -205,11 +205,8 @@ endif
 
 " Remapping of some custom commands
 map <C-t> :TagbarToggle<CR>
-map <C-n> :NERDTreeToggle<CR>
-"map <C-e> :terminal<CR>
 map <C-R> :call NumberToggle()<CR>
 
-map <C-P> :CtrlPMixed
 map <C-^> :lopen<CR>
 map <C-?> :copen<CR>
 
@@ -233,6 +230,11 @@ noremap <Leader>w :w<CR>
 noremap <Leader>q :wq<CR>
 noremap <Leader>Q :q!<CR>
 noremap <Leader>t :TW<CR>
+noremap <Leader>a :bp<CR>
+noremap <Leader>s :bn<CR>
+noremap <Leader>c :bd<CR>
+noremap <F3> :NERDTreeToggle<CR>
+noremap <Leader>p :CtrlPMixed<CR>
 
 " Function calls at the end of vim load phase
 call NumberToggle()

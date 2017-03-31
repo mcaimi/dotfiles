@@ -39,7 +39,7 @@ conky.config = {
 };
 
 conky.text = [[
-${voffset 50}${font Iosevka Term Medium:regular:size=16}${color yellow}${alignc}Bridges and VPN  ${font}
+${voffset 20}${font Iosevka Term Medium:regular:size=16}${color yellow}${alignc}Bridges and VPN  ${font}
 ${if_up docker0}
 ${color slate grey}${font Iosevka Term Medium}Docker Container Bridge  $hr$font
     ${color slate grey}${font Pizzadude Bullets}Rx$font${color }$alignr${downspeed docker0}
