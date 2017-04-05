@@ -85,6 +85,9 @@ export WWW_HOME
 # GPG Agent stuff
 GPG_TTY=$(tty)
 export GPG_TTY
+# PASS password-store path
+PASSWORD_STORE_DIR="${HOME}/Work/dotfiles/config/password-store"
+export PASSWORD_STORE_DIR
 
 # source functions
 source ~/Work/dotfiles/bash_prompt_functions

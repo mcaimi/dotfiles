@@ -50,8 +50,8 @@ call dein#add("godlygeek/tabular")
 call dein#add("chriskempson/base16-vim.git")
 call dein#add("jiangmiao/auto-pairs.git")
 call dein#add('blindFS/vim-taskwarrior')
-call dein#add('arcticicestudio/nord-vim')
 call dein#add('ryanss/vim-hackernews')
+" call dein#add('arcticicestudio/nord-vim')
 " call dein#add('valloric/YouCompleteMe')
 
 " You can specify revision/branch/tag.
