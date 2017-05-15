@@ -15,7 +15,9 @@ conky.config = {
   use_xft = true,
   update_interval = 4.0,
 -- set accordingly to your display resolution
-  minimum_width = 1440, minimum_height = 300,
+  minimum_width = 1440,
+  minimum_height = 300,
+  xinerama_head = 0,
 
   draw_shades = false,
 -- amplifies text if yes

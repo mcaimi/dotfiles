@@ -12,8 +12,9 @@ conky.config = {
   use_spacer = 'right',
   use_xft = true,
   update_interval = 4.0,
-  maximum_height = '850',
-  maximum_width = '300',
+  minimum_height = 850,
+  maximum_width = 300,
+  xinerama_head = 0,
 
   draw_shades = true,
 -- amplifies text if yes
