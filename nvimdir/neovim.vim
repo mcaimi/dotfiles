@@ -21,8 +21,8 @@ call dein#begin('~/.neovimbundle/')
 call dein#add('Shougo/dein.vim')
 
 " Add or remove your plugins here:
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
+"call dein#add('Shougo/neosnippet.vim')
+"call dein#add('Shougo/neosnippet-snippets')
 call dein#add("Shougo/deoplete.nvim")
 call dein#add('racer-rust/vim-racer')
 call dein#add('bling/vim-airline')
@@ -32,16 +32,15 @@ call dein#add('neomake/neomake')
 call dein#add('majutsushi/tagbar')
 call dein#add('rust-lang/rust.vim')
 call dein#add('justinmk/vim-sneak')
-call dein#add('mhinz/vim-startify')
-call dein#add('davidhalter/jedi-vim')
+"call dein#add('mhinz/vim-startify')
+"call dein#add('davidhalter/jedi-vim')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-tbone')
 call dein#add('tpope/vim-abolish')
 call dein#add('ryanoasis/vim-devicons')
 call dein#add("airblade/vim-gitgutter")
-call dein#add("fatih/vim-go")
-call dein#add("zchee/deoplete-go")
+call dein#add("zchee/deoplete-go", {'build': 'make'})
 call dein#add("zchee/deoplete-jedi")
 call dein#add("chase/vim-ansible-yaml")
 call dein#add("Xuyuanp/nerdtree-git-plugin")
@@ -141,7 +140,7 @@ endfunc
 
 " load custom color scheme
 syntax enable
-colorscheme base16-eighties
+colorscheme base16-onedark
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=white gui=bold
@@ -162,13 +161,20 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 "let g:airline_left_alt_sep = '|'
 "let g:airline_right_sep = ' '
 "let g:airline_right_alt_sep = '|'
-let g:airline_theme='base16_eighties'
+let g:airline_theme='base16_embers'
 let g:airline_powerline_fonts = 1
 
 let g:racer_cmd = "/usr/bin/racer"
 let $RUST_SRC_PATH="/usr/src/rust/src/"
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = '/home/marco/Work/go/bin/gocode'
+let g:deoplete#sources#go#pointer = 1
+let g:deoplete#sources#go#use_cache = 1
+
+" go language
+let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
+                           \ 'v:variable;f:function'
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -176,13 +182,15 @@ set statusline+=%*
 
 " Auto Commands Configuration
 autocmd! BufWritePost *.py retab! 4
-autocmd! BufWritePost * Neomake
+autocmd! BufWritePost *.py Neomake
 autocmd VimEnter * GitGutterLineHighlightsDisable
-"autocmd VimEnter * TagbarToggle
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+" autocmd VimEnter * TagbarToggle
+autocmd InsertEnter * set number
+autocmd InsertLeave * set relativenumber
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
+autocmd BufNewFile *.py 0r ~/Work/dotfiles/templates/python.spec
+autocmd BufNewFile *.c 0r ~/Work/dotfiles/templates/c.spec
 
 " font setting
 if has('gui_running')
