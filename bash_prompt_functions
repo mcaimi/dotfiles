@@ -6,11 +6,23 @@ source ~/Work/dotfiles/bash_symbols
 # source color theme
 source ~/Work/dotfiles/bash_colorscheme
 
+# switches
+# Max Path Length to draw before prepending <..> to the CWD element
+# if path depth exceeds $max_path_len elements, the CWD displays the last 2 directories
+# in the path prepended by the $BASH_SYMBOL_FOLDER GLYPH
+max_path_len=6
+
 # set window title
 function __set_window_title()
 {
   TITLE="$1"
   echo -e '\033]2;'$TITLE'\007'
+}
+
+# checks if a string starts with another string
+function startswith() {
+  echo "${1}"|grep ^"${2}" &>/dev/null
+  echo $?
 }
 
 # write text on the right side of the console
@@ -67,7 +79,21 @@ function __previous_command_retcode_element()
 # CWD element
 function __cwd_element()
 {
-  local cwd_element="$BG_BASE02$FG_WHITE$BASH_SYMBOL_CUBE: $BG_BASE02$FG_YELLOW[\w]$RESET"
+  declare -a pathelements
+  IFS="/" read -a pathelements <<< $PWD
+  local is_in_home=$(startswith "$PWD" "$HOME")
+  local pathlen=${#pathelements[@]}
+
+  if [ $pathlen -gt $max_path_len ]; then
+    if [ $is_in_home -eq 0 ]; then
+      local pathstring=$(printf "%s  /%s/%s" "$BASH_SYMBOL_HOME" "${pathelements[-2]}" "${pathelements[-1]}")
+    else
+      local pathstring=$(printf "%s  /%s/%s" "$BASH_SYMBOL_FOLDER" "${pathelements[-2]}" "${pathelements[-1]}")
+    fi
+    local cwd_element="$BG_BASE02$FG_WHITE$BASH_SYMBOL_CUBE: $BG_BASE02$FG_YELLOW[$pathstring]$RESET"
+  else
+    local cwd_element="$BG_BASE02$FG_WHITE$BASH_SYMBOL_CUBE: $BG_BASE02$FG_YELLOW[\w]$RESET"
+  fi
 
   # print element
   echo -En $cwd_element
