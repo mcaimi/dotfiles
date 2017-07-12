@@ -20,7 +20,7 @@ rofi.width: 70
 rofi.lines: 15
 rofi.columns: 1
 rofi.opacity: 75
-rofi.bw: 0
+rofi.bw: 2
 rofi.location: 2
 rofi.padding: 100
 rofi.fuzzy: false
@@ -29,9 +29,8 @@ rofi.color-window: argb:f22d303b, #7c8389, #1d1f21
 rofi.color-normal: argb:3000000, #c4cbd4, argb:96404552, #4084d6, #f9f9f9
 rofi.color-active: argb:2000000, #b5bd68, argb:e42d303b, #8c9440, #f9f9f9
 rofi.color-urgent: argb:2000000, #cc6666, argb:e52d303b, #a54242, #f9f9f9
-rofi.separator-style:                solid
+rofi.separator-style: dash
 
-!
 ! === gruvbox color scheme ===
 *background: #1d2021
 *foreground: #ebdbb2
@@ -68,7 +67,7 @@ st.shell:        /bin/bash
 
 ! The following options options can be reloaded via USR1 signal.
 st.font:         Iosevka Term Medium:pixelsize=14:antialias=true:autohint=true
-st.borderpx:     10
+st.borderpx:     15
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:  2
 st.cursorthickness:  2
@@ -84,8 +83,14 @@ st.bellvolume:   100
 ! this is a char that is exposed like so: `printf '\033[z'`
 st.prompt_char:  $
 
+st.rows:  46
+st.cols:  160
+st.skiptaskbar:   1
+st.skippager:     0
+st.histsize:    2000
+
 ! opacity==255 means what terminal will be not transparent, 0 - fully transparent
-st.opacity:      220
+st.opacity:      240
 ! Defaults taken from base16-twilight colorscheme.
 st.foreground:   #a7a7a7
 st.background:   #1e1e1e
