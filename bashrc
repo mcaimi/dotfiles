@@ -41,17 +41,6 @@ if [ "$TERM" != "dumb" ]; then
     alias vdir='ls --color=auto --format=long'
 fi
 
-# some more ls aliases
-alias ll='ls -l'
-alias grep='grep --color=auto'
-alias pacman='sudo pacman'
-alias pkgsearch='pacman -Ss'
-alias pkginstall='sudo pacman -U'
-alias pkgqry='pacman -Q'
-alias vim='nvim'
-#alias pastebin="curl -F 'sprunge=<-' http://sprunge.us"
-alias pastebin='curl -F c=@- https://ptpb.pw/'
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
