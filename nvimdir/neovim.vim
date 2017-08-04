@@ -50,6 +50,9 @@ call dein#add("chriskempson/base16-vim.git")
 call dein#add("jiangmiao/auto-pairs.git")
 call dein#add('blindFS/vim-taskwarrior')
 call dein#add('ryanss/vim-hackernews')
+call dein#add('ayu-theme/ayu-vim')
+call dein#add('Yggdroot/indentLine')
+
 " call dein#add('arcticicestudio/nord-vim')
 " call dein#add('valloric/YouCompleteMe')
 
@@ -67,6 +70,13 @@ syntax enable
 if dein#check_install()
   call dein#install()
 endif
+
+" IndentLine {{
+let g:indentLine_char = '|'
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
+" }}
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -140,7 +150,9 @@ endfunc
 
 " load custom color scheme
 syntax enable
-colorscheme base16-onedark
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=white gui=bold
