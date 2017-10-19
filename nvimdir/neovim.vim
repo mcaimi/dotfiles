@@ -10,6 +10,8 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
+set path+=./**
+
 " Required:
 set runtimepath+=~/.neovimbundle/repos/github.com/Shougo/dein.vim
 
@@ -21,18 +23,18 @@ call dein#begin('~/.neovimbundle/')
 call dein#add('Shougo/dein.vim')
 
 " Add or remove your plugins here:
-"call dein#add('Shougo/neosnippet.vim')
-"call dein#add('Shougo/neosnippet-snippets')
-call dein#add("Shougo/deoplete.nvim")
-call dein#add('racer-rust/vim-racer')
+" call dein#add('Shougo/neosnippet.vim')
+" call dein#add('Shougo/neosnippet-snippets')
+" call dein#add("Shougo/deoplete.nvim")
+" call dein#add('racer-rust/vim-racer')
 call dein#add('bling/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('scrooloose/nerdtree')
 call dein#add('neomake/neomake')
 call dein#add('majutsushi/tagbar')
-call dein#add('rust-lang/rust.vim')
+"call dein#add('rust-lang/rust.vim')
 call dein#add('justinmk/vim-sneak')
-"call dein#add('mhinz/vim-startify')
+call dein#add('mhinz/vim-startify')
 "call dein#add('davidhalter/jedi-vim')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('tpope/vim-fugitive')
@@ -40,21 +42,24 @@ call dein#add('tpope/vim-tbone')
 call dein#add('tpope/vim-abolish')
 call dein#add('ryanoasis/vim-devicons')
 call dein#add("airblade/vim-gitgutter")
-call dein#add("zchee/deoplete-go", {'build': 'make'})
-call dein#add("zchee/deoplete-jedi")
+"call dein#add("zchee/deoplete-go", {'build': 'make'})
+"call dein#add("zchee/deoplete-jedi")
 call dein#add("chase/vim-ansible-yaml")
 call dein#add("Xuyuanp/nerdtree-git-plugin")
 call dein#add("mbbill/undotree")
 call dein#add("godlygeek/tabular")
-call dein#add("chriskempson/base16-vim.git")
+" call dein#add("chriskempson/base16-vim.git")
 call dein#add("jiangmiao/auto-pairs.git")
 call dein#add('blindFS/vim-taskwarrior')
 call dein#add('ryanss/vim-hackernews')
-call dein#add('ayu-theme/ayu-vim')
+ call dein#add('ayu-theme/ayu-vim')
+ call dein#add('dim13/smyck.vim')
+" call dein#add('nightsense/vim-crunchbang')
+" call dein#add('Zabanaa/neuromancer.vim')
 call dein#add('Yggdroot/indentLine')
 
 " call dein#add('arcticicestudio/nord-vim')
-" call dein#add('valloric/YouCompleteMe')
+call dein#add('valloric/YouCompleteMe')
 
 " You can specify revision/branch/tag.
 "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -64,7 +69,6 @@ call dein#end()
 
 " Required:
 filetype plugin indent on
-syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
@@ -72,7 +76,7 @@ if dein#check_install()
 endif
 
 " IndentLine {{
-let g:indentLine_char = '|'
+let g:indentLine_char = ''
 let g:indentLine_first_char = ''
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
@@ -126,6 +130,9 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 endif
 
+" define MT (MakeTags) command
+command! MT !ctags -R .
+
 " Tell Vim which characters to show for expanded TABs,
 " trailing whitespace, and end-of-lines. VERY useful!
 if &listchars ==# 'eol:$'
@@ -152,13 +159,15 @@ endfunc
 syntax enable
 set termguicolors
 let ayucolor="mirage"
-colorscheme ayu
+colorscheme smyck
 
 "improve autocomplete menu color
-highlight Pmenu ctermbg=white gui=bold
+highlight Pmenu ctermbg=black gui=bold
+highlight Conceal cterm=bold ctermfg=8 gui=bold guifg=#8F8F8F guibg=#282828
 
 " YouCompleteMe
-" let g:ycm_python_binary_path = '/usr/bin/python'
+ let g:ycm_python_binary_path = '/usr/bin/python'
+ let g:ycm_server_python_interpreter = '/usr/bin/python'
 
 " AIRLINE CONFIG
 let g:airline#extensions#tabline#enabled = 1
@@ -173,7 +182,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 "let g:airline_left_alt_sep = '|'
 "let g:airline_right_sep = ' '
 "let g:airline_right_alt_sep = '|'
-let g:airline_theme='base16_embers'
+let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1
 
 let g:racer_cmd = "/usr/bin/racer"
@@ -203,6 +212,7 @@ autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 autocmd BufNewFile *.py 0r ~/Work/dotfiles/templates/python.spec
 autocmd BufNewFile *.c 0r ~/Work/dotfiles/templates/c.spec
+autocmd BufNewFile *.ksprofile 0r ~/Work/dotfiles/templates/ksprofile.spec
 
 " font setting
 if has('gui_running')
@@ -255,6 +265,7 @@ noremap <Leader>s :bn<CR>
 noremap <Leader>c :bd<CR>
 noremap <F3> :NERDTreeToggle<CR>
 noremap <Leader>p :CtrlPMixed<CR>
+nnoremap <F4> :MT<CR>
 
 " Function calls at the end of vim load phase
 call NumberToggle()

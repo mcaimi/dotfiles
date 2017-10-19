@@ -15,15 +15,15 @@ rofi.font:  Iosevka Term Medium 12
 rofi.modi:  window,drun,ssh,run,combi
 rofi.show:  combi
 rofi.ssh-client: ssh
-rofi.terminal: /usr/bin/gnome-terminal
+rofi.terminal: /usr/bin/st
 rofi.width: 70
 rofi.lines: 15
-rofi.columns: 1
+rofi.columns: 2
 rofi.opacity: 75
 rofi.bw: 2
 rofi.location: 2
-rofi.padding: 100
-rofi.fuzzy: false
+rofi.padding: 40
+rofi.fuzzy: true
 rofi.color-enabled: true
 rofi.color-window: argb:f22d303b, #7c8389, #1d1f21
 rofi.color-normal: argb:3000000, #c4cbd4, argb:96404552, #4084d6, #f9f9f9
@@ -116,4 +116,17 @@ st.color18:      #323537
 st.color19:      #464b50
 st.color20:      #838184
 st.color21:      #c3c3c3
+
+! Xterm stuff
+xterm.vt100.metaSendsEscape:  true
+xterm.vt100.backarrowKey:     false
+!xterm.vt100.faceName:         TerminessTTF Nerd Font Mono:style=Medium
+xterm.vt100.faceName:         Iosevka Nerd Font Mono:style=Medium Oblique,Regular
+xterm.vt100.faceSize:         10
+xterm.vt100.geometry:         160x50
+xterm.vt100.renderFont:       true
+xterm.vt100.utf8:             1
+xterm.vt100.locale:           true
+xterm.title:                  "ArchLinux XTerm Unicode"
+xterm.ttyModes:               erase ^?
 

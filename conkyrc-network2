@@ -42,49 +42,49 @@ conky.config = {
 conky.text = [[
 ${voffset 20}${font Iosevka Term Medium:regular:size=16}${color yellow}${alignc}Bridges and VPN  ${font}
 ${if_up docker0}
-${color slate grey}${font Iosevka Term Medium}Docker Container Bridge  $hr$font
-    ${color slate grey}${font Pizzadude Bullets}Rx$font${color }$alignr${downspeed docker0}
-    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed docker0}
-    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup docker0}
-    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown docker0}
+${color white}${font Iosevka Term Medium}Docker Container Bridge  $hr$font
+    ${color white}${font Pizzadude Bullets}Rx$font${color }$alignr${downspeed docker0}
+    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed docker0}
+    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup docker0}
+    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown docker0}
 
-    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr docker0}
+    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr docker0}
 ${endif}
 ${if_up virbr0}
-${color slate grey}${font Iosevka Term Medium}KVM Virtual Bridge  $hr$font
-    ${color slate grey}${font Pizzadude Bullets}Rx$font${color }$alignr${downspeed virbr0}
-    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed virbr0}
-    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup virbr0}
-    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown virbr0}
+${color white}${font Iosevka Term Medium}KVM Virtual Bridge  $hr$font
+    ${color white}${font Pizzadude Bullets}Rx$font${color }$alignr${downspeed virbr0}
+    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed virbr0}
+    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup virbr0}
+    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown virbr0}
 
-    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr virbr0}
+    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr virbr0}
 ${endif}
 ${if_up tun0}
-${color slate grey}${font Iosevka Term Medium}OpenVPN  $hr$font
-    ${color slate grey}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed tun0}
-    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed tun0}
-    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup tun0}
-    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown tun0}
+${color white}${font Iosevka Term Medium}OpenVPN  $hr$font
+    ${color white}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed tun0}
+    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed tun0}
+    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup tun0}
+    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown tun0}
 
-    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr tun0}
+    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr tun0}
 ${endif}
 ${if_up vpn0}
-${color slate grey}${font Iosevka Term Medium}Cisco Anyconnect  $hr$font
-    ${color slate grey}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed vpn0}
-    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed vpn0}
-    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup vpn0}
-    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown vpn0}
+${color white}${font Iosevka Term Medium}Cisco Anyconnect  $hr$font
+    ${color white}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed vpn0}
+    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed vpn0}
+    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup vpn0}
+    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown vpn0}
 
-    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr vpn0}
+    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr vpn0}
 ${endif}
 ${if_up openvpn0}
-${color slate grey}${font Iosevka Term Medium}OpenVPN Channel  $hr$font
-    ${color slate grey}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed openvpn0}
-    ${color slate grey}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed openvpn0}
-    ${color slate grey}${font Iosevka Term Medium}Up$font${color }$alignr${totalup openvpn0}
-    ${color slate grey}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown openvpn0}
+${color white}${font Iosevka Term Medium}OpenVPN Channel  $hr$font
+    ${color white}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed openvpn0}
+    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed openvpn0}
+    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup openvpn0}
+    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown openvpn0}
 
-    ${color slate grey}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr openvpn0}
+    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr openvpn0}
 ${endif}
 
 ]];
