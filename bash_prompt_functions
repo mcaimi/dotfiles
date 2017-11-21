@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# define paths
+source ~/Work/dotfiles/bash_paths
+
 # source symbols
 source ~/Work/dotfiles/bash_symbols
 
@@ -10,7 +13,7 @@ source ~/Work/dotfiles/bash_colorscheme
 # Max Path Length to draw before prepending <..> to the CWD element
 # if path depth exceeds $max_path_len elements, the CWD displays the last 2 directories
 # in the path prepended by the $BASH_SYMBOL_FOLDER GLYPH
-max_path_len=6
+max_path_len=3
 
 # set window title
 function __set_window_title()
@@ -19,16 +22,15 @@ function __set_window_title()
   echo -e '\033]2;'$TITLE'\007'
 }
 
+# wraps string in escape codes
+function __wrap_codepoint() {
+  echo -En "\[${1}\]" 
+}
+
 # checks if a string starts with another string
 function startswith() {
   echo "${1}"|grep ^"${2}" &>/dev/null
   echo $?
-}
-
-# write text on the right side of the console
-function justify_right()
-{
-  printf "%*s" $COLUMNS "$1"
 }
 
 # prompt elements #
@@ -44,10 +46,10 @@ function __git_status_element()
   [ -n "$git_branch" ] || return # not a git repo
 
   # prepare git status line placeholder
-  local git_current_repo_status="$GIT_BRANCH_SYMBOL $FG_GREEN$git_branch$RESET"
+  local git_current_repo_status="$GIT_BRANCH_SYMBOL $(__wrap_codepoint $FG_GREEN)$git_branch$(__wrap_codepoint $RESET)"
 
   # check branch status (commits are present?)
-  [ -n "$(git status --porcelain 2>/dev/null)" ] && git_current_repo_status+=" $FG_MAGENTA($GIT_BRANCH_CHANGED_SYMBOL)$RESET"
+  [ -n "$(git status --porcelain 2>/dev/null)" ] && git_current_repo_status+=" $(__wrap_codepoint $FG_MAGENTA)($GIT_BRANCH_CHANGED_SYMBOL)$(__wrap_codepoint $RESET)"
 
   # check how many commits we are ahead or behind remote master
   local remote_diff=$(git rev-list --left-right --count origin/$git_branch...$git_branch 2>/dev/null)
@@ -55,21 +57,21 @@ function __git_status_element()
     local behind_commits="$(echo $remote_diff|awk '{print $1}')"
     local ahead_commits="$(echo $remote_diff|awk '{print $2}')"
     # update git status
-    [ "$ahead_commits" -ne 0 ] && git_current_repo_status+=" $FG_MAGENTA$GIT_NEED_PUSH_SYMBOL $ahead_commits$RESET"
-    [ "$behind_commits" -ne 0 ] && git_current_repo_status+=" $FG_MAGENTA$GIT_NEED_PULL_SYMBOL $behind_commits$RESET"
+    [ "$ahead_commits" -ne 0 ] && git_current_repo_status+=" $(__wrap_codepoint $FG_MAGENTA)$GIT_NEED_PUSH_SYMBOL $ahead_commits$(__wrap_codepoint $RESET)"
+    [ "$behind_commits" -ne 0 ] && git_current_repo_status+=" $(__wrap_codepoing $FG_MAGENTA)$GIT_NEED_PULL_SYMBOL $behind_commits$(__wrap_codepoint $RESET)"
   fi
 
   # print git line
-  echo -En "$git_current_repo_status"
+  echo -En "$git_current_repo_status\n"
 }
 
 # Previous command return code element
 function __previous_command_retcode_element()
 {
   if [ $? -eq 0 ]; then
-    local prev="$FG_GREEN$BASH_SYMBOL_THUMBUP ($?) $RESET"
+    local prev="$(__wrap_codepoint $FG_GREEN)$BASH_SYMBOL_THUMBUP ($?) $(__wrap_codepoint $RESET)"
   else
-    local prev="$FG_RED$BASH_SYMBOL_THUMBDOWN ($?) $RESET"
+    local prev="$(__wrap_codepoint $FG_RED)$BASH_SYMBOL_THUMBDOWN ($?) $(__wrap_codepoint $RESET)"
   fi
 
   # print element
@@ -90,9 +92,9 @@ function __cwd_element()
     else
       local pathstring=$(printf "%s  /%s/%s" "$BASH_SYMBOL_FOLDER" "${pathelements[-2]}" "${pathelements[-1]}")
     fi
-    local cwd_element="$BG_BASE02$FG_WHITE$BASH_SYMBOL_CUBE: $BG_BASE02$FG_YELLOW[$pathstring]$RESET"
+    local cwd_element="$(__wrap_codepoint $BG_BASE02)$(__wrap_codepoint $FG_YELLOW)[$pathstring]$(__wrap_codepoint $RESET)"
   else
-    local cwd_element="$BG_BASE02$FG_WHITE$BASH_SYMBOL_CUBE: $BG_BASE02$FG_YELLOW[\w]$RESET"
+    local cwd_element="$(__wrap_codepoint $BG_BASE02)$(__wrap_codepoint $FG_YELLOW)[\w]$(__wrap_codepoint $RESET)"
   fi
 
   # print element
@@ -102,10 +104,10 @@ function __cwd_element()
 # user and host element
 function __user_host_element()
 {
-  local user_host_element="$BG_BASE02$FG_BLUE$BASH_SYMBOL_USER  \u@\h $RESET$BASH_SYMBOL_FORWARD_ARROW"
+  local user_element="$(__wrap_codepoint $BG_BASE02)$(__wrap_codepoint $FG_BLUE)$BASH_SYMBOL_USER  \u $(__wrap_codepoint $RESET)"
 
   # print element
-  echo -En $user_host_element
+  echo -En $user_element
 }
 
 # generate custom PS1 string
@@ -118,14 +120,14 @@ function draw_ps1()
   local user_element=$(__user_host_element)
 
   # render top PS1 element
-  local ps1_top_section="$prev_cmd_line$BASH_SYMBOL_FORWARD_ARROW $user_element $cwd_element"
+  local user_section="$user_element$cwd_element"
 
   # render bottom PS1 element
-  local ps1_bottom_section="$BASH_SYMBOL_SHARP $git_status_line $BASH_SYMBOL_FORWARD_ARROW "
+  local git_element="$git_status_line"
 
   # build final PS1
-  local ps1_elements="$ps1_top_section\n$ps1_bottom_section"
+  local ps1_elements="$user_section $BASH_SYMBOL_FORWARD_ARROW $(__wrap_codepoint $RESET)"
+
   PS1=$ps1_elements
 }
-
 

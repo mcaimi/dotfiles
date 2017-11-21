@@ -1,0 +1,4 @@
+#!/bin/bash
+# Default paths definitions
+
+KEYSTONE_PROFILES_PATH="$HOME/Work/OpenstackRC/"
