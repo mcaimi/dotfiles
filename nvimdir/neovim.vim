@@ -12,68 +12,55 @@ endif
 
 set path+=./**
 
-" Required:
-set runtimepath+=~/.neovimbundle/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin('~/.neovimbundle/')
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
+call plug#begin('~/.neovimbundle/')
 
 " Add or remove your plugins here:
-" call dein#add('Shougo/neosnippet.vim')
-" call dein#add('Shougo/neosnippet-snippets')
-" call dein#add("Shougo/deoplete.nvim")
-" call dein#add('racer-rust/vim-racer')
-call dein#add('bling/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('scrooloose/nerdtree')
-call dein#add('neomake/neomake')
-call dein#add('majutsushi/tagbar')
-"call dein#add('rust-lang/rust.vim')
-call dein#add('justinmk/vim-sneak')
-call dein#add('mhinz/vim-startify')
-"call dein#add('davidhalter/jedi-vim')
-call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('tpope/vim-fugitive')
-call dein#add('tpope/vim-tbone')
-call dein#add('tpope/vim-abolish')
-call dein#add('ryanoasis/vim-devicons')
-call dein#add("airblade/vim-gitgutter")
-"call dein#add("zchee/deoplete-go", {'build': 'make'})
-"call dein#add("zchee/deoplete-jedi")
-call dein#add("chase/vim-ansible-yaml")
-call dein#add("Xuyuanp/nerdtree-git-plugin")
-call dein#add("mbbill/undotree")
-call dein#add("godlygeek/tabular")
-" call dein#add("chriskempson/base16-vim.git")
-call dein#add("jiangmiao/auto-pairs.git")
-call dein#add('blindFS/vim-taskwarrior')
-call dein#add('ryanss/vim-hackernews')
- call dein#add('ayu-theme/ayu-vim')
- call dein#add('dim13/smyck.vim')
-" call dein#add('nightsense/vim-crunchbang')
-" call dein#add('Zabanaa/neuromancer.vim')
-call dein#add('Yggdroot/indentLine')
-
-" call dein#add('arcticicestudio/nord-vim')
-call dein#add('valloric/YouCompleteMe')
-
+" Plug('Shougo/neosnippet.vim')
+" Plug('Shougo/neosnippet-snippets')
+" Plug("Shougo/deoplete.nvim")
+" Plug('racer-rust/vim-racer')
+" Plug('neomake/neomake')
+" Plug('rust-lang/rust.vim')
+" Plug('davidhalter/jedi-vim')
+" Plug('junegunn/fzf')
+" Plug('junegunn/fzf.vim')
+" Plug("zchee/deoplete-go", {'build': 'make'})
+" Plug("zchee/deoplete-jedi")
+" Plug("chriskempson/base16-vim.git")
+" Plug('nightsense/vim-crunchbang')
+" Plug('Zabanaa/neuromancer.vim')
 " You can specify revision/branch/tag.
-"call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+" Plug('Shougo/vimshell', { 'rev': '3787e5' })
+" Plug('arcticicestudio/nord-vim')
+" Plug 'dim13/smyck.vim'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'justinmk/vim-sneak'
+Plug 'mhinz/vim-startify'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-tbone'
+Plug 'tpope/vim-abolish'
+Plug 'ryanoasis/vim-devicons'
+Plug 'airblade/vim-gitgutter'
+Plug 'chase/vim-ansible-yaml'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mbbill/undotree'
+Plug 'godlygeek/tabular'
+Plug 'jiangmiao/auto-pairs.git'
+Plug 'blindFS/vim-taskwarrior'
+Plug 'ryanss/vim-hackernews'
+Plug 'ayu-theme/ayu-vim'
+Plug 'Yggdroot/indentLine'
+Plug 'w0rp/ale.git'
+Plug 'valloric/YouCompleteMe'
 
-" Required:
-call dein#end()
+call plug#end()
 
 " Required:
 filetype plugin indent on
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
 
 " IndentLine {{
 let g:indentLine_char = ''
@@ -84,14 +71,13 @@ let g:indentLine_setColors = 0
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-set showcmd     " Show (partial) command in status line.
-set showmatch   " Show matching brackets.
-set smartcase   " Do smart case matching
-set incsearch   " Incremental search
-set autowrite   " Automatically save before commands like :next and :make
+set showcmd             " Show (partial) command in status line.
+set showmatch           " Show matching brackets.
+set incsearch           " Incremental search
+set autowrite           " Automatically save before commands like :next and :make
 set hidden              " Hide buffers when they are abandoned
-set mouse=a   " Enable mouse usage (all modes) in terminals
-set number    " show line numbers
+set mouse=a             " Enable mouse usage (all modes) in terminals
+set number              " show line numbers
 set showmode            " Show current mode.
 set ruler               " Show the line and column numbers of the cursor.
 set number              " Show the line numbers on the left side.
@@ -100,7 +86,6 @@ set textwidth=0         " Hard-wrap long lines as you type them.
 set expandtab           " Insert spaces when TAB is pressed.
 set tabstop=2           " Render TABs using this many spaces.
 set shiftwidth=2        " Indentation amount for < and > commands.
-
 set noerrorbells        " No beeps.
 set modeline            " Enable modeline.
 "set esckeys             " Cursor keys in insert mode.
@@ -159,9 +144,9 @@ endfunc
 syntax enable
 set termguicolors
 let ayucolor="mirage"
-colorscheme smyck
+colorscheme ayu
 
-"improve autocomplete menu color
+" improve autocomplete menu color
 highlight Pmenu ctermbg=black gui=bold
 highlight Conceal cterm=bold ctermfg=8 gui=bold guifg=#8F8F8F guibg=#282828
 
@@ -174,24 +159,24 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extension#hunks#enabled = 1
 let g:airline#extension#branch#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-"let g:airline#extensions#tabline#right_sep = ' '
-"let g:airline#extensions#tabline#right_alt_sep = '|'
-"let g:airline_left_sep = ' '
-"let g:airline_left_alt_sep = '|'
-"let g:airline_right_sep = ' '
-"let g:airline_right_alt_sep = '|'
-let g:airline_theme='deus'
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#right_sep = ' '
+" let g:airline#extensions#tabline#right_alt_sep = '|'
+" let g:airline_left_sep = ' '
+" let g:airline_left_alt_sep = '|'
+" let g:airline_right_sep = ' '
+" let g:airline_right_alt_sep = '|'
+let g:airline_theme='base16_eighties'
 let g:airline_powerline_fonts = 1
 
 let g:racer_cmd = "/usr/bin/racer"
 let $RUST_SRC_PATH="/usr/src/rust/src/"
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = '/home/marco/Work/go/bin/gocode'
-let g:deoplete#sources#go#pointer = 1
-let g:deoplete#sources#go#use_cache = 1
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#sources#go#gocode_binary = '/home/marco/Work/go/bin/gocode'
+" let g:deoplete#sources#go#pointer = 1
+" let g:deoplete#sources#go#use_cache = 1
 
 " go language
 let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
@@ -203,7 +188,7 @@ set statusline+=%*
 
 " Auto Commands Configuration
 autocmd! BufWritePost *.py retab! 4
-autocmd! BufWritePost *.py Neomake
+"autocmd! BufWritePost *.py Neomake
 autocmd VimEnter * GitGutterLineHighlightsDisable
 " autocmd VimEnter * TagbarToggle
 autocmd InsertEnter * set number
@@ -240,12 +225,12 @@ map <C-R> :call NumberToggle()<CR>
 map <C-^> :lopen<CR>
 map <C-?> :copen<CR>
 
-map <C-m> :Neomake<CR>
+"map <C-m> :Neomake<CR>
 
 map <C-G> :GitGutterToggle<CR>
 set updatetime=500
 
-map <C-u> :call dein#check_update()<CR>
+map <C-u> :PlugUpdate()<CR>
 
 map <F5> :UndotreeToggle<CR>
 let g:undotree_WindowLayout=2
