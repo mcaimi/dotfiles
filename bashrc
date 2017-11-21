@@ -16,13 +16,13 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    ;;
-*)
-    ;;
-esac
+#case "$TERM" in
+#xterm*|rxvt*)
+#    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+#    ;;
+#*)
+#    ;;
+#esac
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -55,17 +55,19 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export GOPATH="$HOME/Work/go"
 
 # PATH
-PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/android-sdk/build-tools/19.0.0:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
+#PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/android-sdk/build-tools/19.0.0:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
+PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
 
 # color schemes
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_eighties
+base16_material-darker
 
-# Fussy finder
+# Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-bind -x '"\C-p": vim $(fzf);'
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_OPTIONS="--extended --cycle --border --height=25 --inline-info --ansi --prompt='FZF> ' --header='Type in your query:'"
+bind -x '"\C-p": "z=$(fzf);"'
 
 # w3m default homepage
 WWW_HOME="https://start.duckduckgo.com"
