@@ -9,6 +9,10 @@ source ~/Work/dotfiles/bash_symbols
 # source color theme
 source ~/Work/dotfiles/bash_colorscheme
 
+# tmux plugins to run
+declare -a ENABLED_PLUGINS
+ENABLED_PLUGINS[0]="tmux-git"
+
 # switches
 # Max Path Length to draw before prepending <..> to the CWD element
 # if path depth exceeds $max_path_len elements, the CWD displays the last 2 directories
@@ -110,14 +114,22 @@ function __user_host_element()
   echo -En $user_element
 }
 
+function __run_tmux_plugins() {
+  for plugin in "${ENABLED_PLUGINS[@]}"; do
+    source $TMUX_PLUGINS_PATH/$plugin/scripts/execute.sh
+  done
+}
+__run_tmux_plugins
+
 # generate custom PS1 string
 function draw_ps1()
 {
   # render external elements
-  local prev_cmd_line=$(__previous_command_retcode_element)
-  local git_status_line=$(__git_status_element)
+  #local prev_cmd_line=$(__previous_command_retcode_element)
+  #local git_status_line=$(__git_status_element)
   local cwd_element=$(__cwd_element)
   local user_element=$(__user_host_element)
+  tmux_git_cmd
 
   # render top PS1 element
   local user_section="$user_element$cwd_element"

@@ -11,25 +11,25 @@ Xft.rgba: none
 rofi.combi-modi:  drun,run
 rofi.display-combi: rofi
 rofi.monitor: primary
-rofi.font:  Iosevka Term Medium 12
+!rofi.font:  Iosevka Term Medium 12
 rofi.modi:  window,drun,ssh,run,combi
 rofi.show:  combi
 rofi.ssh-client: ssh
 rofi.terminal: /usr/bin/st
-rofi.width: 70
-rofi.lines: 15
-rofi.columns: 2
-rofi.opacity: 75
-rofi.bw: 2
-rofi.location: 2
-rofi.padding: 40
-rofi.fuzzy: true
-rofi.color-enabled: true
-rofi.color-window: argb:f22d303b, #7c8389, #1d1f21
-rofi.color-normal: argb:3000000, #c4cbd4, argb:96404552, #4084d6, #f9f9f9
-rofi.color-active: argb:2000000, #b5bd68, argb:e42d303b, #8c9440, #f9f9f9
-rofi.color-urgent: argb:2000000, #cc6666, argb:e52d303b, #a54242, #f9f9f9
-rofi.separator-style: dash
+!rofi.width: 60
+!rofi.lines: 5
+!rofi.columns: 1
+!rofi.opacity: 75
+!rofi.bw: 0
+!rofi.location: 6
+!rofi.padding: 40
+!rofi.fuzzy: true
+!rofi.color-enabled: true
+!rofi.color-window: argb:f22d303b, #7c8389, #1d1f21
+!rofi.color-normal: argb:3000000, #c4cbd4, argb:96404552, #4084d6, #f9f9f9
+!rofi.color-active: argb:2000000, #b5bd68, argb:e42d303b, #8c9440, #f9f9f9
+!rofi.color-urgent: argb:2000000, #cc6666, argb:e52d303b, #a54242, #f9f9f9
+!rofi.separator-style: dash
 
 ! === gruvbox color scheme ===
 *background: #1d2021
@@ -61,7 +61,7 @@ rofi.separator-style: dash
 
 ! this following section is for ST
 ! These options only take effect on startup.
-st.termname:     screen-256color
+st.termname:     xterm-256color
 ! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
 st.shell:        /bin/bash
 
@@ -130,3 +130,85 @@ xterm.vt100.locale:           true
 xterm.title:                  "ArchLinux XTerm Unicode"
 xterm.ttyModes:               erase ^?
 
+#define t_black #222626
+#define t_background #c8222626
+#define t_transparent #00000000
+#define t_red #CC4E47
+#define t_green #7BBA4E
+#define t_yellow #e5c03b
+#define t_blue  #68aacc
+!#define t_purple #A474A5
+#define t_purple   #e28131
+#define t_cyan #97BEC6
+#define t_white #ACBFBF
+
+*.foreground: t_white
+*.background: t_black
+*.cursorColor: t_white
+
+!URxvt.background: [75]#222626
+
+
+! Black / Grey
+*.color0:       t_black
+*.color8:       t_black
+
+! Red / Bright Red
+*.color1:       t_red
+*.color9:       t_red
+
+! Green + Bright Green
+*.color2:       t_green
+*.color10:      t_green
+
+! Yellow (Orange) + Bright Yellow (Yellow)
+*.color3:       t_yellow
+*.color11:      t_yellow
+
+! Blue + Bright Blue
+*.color4:       t_blue
+*.color12:      t_blue
+
+! Magenta (Purple) + Bright Magenta
+*.color5:       t_purple
+*.color13:      t_purple
+
+! Cyan (Aqua) + Bright Cyan
+*.color6:       t_cyan
+*.color14:      t_cyan
+
+! Light Grey (Selection) + White (Current Line)
+*.color7: t_white
+*.color15: t_white
+
+
+rofi.color-enabled: true
+rofi.fuzzy: true
+!rofi.dpi: 220
+rofi.hide-scrollbar: true
+!States: bg, fg, bgalt, hlbg, hlfg
+rofi.color-normal: t_transparent,t_white,t_transparent,t_transparent,t_purple
+rofi.color-urgent: t_transparent,t_red,t_transparent,t_transparent,t_purple
+rofi.color-active: t_transparent,t_transparent,t_transparent,t_purple
+!states: background, border
+rofi.color-window: t_background,t_purple
+
+rofi.separator-style: solid
+rofi.sidebar-mode: false
+rofi.bw: 4
+rofi.columns: 1
+rofi.padding: 40
+rofi.eh: 1
+!rofi.line-margin: 35
+
+!rofi.fullscreen: true
+rofi.xoffset: 0
+rofi.yoffset: 350
+!rofi.opacity: 100
+!rofi.fake-transparency: false
+rofi.location: 2
+rofi.width: 40
+rofi.font: Iosevka Term Medium 12
+rofi.lines: 5
+
+rofi.border-radius: 8

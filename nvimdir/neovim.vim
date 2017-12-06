@@ -56,6 +56,7 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'w0rp/ale.git'
 Plug 'valloric/YouCompleteMe'
+Plug 'metalelf0/base16-black-metal-scheme'
 
 call plug#end()
 

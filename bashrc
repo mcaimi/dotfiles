@@ -90,6 +90,9 @@ eval $(thefuck --alias)
 # set vi mode
 #set -o vi
 
+# git-tmux integration
+[ -x ~/.tmux/plugins/tmux-git/scripts/git.sh ] && ~/.tmux/plugins/tmux-git/scripts/git.sh
+
 # Draw PS1
 PROMPT_COMMAND=draw_ps1
 
