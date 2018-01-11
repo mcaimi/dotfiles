@@ -1,0 +1,12 @@
+! basic colors
+#define t_black #222626
+#define t_background #c8222626
+#define t_transparent #00000000
+#define t_red #CC4E47
+#define t_green #7BBA4E
+#define t_yellow #e5c03b
+#define t_blue  #68aacc
+#define t_purple   #e28131
+#define t_cyan #97BEC6
+#define t_white #ACBFBF
+

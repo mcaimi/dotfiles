@@ -1,0 +1,34 @@
+! Rofi
+rofi.combi-modi:  drun,run
+rofi.display-combi: rofi
+rofi.monitor: primary
+rofi.modi:  window,drun,ssh,run,combi
+rofi.show:  combi
+rofi.ssh-client: ssh
+rofi.terminal: /usr/bin/st
+rofi.color-enabled: true
+rofi.fuzzy: true
+rofi.hide-scrollbar: true
+rofi.color-normal: t_transparent,t_white,t_transparent,t_transparent,t_purple
+rofi.color-urgent: t_transparent,t_red,t_transparent,t_transparent,t_purple
+rofi.color-active: t_transparent,t_transparent,t_transparent,t_purple
+rofi.color-window: t_background,t_purple
+rofi.separator-style: solid
+rofi.sidebar-mode: false
+rofi.bw: 4
+rofi.columns: 1
+rofi.padding: 40
+rofi.eh: 1
+rofi.xoffset: 0
+rofi.yoffset: 350
+rofi.location: 2
+rofi.width: 40
+rofi.font: Iosevka Term Medium 12
+rofi.lines: 5
+rofi.border-radius: 8
+
+!rofi.dpi: 220
+!rofi.fullscreen: true
+!rofi.opacity: 100
+!rofi.fake-transparency: false
+!rofi.line-margin: 35
