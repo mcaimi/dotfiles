@@ -1,0 +1,17 @@
+bottom = true
+height = 28
+width = 98%
+offset-x = 1%
+offset-y = 4
+background = ${colors.background}
+foreground = ${colors.foreground}
+wm-restack = i3
+override-redirect = true
+fixed-center = true
+font-0 = Iosevka Term Medium:style=Regular:size=12;2
+ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Material Icons:antialias=false:size=12;5
+padding-left = 5%
+padding-right = 5%
+module-margin-left = 2
+module-margin-right = 2

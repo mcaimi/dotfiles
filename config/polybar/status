@@ -1,0 +1,10 @@
+#!/bin/sh
+
+arg=$1
+cmd=""
+
+if [ $arg ] ; then
+    cmd=$(systemctl is-active $arg )
+fi
+
+echo "$arg - $cmd"
