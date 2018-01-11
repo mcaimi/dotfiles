@@ -1,0 +1,208 @@
+# i3-gaps configuration file
+
+# i3 font
+font -*-Iosevka-Term-Medium-medium-r-*-*-8-*-*-*-*-*-*-*
+
+# read colors from xresources database
+set_from_resource $darkred     color1  #000000
+set_from_resource $red         color9  #000000
+set_from_resource $darkgreen   color2  #000000
+set_from_resource $green       color10 #000000
+set_from_resource $darkyellow  color3  #000000
+set_from_resource $yellow      color11 #000000
+set_from_resource $darkblue    color4  #000000
+set_from_resource $blue        color12 #000000
+set_from_resource $darkmagenta color5  #000000
+set_from_resource $magenta     color13 #000000
+set_from_resource $darkcyan    color6  #000000
+set_from_resource $cyan        color14 #000000
+set_from_resource $darkwhite   color7  #000000
+set_from_resource $white       color15 #000000
+
+# Use custom colors for black
+set $black       #282828
+set $darkblack   #1d2021
+set $transparent #00000000
+
+# mod key -> Windows Key on laptop
+set $mod Mod4
+set $alt Mod1
+set $TERMINAL /usr/bin/st
+set $DMENU /usr/bin/rofi -show combi
+set $DMENU_TABS /usr/bin/rofi -show window
+set $SANDFOX docker start sandfox
+set $gaps_inner_px 18
+set $gaps_outer_px 18
+set $gaps_delta 2
+
+# i3-gaps settings
+gaps inner $gaps_inner_px
+gaps outer $gaps_outer_px
+smart_borders on
+
+# set window classes properties
+for_window [class="^.*"] border normal 0
+for_window [class="(?i).+-256color"] title_format " >_ %title "
+
+# colors & theme settings
+#                       BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
+client.focused          $transparent      $black      $darkwhite  $darkwhite  $darkblack
+client.unfocused        $transparent      $transparent      $white      $darkblack  $darkblack
+client.focused_inactive $transparent      $transparent      $white      $darkblack  $darkblack
+client.urgent           $darkred    $darkred    $black      $darkred    $darkred
+client.background       $black
+
+# Keyboard Shortcuts definitions
+
+# i3 related
+bindsym $mod+Control+c reload
+bindsym $mod+Control+r restart
+
+# behaviour related
+bindsym $mod+q kill
+
+# Setup Workspaces
+set $ws1 Terminal
+set $ws2 Browser
+set $ws3 Code
+set $ws4 Media
+set $ws5 Photography
+set $ws6 Games
+
+# workspaces shortcuts
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+Tab workspace back_and_forth
+
+# Workspace assignment
+assign [class="(?i)st"] $ws1
+assign [class="(?i).+-256color"] $ws1
+assign [class="(?i)firefox"] $ws2
+assign [class="(?i)spotify"] $ws4
+assign [class="(?i)darktable"] $ws5
+assign [class="(?i)rawtherapee"] $ws5
+assign [class="(?i)gimp"] $ws5
+assign [class="(?i)retroarch"] $ws6
+
+# Move containers
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+
+# focus movement
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# window movement
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# workspace splits
+bindsym $alt+$mod+f floating toggle
+bindsym $alt+$mod+e layout toggle split 
+bindsym $alt+$mod+s layout stacking 
+bindsym $alt+$mod+w layout tabbed
+bindsym $alt+$mod+v split v
+bindsym $alt+$mod+h split h
+
+# WM Modes
+mode "Window_Resize" {
+    bindsym Left resize shrink width 5 px or 5 ppt
+    bindsym Down resize grow height 5 px or 5 ppt
+    bindsym Up resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
+
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+r mode "Window_Resize"
+
+mode "i3_gaps" {
+  bindsym o mode "i3_gaps_outer"
+  bindsym i mode "i3_gaps_inner"
+
+  bindsym d exec i3-msg "gaps outer all set $gaps_outer_default" && i3-msg "gaps inner all set $gaps_inner_default"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+Shift+g mode "i3_gaps"
+mode "i3_gaps_outer" {
+  bindsym plus exec i3-msg "gaps outer current plus $gaps_delta"
+  bindsym minus exec i3-msg "gaps outer current minus $gaps_delta"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+mode "i3_gaps_inner" {
+  bindsym plus exec i3-msg "gaps inner current plus $gaps_delta"
+  bindsym minus exec i3-msg "gaps inner current minus $gaps_delta"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+mode "Power_Management" {
+    bindsym l exec $HOME/.config/i3/i3pm lock
+    bindsym e exec $HOME/.config/i3/i3pm logout
+    bindsym r exec $HOME/.config/i3/i3pm reboot
+    bindsym s exec $HOME/.config/i3/i3pm shutdown
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "Power_Management"
+
+# Custom Shortcuts
+# Base behaviour, terminal and dmenu
+bindsym $mod+d exec --no-startup-id $DMENU
+bindsym $alt+Tab exec --no-startup-id $DMENU_TABS
+bindsym $mod+Return exec $TERMINAL -e tmux
+
+# Volume & music shortcuts
+bindsym XF86AudioMute exec $HOME/.config/i3scripts/pulsectl.py -m
+bindsym XF86AudioLowerVolume exec $HOME/.config/i3scripts/pulsectl.py -l 5
+bindsym XF86AudioRaiseVolume exec $HOME/.config/i3scripts/pulsectl.py -r 5
+
+# Screen Backlight
+bindcode 232 exec xbacklight -10
+bindcode 233 exec xbacklight +10
+
+# screen lock shortcut
+bindsym $mod+Shift+l exec $HOME/.config/i3lock/i3lock.sh
+
+# custom keybindings for most used applications
+bindsym $mod+r exec st -e ranger
+bindsym $mod+n exec st -e ncmpcpp
+
+# Window properties by X11 class
+for_window [class="(?i)mpv"] floating enable
+for_window [class="(?i)gimp"] floating enable
+for_window [class="(?i)evince"] floating enable
+for_window [class="(?i)keepassxc"] floating enable
+
+# Exec and startup
+# setup environment
+exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
+# feh for background
+exec_always --no-startup-id feh --bg-scale $HOME/Pictures/gLCDt.png
+# polybar top & bottom widgets
+exec_always --no-startup-id $HOME/.config/polybar/load.sh &
+# start desktop applications
+exec_always --no-startup-id $HOME/i3/start_applets.sh &
