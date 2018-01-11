@@ -49,12 +49,12 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
-Plug 'jiangmiao/auto-pairs.git'
+Plug 'jiangmiao/auto-pairs'
 Plug 'blindFS/vim-taskwarrior'
 Plug 'ryanss/vim-hackernews'
 Plug 'ayu-theme/ayu-vim'
 Plug 'Yggdroot/indentLine'
-Plug 'w0rp/ale.git'
+Plug 'w0rp/ale'
 Plug 'valloric/YouCompleteMe'
 Plug 'metalelf0/base16-black-metal-scheme'
 
@@ -141,9 +141,15 @@ function! NumberToggle()
   endif
 endfunc
 
+" Useless, NeoVim does not understand setting term
+"if &term == "xterm-256color"
+"  set t_Co=256
+"endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
+
 " load custom color scheme
 syntax enable
-set termguicolors
 let ayucolor="mirage"
 colorscheme ayu
 
@@ -213,10 +219,6 @@ let g:airline_symbols.space = "\ua0"
 
 if (has("termguicolors"))
  set termguicolors
-endif
-
-if &term == "xterm-256color"
-  set t_Co=256
 endif
 
 " Remapping of some custom commands
