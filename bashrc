@@ -15,14 +15,15 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
+export TERM="screen-256color"
 # If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-#    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-#    ;;
-#*)
-#    ;;
-#esac
+case "$TERM" in
+xterm*|rxvt*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+    ;;
+*)
+    ;;
+esac
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -61,7 +62,7 @@ PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
 # color schemes
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_material-darker
+base16_twilight
 
 # Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
