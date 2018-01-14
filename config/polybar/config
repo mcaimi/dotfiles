@@ -12,8 +12,8 @@ alert = ${xrdb:color9}
  dpi = 96
 monitor = "eDP1"
 include-file = ~/.config/polybar/top-bar
-modules-left = hostname mpd
-modules-center = i3
+modules-left = hostname i3 mpd
+modules-center = firefox vstudio vmm
 modules-right = memory cpu temperature battery wlan eth
 
 [bar/bottom]
@@ -31,8 +31,8 @@ tray-padding = 2
  dpi = 96
 monitor = "DP2"
 include-file = ~/.config/polybar/top-bar
-modules-left = hostname mpd
-modules-center = i3
+modules-left = hostname i3
+modules-center = firefox vstudio vmm
 modules-right = memory cpu temperature battery wlan eth
 
 [bar/bottom-ext]
@@ -61,11 +61,23 @@ format-prefix = " "
 format-prefix-foreground = ${colors.primary}
 format-foreground = ${colors.secondary}
 
-[module/webbrowser]
+[module/firefox]
 type = custom/text
 content = " "
 content-foreground = ${colors.primary}
-click-left = docker start sandfox
+click-left = docker start sandfox &
+
+[module/vstudio]
+type = custom/text
+content = ""
+content-foreground = ${colors.primary}
+click-left = /opt/visual-studio-code/code %f &
+
+[module/vmm]
+type = custom/text
+content = " "
+content-foreground = ${colors.primary}
+click-left = virtual-machine-manager &
 
 [module/dnsmasqDaemon]
 type = custom/script

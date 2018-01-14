@@ -200,9 +200,9 @@ for_window [class="(?i)keepassxc"] floating enable
 # Exec and startup
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
-# feh for background
-exec_always --no-startup-id feh --bg-scale $HOME/Pictures/gLCDt.png
 # polybar top & bottom widgets
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
+# feh for background
+exec_always --no-startup-id wal -s -i $HOME/Pictures/gLCDt.png
 # start desktop applications
-exec_always --no-startup-id $HOME/i3/start_applets.sh &
+exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &

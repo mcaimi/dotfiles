@@ -5,7 +5,7 @@ offset-x = 1%
 offset-y = 4
 background = ${colors.background}
 foreground = ${colors.foreground}
-wm-restack = i3
+;wm-restack = i3
 override-redirect = true
 fixed-center = true
 font-0 = Iosevka Term Medium:style=Regular:size=12;2
