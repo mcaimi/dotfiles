@@ -172,6 +172,7 @@ bindsym $mod+Shift+e mode "Power_Management"
 # Custom Shortcuts
 # Base behaviour, terminal and dmenu
 bindsym $mod+d exec --no-startup-id $DMENU
+bindsym Menu exec --no-startup-id $DMENU
 bindsym $alt+Tab exec --no-startup-id $DMENU_TABS
 bindsym $mod+Return exec $TERMINAL -e tmux
 
@@ -203,6 +204,6 @@ exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # polybar top & bottom widgets
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
-exec_always --no-startup-id wal -s -i $HOME/Pictures/gLCDt.png
+exec_always --no-startup-id wal -s -i $HOME/Pictures/icelands_ring_road-3840x2160.jpg
 # start desktop applications
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &

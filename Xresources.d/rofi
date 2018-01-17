@@ -1,7 +1,6 @@
 ! Rofi
 rofi.combi-modi:  drun,run
 rofi.display-combi: rofi
-rofi.monitor: primary
 rofi.modi:  window,drun,ssh,run,combi
 rofi.show:  combi
 rofi.ssh-client: ssh
@@ -9,10 +8,6 @@ rofi.terminal: /usr/bin/st
 rofi.color-enabled: true
 rofi.fuzzy: true
 rofi.hide-scrollbar: true
-rofi.color-normal: t_transparent,t_white,t_transparent,t_transparent,t_purple
-rofi.color-urgent: t_transparent,t_red,t_transparent,t_transparent,t_purple
-rofi.color-active: t_transparent,t_transparent,t_transparent,t_purple
-rofi.color-window: t_background,t_purple
 rofi.separator-style: solid
 rofi.sidebar-mode: false
 rofi.bw: 4
@@ -32,3 +27,9 @@ rofi.border-radius: 8
 !rofi.opacity: 100
 !rofi.fake-transparency: false
 !rofi.line-margin: 35
+!rofi.monitor: primary
+!rofi.color-normal: t_transparent,t_white,t_transparent,t_transparent,t_purple
+!rofi.color-urgent: t_transparent,t_red,t_transparent,t_transparent,t_purple
+!rofi.color-active: t_transparent,t_transparent,t_transparent,t_purple
+!rofi.color-window: t_background,t_purple
+

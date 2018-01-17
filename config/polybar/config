@@ -33,15 +33,15 @@ monitor = "DP2"
 include-file = ~/.config/polybar/top-bar
 modules-left = hostname i3
 modules-center = firefox vstudio vmm
-modules-right = memory cpu temperature battery wlan eth
+modules-right = memory cpu temperature battery wlan
 
 [bar/bottom-ext]
 dpi = 96
 monitor = "DP2"
 include-file = ~/.config/polybar/bottom-bar
-modules-left = dnsmasqDaemon firewallDaemon
+modules-left = dnsmasqDaemon firewallDaemon eth
 modules-center = volume-internal
-modules-right = uptime date
+modules-right = date
 tray-position = right
 tray-padding = 2
 
@@ -75,9 +75,9 @@ click-left = /opt/visual-studio-code/code %f &
 
 [module/vmm]
 type = custom/text
-content = " "
+content = " "
 content-foreground = ${colors.primary}
-click-left = virtual-machine-manager &
+click-left = virt-manager &
 
 [module/dnsmasqDaemon]
 type = custom/script
@@ -127,7 +127,7 @@ wrapping-scroll = false
 ; to find icon: xfd -fa MaterialIcons,
 ; echo "\ueXXX" to print and paste here
 ws-icon-0 = Terminal;
-ws-icon-1 = Web;
+ws-icon-1 = Browser;
 ws-icon-2 = Code;
 ws-icon-3 = Media;
 ws-icon-4 = Photography;
@@ -237,7 +237,7 @@ interface = enp0s31f6
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
