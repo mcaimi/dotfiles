@@ -82,6 +82,7 @@ bindsym $mod+Tab workspace back_and_forth
 assign [class="(?i)st"] $ws1
 assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
+assign [class="(?i)code"] $ws3
 assign [class="(?i)spotify"] $ws4
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
@@ -159,15 +160,27 @@ mode "i3_gaps_inner" {
 }
 
 mode "Power_Management" {
-    bindsym l exec $HOME/.config/i3/i3pm lock
-    bindsym e exec $HOME/.config/i3/i3pm logout
-    bindsym r exec $HOME/.config/i3/i3pm reboot
-    bindsym s exec $HOME/.config/i3/i3pm shutdown
+    bindsym l exec --no-startup-id $HOME/.config/i3/i3pm lock
+    bindsym e exec --no-startup-id $HOME/.config/i3/i3pm logout
+    bindsym r exec --no-startup-id $HOME/.config/i3/i3pm reboot
+    bindsym s exec --no-startup-id $HOME/.config/i3/i3pm shutdown
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+e mode "Power_Management"
+
+mode "XRandr" {
+    bindsym l exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "extleft" && i3-msg restart
+    bindsym r exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "extright" && i3-msg restart
+    bindsym m exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "mirror" && i3-msg restart
+    bindsym d exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "dock" && i3-msg restart
+    bindsym u exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "undock" && i3-msg restart
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+x mode "XRandr"
 
 # Custom Shortcuts
 # Base behaviour, terminal and dmenu
@@ -188,6 +201,9 @@ bindcode 233 exec xbacklight +10
 # screen lock shortcut
 bindsym $mod+Shift+l exec $HOME/.config/i3lock/i3lock.sh
 
+# XRandr panic mode
+bindsym XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg reload
+
 # custom keybindings for most used applications
 bindsym $mod+r exec st -e ranger
 bindsym $mod+n exec st -e ncmpcpp
@@ -197,6 +213,7 @@ for_window [class="(?i)mpv"] floating enable
 for_window [class="(?i)gimp"] floating enable
 for_window [class="(?i)evince"] floating enable
 for_window [class="(?i)keepassxc"] floating enable
+for_window [class="(?i)keybase"] floating enable
 
 # Exec and startup
 # setup environment

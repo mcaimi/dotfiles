@@ -3,30 +3,19 @@
 # let the local user connect to the local X11 server via unix socket. Docker containers use this
 xhost si:localuser:marco
 
-# check laptop lid status
-LIDSTATE="/proc/acpi/button/lid/LID/state"
-
-# displays
-declare -A DISPLAYS
-DISPLAYS=(["internal"]="eDP1" ["external"]="DP2")
-
-function is_lid_closed() {
-  ISCLOSED=$(grep "closed" $LIDSTATE)
-  # lid is open
-  [[ -z "$ISCLOSED" ]] && return 1
-  # lid is closed
-  return 0
-}
-
-function is_display_connected() {
-  DISPLAY=${1}
-  ISCONNECTED=$(xrandr | awk '/connected/ {print $1}')
-}
+# include functions
+source $HOME/.config/i3scripts/helper.sh
 
 # do we need to disable the internal display?
 is_lid_closed
+
+# DEFAULT BEHAVIOUR:
 # if lid is closed, external monitor is the primary monitor
-[[ $? -eq 0 ]] && xrandr --output ${DISPLAYS["internal"]} --off --output ${DISPLAYS["external"]} --auto --primary
+if [ $? -eq 0 ]; then
+  xrandr --output ${DISPLAYS["internal"]} --off --output ${DISPLAYS["external"]} --auto --primary
+else # office mode: eDP1 is primary display, DP2 is secondary display left of eDP1
+  xrandr --output ${DISPLAYS["internal"]} --auto --primary --output ${DISPLAYS["external"]} --auto --left-of ${DISPLAYS["internal"]}
+fi
 
 # start ssh-agent
 eval $(ssh-agent -s)
