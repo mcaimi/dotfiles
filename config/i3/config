@@ -68,6 +68,7 @@ set $ws3 Code
 set $ws4 Media
 set $ws5 Photography
 set $ws6 Games
+set $ws7 VirtualMachines
 
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
@@ -76,6 +77,7 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
 bindsym $mod+Tab workspace back_and_forth
 
 # Workspace assignment
@@ -88,6 +90,8 @@ assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
 assign [class="(?i)gimp"] $ws5
 assign [class="(?i)retroarch"] $ws6
+assign [class="(?i)xfreerdp"] $ws7
+assign [class="(?i)virt-manager"] $ws7
 
 # Move containers
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -96,6 +100,7 @@ bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
 
 # focus movement
 bindsym $mod+Left focus left
@@ -116,6 +121,7 @@ bindsym $alt+$mod+s layout stacking
 bindsym $alt+$mod+w layout tabbed
 bindsym $alt+$mod+v split v
 bindsym $alt+$mod+h split h
+bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
 # WM Modes
 mode "Window_Resize" {
@@ -176,6 +182,7 @@ mode "XRandr" {
     bindsym m exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "mirror" && i3-msg restart
     bindsym d exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "dock" && i3-msg restart
     bindsym u exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "undock" && i3-msg restart
+    bindsym p exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg restart
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -190,23 +197,30 @@ bindsym $alt+Tab exec --no-startup-id $DMENU_TABS
 bindsym $mod+Return exec $TERMINAL -e tmux
 
 # Volume & music shortcuts
-bindsym XF86AudioMute exec $HOME/.config/i3scripts/pulsectl.py -m
-bindsym XF86AudioLowerVolume exec $HOME/.config/i3scripts/pulsectl.py -l 5
-bindsym XF86AudioRaiseVolume exec $HOME/.config/i3scripts/pulsectl.py -r 5
+bindsym XF86AudioMute exec $HOME/.config/i3scripts/pulsectl.py -m &
+bindsym XF86AudioLowerVolume exec $HOME/.config/i3scripts/pulsectl.py -l 5 &
+bindsym XF86AudioRaiseVolume exec $HOME/.config/i3scripts/pulsectl.py -r 5 &
 
 # Screen Backlight
-bindcode 232 exec xbacklight -10
-bindcode 233 exec xbacklight +10
+bindcode 232 exec xbacklight -10 &
+bindcode 233 exec xbacklight +10 &
 
 # screen lock shortcut
 bindsym $mod+Shift+l exec $HOME/.config/i3lock/i3lock.sh
 
-# XRandr panic mode
-bindsym XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg reload
+# XRandr 
+# randr menu (X11 hotkey)
+bindsym XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh
+# Xrandr menu (alt hotkey)
+bindsym $mod+Shift+Control+x exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh
+# NetworkManager menu
+bindsym $mod+Shift+n exec --no-startup-id networkmanager_dmenu &
+# panic mode (fircefully reverts to the internal laptop monitor)
+bindsym $mod+XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg restart
 
 # custom keybindings for most used applications
-bindsym $mod+r exec st -e ranger
-bindsym $mod+n exec st -e ncmpcpp
+bindsym $mod+r exec --no-startup-id st -e ranger
+bindsym $mod+n exec --no-startup-id st -e ncmpcpp
 
 # Window properties by X11 class
 for_window [class="(?i)mpv"] floating enable
@@ -214,6 +228,8 @@ for_window [class="(?i)gimp"] floating enable
 for_window [class="(?i)evince"] floating enable
 for_window [class="(?i)keepassxc"] floating enable
 for_window [class="(?i)keybase"] floating enable
+for_window [window_role="(?i)pop-up"] floating enable
+for_window [window_role="(?i)about"] floating enable
 
 # Exec and startup
 # setup environment
@@ -221,6 +237,8 @@ exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # polybar top & bottom widgets
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
-exec_always --no-startup-id wal -s -i $HOME/Pictures/icelands_ring_road-3840x2160.jpg
+exec_always --no-startup-id wal -s -i $HOME/Pictures/t3_7oagbr.jpg &
 # start desktop applications
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
+# load xautolock
+exec_always --no-startup-id xautolock -time 10 -locker $HOME/.config/i3lock/i3lock.sh &

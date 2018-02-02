@@ -1,6 +1,9 @@
 #!/bin/bash
 declare -A APPLETS
-APPLETS=(["NETWORKMANAGER"]="nm-applet" ["FIREWALL"]="firewall-applet")
+
+# networkmanager applet was replaced by the infinitely superior networkmanager_dmenu AUR package
+#APPLETS=(["NETWORKMANAGER"]="nm-applet" ["FIREWALL"]="firewall-applet" ["MEGASYNC"]="megasync")
+APPLETS=(["FIREWALL"]="firewall-applet" ["MEGASYNC"]="megasync")
 
 # let i3 load polybar completely...
 sleep 2

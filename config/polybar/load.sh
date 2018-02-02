@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# ymmv
+sleep 2
+
 # load Xresources
 xrdb -merge $HOME/.Xresources
 

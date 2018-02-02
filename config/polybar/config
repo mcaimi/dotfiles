@@ -21,7 +21,7 @@ dpi = 96
 monitor = "eDP1"
 include-file = ~/.config/polybar/bottom-bar
 modules-left = dnsmasqDaemon firewallDaemon
-modules-center = volume-internal
+modules-center = volume-internal xbacklight
 modules-right = uptime date
 tray-position = right
 tray-padding = 2
@@ -39,7 +39,7 @@ modules-right = memory cpu temperature battery wlan
 dpi = 96
 monitor = "DP2"
 include-file = ~/.config/polybar/bottom-bar
-modules-left = dnsmasqDaemon firewallDaemon eth
+modules-left = ip dnsmasqDaemon firewallDaemon eth
 modules-center = volume-internal
 modules-right = date
 tray-position = right
@@ -132,25 +132,26 @@ ws-icon-2 = Code;
 ws-icon-3 = Media;
 ws-icon-4 = Photography;
 ws-icon-5 = Games;
+ws-icon-6 = VirtualMachines; 
 
 ; focused = Active workspace on focused monitor
-label-focused = %icon%
+label-focused = Af %icon%
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %icon%
+label-unfocused = In %icon%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %iconx%
+label-visible = Au %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %icon%
+label-urgent = Urg %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
@@ -299,8 +300,6 @@ bar-volume-empty = 
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.secondary}
 
-
-
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -374,6 +373,10 @@ menu-2-0 = shut down
 menu-2-0-exec = systemctl shutdown
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
+
+[module/xbacklight]
+type = internal/xbacklight
+format-prefix = " "
 
 [global/wm]
 margin-top = 0

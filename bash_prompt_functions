@@ -26,6 +26,13 @@ function __set_window_title()
   echo -e '\033]2;'$TITLE'\007'
 }
 
+# set window title
+function __set_window_name()
+{
+  TITLE="$1"
+  echo -e '\033k'$TITLE'\007'
+}
+
 # wraps string in escape codes
 function __wrap_codepoint() {
   echo -En "\[${1}\]" 
