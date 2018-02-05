@@ -1,7 +1,7 @@
 [colors]
-background = ${xrdb:background}
-background-alt = ${xrdb:color0}
-foreground = ${xrdb:foreground}
+background = ${xrdb:color0}
+background-alt = ${xrdb:color8}
+foreground = ${xrdb:color15}
 foreground-alt = ${xrdb:color7}
 primary = ${xrdb:color6}
 secondary = ${xrdb:color13}
@@ -34,6 +34,8 @@ include-file = ~/.config/polybar/top-bar
 modules-left = hostname i3
 modules-center = firefox vstudio vmm
 modules-right = memory cpu temperature battery wlan
+border-bottom-size = 3
+border-bottom-color = ${colors.secondary}
 
 [bar/bottom-ext]
 dpi = 96
@@ -44,6 +46,8 @@ modules-center = volume-internal
 modules-right = date
 tray-position = right
 tray-padding = 2
+border-top-size = 3
+border-top-color = ${colors.secondary}
 
 [module/uptime]
 type = custom/script
@@ -347,6 +351,11 @@ ramp-foreground = ${colors.foreground-alt}
 
 [settings]
 screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
 
 [module/powermenu]
 type = custom/menu

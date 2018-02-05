@@ -9,7 +9,7 @@ Xft.rgba: none
 
 ! Resources include section
 #include "/home/marco/.config/colorthemes/basic"
-#include "/home/marco/.config/colorthemes/cybergirl"
+#include "/home/marco/.config/colorthemes/special"
  #include "/home/marco/Work/dotfiles/Xresources.d/rofi"
 #include "/home/marco/Work/dotfiles/Xresources.d/st"
 #include "/home/marco/Work/dotfiles/Xresources.d/xterm"

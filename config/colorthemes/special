@@ -1,0 +1,5 @@
+! Special
+*background:    t_background
+*foreground:    t_foreground
+*.cursorColor:  t_cursor
+

@@ -245,7 +245,7 @@ exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # polybar top & bottom widgets
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/t3_7oagbr.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/1513636009524.jpg &
 # start desktop applications
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # load xautolock
