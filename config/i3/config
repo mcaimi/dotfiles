@@ -1,7 +1,8 @@
 # i3-gaps configuration file
 
 # i3 font
-font -*-Iosevka-Term-Medium-medium-r-*-*-8-*-*-*-*-*-*-*
+set $ft pango:Iosevka Term Medium 10
+font $ft
 
 # read colors from xresources database
 set_from_resource $darkred     color1  #000000
@@ -78,7 +79,7 @@ bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
-bindsym $mod+Tab workspace back_and_forth
+bindsym $alt+Tab workspace back_and_forth
 
 # Workspace assignment
 assign [class="(?i)st"] $ws1
@@ -193,7 +194,7 @@ bindsym $mod+Shift+x mode "XRandr"
 # Base behaviour, terminal and dmenu
 bindsym $mod+d exec --no-startup-id $DMENU
 bindsym Menu exec --no-startup-id $DMENU
-bindsym $alt+Tab exec --no-startup-id $DMENU_TABS
+bindsym $mod+w exec --no-startup-id $DMENU_TABS
 bindsym $mod+Return exec $TERMINAL -e tmux
 
 # Volume & music shortcuts
@@ -202,25 +203,32 @@ bindsym XF86AudioLowerVolume exec $HOME/.config/i3scripts/pulsectl.py -l 5 &
 bindsym XF86AudioRaiseVolume exec $HOME/.config/i3scripts/pulsectl.py -r 5 &
 
 # Screen Backlight
-bindcode 232 exec xbacklight -10 &
-bindcode 233 exec xbacklight +10 &
+bindcode XF86MonBrightnessDown exec xbacklight -10 &
+bindcode XF86MonBrightnessUp exec xbacklight +10 &
 
 # screen lock shortcut
 bindsym $mod+Shift+l exec $HOME/.config/i3lock/i3lock.sh
 
 # XRandr 
 # randr menu (X11 hotkey)
-bindsym XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh
+bindsym XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh &
 # Xrandr menu (alt hotkey)
-bindsym $mod+Shift+Control+x exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh
-# NetworkManager menu
-bindsym $mod+Shift+n exec --no-startup-id networkmanager_dmenu &
+bindsym $mod+Shift+Control+x exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh &
 # panic mode (fircefully reverts to the internal laptop monitor)
 bindsym $mod+XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg restart
 
 # custom keybindings for most used applications
-bindsym $mod+r exec --no-startup-id st -e ranger
-bindsym $mod+n exec --no-startup-id st -e ncmpcpp
+bindsym $mod+r exec --no-startup-id st -e ranger &
+bindsym $mod+n exec --no-startup-id st -e newsboat &
+
+# NetworkManager menu
+bindsym $mod+Shift+n exec --no-startup-id networkmanager_dmenu &
+# Screenshot menu
+bindsym $mod+Shift+s exec --no-startup-id $HOME/Work/dotfiles/rofi-screenshot.sh &
+
+# mouse bindings
+bindsym --whole-window $mod+Shift+button2 floating toggle
+bindsym --whole-window $mod+$alt+button2 exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
 # Window properties by X11 class
 for_window [class="(?i)mpv"] floating enable
@@ -237,8 +245,9 @@ exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # polybar top & bottom widgets
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
-exec_always --no-startup-id wal -s -i $HOME/Pictures/t3_7oagbr.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/t3_7oagbr.jpg &
 # start desktop applications
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # load xautolock
 exec_always --no-startup-id xautolock -time 10 -locker $HOME/.config/i3lock/i3lock.sh &
+

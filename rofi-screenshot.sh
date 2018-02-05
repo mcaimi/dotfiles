@@ -2,7 +2,7 @@
 # MAIM integration for Rofi
 
 function _rofi {
-    rofi -tokenize -no-levenshtein-search -dmenu "$@" -p "screenshot >"
+    rofi -lines 10 -tokenize -no-levenshtein-search -dmenu "$@" -p "screenshot >"
 }
 
 MAIM_DIR="${HOME}/Pictures/Maim"
