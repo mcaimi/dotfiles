@@ -33,6 +33,8 @@ call plug#begin('~/.neovimbundle/')
 " Plug('Shougo/vimshell', { 'rev': '3787e5' })
 " Plug('arcticicestudio/nord-vim')
 " Plug 'dim13/smyck.vim'
+" Plug 'Yggdroot/indentLine'
+" Plug 'w0rp/ale'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
@@ -53,8 +55,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'blindFS/vim-taskwarrior'
 Plug 'ryanss/vim-hackernews'
 Plug 'ayu-theme/ayu-vim'
-Plug 'Yggdroot/indentLine'
-Plug 'w0rp/ale'
 Plug 'valloric/YouCompleteMe'
 Plug 'metalelf0/base16-black-metal-scheme'
 
@@ -244,6 +244,8 @@ if has("persistent_undo")
 endif
 
 " convenience maps
+" Wipe all empty lines
+noremap <Leader>1 :g/^\s*$/d_<CR>
 noremap <Leader>w :w<CR>
 noremap <Leader>q :wq<CR>
 noremap <Leader>Q :q!<CR>
