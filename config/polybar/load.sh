@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
+# 
+# Polybar Startup Script
+#
 
-# ymmv
+# wait a little for i3 to load completely. ymmv.
 sleep 2
 
 # load Xresources
@@ -23,12 +26,12 @@ if [ "$polybar_proc" != "" ] ; then
 fi
 
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-echo "Killed running polybars." >> $LOGFILE
+info "[$(date)]: Killed running polybars." $LOGFILE
 
 # Launch top & bottom bar on internal display if lid is open
 is_lid_closed
 if [ $? -ne 0 ]; then 
-  echo "INTERNAL DISPLAY: Loading polybars...." >> $LOGFILE
+  info "[$(date)]: INTERNAL DISPLAY: Loading polybars...." $LOGFILE
   polybar top &
   polybar bottom &
 fi
@@ -36,9 +39,10 @@ fi
 # Launch bar top & bottom external display
 is_display_connected DP2
 if [ $? -eq 0 ]; then
-  echo "EXTERNAL DISPLAY: Loading polybars...." >> $LOGFILE
+  info "[$(date)]: EXTERNAL DISPLAY: Loading polybars...." $LOGFILE
   polybar top-ext &
   polybar bottom-ext &
 fi
 
-echo "Bars launched..."
+info "Bars launched..." $LOGFILE
+#

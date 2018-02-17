@@ -34,6 +34,7 @@ set $DMENU_TABS /usr/bin/rofi -show window
 set $SANDFOX docker start sandfox
 set $gaps_inner_px 18
 set $gaps_outer_px 18
+set $window_border_thickness 3
 set $gaps_delta 2
 
 # i3-gaps settings
@@ -42,15 +43,16 @@ gaps outer $gaps_outer_px
 smart_borders on
 
 # set window classes properties
-for_window [class="^.*"] border normal 0
+for_window [class="^.*"] border pixel $window_border_thickness
+hide_edge_borders both
 for_window [class="(?i).+-256color"] title_format " >_ %title "
 
 # colors & theme settings
-#                       BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
-client.focused          $transparent      $black      $darkwhite  $darkwhite  $darkblack
-client.unfocused        $transparent      $transparent      $white      $darkblack  $darkblack
-client.focused_inactive $transparent      $transparent      $white      $darkblack  $darkblack
-client.urgent           $darkred    $darkred    $black      $darkred    $darkred
+#                       BORDER        BACKGROUND      TEXT        INDICATOR   CHILD_BORDER
+client.focused          $darkblue     $black          $darkwhite  $darkwhite  $darkblue
+client.unfocused        $transparent  $transparent    $white      $darkblack  $darkblack
+client.focused_inactive $transparent  $transparent    $white      $darkblack  $darkblack
+client.urgent           $darkred      $darkred        $black      $darkred    $darkred
 client.background       $black
 
 # Keyboard Shortcuts definitions
@@ -70,6 +72,7 @@ set $ws4 Media
 set $ws5 Photography
 set $ws6 Games
 set $ws7 VirtualMachines
+set $ws8 Chat
 
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
@@ -79,14 +82,20 @@ bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
 bindsym $alt+Tab workspace back_and_forth
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 # Workspace assignment
 assign [class="(?i)st"] $ws1
 assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
+assign [class="(?i)qutebrowser"] $ws2
 assign [class="(?i)code"] $ws3
-assign [class="(?i)spotify"] $ws4
+assign [title="Spotify"] $ws4
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
 assign [class="(?i)gimp"] $ws5
@@ -102,6 +111,7 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
 
 # focus movement
 bindsym $mod+Left focus left
@@ -145,7 +155,9 @@ mode "i3_gaps" {
   bindsym o mode "i3_gaps_outer"
   bindsym i mode "i3_gaps_inner"
 
-  bindsym d exec i3-msg "gaps outer all set $gaps_outer_default" && i3-msg "gaps inner all set $gaps_inner_default"
+  bindsym d exec --no-startup-id i3-msg "gaps outer all set $gaps_outer_px" && i3-msg "gaps inner all set $gaps_inner_px"
+  bindsym 0 exec --no-startup-id i3-msg "gaps outer all set 0" && i3-msg "gaps inner all set 0"
+  bindsym b exec --no-startup-id i3-msg "border toggle"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -195,7 +207,8 @@ bindsym $mod+Shift+x mode "XRandr"
 bindsym $mod+d exec --no-startup-id $DMENU
 bindsym Menu exec --no-startup-id $DMENU
 bindsym $mod+w exec --no-startup-id $DMENU_TABS
-bindsym $mod+Return exec $TERMINAL -e tmux
+bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
+bindsym $mod+Shift+Return exec --no-startup-id uxterm -e /usr/bin/bash -l -c tmux
 
 # Volume & music shortcuts
 bindsym XF86AudioMute exec $HOME/.config/i3scripts/pulsectl.py -m &
@@ -234,10 +247,10 @@ bindsym --whole-window $mod+$alt+button2 exec --no-startup-id $HOME/.config/i3sc
 for_window [class="(?i)mpv"] floating enable
 for_window [class="(?i)gimp"] floating enable
 for_window [class="(?i)evince"] floating enable
-for_window [class="(?i)keepassxc"] floating enable
-for_window [class="(?i)keybase"] floating enable
 for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)about"] floating enable
+for_window [class="(?i)keybase"] move to scratchpad
+for_window [class="(?i)keepassxc"] move to scratchpad
 
 # Exec and startup
 # setup environment
@@ -245,9 +258,11 @@ exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # polybar top & bottom widgets
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/1513636009524.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/t3_7oagbr.jpg &
 # start desktop applications
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # load xautolock
 exec_always --no-startup-id xautolock -time 10 -locker $HOME/.config/i3lock/i3lock.sh &
+# start conky
+exec_always --no-startup-id $HOME/.conkystart.sh &
 

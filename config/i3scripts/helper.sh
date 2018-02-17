@@ -4,13 +4,15 @@
 # Helper functions
 # 
 
+# i3 session log file
+I3LOG="/tmp/i3-sessionlog"
 # check laptop lid status
 LIDSTATE="/proc/acpi/button/lid/LID/state"
 # state path
 STATEPATH="/tmp/statepath"
 [[ ! -d $STATEPATH ]] && mkdir -p $STATEPATH
 
-# log helper
+# log helpers
 function info() {
   echo "[INFO]: $1" >> $2
 }
@@ -19,6 +21,37 @@ function warning() {
 }
 function error() {
   echo "[ERROR]: $1" >> $2
+}
+# disable dpms
+function disable_dpms() {
+  xset dpms 0 0 0
+}
+
+# Call i3-lock
+function i3_lock() {
+  info "[$(date)]: i3-lock called explicitly by user" $I3LOG
+  $HOME/.config/i3lock/i3lock.sh
+}
+
+# i3 logout hook
+function i3_logout() {
+  info "[$(date)]: i3-msg called explicitly by user: LOGOUT REQUESTED" $I3LOG
+  i3-msg exit
+}
+
+# Linux Suspend/Hibernate hook
+function i3_suspend() {
+  MODE=$1
+  if [[ "$1" == "suspend" ]]; then
+    info "[$(date)]: SUSPEND-TO-RAM REQUESTED: initiating via systemd..." $I3LOG
+    systemctl suspend
+  elif [[ "$1" == "hibernate" ]]; then
+    info "[$(date)]: HIBERNATE ACTION REQUESTED: initiating via systemd..." $I3LOG
+    systemctl hibernate
+  else
+    error "[$DATE]: Unknown action requested. Execution aborted" $I3LOG
+    return -1
+  fi
 }
 
 # state files i/o helpers
@@ -137,6 +170,19 @@ function find_x11_window_id_by_class() {
   #ACTIVEDESKTOP=`xdotool get_desktop`
   #WINDOWID=`xdotool search --desktop $ACTIVESDESKTOP --classname $CLASSNAME`
   WINDOWID=`xdotool search --screen 0 --classname $CLASSNAME`
+  test_str_empty $WINDOWID && return 1
+
+  # found window ID
+  echo $WINDOWID
+  return 0
+}
+
+# X11 Window ID search by window X11 WM_NAME
+function find_x11_window_id_by_name() {
+  WMNAME=$1
+  #ACTIVEDESKTOP=`xdotool get_desktop`
+  #WINDOWID=`xdotool search --desktop $ACTIVESDESKTOP --classname $CLASSNAME`
+  WINDOWID=`xdotool search --screen 0 --name $WMNAME`
   test_str_empty $WINDOWID && return 1
 
   # found window ID

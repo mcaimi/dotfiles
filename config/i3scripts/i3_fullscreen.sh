@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #
 # sets the fullscreen attibute to the current window.
-# if polybar is visible, hides it
+# this is useful for X windows that do not support proper fullscreen implementations.
+# to smooth it out if polybar is visible, hide it via xdotool
 #
 
 # load helper library

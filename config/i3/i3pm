@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
+# 
+# Power management and session handler script
+#
 
-lock() {
-    $HOME/.config/i3lock/i3lock.sh
-}
+# load function library
+source $HOME/.config/i3scripts/helper.sh
 
 case "$1" in
     lock)
-        lock
+        i3_lock
         ;;
     logout)
-        i3-msg exit
+        i3_logout
         ;;
     suspend)
-        systemctl suspend
+        i3_suspend "suspend"
         ;;
     hibernate)
-        systemctl hibernate
+        i3_suspend "hibernate"
         ;;
     reboot)
         systemctl reboot

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -eu
 
+source $HOME/.config/i3scripts/helper.sh
+
 # in seconds
 ONEMINUTE=60
 STANDBY_TIMEOUT=$(( $ONEMINUTE * 20 ))
@@ -22,11 +24,6 @@ BLUR_RADIUS=60
 INDRADIUS=90
 CLOCKPOS="$(( $WIDTH / 2 )):$(( ($HEIGHT / 2) - 2*$INDRADIUS ))"
 INDPOS="$(( $WIDTH / 2 )):$(( ($HEIGHT / 2) + 2*$INDRADIUS ))"
-
-# aux functions
-function disable_dpms() {
-  xset dpms 0 0 0
-}
 
 # Requires i3lock-color from AUR
 [[ -z "$(pgrep i3lock)" ]] || exit

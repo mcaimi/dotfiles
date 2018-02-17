@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# systemd service status check.
+#
 
 arg=$1
 cmd=""
