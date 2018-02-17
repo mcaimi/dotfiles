@@ -4,8 +4,11 @@
 
 -- constants
 RAD_CONVERSION_FACTOR = math.pi/180.0
-DISPLACEMENT = 120.0
-CPU_DISPLACEMENT = 120.0
+DISPLACEMENT = 90.0
+CPU_DISPLACEMENT = 45.0
+ANGULAR_COEFF_45_DEG = math.tan(45.0)
+LOAD_DISPLACEMENT = (DISPLACEMENT - DISPLACEMENT/3)
+ANGULAR_COEFF_LOAD_DISPLACEMENT = math.tan(LOAD_DISPLACEMENT)
 
 -- widget parameters
 cpu_frequency_ring = {
@@ -15,7 +18,7 @@ cpu_frequency_ring = {
   centery = 170,
   radius = 100,
   angle0 = 0,
-  anglef = 120,
+  anglef = 270,
   bgcolor = 0x38403a,
   bgalpha = 0.8,
   fgcolor1 = 0xee0010,
@@ -32,7 +35,7 @@ cpu_load_ring = {
   radius = 85,
   inner_radius = 70,
   angle0 = 0,
-  anglef = 120,
+  anglef = 180,
   bgcolor = 0x38403a,
   bgalpha = 0.8,
   fgcolor = 0xee0010,
@@ -57,3 +60,5 @@ bg_rectangle = {
   height = 15,
   alpha = 1.0
 }
+
+
