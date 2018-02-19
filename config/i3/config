@@ -207,8 +207,10 @@ bindsym $mod+Shift+x mode "XRandr"
 bindsym $mod+d exec --no-startup-id $DMENU
 bindsym Menu exec --no-startup-id $DMENU
 bindsym $mod+w exec --no-startup-id $DMENU_TABS
+# Xst with TMUX, the default
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
-bindsym $mod+Shift+Return exec --no-startup-id uxterm -e /usr/bin/bash -l -c tmux
+# Plain old Xst, just the terminal
+bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
 
 # Volume & music shortcuts
 bindsym XF86AudioMute exec $HOME/.config/i3scripts/pulsectl.py -m &
@@ -216,8 +218,8 @@ bindsym XF86AudioLowerVolume exec $HOME/.config/i3scripts/pulsectl.py -l 5 &
 bindsym XF86AudioRaiseVolume exec $HOME/.config/i3scripts/pulsectl.py -r 5 &
 
 # Screen Backlight
-bindcode XF86MonBrightnessDown exec xbacklight -10 &
-bindcode XF86MonBrightnessUp exec xbacklight +10 &
+bindsym XF86MonBrightnessDown exec xbacklight -10 &
+bindsym XF86MonBrightnessUp exec xbacklight +10 &
 
 # screen lock shortcut
 bindsym $mod+Shift+l exec $HOME/.config/i3lock/i3lock.sh
@@ -259,10 +261,10 @@ exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
 exec_always --no-startup-id wal -i $HOME/Pictures/t3_7oagbr.jpg &
-# start desktop applications
+# start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # load xautolock
-exec_always --no-startup-id xautolock -time 10 -locker $HOME/.config/i3lock/i3lock.sh &
+exec_always --no-startup-id xidlehook --time 10 --timer $HOME/.config/i3lock/i3lock.sh --notify 60 --notifier "notify-send \"XIdleHook is about to lock desktop in 60 sec..\"" --canceller "notify-send \"XIdleHook cancelled by user action.\"" --not-when-audio &
 # start conky
 exec_always --no-startup-id $HOME/.conkystart.sh &
 

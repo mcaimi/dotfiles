@@ -35,7 +35,7 @@ xset s blank
 
 # launch xclock and blank screen
 #i3lock -e -f -B=$BLUR_RADIUS -k --timefont=$TIMEFONT --timesize=$TIMESIZE --timecolor=$FONTCOLOR --timepos="$CLOCKPOS" --datefont=$DATEFONT --datesize=$DATESIZE --datecolor=$FONTCOLOR --indpos="$INDPOS" --indicator --radius=$INDRADIUS
-i3lock -e -f -B=$BLUR_RADIUS --indpos="$INDPOS" --indicator --radius=$INDRADIUS
+i3lock --ignore-empty-password -f -B=$BLUR_RADIUS --indpos="$INDPOS" --indicator --radius=$INDRADIUS
 xset s activate
 
 # screen unlocked, disable dpms

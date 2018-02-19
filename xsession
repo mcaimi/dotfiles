@@ -15,7 +15,7 @@ declare -A STATEFILES
 STATEFILES=(["fullscreen"]="fullscreen")
 
 # init state files
-for initfile in ${fullscreen[@]}; do
+for initfile in ${STATEFILES[@]}; do
   info "Initializing state file $initfile..." $XSESSION_LOG
   init_state_file $initfile
 done
