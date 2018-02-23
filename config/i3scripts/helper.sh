@@ -54,6 +54,23 @@ function i3_suspend() {
   fi
 }
 
+# massively kill stray process instances (polybar, conky....)
+function nuke() {
+  PROCTOKILL=${1}
+  # clean up running polybar instances
+  killall -q $PROCTOKILL
+  stray_process_list=$(pgrep -u $UID -x $PROCTOKILL)
+  # Terminate already running bar instances
+  if [ "$stray_process_list" != "" ] ; then
+      for i in ${stray_process_list} ; do
+          # go brutal now.
+          kill -9 $i
+      done
+  fi
+  # wait...
+  while pgrep -u $UID -x $PROCTOKILL >/dev/null; do sleep 1; done
+}
+
 # state files i/o helpers
 function init_state_file() {
   STATEFILE=$1

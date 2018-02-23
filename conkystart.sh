@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# source helper library
+source $HOME/.config/i3scripts/helper.sh
+
+# kill running conkies
+nuke conky
+
 # conky network interfaces HUD
 #conky -c /home/marco/.conkyrc-network -d
 

@@ -6,6 +6,7 @@ foreground-alt = ${xrdb:color7}
 primary = ${xrdb:color6}
 secondary = ${xrdb:color13}
 alert = ${xrdb:color9}
+urgent = ${xrdb:color5}
 
 [bar/top]
 dpi = 96
@@ -13,11 +14,11 @@ monitor = "eDP1"
 include-file = ~/.config/polybar/top-bar
 height = 28
 font-0 = Iosevka Term Medium:style=italic:size=12;2
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = Material Icons:antialias=false:size=12;5
-modules-left = hostname i3 mpd
-modules-center = 
-modules-right = memory cpu temperature battery wlan eth
+font-1 = unifont:fontformat=truetype:size=8:antialias=true;2
+font-2 = Icons:antialias=true:size=12;2
+modules-left = hostname i3
+modules-center = mpd
+modules-right = fvpn eth wlan powermenu
 border-bottom-size = 3
 border-bottom-color = ${colors.primary}
 wm-name = pb-top-int
@@ -27,12 +28,12 @@ dpi = 96
 monitor = "eDP1"
 height = 28
 include-file = ~/.config/polybar/bottom-bar
-font-0 = Iosevka Term Medium:style=italic:size=12;2
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = Material Icons:antialias=false:size=12;5
-modules-left = dnsmasqDaemon firewallDaemon eth fvpn
+font-0 = Iosevka Term Medium:style=italic:size=12;4
+font-1 = unifont:fontformat=truetype:size=8:antialias=true;0
+font-2 = Icons:antialias=true:size=12;5
+modules-left = dnsmasqDaemon firewallDaemon
 modules-center = volume-internal xbacklight
-modules-right = uptime date
+modules-right = memory cpu temperature battery date
 tray-position = right
 tray-padding = 2
 border-top-size = 3
@@ -44,12 +45,12 @@ dpi = 96
 monitor = "DP2"
 include-file = ~/.config/polybar/top-bar
 height = 22
-font-0 = Iosevka Term Medium:style=italic:size=10;2
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = Material Icons:antialias=false:size=12;5
-modules-left = hostname i3
-modules-center =
-modules-right = memory cpu temperature battery wlan
+font-0 = Iosevka Term Medium:style=italic:antialias=true:size=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=true;2
+font-2 = Icons:antialias=true:size=12;2
+modules-left = i3
+modules-center = mpd
+modules-right = fvpn ip eth wlan
 border-bottom-size = 2
 border-bottom-color = ${colors.secondary}
 wm-name = pb-top-ext
@@ -59,12 +60,12 @@ dpi = 96
 monitor = "DP2"
 include-file = ~/.config/polybar/bottom-bar
 height = 22
-font-0 = Iosevka Term Medium:style=italic:size=10;2
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = Material Icons:antialias=false:size=12;5
-modules-left = ip dnsmasqDaemon firewallDaemon eth fvpn
+font-0 = Iosevka Term Medium:style=italic:antialias=true:size=10;4
+font-1 = unifont:fontformat=truetype:size=8:antialias=true;0
+font-2 = Icons:antialias=true:size=12;5
+modules-left = dnsmasqDaemon firewallDaemon
 modules-center = volume-internal
-modules-right = date
+modules-right = memory cpu temperature battery date
 tray-position = right
 tray-padding = 2
 border-top-size = 2
@@ -76,14 +77,6 @@ type = custom/script
 exec = uptime|awk '{print $2 " " $3 " " $4 " " $5 " " $6}'|cut -d ',' -f -2
 interval = 5
 format-prefix=" "
-format-prefix-foreground = ${colors.primary}
-format-foreground = ${colors.secondary}
-
-[module/last]
-type = custom/script
-exec = last -s yesterday |head -n1 | awk '{print $1 " " $2 " " $6 " " $7 " " $8 " " $9}'
-interval = 5
-format-prefix = " "
 format-prefix-foreground = ${colors.primary}
 format-foreground = ${colors.secondary}
 
@@ -112,7 +105,7 @@ interval = 4
 format = <label>
 format-padding = 4
 format-foreground = ${colors.secondary}
-format-prefix= " "
+format-prefix= " "
 format-prefix-foreground = ${colors.primary}
 
 [module/firewallDaemon]
@@ -122,7 +115,7 @@ interval = 4
 format = <label>
 format-padding = 4
 format-foreground = ${colors.secondary}
-format-prefix= " "
+format-prefix= " "
 format-prefix-foreground = ${colors.primary}
 
 [module/bspwm]
@@ -153,34 +146,34 @@ pin-workspaces = true
 ; find icon name : fc-match -a |grep -i Material
 ; to find icon: xfd -fa MaterialIcons,
 ; echo "\ueXXX" to print and paste here
-ws-icon-0 = Terminal;1:
-ws-icon-1 = Browser;2:
-ws-icon-2 = Code;3:
-ws-icon-3 = Media;4:
-ws-icon-4 = Photography;5:
-ws-icon-5 = Games;6:
-ws-icon-6 = VirtualMachines;7: 
-ws-icon-7 = Chat;8:
+ws-icon-0 = Terminal;1: 
+ws-icon-1 = Browser;2: 
+ws-icon-2 = Code;3: 
+ws-icon-3 = Media;4: 
+ws-icon-4 = Photography;5: 
+ws-icon-5 = Games;6: 
+ws-icon-6 = VirtualMachines;7: 
+ws-icon-7 = Chat;8: 
 
 ; focused = Active workspace on focused monitor
-label-focused = Af %icon%
+label-focused = %icon% (A)
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = In %icon%
+label-unfocused = %icon% (I)
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = Au %icon%
+label-visible = %icon% (An)
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = Urg %icon%
-label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent = %icon% (Ur)
+label-urgent-background = ${colors.urgent}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 label-separator = ~
@@ -196,17 +189,9 @@ exec = echo "$(curl --limit-rate 1k -s https://ifcfg.me)" || echo ""
 type = custom/script
 interval = 256
 format = "<label> "
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.primary}
 exec = echo "$(uname -n)"
-
-[module/tor]
-type = custom/text
-content = " "
-content-foreground = ${colors.secondary}
-; need into /etc/sudoers line bellow to work
-; username ALL=(ALL) NOPASSWD: /bin/systemctl restart tor
-click-left = "sudo systemctl restart tor"
 
 [module/mpd]
 type = internal/mpd
@@ -214,11 +199,11 @@ host = 127.0.0.1
 port = 6600
 format-online = <icon-prev> <icon-pause> <icon-play> <icon-next> <label-song>
 
-icon-prev = 
-icon-play = 
-icon-pause = 
-icon-next = 
-label-song = %{F#7a1B54}   %{F-} %{F#215d76}%artist:0:20% %{F-} %{F#B8eadb}*%{F-} %{F#602976} %title:0:32% %{F-}
+icon-prev = 
+icon-play = 
+icon-pause = 
+icon-next = 
+label-song = %{F#7a1B54}  %{F-} %{F#215d76}%artist:0:20% %{F-} %{F#B8eadb}-%{F-} %{F#602976} %title:0:32% %{F-}
 
 toggle-on-foreground = ${colors.primary}
 toggle-off-foreground = ${colors.secondary}
@@ -228,7 +213,7 @@ label-offline = no sound
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.primary}
 format-underline = #f90000
 label = %percentage%%
@@ -236,7 +221,7 @@ label = %percentage%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.primary}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -255,11 +240,11 @@ label-connected = "%essid% -> %{F#aca074}%signal% %{F-}"
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 ramp-signal-foreground = ${colors.secondary}
 
 [module/eth]
@@ -268,7 +253,7 @@ interface = enp0s31f6
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
@@ -284,7 +269,7 @@ interface = vpn0
 interval = 5.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = "VPN UP"
 
@@ -304,28 +289,20 @@ date-alt = " %d-%m-%Y"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.primary}
 format-underline = #0a6cf5
 
 label = %time% %date%
-
-[module/volume]
-type = custom/script
-interval = 2
-format = "<label> "
-format-prefix = " "
-format-prefix-foreground = ${colors.primary}
-exec = echo "$(mpc volume | awk '{print $2}')"
 
 [module/volume-internal]
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
 format-volume-padding = 2
-label-volume = ""
+label-volume = " "
 
-format-muted-prefix = " "
+format-muted-prefix = " "
 format-muted-prefix-padding = 2
 label-muted = "Audio Muted"
 
@@ -338,12 +315,12 @@ bar-volume-foreground-4 = ${colors.primary}
 bar-volume-foreground-5 = ${colors.primary}
 bar-volume-foreground-6 = ${colors.primary}
 bar-volume-gradient = true
-bar-volume-indicator = 
-bar-volume-indicator-font = 2
-bar-volume-fill = 
-bar-volume-fill-font = 2
-bar-volume-empty = 
-bar-volume-empty-font = 2
+bar-volume-indicator = >
+bar-volume-indicator-font = 0
+bar-volume-fill = -
+bar-volume-fill-font = 0
+bar-volume-empty = -
+bar-volume-empty-font = 0
 bar-volume-empty-foreground = ${colors.secondary}
 
 [module/battery]
@@ -358,17 +335,20 @@ format-charging-underline = #ffb52a
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
@@ -386,9 +366,9 @@ label = %temperature%
 label-warn = %temperature%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [settings]
@@ -403,9 +383,9 @@ compositing-border = over
 type = custom/menu
 expand-right = true
 format-spacing = 1
-label-open = m
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-open = 
+label-open-foreground = ${colors.primary}
+label-close =  cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
@@ -427,7 +407,7 @@ menu-2-1-exec = menu-open-0
 
 [module/xbacklight]
 type = internal/xbacklight
-format-prefix = " "
+format-prefix = " "
 
 [global/wm]
 margin-top = 0

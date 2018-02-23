@@ -156,7 +156,7 @@ mode "i3_gaps" {
   bindsym i mode "i3_gaps_inner"
 
   bindsym d exec --no-startup-id i3-msg "gaps outer all set $gaps_outer_px" && i3-msg "gaps inner all set $gaps_inner_px"
-  bindsym 0 exec --no-startup-id i3-msg "gaps outer all set 0" && i3-msg "gaps inner all set 0"
+  bindsym 0 exec --no-startup-id i3-msg "gaps outer all set 0" && i3-msg "gaps inner all set 0" && i3-msg "smart_borders no-gaps"
   bindsym b exec --no-startup-id i3-msg "border toggle"
 
   bindsym Return mode "default"
@@ -260,7 +260,7 @@ exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # polybar top & bottom widgets
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/t3_7oagbr.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/1516357867416.jpg &
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # load xautolock
