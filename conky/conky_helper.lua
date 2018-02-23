@@ -7,6 +7,7 @@ package.path = package.path .. ";" .. userHome .. "/.config/lualibs/?.lua"
 
 -- require modules
 color_ops = require 'rgb2hsl'
+require 'conky_constants'
 
 -- Colored CPU GHz output line
 function conky_cpu_threshold_color(cpu_frequency, max_freq, base_color)
@@ -71,7 +72,7 @@ function conky_cpu_color()
   local freq = conky_parse('$freq_g')
 
   -- return color string
-  return conky_cpu_threshold_color(freq, 2200, 0xd3) .. freq
+  return conky_cpu_threshold_color(freq, system_parms.max_cpu_mhz, xrdb_colors.lightgrey) .. freq
 end
 
 --- Conky hook -> CPU Color by die temperature
@@ -80,7 +81,7 @@ function conky_cpu_temp_color()
   local temp = conky_parse('$acpitemp')
 
   -- return color code string
-  return conky_cpu_temperature_color(temp, 90, 38, 0xd3) .. temp
+  return conky_cpu_temperature_color(temp, system_parms.hi_temp_c, system_parms.lo_temp_c, xrdb_colors.lightgrey) .. temp
 end
 
 -- EOF

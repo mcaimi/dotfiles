@@ -4,7 +4,7 @@
 -- Color computations are made in the HSL color space then converted to RGB.
 
 -- module function index
-local module_index = {}
+local module_colorop = {}
 
 -- checks if value is in range
 local function value_in_range(x, min, max)
@@ -138,11 +138,11 @@ local function hsl2rgb(h,s,l)
 end
 
 -- register module functions
-module_index.rgb2hsl = rgb2hsl
-module_index.hsl2rgb = hsl2rgb
-module_index.scalergb = scalergb
-module_index.value_in_range = value_in_range
+module_colorop.rgb2hsl = rgb2hsl
+module_colorop.hsl2rgb = hsl2rgb
+module_colorop.scalergb = scalergb
+module_colorop.value_in_range = value_in_range
 
 -- return module object
-return module_index
+return module_colorop
 
