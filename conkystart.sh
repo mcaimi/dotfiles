@@ -3,6 +3,9 @@
 # source helper library
 source $HOME/.config/i3scripts/helper.sh
 
+# let i3 load all xresources
+sleep 3
+
 # kill running conkies
 nuke conky
 

@@ -266,7 +266,7 @@ format-disconnected =
 [module/fvpn]
 type = internal/network
 interface = vpn0
-interval = 5.0
+interval = 3.0
 
 format-connected-underline = #55aa55
 format-connected-prefix = " "
