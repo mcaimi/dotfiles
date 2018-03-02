@@ -66,9 +66,9 @@ cpu_frequency_ring = {
   anglef = 270,
   bgcolor = xrdb_colors.background,
   bgalpha = 0.8,
-  fgcolor1 = xrdb_colors.lightgrey,
-  fgcolor2 = xrdb_colors.red,
-  fgcolor3 = xrdb_colors.cyan,
+  fgcolor1 = xrdb_colors.red,
+  fgcolor2 = xrdb_colors.green,
+  fgcolor3 = xrdb_colors.blue,
   fgalpha = 1.0
 }
 
@@ -83,7 +83,7 @@ cpu_load_ring = {
   anglef = 180,
   bgcolor = xrdb_colors.background,
   bgalpha = 0.8,
-  fgcolor = xrdb_colors.darkcyan,
+  fgcolor = xrdb_colors.cyan,
   fgalpha = 1.0
 }
 
