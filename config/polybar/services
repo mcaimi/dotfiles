@@ -1,0 +1,39 @@
+[module/sandfox]
+type = custom/text
+content = " "
+content-foreground = ${colors.primary}
+click-left = docker start sandfox &
+
+[module/vstudio]
+type = custom/text
+content = ""
+content-foreground = ${colors.primary}
+click-left = /opt/visual-studio-code/code %f &
+
+[module/vmm]
+type = custom/text
+content = " "
+content-foreground = ${colors.primary}
+click-left = virt-manager &
+
+[module/dnsmasqDaemon]
+type = custom/script
+exec = ~/.config/polybar/status dnsmasq
+interval = 4
+format = <label>
+format-padding = 4
+format-foreground = ${colors.secondary}
+format-prefix= " "
+format-prefix-foreground = ${colors.primary}
+
+[module/firewallDaemon]
+type = custom/script
+exec = ~/.config/polybar/status firewalld
+interval = 4
+format = <label>
+format-padding = 4
+format-foreground = ${colors.secondary}
+format-prefix= " "
+format-prefix-foreground = ${colors.primary}
+
+

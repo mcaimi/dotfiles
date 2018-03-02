@@ -1,0 +1,46 @@
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+format-online = <icon-prev> <icon-pause> <icon-play> <icon-next> <label-song>
+
+icon-prev = 
+icon-play = 
+icon-pause = 
+icon-next = 
+label-song = %{F#7a1B54}  %{F-} %{F#215d76}%artist:0:20% %{F-} %{F#B8eadb}-%{F-} %{F#602976} %title:0:32% %{F-}
+
+toggle-on-foreground = ${colors.primary}
+toggle-off-foreground = ${colors.secondary}
+
+label-offline = no sound
+
+[module/volume-internal]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+format-volume-padding = 2
+label-volume = " "
+
+format-muted-prefix = " "
+format-muted-prefix-padding = 2
+label-muted = "Audio Muted"
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.primary}
+bar-volume-foreground-1 = ${colors.primary}
+bar-volume-foreground-2 = ${colors.primary}
+bar-volume-foreground-3 = ${colors.primary}
+bar-volume-foreground-4 = ${colors.primary}
+bar-volume-foreground-5 = ${colors.primary}
+bar-volume-foreground-6 = ${colors.primary}
+bar-volume-gradient = true
+bar-volume-indicator = >
+bar-volume-indicator-font = 0
+bar-volume-fill = -
+bar-volume-fill-font = 0
+bar-volume-empty = -
+bar-volume-empty-font = 0
+bar-volume-empty-foreground = ${colors.secondary}
+
+

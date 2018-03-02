@@ -1,6 +1,6 @@
-width = 98%
-offset-x = 1%
-offset-y = 4
+width = 100%
+offset-x = 0%
+offset-y = 0
 fixed-center = true
 bottom = false
 background = ${colors.background}
@@ -8,6 +8,8 @@ foreground = ${colors.foreground}
 line-size = 0
 line-color = #f00
 border-size = 0
+radius-top = 3
+radius-bottom = 3
 border-color = #00000000
 padding-left = 3
 padding-right = 3
@@ -17,3 +19,18 @@ wm-restack = i3
 override-redirect = true
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+dpi = 96
+monitor = "eDP1"
+height = 28
+font-0 = Iosevka Term Medium:style=italic:size=12;2
+font-1 = unifont:fontformat=truetype:size=8:antialias=true;2
+font-2 = Icons:antialias=true:size=12;2
+modules-left = hostname i3
+modules-center = mpd
+modules-right = fvpn eth wlan powermenu
+border-bottom-size = 2
+border-bottom-color = ${colors.primary}
+wm-name = pb-top-int
+
+
