@@ -22,6 +22,8 @@ st.bellvolume:   100
 ! this is a char that is exposed like so: `printf '\033[z'`
 st.prompt_char:  $
 st.taskbaricon: 0
+st.enable_lua: 1
+st.lua_code_file: /home/marco/.config/lualibs/sthook.lua
 
 st.rows:  46
 st.cols:  160
