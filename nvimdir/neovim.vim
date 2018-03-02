@@ -159,6 +159,7 @@ highlight Conceal cterm=bold ctermfg=8 gui=bold guifg=#8F8F8F guibg=#282828
 " YouCompleteMe
  let g:ycm_python_binary_path = '/usr/bin/python'
  let g:ycm_server_python_interpreter = '/usr/bin/python'
+ let g:ycm_global_ycm_extra_conf = '/home/marco/.config/nvim/.ycm_extra_conf.py'
 
 " AIRLINE CONFIG
 let g:airline#extensions#tabline#enabled = 1
