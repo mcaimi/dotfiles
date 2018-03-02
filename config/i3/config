@@ -21,8 +21,8 @@ set_from_resource $darkwhite   color7  #000000
 set_from_resource $white       color15 #000000
 
 # Use custom colors for black
-set $black       #282828
-set $darkblack   #1d2021
+set_from_resource $black       color8 #282828
+set_from_resource $darkblack   color0 #1d2021
 set $transparent #00000000
 
 # mod key -> Windows Key on laptop
@@ -31,6 +31,7 @@ set $alt Mod1
 set $TERMINAL /usr/bin/st
 set $DMENU /usr/bin/rofi -show combi
 set $DMENU_TABS /usr/bin/rofi -show window
+set $DMENU_RUN /usr/bin/rofi -separator-style none -lines 0 -dmenu -p "~ > " -show run
 set $SANDFOX docker start sandfox
 set $gaps_inner_px 18
 set $gaps_outer_px 18
@@ -40,6 +41,7 @@ set $gaps_delta 2
 # i3-gaps settings
 gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
+popup_during_fullscreen smart
 smart_borders on
 
 # set window classes properties
@@ -49,10 +51,10 @@ for_window [class="(?i).+-256color"] title_format " >_ %title "
 
 # colors & theme settings
 #                       BORDER        BACKGROUND      TEXT        INDICATOR   CHILD_BORDER
-client.focused          $darkblue     $black          $darkwhite  $darkwhite  $darkblue
-client.unfocused        $transparent  $transparent    $white      $darkblack  $darkblack
-client.focused_inactive $transparent  $transparent    $white      $darkblack  $darkblack
-client.urgent           $darkred      $darkred        $black      $darkred    $darkred
+client.focused          $blue         $black          $white      $white      $blue
+client.unfocused        $magenta      $transparent    $white      $black      $black
+client.focused_inactive $yellow       $transparent    $white      $black      $black
+client.urgent           $red          $red            $black      $red        $red
 client.background       $black
 
 # Keyboard Shortcuts definitions
@@ -207,6 +209,7 @@ bindsym $mod+Shift+x mode "XRandr"
 bindsym $mod+d exec --no-startup-id $DMENU
 bindsym Menu exec --no-startup-id $DMENU
 bindsym $mod+w exec --no-startup-id $DMENU_TABS
+bindsym $mod+s exec --no-startup-id $DMENU_RUN
 # Xst with TMUX, the default
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
 # Plain old Xst, just the terminal
@@ -234,7 +237,6 @@ bindsym $mod+XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon.s
 
 # custom keybindings for most used applications
 bindsym $mod+r exec --no-startup-id st -e ranger &
-bindsym $mod+n exec --no-startup-id st -e newsboat &
 
 # NetworkManager menu
 bindsym $mod+Shift+n exec --no-startup-id networkmanager_dmenu &
@@ -253,6 +255,7 @@ for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)about"] floating enable
 for_window [class="(?i)keybase"] move to scratchpad
 for_window [class="(?i)keepassxc"] move to scratchpad
+for_window [class="(?i)glava"] border pixel 0
 
 # Exec and startup
 # setup environment
@@ -260,7 +263,7 @@ exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # polybar top & bottom widgets
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/1516357867416.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/wallhaven-342160.jpg &
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # load xautolock

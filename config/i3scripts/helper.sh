@@ -25,6 +25,8 @@ function error() {
 # disable dpms
 function disable_dpms() {
   xset dpms 0 0 0
+  xset s noblank
+  xset dpms s off
 }
 
 # Call i3-lock

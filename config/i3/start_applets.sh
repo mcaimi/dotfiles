@@ -7,8 +7,8 @@
 source $HOME/.config/i3scripts/helper.sh
 declare -A APPLETS
 
-# networkmanager applet was replaced by the infinitely superior networkmanager_dmenu AUR package
-APPLETS=(["FIREWALL"]="firewall-applet" ["MEGASYNC"]="megasync" ["keybase"]="run_keybase")
+# networkmanager and other applets that should appear in the systray
+APPLETS=(["NMAPPLET"]="nm-applet" ["FIREWALL"]="firewall-applet" ["MEGASYNC"]="megasync" ["KEYBASE"]="run_keybase")
 
 # let i3 load polybar completely...
 sleep 2

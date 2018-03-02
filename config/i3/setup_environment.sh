@@ -25,5 +25,5 @@ compton --config $HOME/.config/compton.conf -b
 
 # start unclutter
 info "[$(date)]: Starting up UNCLUTTER.." $I3LOG
-unclutter
+unclutter & 
 
