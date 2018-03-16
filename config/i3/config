@@ -33,6 +33,7 @@ set $DMENU /usr/bin/rofi -show combi
 set $DMENU_TABS /usr/bin/rofi -show window
 set $DMENU_RUN /usr/bin/rofi -separator-style none -lines 0 -dmenu -p "~ > " -show run
 set $SANDFOX docker start sandfox
+set $TOTP_CMD /usr/local/bin/totp.sh
 set $gaps_inner_px 18
 set $gaps_outer_px 18
 set $window_border_thickness 3
@@ -214,6 +215,8 @@ bindsym $mod+s exec --no-startup-id $DMENU_RUN
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
 # Plain old Xst, just the terminal
 bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
+# TOTP
+bindsym $mod+t exec --no-startup-id $TOTP_CMD &
 
 # Volume & music shortcuts
 bindsym XF86AudioMute exec $HOME/.config/i3scripts/pulsectl.py -m &
@@ -263,7 +266,7 @@ exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # polybar top & bottom widgets
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/wallhaven-342160.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/1513636009524.jpg &
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # load xautolock

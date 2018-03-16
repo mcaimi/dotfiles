@@ -80,6 +80,18 @@ c.fonts.tabs = '12pt monospace'
 # Type: FontFamily
 c.fonts.web.family.standard = None
 
+# Additional arguments to pass to Qt, without leading `--`. With
+# QtWebEngine, some Chromium arguments (see
+# https://peter.sh/experiments/chromium-command-line-switches/ for a
+# list) will work.
+# Type: List of String
+c.qt.args = ['ppapi-widevine-path=/usr/lib/qt/plugins/ppapi/libwidevinecdmadapter.so']
+
+# Force software rendering for QtWebEngine. This is needed for
+# QtWebEngine to work with Nouveau drivers.
+# Type: Bool
+c.qt.force_software_rendering = False
+
 # Show a scrollbar.
 # Type: Bool
 c.scrolling.bar = True
