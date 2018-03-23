@@ -6,13 +6,13 @@ st.shell:        /bin/bash
 
 ! The following options options can be reloaded via USR1 signal.
 st.font:         Iosevka Term Medium:pixelsize=16:antialias=true:autohint=true
-st.borderpx:     2
+st.borderperc:   20
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:  2
 st.cursorthickness:  2
 st.cursorblinkstyle: 0
 st.cursorblinkontype: 1
-st.bold_font:    0
+st.disablebold:    1
 st.xfps:         120
 st.actionfps:    30
 st.chscale:      1.0

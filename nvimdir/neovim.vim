@@ -209,7 +209,7 @@ autocmd BufNewFile *.ksprofile 0r ~/Work/dotfiles/templates/ksprofile.spec
 " font setting
 if has('gui_running')
   " set guifont=PragmataTT:h9
-  set guifont=mPlus:h10
+  set guifont=Iosevka Term:h10
 endif
 
 if !exists('g:airline_symbols')

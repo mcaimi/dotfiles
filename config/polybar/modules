@@ -20,6 +20,7 @@ ws-icon-4 = Photography;5: 
 ws-icon-5 = Games;6: 
 ws-icon-6 = VirtualMachines;7: 
 ws-icon-7 = Chat;8: 
+ws-icon-8 = Filesystem;9: 
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon% (A)
