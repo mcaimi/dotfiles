@@ -35,7 +35,7 @@ set $DMENU_RUN /usr/bin/rofi -separator-style none -lines 0 -dmenu -p "~ > " -sh
 set $SANDFOX docker start sandfox
 set $TOTP_CMD /usr/local/bin/totp.sh
 set $gaps_inner_px 18
-set $gaps_outer_px 18
+set $gaps_outer_px 12
 set $window_border_thickness 3
 set $gaps_delta 2
 
@@ -44,6 +44,7 @@ gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
 popup_during_fullscreen smart
 smart_borders on
+smart_gaps on
 
 # set window classes properties
 for_window [class="^.*"] border pixel $window_border_thickness
@@ -66,17 +67,18 @@ bindsym $mod+Control+r restart
 
 # behaviour related
 bindsym $mod+q kill
+bindsym $mod+f fullscreen toggle
 
 # Setup Workspaces
-set $ws1 Terminal
-set $ws2 Browser
-set $ws3 Code
+set $ws1 
+set $ws2 
+set $ws3 
 set $ws4 Media
-set $ws5 Photography
+set $ws5 
 set $ws6 Games
 set $ws7 VirtualMachines
 set $ws8 Chat
-set $ws9 Filesystem
+set $ws9 
 
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
@@ -264,17 +266,24 @@ for_window [class="(?i)keybase"] move to scratchpad
 for_window [class="(?i)keepassxc"] move to scratchpad
 for_window [class="(?i)glava"] border pixel 0
 
+# i3bar & i3blocks
+bar {
+  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks.conf
+  font $ft
+  id bar-0
+  position top
+  output DP2
+}
+
 # Exec and startup
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
-# polybar top & bottom widgets
-exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/1518834583872.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/wall.jpg &
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
-# load xautolock
-exec_always --no-startup-id xidlehook --time 10 --timer $HOME/.config/i3lock/i3lock.sh --notify 60 --notifier "notify-send \"XIdleHook is about to lock desktop in 60 sec..\"" --canceller "notify-send \"XIdleHook cancelled by user action.\"" --not-when-audio &
-# start conky
-exec_always --no-startup-id $HOME/.conkystart.sh &
+# polybar top & bottom widgets, only on internal display
+exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 
+# start conky
+# exec_always --no-startup-id $HOME/.conkystart.sh &

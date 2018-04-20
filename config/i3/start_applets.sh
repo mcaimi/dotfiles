@@ -8,7 +8,7 @@ source $HOME/.config/i3scripts/helper.sh
 declare -A APPLETS
 
 # networkmanager and other applets that should appear in the systray
-APPLETS=(["NMAPPLET"]="nm-applet" ["FIREWALL"]="firewall-applet" ["MEGASYNC"]="megasync" ["KEYBASE"]="run_keybase")
+APPLETS=(["NMAPPLET"]="nm-applet" ["FIREWALL"]="firewall-applet") #["MEGASYNC"]="megasync" ["KEYBASE"]="run_keybase")
 
 # let i3 load polybar completely...
 sleep 2

@@ -63,7 +63,7 @@ PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
 # color schemes
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_twilight
+source $HOME/.base16_theme
 
 # Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

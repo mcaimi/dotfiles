@@ -40,8 +40,9 @@ fi
 is_display_connected DP2
 if [ $? -eq 0 ]; then
   info "[$(date)]: EXTERNAL DISPLAY: Loading polybars...." $LOGFILE
-  polybar top-ext &
-  polybar bottom-ext &
+  info "[$(date)]: EXTERNAL DISPLAY: Switched to i3blocks, look in i3 config file...." $LOGFILE
+  #polybar top-ext &
+  #polybar bottom-ext &
 fi
 
 info "Bars launched..." $LOGFILE

@@ -1,6 +1,6 @@
 [module/ip]
 type = custom/script
-interval = 2
+interval = 30
 format = ": <label> "
 format-prefix-foreground = ${colors.primary}
 exec = echo "$(curl --limit-rate 1k -s https://ifcfg.me)" || echo ""

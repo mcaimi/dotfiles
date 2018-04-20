@@ -27,7 +27,7 @@ label-focused = %icon% (A)
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
-label-focused-foreground = ${colors.white}
+label-focused-foreground = ${colors.black}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon% (I)
@@ -50,7 +50,7 @@ label-separator = ~
 type = internal/bspwm
 
 label-focused = %icon%
-label-focused-background = ${colors.active}
+label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
