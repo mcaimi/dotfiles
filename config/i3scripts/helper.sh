@@ -5,7 +5,7 @@
 # 
 
 # load monitor information
-source $HOME/.config/i3scripts/monitor_layout.sh
+source $HOME/.config/i3scripts/monitor-layout.sh
 
 # i3 session log file
 I3LOG="/tmp/i3-sessionlog"
