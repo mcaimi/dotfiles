@@ -26,10 +26,10 @@ is_lid_closed
 # DEFAULT BEHAVIOUR:
 # if lid is closed, external monitor is the primary monitor
 if [ $? -eq 0 ]; then
-  info "Starting in office mode: DP2 online" $XSESSION_LOG
+  info "Starting in office mode: External Monitor online" $XSESSION_LOG
   xrandr --output ${DISPLAYS["internal"]} --off --output ${DISPLAYS["external"]} --auto --primary
 else # office mode: eDP1 is primary display, DP2 is secondary display left of eDP1
-  info "Starting in multimonitor mode: eDP1 online & primary, DP2 online left of eDP1" $XSESSION_LOG
+  info "Starting in multimonitor mode: Internal Monitor online & primary, External Monitor online left of eDP1" $XSESSION_LOG
   xrandr --output ${DISPLAYS["internal"]} --auto --primary --output ${DISPLAYS["external"]} --auto --left-of ${DISPLAYS["internal"]}
 fi
 

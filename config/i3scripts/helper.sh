@@ -4,6 +4,9 @@
 # Helper functions
 # 
 
+# load monitor information
+source $HOME/.config/i3scripts/monitor_layout.sh
+
 # i3 session log file
 I3LOG="/tmp/i3-sessionlog"
 # check laptop lid status
@@ -114,10 +117,6 @@ function flip_state() {
   is_not_zero $? && return 1
   return 0
 }
-
-# displays
-declare -A DISPLAYS
-DISPLAYS=(["internal"]="eDP1" ["external"]="DP2")
 
 # various test functions
 function test_str_empty() {
