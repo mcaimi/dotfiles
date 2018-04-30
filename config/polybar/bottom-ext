@@ -8,7 +8,7 @@ wm-restack = i3
 override-redirect = true
 fixed-center = true
 dpi = 96
-monitor = "DP2"
+monitor = "VGA1"
 height = 20
 font-0 = Iosevka Term Medium:style=regular:antialias=true:size=10;3
 font-1 = unifont:fontformat=truetype:size=8:antialias=true;0

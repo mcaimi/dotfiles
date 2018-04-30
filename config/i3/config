@@ -4,6 +4,7 @@
 set $ft_global pango:Iosevka Term Medium 10
 set $ft_i3blocks pango:SauceCodePro Nerd Medium 10
 set $ft_i3blocks_small pango:SauceCodePro Nerd Medium 8
+set $ft_awesome pango:Font Awesome 5 Free 10
 font $ft_global
 
 # read colors from xresources database
@@ -39,22 +40,24 @@ set $TOTP_CMD /usr/local/bin/totp.sh
 set $window_border_thickness 3
 
 # i3-gaps settings
+set $gaps_inner_px 10
+set $gaps_outer_px 8
+set $gaps_delta 2
 gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
 popup_during_fullscreen smart
-set $gaps_inner_px 12
-set $gaps_outer_px 12
-set $gaps_delta 2
 smart_borders on
 smart_gaps on
 
 # i3blocks
 set $i3blocks_height_top 20
 set $i3blocks_height_bottom 16
+set $polybar_placeholder_top_height 20
+set $polybar_placeholder_bottom_height 18
 
 # set window classes properties
 for_window [class="^.*"] border pixel $window_border_thickness
-hide_edge_borders both
+hide_edge_borders smart
 for_window [class="(?i).+-256color"] title_format " >_ %title "
 
 # colors & theme settings
@@ -154,8 +157,8 @@ bindsym $alt+$mod+f floating toggle
 bindsym $alt+$mod+e layout toggle split 
 bindsym $alt+$mod+s layout stacking 
 bindsym $alt+$mod+w layout tabbed
-bindsym $alt+$mod+v split v
-bindsym $alt+$mod+h split h
+bindsym $alt+$mod+v split v;exec notify-send "i3: Split Vertically"
+bindsym $alt+$mod+h split h;exec notify-send "i3: Split Horizontally"
 bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
 # WM Modes
@@ -298,7 +301,7 @@ bar {
   binding_mode_indicator no
   height $i3blocks_height_top
   colors {
-    background $black
+    background $darkblack
   }
 }
 bar {
@@ -316,17 +319,45 @@ bar {
   binding_mode_indicator yes
   height $i3blocks_height_bottom
   colors {
-    background $black
+    background $darkblack
   }
 }
 bindsym $mod+z bar mode toggle bar-bottom
+
+# placeholder for polybar
+bar {
+  id bar-top-int
+  modifier none
+  tray_output none
+  output LVDS1
+  height $polybar_placeholder_top_height
+  position top
+  workspace_buttons no
+  binding_mode_indicator no
+  colors {
+    background $transparent
+  }
+}
+bar {
+  id bar-top-bot
+  modifier none
+  tray_output none
+  output LVDS1
+  height $polybar_placeholder_bottom_height
+  position bottom
+  workspace_buttons no
+  binding_mode_indicator no
+  colors {
+    background $transparent
+  }
+}
 
 # Exec and startup
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/wall.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/1522928601662.jpg &
 
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &

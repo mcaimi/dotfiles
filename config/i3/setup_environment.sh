@@ -27,4 +27,7 @@ compton --config $HOME/.config/compton.conf -b
 info "[$(date)]: Starting up XIDLEHOOK.." $I3LOG
 xidlehook --time 10 --timer $HOME/.config/i3lock/i3lock.sh --notify 60 --notifier "notify-send \"XIdleHook is about to lock desktop in 60 sec..\"" --canceller "notify-send \"XIdleHook cancelled by user action.\"" --not-when-audio &
 
+# load sRGB monitor profile
+info "[$(date)]: Loading Color Profile..." $I3LOG
+dispwin -d 1,1 -I /usr/share/DisplayCAL/presets/sRGB.icc
 

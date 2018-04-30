@@ -15,17 +15,17 @@ padding-left = 3
 padding-right = 3
 module-margin-left = 2
 module-margin-right = 2
-wm-restack = i3
+#wm-restack = i3
 override-redirect = true
 cursor-click = pointer
 cursor-scroll = ns-resize
 
 dpi = 96
-monitor = "eDP1"
-height = 24
-font-0 = Iosevka Term Medium:style=regular:size=12;2
+monitor = "LVDS1"
+height = 20
+font-0 = Iosevka Term Medium:style=regular:size=10;2
 font-1 = unifont:fontformat=truetype:size=8:antialias=true;2
-font-2 = Icons:antialias=true:size=12;2
+font-2 = Icons:antialias=true:size=10;2
 modules-left = hostname i3
 modules-center = mpd
 modules-right = fvpn eth wlan powermenu
