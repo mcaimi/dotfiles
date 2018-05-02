@@ -2,8 +2,8 @@
 
 # i3 font
 set $ft_global pango:Iosevka Term Medium 10
-set $ft_i3blocks pango:SauceCodePro Nerd Medium 10
-set $ft_i3blocks_small pango:SauceCodePro Nerd Medium 8
+set $ft_i3blocks pango:Icons Medium 10
+set $ft_i3blocks_small pango:Icons Medium 8
 set $ft_awesome pango:Font Awesome 5 Free 10
 font $ft_global
 
@@ -80,23 +80,23 @@ bindsym $mod+f fullscreen toggle
 
 # Setup Workspaces
 # Terminal
-set $ws1 
+set $ws1  Terminal
 # Browser
-set $ws2 
+set $ws2  Internet
 # Code
-set $ws3 
+set $ws3  Coding
 # Media
-set $ws4 
+set $ws4  Multimedia
 # Photography
-set $ws5 
+set $ws5  Photography
 # Games
-set $ws6 
+set $ws6  Games
 # Virtual Machines
-set $ws7 
+set $ws7  VirtualMachine
 # Chat
-set $ws8 
+set $ws8  Chat
 # Filesystem
-set $ws9 
+set $ws9  Filesystem
 
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
@@ -157,8 +157,8 @@ bindsym $alt+$mod+f floating toggle
 bindsym $alt+$mod+e layout toggle split 
 bindsym $alt+$mod+s layout stacking 
 bindsym $alt+$mod+w layout tabbed
-bindsym $alt+$mod+v split v;exec notify-send "i3: Split Vertically"
-bindsym $alt+$mod+h split h;exec notify-send "i3: Split Horizontally"
+bindsym $alt+$mod+v split v;exec notify-send "i3: Split Mode: Horizontal"
+bindsym $alt+$mod+h split h;exec notify-send "i3: Split Mode: Vertical"
 bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
 # WM Modes
@@ -295,13 +295,28 @@ bar {
   output VGA1
   modifier none
   tray_output none
-  separator_symbol "<"
   workspace_buttons yes
   strip_workspace_numbers yes
   binding_mode_indicator no
   height $i3blocks_height_top
   colors {
-    background $darkblack
+    #background <color>
+    #statusline <color>
+    #separator <color>
+    #
+    #<colorclass> <border> <background> <text>
+
+    #background $darkblack
+    #statusline $darkwhite
+
+    focused_background $darkblack $darkblack $darkblack
+    focused_statusline $magenta $darkblack $darkblack
+    focused_separator $darkwhite $darkblack $darkblack
+    active_workspace $darkblack $darkblack $magenta
+    focused_workspace $darkblack $darkblack $darkred
+    inactive_workspace $darkblack $darkblack $darkcyan
+    urgent_workspace $darkblack $darkblack $red
+    binding_mode $darkblack $darkred $darkblack
   }
 }
 bar {
@@ -319,8 +334,24 @@ bar {
   binding_mode_indicator yes
   height $i3blocks_height_bottom
   colors {
-    background $darkblack
-  }
+   #background <color>
+   #statusline <color>
+   #separator <color>
+   #
+   #<colorclass> <border> <background> <text>
+
+   background $darkblack
+   statusline $darkwhite
+   focused_background $darkblack $darkblack $darkblack
+   focused_statusline $darkwhite $darkblack $darkblack
+   focused_separator $darkwhite $darkblack $darkblack
+   active_workspace $magenta $darkblack $darkblack
+   focused_workspace $darkred $darkblack $darkblack
+   inactive_workspace $darkcyan $darkblack $darkblack
+   urgent_workspace $red $darkblack $darkblack
+   binding_mode $darkblack $darkred $darkblack
+
+ }
 }
 bindsym $mod+z bar mode toggle bar-bottom
 
@@ -339,7 +370,7 @@ bar {
   }
 }
 bar {
-  id bar-top-bot
+  id bar-bot-int
   modifier none
   tray_output none
   output LVDS1
@@ -357,7 +388,7 @@ bar {
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/1522928601662.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/040998-nintendo-entertainment-system.jpg &
 
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &

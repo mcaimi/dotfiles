@@ -5,15 +5,7 @@
 # 
 
 # load monitor information
-source $HOME/.config/i3scripts/monitor-layout.sh
-
-# i3 session log file
-I3LOG="/tmp/i3-sessionlog"
-# check laptop lid status
-LIDSTATE="/proc/acpi/button/lid/LID/state"
-# state path
-STATEPATH="/tmp/statepath"
-[[ ! -d $STATEPATH ]] && mkdir -p $STATEPATH
+source $HOME/.config/i3scripts/globals.sh
 
 # log helpers
 function info() {
@@ -30,6 +22,30 @@ function disable_dpms() {
   xset dpms 0 0 0
   xset s noblank
   xset dpms s off
+}
+
+# lookup key in the keyring.
+function lookup_key() {
+  ssh-add -l | grep $1
+  is_zero $? && return 0
+  return 1
+}
+
+# use ssh-add to load key into keyring
+function key_load() {
+ if [[ -e $SSH_KEYPATH/$1 ]]; then
+  if lookup_key $1; then
+    info "[$(date)]: Key $1 already registered in the keyring" $I3LOG
+    return 0
+  else
+    ssh-add $SSH_KEYPATH/$1
+    info "[$(date)]: Added $1 to the ssh keyring" $I3LOG 
+    return 0
+  fi
+ else
+   info "[$(date)]: Key $1 not found." $I3LOG 
+   return 1
+ fi
 }
 
 # Call i3-lock

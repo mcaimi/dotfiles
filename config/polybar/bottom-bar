@@ -25,7 +25,7 @@ modules-center = volume-internal xbacklight
 modules-right = memory cpu temperature battery date
 tray-position = right
 tray-padding = 2
-border-top-size = 2
+border-top-size = 0
 border-top-color = ${colors.primary}
 wm-name = pb-bottom-int
 

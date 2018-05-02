@@ -27,7 +27,22 @@ compton --config $HOME/.config/compton.conf -b
 info "[$(date)]: Starting up XIDLEHOOK.." $I3LOG
 xidlehook --time 10 --timer $HOME/.config/i3lock/i3lock.sh --notify 60 --notifier "notify-send \"XIdleHook is about to lock desktop in 60 sec..\"" --canceller "notify-send \"XIdleHook cancelled by user action.\"" --not-when-audio &
 
-# load sRGB monitor profile
-info "[$(date)]: Loading Color Profile..." $I3LOG
-dispwin -d 1,1 -I /usr/share/DisplayCAL/presets/sRGB.icc
+# start xiccd if needed
+info "[$(date)]: Checking for XICCD..." $I3LOG
+pgrep xiccd
+if is_not_zero $?; then 
+  info "[$(date)]: Startin up XICCD for display :0..." $I3LOG
+  /usr/bin/xiccd -d :0 &
+else
+  info "[$(date)]: Killing old XICCD process..." $I3LOG
+  pkill xiccd
+  info "[$(date)]: Startin up XICCD for display :0..." $I3LOG
+  /usr/bin/xiccd -d :0 &
+fi
+
+# setup ssh keyring
+info "[$(date)]: Setting up SSH keyring..." $I3LOG 
+for keyname in ${KEYS[@]}; do
+  key_load $keyname 
+done
 

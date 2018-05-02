@@ -8,4 +8,6 @@ Required packages:
 - conky-lua
 - lua5.1
 - gcc & XLib dev packages (for lua-C integration & some more utils)
+- polybar & i3blocks
+- colord & xiccd for color management
 

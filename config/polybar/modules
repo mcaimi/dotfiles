@@ -12,15 +12,15 @@ pin-workspaces = true
 ; find icon name : fc-match -a |grep -i Material
 ; to find icon: xfd -fa MaterialIcons,
 ; echo "\ueXXX" to print and paste here
-ws-icon-0 = Terminal;1: 
-ws-icon-1 = Browser;2: 
-ws-icon-2 = Code;3: 
-ws-icon-3 = Media;4: 
-ws-icon-4 = Photography;5: 
-ws-icon-5 = Games;6: 
-ws-icon-6 = VirtualMachines;7: 
-ws-icon-7 = Chat;8: 
-ws-icon-8 = Filesystem;9: 
+ws-icon-0 =  Terminal;1: 
+ws-icon-1 =  Internet;2: 
+ws-icon-2 =  Coding;3: 
+ws-icon-3 =  Multimedia;4: 
+ws-icon-4 =  Photography;5: 
+ws-icon-5 =  Games;6: 
+ws-icon-6 =  VirtualMachine;7: 
+ws-icon-7 =  Chat;8: 
+ws-icon-8 =  Filesystem;9: 
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon% (A)
