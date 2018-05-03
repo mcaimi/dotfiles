@@ -159,8 +159,8 @@ bindsym $alt+$mod+f floating toggle
 bindsym $alt+$mod+e layout toggle split 
 bindsym $alt+$mod+s layout stacking 
 bindsym $alt+$mod+w layout tabbed
-bindsym $alt+$mod+v split v
-bindsym $alt+$mod+h split h
+bindsym $alt+$mod+v split v; exec notify-send "i3: SPLIT HORIZONTALLY"
+bindsym $alt+$mod+h split h; exec notify-send "i3: SPLIT VERTICALLY"
 bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
 # WM Modes
