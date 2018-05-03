@@ -1,6 +1,8 @@
-My config files.
+My config files and scripts.
+I currently use i3-gaps + i3lock-color from AUR.
 
-Required packages:
+Packages I use:
+
 - xidlehook (AUR)
 - SDL2
 - i3-gaps-git (AUR)
@@ -8,4 +10,7 @@ Required packages:
 - conky-lua
 - lua5.1
 - gcc & XLib dev packages (for lua-C integration & some more utils)
+- xiccd, colord for color management
+- polybar & i3blocks
+- pywal
 

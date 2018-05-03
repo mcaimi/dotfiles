@@ -1,7 +1,14 @@
 # i3-gaps configuration file
 
+# monitors
+set $external DP2
+set $internal eDP1
+
 # i3 font
 set $ft pango:Iosevka Term Medium 10
+set $ft_small pango:Iosevka Term Medium 8
+set $ft_i3bar pango:SauceCodePro Nerd Font 10
+set $ft_i3bar_small pango:SauceCodePro Nerd Font 8
 font $ft
 
 # read colors from xresources database
@@ -34,15 +41,19 @@ set $DMENU_TABS /usr/bin/rofi -show window
 set $DMENU_RUN /usr/bin/rofi -separator-style none -lines 0 -dmenu -p "~ > " -show run
 set $SANDFOX docker start sandfox
 set $TOTP_CMD /usr/local/bin/totp.sh
-set $gaps_inner_px 18
-set $gaps_outer_px 12
 set $window_border_thickness 3
-set $gaps_delta 2
+set $i3bar_height_top 20
+set $i3bar_height_bottom 16
+set $polybar_placeholder_top_height 20
+set $polybar_placeholder_bottom_height 16
 
 # i3-gaps settings
 gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
 popup_during_fullscreen smart
+set $gaps_inner_px 18
+set $gaps_outer_px 12
+set $gaps_delta 2
 smart_borders on
 smart_gaps on
 
@@ -70,15 +81,24 @@ bindsym $mod+q kill
 bindsym $mod+f fullscreen toggle
 
 # Setup Workspaces
-set $ws1 
-set $ws2 
-set $ws3 
-set $ws4 Media
-set $ws5 
-set $ws6 Games
-set $ws7 VirtualMachines
-set $ws8 Chat
-set $ws9 
+# Terminal
+set $ws1  Terminal
+# Browser
+set $ws2  Internet
+# Code
+set $ws3  Coding
+# Media
+set $ws4  Media
+# Photography
+set $ws5  Photography
+# Games/Steam
+set $ws6  Games
+# VirtualMachines
+set $ws7  VM
+# Chat
+set $ws8  Chat
+# Filesystem
+set $ws9  Filesystem
 
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
@@ -268,11 +288,101 @@ for_window [class="(?i)glava"] border pixel 0
 
 # i3bar & i3blocks
 bar {
-  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks.conf
-  font $ft
-  id bar-0
+  mode dock
+  i3bar_command i3bar -t
+  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
+  font $ft_i3bar
+  id i3bar-top
   position top
-  output DP2
+  height $i3bar_height_top
+  output $external
+  modifier none
+  tray_output none
+  separator_symbol "<"
+  workspace_buttons yes
+  strip_workspace_numbers no
+  binding_mode_indicator no
+  colors {
+    #background <color>
+    #statusline <color>
+    #separator <color>
+    #
+    #<colorclass> <border> <background> <text>
+
+    #background $darkblack
+    #statusline $darkwhite
+
+    focused_background $darkblack $darkblack $darkblack
+    focused_statusline $magenta $darkblack $darkblack
+    focused_separator $darkwhite $darkblack $darkblack
+    active_workspace $darkblack $darkblack $magenta
+    focused_workspace $darkblack $darkblack $darkred
+    inactive_workspace $darkblack $darkblack $darkcyan
+    urgent_workspace $darkblack $darkblack $red
+    binding_mode $darkblack $darkred $darkblack
+  }
+}
+bar {
+  mode hide
+  i3bar_command i3bar -t
+  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_bottom.conf
+  font $ft_i3bar_small
+  id i3bar-bottom
+  height $i3bar_height_bottom
+  output $external
+  tray_output primary
+  workspace_buttons no
+  tray_padding 3
+  binding_mode_indicator yes
+  modifier none
+  colors {
+    #background <color>
+    #statusline <color>
+    #separator <color>
+    #
+    #<colorclass> <border> <background> <text>
+
+    #background $darkblack
+    #statusline $darkwhite
+
+    focused_background $darkblack $darkblack $darkblack
+    focused_statusline $magenta $darkblack $darkblack
+    focused_separator $darkwhite $darkblack $darkblack
+    active_workspace $darkblack $darkblack $magenta
+    focused_workspace $darkblack $darkblack $darkred
+    inactive_workspace $darkblack $darkblack $darkcyan
+    urgent_workspace $darkblack $darkblack $red
+    binding_mode $darkblack $darkred $darkblack
+  }
+}
+bindsym $mod+z bar mode toggle
+
+# placeholder for polybar
+bar {
+  id bar-top-int
+  modifier none
+  tray_output none
+  output $internal
+  height $polybar_placeholder_top_height
+  position top
+  workspace_buttons no
+  binding_mode_indicator no
+  colors {
+    background $transparent
+  }
+}
+bar {
+  id bar-bot-int
+  modifier none
+  tray_output none
+  output $internal
+  height $polybar_placeholder_bottom_height
+  position bottom
+  workspace_buttons no
+  binding_mode_indicator no
+  colors {
+    background $transparent
+  }
 }
 
 # Exec and startup
