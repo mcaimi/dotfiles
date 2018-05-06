@@ -31,6 +31,8 @@ label-focused-foreground = ${colors.black}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon% (I)
+label-unfocused-background = ${module/bspwm.label-unfocused-background}
+label-unfocused-underline = ${module/bspwm.label-unfocused-underline}
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
@@ -44,25 +46,28 @@ label-urgent = %icon% (Ur)
 label-urgent-background = ${colors.urgent}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
-label-separator = ~
+#label-separator = ~
 
 [module/bspwm]
 type = internal/bspwm
 
 label-focused = %icon%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-background = ${colors.darkmagenta}
+label-focused-underline= ${colors.magenta}
+label-focused-padding = 1
+
+label-unfocused-background = ${colors.darkblue}
+label-unfocused-underline= ${colors.blue}
+label-unfocused-padding = 1
 
 label-occupied = %icon%
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-urgent = %icon%
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %icon%
 label-empty-foreground = ${colors.foreground}
-label-empty-padding = 2
-
+label-empty-padding = 1
 

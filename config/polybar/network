@@ -10,7 +10,8 @@ type = custom/script
 interval = 256
 format = "<label> "
 format-prefix = " "
-format-prefix-foreground = ${colors.primary}
+format-prefix-foreground = ${colors.black}
+format-background =${colors.blue}
 exec = echo "$(uname -n)"
 
 [module/wlan]

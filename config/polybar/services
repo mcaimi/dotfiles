@@ -22,9 +22,10 @@ exec = ~/.config/polybar/status dnsmasq
 interval = 4
 format = <label>
 format-padding = 4
-format-foreground = ${colors.secondary}
+format-foreground = ${colors.black}
 format-prefix= " "
-format-prefix-foreground = ${colors.primary}
+format-prefix-foreground = ${colors.black}
+format-background = ${colors.blue}
 
 [module/firewallDaemon]
 type = custom/script
@@ -32,8 +33,8 @@ exec = ~/.config/polybar/status firewalld
 interval = 4
 format = <label>
 format-padding = 4
-format-foreground = ${colors.secondary}
+format-foreground = ${colors.black}
 format-prefix= " "
-format-prefix-foreground = ${colors.primary}
-
+format-prefix-foreground = ${colors.black}
+format-background = ${colors.blue}
 

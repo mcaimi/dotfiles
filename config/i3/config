@@ -1,11 +1,15 @@
 # i3-gaps configuration file
 
+set $internal "LVDS1"
+set $external "VGA1"
+
 # i3 font
-set $ft_global pango:Iosevka Term Medium 10
-set $ft_i3blocks pango:Icons Medium 10
-set $ft_i3blocks_small pango:Icons Medium 8
-set $ft_awesome pango:Font Awesome 5 Free 10
-font $ft_global
+set $sz 10
+set $sz_small 8
+set $ft_i3 Iosevka Term Medium
+set $ft_i3blocks Icons Medium
+set $ft_awesome Font Awesome 5 Free
+font pango:$ft_i3,$ft_awesome $sz
 
 # read colors from xresources database
 set_from_resource $darkred     color1  #000000
@@ -26,7 +30,7 @@ set_from_resource $white       color15 #000000
 # Use custom colors for black
 set_from_resource $black       color8 #282828
 set_from_resource $darkblack   color0 #1d2021
-set $transparent #00000000
+set_from_resource $transparent transparent #00000000
 
 # mod key -> Windows Key on laptop
 set $mod Mod4
@@ -62,7 +66,7 @@ for_window [class="(?i).+-256color"] title_format " >_ %title "
 
 # colors & theme settings
 #                       BORDER        BACKGROUND      TEXT        INDICATOR   CHILD_BORDER
-client.focused          $blue         $black          $white      $white      $blue
+client.focused          $blue         $darkblack      $white      $white      $blue
 client.unfocused        $magenta      $darkblack      $white      $black      $black
 client.focused_inactive $yellow       $darkblack      $white      $black      $black
 client.urgent           $red          $red            $black      $red        $red
@@ -120,11 +124,12 @@ assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
 assign [class="(?i)code"] $ws3
-assign [title="Spotify"] $ws4
+assign [class="Spotify"] $ws4
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
 assign [class="(?i)gimp"] $ws5
 assign [class="(?i)retroarch"] $ws6
+assign [class="Steam"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
 assign [class="(?i)thunar"] $ws9
@@ -289,10 +294,10 @@ bar {
   mode dock
   i3bar_command i3bar -t
   status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
-  font $ft_i3blocks
+  font pango:$ft_i3blocks $sz
   id bar-top
   position top
-  output VGA1
+  output $external
   modifier none
   tray_output none
   workspace_buttons yes
@@ -323,9 +328,9 @@ bar {
   mode hide
   i3bar_command i3bar -t
   status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_bottom.conf
-  font $ft_i3blocks_small
+  font pango:$ft_i3blocks $sz_small
   id bar-bottom
-  output VGA1
+  output $external
   position bottom
   modifier none
   tray_output VGA1
@@ -360,7 +365,7 @@ bar {
   id bar-top-int
   modifier none
   tray_output none
-  output LVDS1
+  output $internal
   height $polybar_placeholder_top_height
   position top
   workspace_buttons no
@@ -373,7 +378,7 @@ bar {
   id bar-bot-int
   modifier none
   tray_output none
-  output LVDS1
+  output $internal
   height $polybar_placeholder_bottom_height
   position bottom
   workspace_buttons no
@@ -388,7 +393,7 @@ bar {
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/040998-nintendo-entertainment-system.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/1522928760158.png &
 
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &

@@ -2,4 +2,4 @@
 *background:    t_background
 *foreground:    t_foreground
 *.cursorColor:  t_cursor
-
+*.trasparent:   t_transparent
