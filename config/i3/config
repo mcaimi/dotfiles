@@ -7,7 +7,7 @@ set $internal eDP1
 # i3 font
 set $ft pango:Iosevka Term Medium 10
 set $ft_small pango:Iosevka Term Medium 8
-set $ft_i3bar pango:SauceCodePro Nerd Font 10
+set $ft_i3bar pango:SauceCodePro Nerd Font Bold 10
 set $ft_i3bar_small pango:SauceCodePro Nerd Font 8
 font $ft
 
@@ -64,8 +64,8 @@ for_window [class="(?i).+-256color"] title_format " >_ %title "
 
 # colors & theme settings
 #                       BORDER        BACKGROUND      TEXT        INDICATOR   CHILD_BORDER
-client.focused          $blue         $black          $white      $white      $blue
-client.unfocused        $magenta      $transparent    $white      $black      $black
+client.focused          $white        $black          $white      $white      $blue
+client.unfocused        $cyan         $transparent    $white      $black      $black
 client.focused_inactive $yellow       $transparent    $white      $black      $black
 client.urgent           $red          $red            $black      $red        $red
 client.background       $black
@@ -75,6 +75,8 @@ client.background       $black
 # i3 related
 bindsym $mod+Control+c reload
 bindsym $mod+Control+r restart
+bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark Window: ' -f $ft &
+bindsym $mod+g exec i3-input -F '[con_mark=%s] focus' -P 'Go to Marked Window: ' -f $ft &
 
 # behaviour related
 bindsym $mod+q kill
@@ -309,15 +311,15 @@ bar {
     #
     #<colorclass> <border> <background> <text>
 
-    #background $darkblack
+    background $transparent
     #statusline $darkwhite
 
     focused_background $darkblack $darkblack $darkblack
-    focused_statusline $magenta $darkblack $darkblack
+    focused_statusline $white $darkblack $white
     focused_separator $darkwhite $darkblack $darkblack
     active_workspace $darkblack $darkblack $magenta
-    focused_workspace $darkblack $darkblack $darkred
-    inactive_workspace $darkblack $darkblack $darkcyan
+    focused_workspace $darkblack $darkblack $white
+    inactive_workspace $darkblack $darkblack $cyan
     urgent_workspace $darkblack $darkblack $red
     binding_mode $darkblack $darkred $darkblack
   }
@@ -342,17 +344,17 @@ bar {
     #
     #<colorclass> <border> <background> <text>
 
-    #background $darkblack
+    background $transparent
     #statusline $darkwhite
 
     focused_background $darkblack $darkblack $darkblack
-    focused_statusline $magenta $darkblack $darkblack
+    focused_statusline $white $darkblack $darkblack
     focused_separator $darkwhite $darkblack $darkblack
     active_workspace $darkblack $darkblack $magenta
-    focused_workspace $darkblack $darkblack $darkred
-    inactive_workspace $darkblack $darkblack $darkcyan
+    focused_workspace $darkblack $darkblack $white
+    inactive_workspace $darkblack $darkblack $cyan
     urgent_workspace $darkblack $darkblack $red
-    binding_mode $darkblack $darkred $darkblack
+    binding_mode $red $darkblack $white
   }
 }
 bindsym $mod+z bar mode toggle
@@ -389,7 +391,7 @@ bar {
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/wall.jpg &
+exec_always --no-startup-id wal -i $HOME/Pictures/QsxZTN1.png &
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # polybar top & bottom widgets, only on internal display
