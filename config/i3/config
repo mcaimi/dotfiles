@@ -7,8 +7,8 @@ set $internal eDP1
 # i3 font
 set $ft pango:Iosevka Term Medium 10
 set $ft_small pango:Iosevka Term Medium 8
-set $ft_i3bar pango:SauceCodePro Nerd Font Bold 10
-set $ft_i3bar_small pango:SauceCodePro Nerd Font 8
+set $ft_i3bar pango:Iosevka Nerd Font Regular 11
+set $ft_i3bar_small pango:Iosevka Nerd Font Regular 9
 font $ft
 
 # read colors from xresources database
@@ -36,23 +36,24 @@ set $transparent #00000000
 set $mod Mod4
 set $alt Mod1
 set $TERMINAL /usr/bin/st
+set $ALT_TERMINAL /usr/bin/kitty
 set $DMENU /usr/bin/rofi -show combi
 set $DMENU_TABS /usr/bin/rofi -show window
 set $DMENU_RUN /usr/bin/rofi -separator-style none -lines 0 -dmenu -p "~ > " -show run
 set $SANDFOX docker start sandfox
 set $TOTP_CMD /usr/local/bin/totp.sh
 set $window_border_thickness 3
-set $i3bar_height_top 20
-set $i3bar_height_bottom 16
-set $polybar_placeholder_top_height 20
-set $polybar_placeholder_bottom_height 16
+set $i3bar_height_top 22
+set $i3bar_height_bottom 18
+set $polybar_placeholder_top_height 22
+set $polybar_placeholder_bottom_height 18
 
 # i3-gaps settings
 gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
 popup_during_fullscreen smart
-set $gaps_inner_px 18
-set $gaps_outer_px 12
+set $gaps_inner_px 8
+set $gaps_outer_px 6
 set $gaps_delta 2
 smart_borders on
 smart_gaps on
@@ -93,8 +94,8 @@ set $ws3  Coding
 set $ws4  Media
 # Photography
 set $ws5  Photography
-# Games/Steam
-set $ws6  Games
+# Documents/PDF
+set $ws6   Documents
 # VirtualMachines
 set $ws7  VM
 # Chat
@@ -128,7 +129,7 @@ assign [title="Spotify"] $ws4
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
 assign [class="(?i)gimp"] $ws5
-assign [class="(?i)retroarch"] $ws6
+assign [class="(?i)zathura"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
 assign [class="(?i)thunar"] $ws9
@@ -239,10 +240,12 @@ bindsym $mod+d exec --no-startup-id $DMENU
 bindsym Menu exec --no-startup-id $DMENU
 bindsym $mod+w exec --no-startup-id $DMENU_TABS
 bindsym $mod+s exec --no-startup-id $DMENU_RUN
-# Xst with TMUX, the default
+# st with TMUX, the default
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
-# Plain old Xst, just the terminal
+# Plain old st, just the terminal
 bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
+# kitty
+bindsym $mod+$alt+Return exec --no-startup-id $ALT_TERMINAL /usr/bin/tmux
 # TOTP
 bindsym $mod+t exec --no-startup-id $TOTP_CMD &
 
@@ -298,6 +301,7 @@ bar {
   position top
   height $i3bar_height_top
   output $external
+  output $internal
   modifier none
   tray_output none
   separator_symbol "<"
@@ -311,7 +315,7 @@ bar {
     #
     #<colorclass> <border> <background> <text>
 
-    background $transparent
+    background $darkblack
     #statusline $darkwhite
 
     focused_background $darkblack $darkblack $darkblack
@@ -332,7 +336,9 @@ bar {
   id i3bar-bottom
   height $i3bar_height_bottom
   output $external
-  tray_output primary
+  output $internal
+  tray_output $external
+  tray_output $internal
   workspace_buttons no
   tray_padding 3
   binding_mode_indicator yes
@@ -344,7 +350,7 @@ bar {
     #
     #<colorclass> <border> <background> <text>
 
-    background $transparent
+    background $darkblack
     #statusline $darkwhite
 
     focused_background $darkblack $darkblack $darkblack
@@ -360,42 +366,43 @@ bar {
 bindsym $mod+z bar mode toggle
 
 # placeholder for polybar
-bar {
-  id bar-top-int
-  modifier none
-  tray_output none
-  output $internal
-  height $polybar_placeholder_top_height
-  position top
-  workspace_buttons no
-  binding_mode_indicator no
-  colors {
-    background $transparent
-  }
-}
-bar {
-  id bar-bot-int
-  modifier none
-  tray_output none
-  output $internal
-  height $polybar_placeholder_bottom_height
-  position bottom
-  workspace_buttons no
-  binding_mode_indicator no
-  colors {
-    background $transparent
-  }
-}
+#bar {
+#  id bar-top-int
+#  modifier none
+#  tray_output none
+#  output $internal
+#  height $polybar_placeholder_top_height
+#  position top
+#  workspace_buttons no
+#  binding_mode_indicator no
+#  colors {
+#    background $transparent
+#  }
+#}
+#bar {
+#  id bar-bot-int
+#  modifier none
+#  tray_output none
+#  output $internal
+#  height $polybar_placeholder_bottom_height
+#  position bottom
+#  workspace_buttons no
+#  binding_mode_indicator no
+#  colors {
+#   background $transparent
+#  }
+#}
 
 # Exec and startup
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
-# feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/QsxZTN1.png &
+# wal for background & system-wide Xresources
+exec_always --no-startup-id wal -i $HOME/.config/i3walls/wallpaper.jpg &
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
-# polybar top & bottom widgets, only on internal display
-exec_always --no-startup-id $HOME/.config/polybar/load.sh &
+
+# disable polybar for now.
+#exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 
 # start conky
 # exec_always --no-startup-id $HOME/.conkystart.sh &

@@ -36,6 +36,7 @@ call plug#begin('~/.neovimbundle/')
 " Plug 'Yggdroot/indentLine'
 " Plug 'w0rp/ale'
 Plug 'bling/vim-airline'
+Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
