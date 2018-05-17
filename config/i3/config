@@ -36,6 +36,7 @@ set_from_resource $transparent transparent #00000000
 set $mod Mod4
 set $alt Mod1
 set $TERMINAL /usr/bin/st
+set $ALT_TERMINAL /usr/bin/kitty
 set $DMENU /usr/bin/rofi -show combi
 set $DMENU_TABS /usr/bin/rofi -show window
 set $DMENU_RUN /usr/bin/rofi -separator-style none -lines 0 -dmenu -p "~ > " -show run
@@ -67,8 +68,8 @@ for_window [class="(?i).+-256color"] title_format " >_ %title "
 # colors & theme settings
 #                       BORDER        BACKGROUND      TEXT        INDICATOR   CHILD_BORDER
 client.focused          $blue         $darkblack      $white      $white      $blue
-client.unfocused        $magenta      $darkblack      $white      $black      $black
-client.focused_inactive $yellow       $darkblack      $white      $black      $black
+client.unfocused        $magenta      $darkblack      $white      $magenta    $magenta
+client.focused_inactive $yellow       $darkblack      $white      $yellow     $yellow
 client.urgent           $red          $red            $black      $red        $red
 client.background       $black
 
@@ -157,6 +158,11 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# Window markings
+bindsym $mod+m exec i3-input -F 'mark %s' -l 10 -P 'Mark Active Window: '
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 10 -P 'Go to Mark: '
+
+
 # workspace splits
 bindsym $alt+$mod+f floating toggle
 bindsym $alt+$mod+e layout toggle split 
@@ -240,8 +246,10 @@ bindsym $mod+d exec --no-startup-id $DMENU
 bindsym Menu exec --no-startup-id $DMENU
 bindsym $mod+w exec --no-startup-id $DMENU_TABS
 bindsym $mod+s exec --no-startup-id $DMENU_RUN
-# Xst with TMUX, the default
+# st with TMUX, the default
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
+# alternate terminal
+bindsym $mod+$alt+Return exec --no-startup-id $ALT_TERMINAL /usr/bin/tmux
 # Plain old Xst, just the terminal
 bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
 # TOTP
@@ -311,15 +319,15 @@ bar {
     #
     #<colorclass> <border> <background> <text>
 
-    #background $darkblack
+    background $transparent
     #statusline $darkwhite
 
     focused_background $darkblack $darkblack $darkblack
-    focused_statusline $magenta $darkblack $darkblack
+    focused_statusline $white $darkblack $white
     focused_separator $darkwhite $darkblack $darkblack
-    active_workspace $darkblack $darkblack $magenta
-    focused_workspace $darkblack $darkblack $darkred
-    inactive_workspace $darkblack $darkblack $darkcyan
+    active_workspace $darkblack $darkblack $darkred
+    focused_workspace $darkblack $darkblack $white
+    inactive_workspace $darkblack $darkblack $darkyellow
     urgent_workspace $darkblack $darkblack $red
     binding_mode $darkblack $darkred $darkblack
   }
@@ -344,18 +352,16 @@ bar {
    #separator <color>
    #
    #<colorclass> <border> <background> <text>
+   background $transparent
 
-   background $darkblack
-   statusline $darkwhite
    focused_background $darkblack $darkblack $darkblack
-   focused_statusline $darkwhite $darkblack $darkblack
+   focused_statusline $white $darkblack $white
    focused_separator $darkwhite $darkblack $darkblack
-   active_workspace $magenta $darkblack $darkblack
-   focused_workspace $darkred $darkblack $darkblack
-   inactive_workspace $darkcyan $darkblack $darkblack
-   urgent_workspace $red $darkblack $darkblack
-   binding_mode $darkblack $darkred $darkblack
-
+   active_workspace $darkblack $darkblack $darkred
+   focused_workspace $darkblack $darkblack $white
+   inactive_workspace $darkblack $darkblack $darkyellow
+   urgent_workspace $darkblack $darkblack $red
+   binding_mode $darkblack $darkred $white
  }
 }
 bindsym $mod+z bar mode toggle bar-bottom
@@ -393,7 +399,7 @@ bar {
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/1522928760158.png &
+exec_always --no-startup-id wal -i $HOME/Pictures/dtexport/stampa/_DSF5844.jpg &
 
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &

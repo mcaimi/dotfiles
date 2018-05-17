@@ -46,7 +46,7 @@ label-urgent = %icon% (Ur)
 label-urgent-background = ${colors.urgent}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
-#label-separator = ~
+label-separator = ">"
 
 [module/bspwm]
 type = internal/bspwm
