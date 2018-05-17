@@ -132,6 +132,7 @@ assign [class="(?i)gimp"] $ws5
 assign [class="(?i)zathura"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
+assign [class="(?i)keybase"] $ws8
 assign [class="(?i)thunar"] $ws9
 
 # Move containers
@@ -287,7 +288,7 @@ for_window [class="(?i)gimp"] floating enable
 for_window [class="(?i)evince"] floating enable
 for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)about"] floating enable
-for_window [class="(?i)keybase"] move to scratchpad
+#for_window [class="(?i)keybase"] move to scratchpad
 for_window [class="(?i)keepassxc"] move to scratchpad
 for_window [class="(?i)glava"] border pixel 0
 
