@@ -55,6 +55,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'blindFS/vim-taskwarrior'
 Plug 'ayu-theme/ayu-vim'
 Plug 'valloric/YouCompleteMe'
+Plug 'junegunn/goyo.vim'
 Plug 'metalelf0/base16-black-metal-scheme'
 
 call plug#end()

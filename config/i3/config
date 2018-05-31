@@ -5,9 +5,10 @@ set $external "VGA1"
 
 # i3 font
 set $sz 10
-set $sz_small 8
+set $szbar 11
+set $sz_small 9
 set $ft_i3 Iosevka Term Medium
-set $ft_i3blocks Icons Medium
+set $ft_i3blocks Iosevka Nerd Font Regular
 set $ft_awesome Font Awesome 5 Free
 font pango:$ft_i3,$ft_awesome $sz
 
@@ -45,8 +46,8 @@ set $TOTP_CMD /usr/local/bin/totp.sh
 set $window_border_thickness 3
 
 # i3-gaps settings
-set $gaps_inner_px 10
-set $gaps_outer_px 8
+set $gaps_inner_px 8
+set $gaps_outer_px 6
 set $gaps_delta 2
 gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
@@ -55,8 +56,8 @@ smart_borders on
 smart_gaps on
 
 # i3blocks
-set $i3blocks_height_top 20
-set $i3blocks_height_bottom 16
+set $i3blocks_height_top 24
+set $i3blocks_height_bottom 20
 set $polybar_placeholder_top_height 20
 set $polybar_placeholder_bottom_height 18
 
@@ -67,9 +68,9 @@ for_window [class="(?i).+-256color"] title_format " >_ %title "
 
 # colors & theme settings
 #                       BORDER        BACKGROUND      TEXT        INDICATOR   CHILD_BORDER
-client.focused          $blue         $darkblack      $white      $white      $blue
-client.unfocused        $magenta      $darkblack      $white      $magenta    $magenta
-client.focused_inactive $yellow       $darkblack      $white      $yellow     $yellow
+client.focused          $white        $black          $white      $white      $blue
+client.unfocused        $cyan         $transparent    $white      $black      $black
+client.focused_inactive $yellow       $transparent    $white      $black      $black
 client.urgent           $red          $red            $black      $red        $red
 client.background       $black
 
@@ -85,23 +86,25 @@ bindsym $mod+f fullscreen toggle
 
 # Setup Workspaces
 # Terminal
-set $ws1  Terminal
+set $ws1 1:  Terminal
 # Browser
-set $ws2  Internet
+set $ws2 2:  Internet
 # Code
-set $ws3  Coding
+set $ws3 3:  Coding
 # Media
-set $ws4  Multimedia
+set $ws4 4:  Multimedia
 # Photography
-set $ws5  Photography
-# Games
-set $ws6  Games
+set $ws5 5:  Photography
+# Documents
+set $ws6 6:  Documents
 # Virtual Machines
-set $ws7  VirtualMachine
+set $ws7 7:  VirtualMachine
 # Chat
-set $ws8  Chat
+set $ws8 8:  Chat
 # Filesystem
-set $ws9  Filesystem
+set $ws9 9:  Filesystem
+# Games
+set $ws0 10:  Games
 
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
@@ -113,6 +116,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
 bindsym $alt+Tab workspace back_and_forth
 
 # Scratchpad
@@ -125,15 +129,17 @@ assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
 assign [class="(?i)code"] $ws3
-assign [class="Spotify"] $ws4
+assign [title="Spotify"] $ws4
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
 assign [class="(?i)gimp"] $ws5
-assign [class="(?i)retroarch"] $ws6
-assign [class="Steam"] $ws6
+assign [class="(?I)zathura"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
+assign [class="(?i)keybase"] $ws8
 assign [class="(?i)thunar"] $ws9
+assign [class="(?i)retroarch"] $ws0
+assign [title="Steam"] $ws0
 
 # Move containers
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -249,7 +255,7 @@ bindsym $mod+s exec --no-startup-id $DMENU_RUN
 # st with TMUX, the default
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
 # alternate terminal
-bindsym $mod+$alt+Return exec --no-startup-id $ALT_TERMINAL /usr/bin/tmux
+bindsym $mod+$alt+Return exec --no-startup-id $ALT_TERMINAL
 # Plain old Xst, just the terminal
 bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
 # TOTP
@@ -293,20 +299,33 @@ for_window [class="(?i)gimp"] floating enable
 for_window [class="(?i)evince"] floating enable
 for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)about"] floating enable
-for_window [class="(?i)keybase"] move to scratchpad
 for_window [class="(?i)keepassxc"] move to scratchpad
 for_window [class="(?i)glava"] border pixel 0
+
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
 
 # i3bar & i3blocks
 bar {
   mode dock
   i3bar_command i3bar -t
   status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
-  font pango:$ft_i3blocks $sz
+  font pango:$ft_i3blocks $szbar
   id bar-top
   position top
   output $external
+  output $internal
   modifier none
+  separator_symbol ""
   tray_output none
   workspace_buttons yes
   strip_workspace_numbers yes
@@ -319,15 +338,15 @@ bar {
     #
     #<colorclass> <border> <background> <text>
 
-    background $transparent
+    background $darkblack
     #statusline $darkwhite
 
     focused_background $darkblack $darkblack $darkblack
     focused_statusline $white $darkblack $white
     focused_separator $darkwhite $darkblack $darkblack
-    active_workspace $darkblack $darkblack $darkred
+    active_workspace $darkblack $darkblack $magenta
     focused_workspace $darkblack $darkblack $white
-    inactive_workspace $darkblack $darkblack $darkyellow
+    inactive_workspace $darkblack $darkblack $cyan
     urgent_workspace $darkblack $darkblack $red
     binding_mode $darkblack $darkred $darkblack
   }
@@ -339,9 +358,11 @@ bar {
   font pango:$ft_i3blocks $sz_small
   id bar-bottom
   output $external
+  output $internal
   position bottom
   modifier none
-  tray_output VGA1
+  tray_output $external
+  tray_output $internal
   tray_padding 3
   workspace_buttons no
   binding_mode_indicator yes
@@ -352,60 +373,62 @@ bar {
    #separator <color>
    #
    #<colorclass> <border> <background> <text>
-   background $transparent
+   background $darkblack
 
    focused_background $darkblack $darkblack $darkblack
-   focused_statusline $white $darkblack $white
+   focused_statusline $white $darkblack $darkblack
    focused_separator $darkwhite $darkblack $darkblack
-   active_workspace $darkblack $darkblack $darkred
+   active_workspace $darkblack $darkblack $magenta
    focused_workspace $darkblack $darkblack $white
-   inactive_workspace $darkblack $darkblack $darkyellow
+   inactive_workspace $darkblack $darkblack $cyan
    urgent_workspace $darkblack $darkblack $red
-   binding_mode $darkblack $darkred $white
+   binding_mode $darkblack $darkblack $white
  }
 }
 bindsym $mod+z bar mode toggle bar-bottom
 
 # placeholder for polybar
-bar {
-  id bar-top-int
-  modifier none
-  tray_output none
-  output $internal
-  height $polybar_placeholder_top_height
-  position top
-  workspace_buttons no
-  binding_mode_indicator no
-  colors {
-    background $transparent
-  }
-}
-bar {
-  id bar-bot-int
-  modifier none
-  tray_output none
-  output $internal
-  height $polybar_placeholder_bottom_height
-  position bottom
-  workspace_buttons no
-  binding_mode_indicator no
-  colors {
-    background $transparent
-  }
-}
+# DISABLED
+#bar {
+#  id bar-top-int
+#  modifier none
+#  tray_output none
+#  output $internal
+#  height $polybar_placeholder_top_height
+#  position top
+#  workspace_buttons no
+#  binding_mode_indicator no
+#  colors {
+#    background $transparent
+#  }
+#}
+#bar {
+#  id bar-bot-int
+#  modifier none
+#  tray_output none
+#  output $internal
+#  height $polybar_placeholder_bottom_height
+#  position bottom
+#  workspace_buttons no
+#  binding_mode_indicator no
+#  colors {
+#    background $transparent
+#  }
+#}
 
 # Exec and startup
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 
 # feh for background
-exec_always --no-startup-id wal -i $HOME/Pictures/dtexport/stampa/_DSF5844.jpg &
+exec_always --no-startup-id wal -i $HOME/.config/i3walls/wallpaper.jpg &
 
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 
 # polybar top & bottom widgets, only on internal display
-exec_always --no-startup-id $HOME/.config/polybar/load.sh &
+# Disable for now
+#exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 
 # start conky
 # exec_always --no-startup-id $HOME/.conkystart.sh &

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+IP_ADDRESS=$(ip route get 1 | awk -F'src' '{print $2;exit}'|awk -F'uid' '{print $1;exit}')
+
+if [[ "${IP_ADDRESS}" != "" ]]; then
+  echo "${IP_ADDRESS}"
+  echo "${IP_ADDRESS}"
+  echo ""
+fi

@@ -19,6 +19,13 @@ ENABLED_PLUGINS[0]="tmux-git"
 # in the path prepended by the $BASH_SYMBOL_FOLDER GLYPH
 max_path_len=3
 
+# check for running tmux processes
+function tmux_running() {
+  pgrep tmux 2>&1 >/dev/null
+  [[ $? -eq 0 ]] && return 0
+  return 1
+}
+
 # set window title
 function __set_window_title()
 {
@@ -126,7 +133,7 @@ function __run_tmux_plugins() {
     source $TMUX_PLUGINS_PATH/$plugin/scripts/execute.sh
   done
 }
-__run_tmux_plugins
+tmux_running && __run_tmux_plugins
 
 # generate custom PS1 string
 function draw_ps1()
@@ -136,7 +143,7 @@ function draw_ps1()
   #local git_status_line=$(__git_status_element)
   local cwd_element=$(__cwd_element)
   local user_element=$(__user_host_element)
-  tmux_git_cmd
+  tmux_running && tmux_git_cmd
 
   # render top PS1 element
   local user_section="$user_element$cwd_element"
