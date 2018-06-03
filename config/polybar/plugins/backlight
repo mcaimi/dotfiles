@@ -1,0 +1,7 @@
+[module/backlight]
+type = internal/xbacklight
+format-prefix = "   "
+label = "%percentage%% "
+
+format-background = ${settings/colors.mpd-title}
+format-foreground = ${settings/colors.title-foreground}

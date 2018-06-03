@@ -1,0 +1,17 @@
+[colors]
+background = #111111
+; border = #bf5b75
+border = #111111
+foreground = #eeeeee
+foreground-alt = #bf5b75
+highlight = #eeeeee
+label-background = #222222
+secondary = #00ff00
+title-background = #555555
+title-foreground = #111111
+muted-background = #D25E4F
+muted-foreground = #111111
+i3-focused = #eeeeee
+i3-unfocused = #555555
+hostname-background = #555555
+hostname-foreground = #eeeeee

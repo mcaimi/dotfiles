@@ -1,7 +1,7 @@
-include-file = ~/.config/polybar/system
-include-file = ~/.config/polybar/audio
-include-file = ~/.config/polybar/network
-include-file = ~/.config/polybar/services
+include-file = ~/.config/polybar/plugins/system
+include-file = ~/.config/polybar/plugins/audio
+include-file = ~/.config/polybar/plugins/network
+include-file = ~/.config/polybar/plugins/services
 
 [module/i3]
 type = internal/i3

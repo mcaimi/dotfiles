@@ -32,15 +32,16 @@ info "[$(date)]: Killed running polybars." $LOGFILE
 is_lid_closed
 if [ $? -ne 0 ]; then 
   info "[$(date)]: INTERNAL DISPLAY: Loading polybars...." $LOGFILE
-  polybar top &
-  polybar bottom &
+  polybar default &
+  #polybar bottom &
 fi
 
 # Launch bar top & bottom external display
-is_display_connected DP2
+is_display_connected VGA1
 if [ $? -eq 0 ]; then
   info "[$(date)]: EXTERNAL DISPLAY: Loading polybars...." $LOGFILE
-  info "[$(date)]: EXTERNAL DISPLAY: Switched to i3blocks, look in i3 config file...." $LOGFILE
+  #info "[$(date)]: EXTERNAL DISPLAY: Switched to i3blocks, look in i3 config file...." $LOGFILE
+  polybar -c $HOME/.config/polybar/config-ext default-ext &
   #polybar top-ext &
   #polybar bottom-ext &
 fi

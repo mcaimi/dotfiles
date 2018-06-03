@@ -1,0 +1,33 @@
+[module/powermenu]
+type = custom/menu
+
+label-close = "    "
+
+label-open = "  "
+label-open-margin-right = ${spacing.margin}
+label-open-padding-left = ${spacing.padding}
+label-open-padding-right = ${spacing.padding}
+
+;;; button for ending current session
+menu-0-0 = "  LOGOUT  /" 
+menu-0-0-exec = "i3-msg exit"
+
+;;; button for restarting system
+menu-0-1 = "  RESTART  /" 
+menu-0-1-exec = "systemctl reboot"
+
+;;; button for powering off system
+menu-0-2 = "  POWER  "
+menu-0-2-exec = "systemctl poweroff"
+menu-0-2-margin-right = ${spacing.margin}
+
+label-close-background = ${settings/colors.menu-close}
+label-close-foreground = ${settings/colors.title-foreground}
+label-open-background = ${settings/colors.menu}
+label-open-foreground = ${settings/colors.title-foreground}
+menu-0-0-background = ${settings/colors.label-background}
+menu-0-0-foreground = ${settings/colors.foreground}
+menu-0-1-background = ${settings/colors.label-background}
+menu-0-1-foreground = ${settings/colors.foreground}
+menu-0-2-background = ${settings/colors.label-background}
+menu-0-2-foreground = ${settings/colors.foreground}

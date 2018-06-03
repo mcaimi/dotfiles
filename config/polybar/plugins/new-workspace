@@ -1,0 +1,9 @@
+[module/new-workspace]
+type = custom/text
+
+content = "%{A1:playerctl play-pause:}    %{A}"
+
+content-background = ${settings/colors.i3-unfocused}
+content-foreground = ${settings/colors.i3-focused}
+
+

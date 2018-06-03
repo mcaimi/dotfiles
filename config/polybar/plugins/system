@@ -92,6 +92,7 @@ animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
+
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0

@@ -1,0 +1,52 @@
+[settings/colors]
+background = #282828
+border = ${settings/colors.background}
+foreground = #fbf1c7
+highlight = #ebdbb2
+label-background = #3c3836
+title-foreground = #1D2021
+
+; colors for icon backgrounds
+i3 = #458588
+i3-focused = #fbf1c7
+i3-unfocused = #928374
+i3-separator = #504945
+xwindow = #fabd2f
+mpd-title = #cc214d
+mpd-progress = ${settings/colors.mpd-title}
+volume = #b8bb26
+volume-muted = ${settings/colors.volume}
+date = #d3869b
+time = #8ec07c
+menu = #555555
+menu-close = #928374
+
+; progress bars
+bar-empty = #504945 
+volume-progress = ${settings/colors.volume}
+
+[bar/default]
+; labels
+; font-0 = "bitocra13full:style=Regular:size=13;1"
+font-0 = "Iosevka Term Medium:style=Regular:size=10;2"
+
+; icons
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
+font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;2"
+
+; dots representing workspaces
+font-4 = "Siji:pixelsize=15;3"
+
+[bar/default-ext]
+; labels
+; font-0 = "bitocra13full:style=Regular:size=13;1"
+font-0 = "Iosevka Term Medium:style=Regular:size=9;2"
+
+; icons
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
+font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;2"
+
+; dots representing workspaces
+font-4 = "Siji:pixelsize=15;3"
