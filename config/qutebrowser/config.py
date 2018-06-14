@@ -11,9 +11,44 @@
 # Type: Dict
 c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
 
+# Load a restored tab as soon as it takes focus.
+# Type: Bool
+c.session.lazy_restore = True
+
+# Backend to use to display websites. qutebrowser supports two different
+# web rendering engines / backends, QtWebKit and QtWebEngine. QtWebKit
+# was discontinued by the Qt project with Qt 5.6, but picked up as a
+# well maintained fork: https://github.com/annulen/webkit/wiki -
+# qutebrowser only supports the fork. QtWebEngine is Qt's official
+# successor to QtWebKit. It's slightly more resource hungry than
+# QtWebKit and has a couple of missing features in qutebrowser, but is
+# generally the preferred choice.
+# Type: String
+# Valid values:
+#   - webengine: Use QtWebEngine (based on Chromium).
+#   - webkit: Use QtWebKit (based on WebKit, similar to Safari).
+c.backend = 'webengine'
+
+# Additional arguments to pass to Qt, without leading `--`. With
+# QtWebEngine, some Chromium arguments (see
+# https://peter.sh/experiments/chromium-command-line-switches/ for a
+# list) will work.
+# Type: List of String
+c.qt.args = ['ppapi-widevine-path=/usr/lib/qt/plugins/ppapi/libwidevinecdmadapter.so']
+
+# Force software rendering for QtWebEngine. This is needed for
+# QtWebEngine to work with Nouveau drivers.
+# Type: Bool
+c.qt.force_software_rendering = False
+
 # Always restore open sites when qutebrowser is reopened.
 # Type: Bool
 c.auto_save.session = True
+
+# Limit fullscreen to the browser window (does not expand to fill the
+# screen).
+# Type: Bool
+c.content.windowed_fullscreen = True
 
 # Allow websites to request geolocations.
 # Type: BoolAsk
@@ -22,6 +57,18 @@ c.auto_save.session = True
 #   - false
 #   - ask
 c.content.geolocation = False
+
+# Enable JavaScript.
+# Type: Bool
+config.set('content.javascript.enabled', True, 'file://*')
+
+# Enable JavaScript.
+# Type: Bool
+config.set('content.javascript.enabled', True, 'chrome://*/*')
+
+# Enable JavaScript.
+# Type: Bool
+config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # Allow websites to record audio/video.
 # Type: BoolAsk
@@ -36,11 +83,6 @@ c.content.media_capture = False
 # Type: Bool
 c.content.private_browsing = False
 
-# Limit fullscreen to the browser window (does not expand to fill the
-# screen).
-# Type: Bool
-c.content.windowed_fullscreen = True
-
 # Duration (in milliseconds) to wait before removing finished downloads.
 # If set to -1, downloads are never removed.
 # Type: Int
@@ -54,43 +96,6 @@ c.downloads.remove_finished = 10000
 # Same as `{column}`, but starting from index 0.
 # Type: ShellCommand
 c.editor.command = ['st', '-e', 'nvim', '{file}']
-
-# Font used in the completion categories.
-# Type: Font
-c.fonts.completion.category = 'bold 10pt monospace'
-
-# Font used in the completion widget.
-# Type: Font
-c.fonts.completion.entry = '11pt monospace'
-
-# Default monospace fonts. Whenever "monospace" is used in a font
-# setting, it's replaced with the fonts listed here.
-# Type: Font
-c.fonts.monospace = '"Iosevka Term Medium", "xos4 Terminus", Terminus, Monospace, "DejaVu Sans Mono", Monaco, "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", Courier, "Liberation Mono", monospace, Fixed, Consolas, Terminal'
-
-# Font used in the statusbar.
-# Type: Font
-c.fonts.statusbar = '11pt monospace'
-
-# Font used in the tab bar.
-# Type: QtFont
-c.fonts.tabs = '12pt monospace'
-
-# Font family for standard fonts.
-# Type: FontFamily
-c.fonts.web.family.standard = None
-
-# Additional arguments to pass to Qt, without leading `--`. With
-# QtWebEngine, some Chromium arguments (see
-# https://peter.sh/experiments/chromium-command-line-switches/ for a
-# list) will work.
-# Type: List of String
-c.qt.args = ['ppapi-widevine-path=/usr/lib/qt/plugins/ppapi/libwidevinecdmadapter.so']
-
-# Force software rendering for QtWebEngine. This is needed for
-# QtWebEngine to work with Nouveau drivers.
-# Type: Bool
-c.qt.force_software_rendering = False
 
 # Show a scrollbar.
 # Type: Bool
@@ -136,3 +141,28 @@ c.tabs.title.format_pinned = '{index}'
 # it's vertical.
 # Type: PercOrInt
 c.tabs.width = '15%'
+
+# Default monospace fonts. Whenever "monospace" is used in a font
+# setting, it's replaced with the fonts listed here.
+# Type: Font
+c.fonts.monospace = '"Iosevka Term Medium", "xos4 Terminus", Terminus, Monospace, "DejaVu Sans Mono", Monaco, "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", Courier, "Liberation Mono", monospace, Fixed, Consolas, Terminal'
+
+# Font used in the completion widget.
+# Type: Font
+c.fonts.completion.entry = '11pt monospace'
+
+# Font used in the completion categories.
+# Type: Font
+c.fonts.completion.category = 'bold 10pt monospace'
+
+# Font used in the statusbar.
+# Type: Font
+c.fonts.statusbar = '11pt monospace'
+
+# Font used in the tab bar.
+# Type: QtFont
+c.fonts.tabs = '12pt monospace'
+
+# Font family for standard fonts.
+# Type: FontFamily
+c.fonts.web.family.standard = None

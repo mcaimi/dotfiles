@@ -169,15 +169,15 @@ bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.
 
 # WM Modes
 mode "Window_Resize" {
-    bindsym Left resize shrink width 5 px or 5 ppt
-    bindsym Down resize grow height 5 px or 5 ppt
-    bindsym Up resize shrink height 5 px or 5 ppt
-    bindsym Right resize grow width 5 px or 5 ppt
+    bindsym Left resize shrink width 4 px or 4 ppt
+    bindsym Down resize grow height 4 px or 4 ppt
+    bindsym Up resize shrink height 4 px or 4 ppt
+    bindsym Right resize grow width 4 px or 4 ppt
 
-    bindsym h resize shrink width 5 px or 5 ppt
-    bindsym j resize grow height 5 px or 5 ppt
-    bindsym k resize shrink height 5 px or 5 ppt
-    bindsym l resize grow width 5 px or 5 ppt
+    bindsym h resize shrink width 4 px or 4 ppt
+    bindsym j resize grow height 4 px or 4 ppt
+    bindsym k resize shrink height 4 px or 4 ppt
+    bindsym l resize grow width 4 px or 4 ppt
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -246,7 +246,7 @@ bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
 # Plain old st, just the terminal
 bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
 # kitty
-bindsym $mod+$alt+Return exec --no-startup-id $ALT_TERMINAL /usr/bin/tmux
+bindsym $mod+$alt+Return exec --no-startup-id $ALT_TERMINAL
 # TOTP
 bindsym $mod+t exec --no-startup-id $TOTP_CMD &
 
@@ -305,7 +305,7 @@ bar {
   output $internal
   modifier none
   tray_output none
-  separator_symbol "<"
+  separator_symbol "|"
   workspace_buttons yes
   strip_workspace_numbers no
   binding_mode_indicator no

@@ -93,7 +93,9 @@ eval $(thefuck --alias)
 #set -o vi
 
 # git-tmux integration
-[ -x ~/.tmux/plugins/tmux-git/scripts/git.sh ] && ~/.tmux/plugins/tmux-git/scripts/git.sh
+if tmux_running; then
+  [ -x ~/.tmux/plugins/tmux-git/scripts/git.sh ] && ~/.tmux/plugins/tmux-git/scripts/git.sh
+fi
 
 # Draw PS1
 PROMPT_COMMAND=draw_ps1

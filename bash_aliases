@@ -21,5 +21,4 @@ alias fvpn="nmcli con up f583903e-2262-455d-8cb7-ceff09eaea8b --ask"
 alias protonvpn="sudo openvpn --config $HOME/Work/dotfiles/nl-free-02.protonvpn.com.tcp443.ovpn --daemon"
 # dockerized programs
 alias sandfox="docker run --rm -d -v /var/run/dbus/:/var/run/dbus/ -v /run/user/1001/pulse/:/run/user/1001/pulse/ -v /home/marco/.mozilla/:/home/firefox/.mozilla/ -v /home/marco/Downloads/:/home/firefox/Downloads/ -v /etc/hosts:/etc/hosts:ro -v /home/marco/.pulse-cookie:/home/firefox/.pulse-cookie -v /tmp/.X11-unix:/tmp/.X11-unix --name sandfox --hostname sandfox.midgar.net -v /dev/shm:/dev/shm -e DISPLAY=:0 sandfox:latest"
-alias trashfox="docker run --rm -d --name trashfox --hostname trashfox.midgar.net -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=:0 sandbox/firefox:latest"
-alias eclipse="docker run -d --rm --name eclipse_che --hostname eclipse.midgar.net -v /var/run/docker.sock:/var/run/docker.sock -v /home/marco/Work/Sources/eclispeche:/data eclipse/che start"
+alias trashfox="docker run --rm -d --name trashfox --hostname trashfox.midgar.net -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=:0 sandfox:latest"
