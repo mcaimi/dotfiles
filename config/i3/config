@@ -180,15 +180,15 @@ bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.
 
 # WM Modes
 mode "Window_Resize" {
-    bindsym Left resize shrink width 5 px or 5 ppt
-    bindsym Down resize grow height 5 px or 5 ppt
-    bindsym Up resize shrink height 5 px or 5 ppt
-    bindsym Right resize grow width 5 px or 5 ppt
+    bindsym Left resize shrink width 8 px or 8 ppt
+    bindsym Down resize grow height 8 px or 8 ppt
+    bindsym Up resize shrink height 8 px or 8 ppt
+    bindsym Right resize grow width 8 px or 8 ppt
 
-    bindsym h resize shrink width 5 px or 5 ppt
-    bindsym j resize grow height 5 px or 5 ppt
-    bindsym k resize shrink height 5 px or 5 ppt
-    bindsym l resize grow width 5 px or 5 ppt
+    bindsym h resize shrink width 8 px or 8 ppt
+    bindsym j resize grow height 8 px or 8 ppt
+    bindsym k resize shrink height 8 px or 8 ppt
+    bindsym l resize grow width 8 px or 8 ppt
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -428,7 +428,7 @@ exec_always --no-startup-id wal --backend colorthief -i $HOME/.config/i3walls/wa
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 
-# polybar top & bottom widgets, only on internal display
+# polybar top & bottom widgets, only on external display
 exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 
 # start conky

@@ -29,7 +29,7 @@ st.rows:  46
 st.cols:  160
 st.skiptaskbar:   1
 st.skippager:     0
-st.histsize:    2000
+st.histsize:    3957
 
 ! opacity==255 means what terminal will be not transparent, 0 - fully transparent
 st.opacity:      240

@@ -17,17 +17,19 @@ RELATIVE_OFFSET_Y=30
 
 # hide polybars
 function flip_polybars_visibility() {
-  TOPBAR="polybar top"
-  BOTTOMBAR="polybar bottom"
+  TOPBAR="polybar-default-ext_VGA1"
+  #BOTTOMBAR="polybar bottom"
   # check fs state
   FS_STATE=$(check_state fullscreen)
   if is_not_zero $FS_STATE; then
-    move_windows "${TOPBAR}" $RELATIVE_OFFSET_X $RELATIVE_OFFSET_Y 1
-    move_windows "${BOTTOMBAR}" $RELATIVE_OFFSET_X -$RELATIVE_OFFSET_Y 1
+    #move_windows "${TOPBAR}" $RELATIVE_OFFSET_X $RELATIVE_OFFSET_Y 1
+    #move_windows "${BOTTOMBAR}" $RELATIVE_OFFSET_X -$RELATIVE_OFFSET_Y 1
+    xdo show -a $TOPBAR
     flip_state fullscreen
   else
-    move_windows "${TOPBAR}" $RELATIVE_OFFSET_X -$RELATIVE_OFFSET_Y 1
-    move_windows "${BOTTOMBAR}" $RELATIVE_OFFSET_X $RELATIVE_OFFSET_Y 1
+    #move_windows "${TOPBAR}" $RELATIVE_OFFSET_X -$RELATIVE_OFFSET_Y 1
+    #move_windows "${BOTTOMBAR}" $RELATIVE_OFFSET_X $RELATIVE_OFFSET_Y 1
+    xdo hide -a $TOPBAR
     flip_state fullscreen
   fi
 }
