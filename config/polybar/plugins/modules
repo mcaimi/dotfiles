@@ -1,7 +1,7 @@
-include-file = ~/.config/polybar/system
-include-file = ~/.config/polybar/audio
-include-file = ~/.config/polybar/network
-include-file = ~/.config/polybar/services
+include-file = ~/.config/polybar/plugins/system
+include-file = ~/.config/polybar/plugins/audio
+include-file = ~/.config/polybar/plugins/network
+include-file = ~/.config/polybar/plugins/services
 
 [module/i3]
 type = internal/i3
@@ -12,15 +12,15 @@ pin-workspaces = true
 ; find icon name : fc-match -a |grep -i Material
 ; to find icon: xfd -fa MaterialIcons,
 ; echo "\ueXXX" to print and paste here
-ws-icon-0 = Terminal;1: 
-ws-icon-1 = Browser;2: 
-ws-icon-2 = Code;3: 
-ws-icon-3 = Media;4: 
-ws-icon-4 = Photography;5: 
-ws-icon-5 = Games;6: 
-ws-icon-6 = VirtualMachines;7: 
-ws-icon-7 = Chat;8: 
-ws-icon-8 = Filesystem;9: 
+ws-icon-0 =  Terminal;1: 
+ws-icon-1 =  Internet;2: 
+ws-icon-2 =  Coding;3: 
+ws-icon-3 =  Multimedia;4: 
+ws-icon-4 =  Photography;5: 
+ws-icon-5 =  Games;6: 
+ws-icon-6 =  VirtualMachine;7: 
+ws-icon-7 =  Chat;8: 
+ws-icon-8 =  Filesystem;9: 
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon% (A)
@@ -31,6 +31,8 @@ label-focused-foreground = ${colors.black}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon% (I)
+label-unfocused-background = ${module/bspwm.label-unfocused-background}
+label-unfocused-underline = ${module/bspwm.label-unfocused-underline}
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
@@ -44,25 +46,28 @@ label-urgent = %icon% (Ur)
 label-urgent-background = ${colors.urgent}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
-label-separator = ~
+label-separator = ">"
 
 [module/bspwm]
 type = internal/bspwm
 
 label-focused = %icon%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-background = ${colors.darkmagenta}
+label-focused-underline= ${colors.magenta}
+label-focused-padding = 1
+
+label-unfocused-background = ${colors.darkblue}
+label-unfocused-underline= ${colors.blue}
+label-unfocused-padding = 1
 
 label-occupied = %icon%
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-urgent = %icon%
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %icon%
 label-empty-foreground = ${colors.foreground}
-label-empty-padding = 2
-
+label-empty-padding = 1
 

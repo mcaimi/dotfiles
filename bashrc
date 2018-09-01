@@ -63,13 +63,17 @@ PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
 # color schemes
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-source $HOME/.base16_theme
+base16_black-metal-mayhem
+#source $HOME/.base16_theme
 
 # Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTIONS="--extended --cycle --border --height=25 --inline-info --ansi --prompt='FZF> ' --header='Type in your query:'"
 bind -x '"\C-p": "z=$(fzf);"'
+
+# remap clearscreen
+bind '"\C-l": clear-screen'
 
 # w3m default homepage
 WWW_HOME="https://start.duckduckgo.com"
@@ -87,10 +91,10 @@ source ~/Work/dotfiles/bash_prompt_functions
 source ~/Work/dotfiles/fastweb-aliases
 
 # The Fuck
-eval $(thefuck --alias)
+#eval $(thefuck --alias)
 
 # set vi mode
-#set -o vi
+set -o vi
 
 # git-tmux integration
 if tmux_running; then

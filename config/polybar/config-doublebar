@@ -1,0 +1,28 @@
+[colors]
+include-file = ~/.config/polybar/themes/colors
+
+[bar/top]
+include-file = ~/.config/polybar/bars/top-bar
+
+[bar/bottom]
+include-file = ~/.config/polybar/bars/bottom-bar
+
+[bar/top-ext]
+include-file = ~/.config/polybar/bars/top-ext
+
+[bar/bottom-ext]
+include-file = ~/.config/polybar/bars/bottom-ext
+
+[settings]
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+include-file = ~/.config/polybar/plugins/modules
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0

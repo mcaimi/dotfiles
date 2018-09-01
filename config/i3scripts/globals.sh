@@ -21,4 +21,4 @@ KEYS=(["github"]="id_rsa_github" ["openstack"]="id_rsa_openstack" ["ansible"]="i
 
 # networkmanager and other applets that should appear in the systray
 declare -A APPLETS
-APPLETS=(["COMPTRAY"]="comptray" ["NMAPPLET"]="nm-applet" ["FIREWALL"]="firewall-applet") #["MEGASYNC"]="megasync" ["KEYBASE"]="run_keybase")
+APPLETS=(["COMPTRAY"]="comptray" ["MEGASYNC"]="megasync")

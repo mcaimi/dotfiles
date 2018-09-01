@@ -21,13 +21,11 @@ margin-bottom = 0
 padding = 1
 margin = 2
 
-include-file = ~/.config/polybar/bars/default
+include-file = ~/.config/polybar/bars/default-ext
 
 include-file = ~/.config/polybar/plugins/i3
 
 ; include-file = ~/.config/polybar/plugins/new-workspace
-
-include-file = ~/.config/polybar/plugins/backlight
 
 [module/xwindow]
 type = internal/xwindow

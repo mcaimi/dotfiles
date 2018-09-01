@@ -2,10 +2,11 @@
 type = custom/menu
 expand-right = true
 format-spacing = 1
-label-open = 
+format-background = ${colors.blue}
+label-open = "  "
 label-open-foreground = ${colors.primary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
+label-close = "  cancel"
+label-close-foreground = ${colors.red}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
@@ -27,22 +28,26 @@ menu-2-1-exec = menu-open-0
 [module/xbacklight]
 type = internal/xbacklight
 format-prefix = " "
+format-background = ${colors.blue}
+label = "%percentage%% "
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.primary}
+format-prefix-foreground = ${colors.black}
+format-background = ${colors.blue}
 format-underline = #f90000
-label = %percentage%%
+label = "%percentage%% "
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.primary}
+format-prefix = "  "
+format-prefix-foreground = ${colors.black}
+format-background = ${colors.blue}
 format-underline = #4bffdc
-label = %percentage_used%%
+label = "%percentage_used%% "
 
 [module/date]
 type = internal/date
@@ -55,10 +60,11 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix = " "
-format-prefix-foreground = ${colors.primary}
+format-prefix-foreground = ${colors.black}
 format-underline = #0a6cf5
+format-background = ${colors.blue}
 
-label = %time% %date%
+label = "%time% %date%  "
 
 [module/battery]
 type = internal/battery
@@ -66,47 +72,46 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
+format-charging = "<animation-charging> <label-charging> "
+format-charging-background = ${colors.magenta}
 format-charging-underline = #ffb52a
 
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = "<ramp-capacity> <label-discharging> "
+format-discharging-background = ${colors.blue}
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground}
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <ramp> <label>
+format = "<ramp> <label> "
+format-background = ${colors.blue}
 format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
+format-warn = "<ramp> <label-warn> "
 format-warn-underline = ${self.format-underline}
 
 label = %temperature%
 label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.black}
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.black}
 
 [module/uptime]
 type = custom/script

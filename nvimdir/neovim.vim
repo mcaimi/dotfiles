@@ -35,6 +35,7 @@ call plug#begin('~/.neovimbundle/')
 " Plug 'dim13/smyck.vim'
 " Plug 'Yggdroot/indentLine'
 " Plug 'w0rp/ale'
+" Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline-themes'
@@ -175,7 +176,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_left_alt_sep = '|'
 " let g:airline_right_sep = ' '
 " let g:airline_right_alt_sep = '|'
-let g:airline_theme='base16_eighties'
+let g:airline_theme='ayu-mirage'
 let g:airline_powerline_fonts = 1
 
 let g:racer_cmd = "/usr/bin/racer"
@@ -235,6 +236,7 @@ map <C-G> :GitGutterToggle<CR>
 set updatetime=500
 
 map <C-u> :PlugUpdate()<CR>
+nnoremap <C-x> :Goyo<CR>
 
 map <F5> :UndotreeToggle<CR>
 let g:undotree_WindowLayout=2

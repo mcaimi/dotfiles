@@ -3,29 +3,29 @@ width = 100%
 offset-x = 0%
 offset-y = 0
 background = ${colors.background}
-foreground = ${colors.foreground}
+foreground = ${colors.black}
 #wm-restack = i3
 override-redirect = true
 fixed-center = false
-padding-left = 1%
-padding-right = 1%
-module-margin-left = 2
-module-margin-right = 2
+padding-left = 0%
+padding-right = 0%
+module-margin-left = 0
+module-margin-right = 0
 radius-top = 3
 radius-bottom = 3
 
 dpi = 96
 monitor = "eDP1"
-height = 24
-font-0 = Iosevka Term Medium:style=regular:size=12;4
+height = 18
+font-0 = Iosevka Term Medium:style=regular:size=9;3
 font-1 = unifont:fontformat=truetype:size=8:antialias=true;0
-font-2 = Icons:antialias=true:size=12;5
+font-2 = Icons:antialias=true:size=9;3
 modules-left = dnsmasqDaemon firewallDaemon
 modules-center = volume-internal xbacklight
 modules-right = memory cpu temperature battery date
 tray-position = right
 tray-padding = 2
-border-top-size = 2
+border-top-size = 0
 border-top-color = ${colors.primary}
 wm-name = pb-bottom-int
 

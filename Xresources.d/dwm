@@ -1,0 +1,11 @@
+! Xresources template for DWM
+dwm.interfacefont: "Iosevka Term Medium:size=12"
+dwm.dmenufont: "Iosevka Term Medium:size=11"
+! gaps between windows (in pixels)
+dwm.gappx: 2
+! 1=bar is on top, 0 is at bottom
+dwm.topbar: 0
+! show bar (1 yes, 0 no)
+dwm.showbar: 1
+! border pixels
+dwm.borderpx: 2

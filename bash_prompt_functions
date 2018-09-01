@@ -110,9 +110,9 @@ function __cwd_element()
     else
       local pathstring=$(printf "%s  /%s/%s" "$BASH_SYMBOL_FOLDER" "${pathelements[-2]}" "${pathelements[-1]}")
     fi
-    local cwd_element="$(__wrap_codepoint $BG_BASE02)$(__wrap_codepoint $FG_YELLOW)[$pathstring]$(__wrap_codepoint $RESET)"
+    local cwd_element="$(__wrap_codepoint $FG_YELLOW)[$pathstring]$(__wrap_codepoint $RESET)"
   else
-    local cwd_element="$(__wrap_codepoint $BG_BASE02)$(__wrap_codepoint $FG_YELLOW)[\w]$(__wrap_codepoint $RESET)"
+    local cwd_element="$(__wrap_codepoint $FG_YELLOW)[\w]$(__wrap_codepoint $RESET)"
   fi
 
   # print element
@@ -122,7 +122,7 @@ function __cwd_element()
 # user and host element
 function __user_host_element()
 {
-  local user_element="$(__wrap_codepoint $BG_BASE02)$(__wrap_codepoint $FG_BLUE)$BASH_SYMBOL_USER  \u $(__wrap_codepoint $RESET)"
+  local user_element="$(__wrap_codepoint $FG_BLUE)$BASH_SYMBOL_USER  \u $(__wrap_codepoint $RESET)"
 
   # print element
   echo -En $user_element
@@ -152,7 +152,7 @@ function draw_ps1()
   local git_element="$git_status_line"
 
   # build final PS1
-  local ps1_elements="$user_section $BASH_SYMBOL_FORWARD_ARROW $(__wrap_codepoint $RESET)"
+  local ps1_elements="$user_section $BASH_SYMBOL_FORWARD_ARROW $(__wrap_codepoint $RESET)\n >>  "
 
   PS1=$ps1_elements
 }

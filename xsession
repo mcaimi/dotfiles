@@ -24,9 +24,9 @@ is_lid_closed
 if [ $? -eq 0 ]; then
   info "Starting in office mode: External Display online" $XSESSION_LOG
   xrandr --output ${DISPLAYS["internal"]} --off --output ${DISPLAYS["external"]} --auto --primary
-else # office mode: eDP1 is primary display, DP2 is secondary display left of eDP1
-  info "Starting in multimonitor mode: Internal Display online & primary, External Display online left of eDP1" $XSESSION_LOG
-  xrandr --output ${DISPLAYS["internal"]} --auto --primary --output ${DISPLAYS["external"]} --auto --left-of ${DISPLAYS["internal"]}
+else
+  info "Starting in laptop mode: Internal Display online & primary" $XSESSION_LOG
+  xrandr --output ${DISPLAYS["internal"]} --auto --primary --output ${DISPLAYS["external"]} --off
 fi
 
 # start ssh-agent

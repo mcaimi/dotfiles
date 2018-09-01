@@ -5,10 +5,10 @@ set $external DP2
 set $internal eDP1
 
 # i3 font
-set $ft pango:Iosevka Term Medium 10
-set $ft_small pango:Iosevka Term Medium 8
+set $ft pango:Iosevka Term Medium 11
+set $ft_small pango:Iosevka Term Medium 9
 set $ft_i3bar pango:Iosevka Nerd Font Regular 11
-set $ft_i3bar_small pango:Iosevka Nerd Font Regular 9
+set $ft_i3bar_small pango:Iosevka Nerd Font Regular 10
 font $ft
 
 # read colors from xresources database
@@ -36,15 +36,14 @@ set $transparent #00000000
 set $mod Mod4
 set $alt Mod1
 set $TERMINAL /usr/bin/st
-set $ALT_TERMINAL /usr/bin/kitty
 set $DMENU /usr/bin/rofi -show combi
 set $DMENU_TABS /usr/bin/rofi -show window
 set $DMENU_RUN /usr/bin/rofi -separator-style none -lines 0 -dmenu -p "~ > " -show run
 set $SANDFOX docker start sandfox
 set $TOTP_CMD /usr/local/bin/totp.sh
 set $window_border_thickness 3
-set $i3bar_height_top 22
-set $i3bar_height_bottom 18
+set $i3bar_height_top 24
+set $i3bar_height_bottom 20
 set $polybar_placeholder_top_height 22
 set $polybar_placeholder_bottom_height 18
 
@@ -85,23 +84,23 @@ bindsym $mod+f fullscreen toggle
 
 # Setup Workspaces
 # Terminal
-set $ws1  Terminal
-# Browser
-set $ws2  Internet
-# Code
-set $ws3  Coding
+set $ws1 
+# Internet
+set $ws2 
+# Coding
+set $ws3 
 # Media
-set $ws4  Media
+set $ws4 
 # Photography
-set $ws5  Photography
+set $ws5 
 # Documents/PDF
-set $ws6   Documents
+set $ws6 
 # VirtualMachines
-set $ws7  VM
+set $ws7 
 # Chat
-set $ws8  Chat
+set $ws8 
 # Filesystem
-set $ws9  Filesystem
+set $ws9 
 
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
@@ -238,15 +237,13 @@ bindsym $mod+Shift+x mode "XRandr"
 # Custom Shortcuts
 # Base behaviour, terminal and dmenu
 bindsym $mod+d exec --no-startup-id $DMENU
-bindsym Menu exec --no-startup-id $DMENU
+bindsym Menu exec --no-startup-id $DMENU -padding 6 -yoffset 24 -location 2 -bw 1 -lines 15
 bindsym $mod+w exec --no-startup-id $DMENU_TABS
 bindsym $mod+s exec --no-startup-id $DMENU_RUN
 # st with TMUX, the default
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
 # Plain old st, just the terminal
 bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
-# kitty
-bindsym $mod+$alt+Return exec --no-startup-id $ALT_TERMINAL
 # TOTP
 bindsym $mod+t exec --no-startup-id $TOTP_CMD &
 
@@ -288,6 +285,7 @@ for_window [class="(?i)gimp"] floating enable
 for_window [class="(?i)evince"] floating enable
 for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)about"] floating enable
+for_window [class="(?i)ProtonMail Bridge"] floating enable
 #for_window [class="(?i)keybase"] move to scratchpad
 for_window [class="(?i)keepassxc"] move to scratchpad
 for_window [class="(?i)glava"] border pixel 0
@@ -304,11 +302,13 @@ bar {
   output $external
   output $internal
   modifier none
-  tray_output none
   separator_symbol "|"
   workspace_buttons yes
   strip_workspace_numbers no
-  binding_mode_indicator no
+  tray_output $external
+  tray_output $internal
+  tray_padding 3
+  binding_mode_indicator yes
   colors {
     #background <color>
     #statusline <color>
@@ -329,42 +329,6 @@ bar {
     binding_mode $darkblack $darkred $darkblack
   }
 }
-bar {
-  mode hide
-  i3bar_command i3bar -t
-  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_bottom.conf
-  font $ft_i3bar_small
-  id i3bar-bottom
-  height $i3bar_height_bottom
-  output $external
-  output $internal
-  tray_output $external
-  tray_output $internal
-  workspace_buttons no
-  tray_padding 3
-  binding_mode_indicator yes
-  modifier none
-  colors {
-    #background <color>
-    #statusline <color>
-    #separator <color>
-    #
-    #<colorclass> <border> <background> <text>
-
-    background $darkblack
-    #statusline $darkwhite
-
-    focused_background $darkblack $darkblack $darkblack
-    focused_statusline $white $darkblack $darkblack
-    focused_separator $darkwhite $darkblack $darkblack
-    active_workspace $darkblack $darkblack $magenta
-    focused_workspace $darkblack $darkblack $white
-    inactive_workspace $darkblack $darkblack $cyan
-    urgent_workspace $darkblack $darkblack $red
-    binding_mode $red $darkblack $white
-  }
-}
-bindsym $mod+z bar mode toggle
 
 # placeholder for polybar
 #bar {
@@ -398,7 +362,7 @@ bindsym $mod+z bar mode toggle
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # wal for background & system-wide Xresources
-exec_always --no-startup-id wal -i $HOME/.config/i3walls/wallpaper.jpg &
+exec_always --no-startup-id wal --backend colorthief -s -i ~/Pictures/6330880-minimalist-wallpaper.jpg &
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 

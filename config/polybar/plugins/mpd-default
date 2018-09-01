@@ -1,0 +1,30 @@
+[module/mpd-title]
+type = custom/text
+
+content = "    "
+
+content-background = ${settings/colors.mpd-title}
+content-foreground = ${settings/colors.title-foreground}
+
+[module/mpd]
+type = internal/mpd
+
+bar-progress-width = 8
+bar-progress-empty = ─
+bar-progress-fill = ─
+bar-progress-indicator = >
+
+format-online = "%{A1:playerctl play-pause:}%{A4:playerctl previous:}%{A5:playerctl next:}  <label-song> [<bar-progress>]  %{A}%{A}%{A}"
+format-paused = "%{A1:playerctl play-pause:}%{A4:playerctl previous:}%{A5:playerctl next:}  <label-song> [paused]  %{A}%{A}%{A}"
+format-stopped = "%{A1:playerctl play-pause:}%{A4:playerctl previous:}%{A5:playerctl next:}  [stopped]  %{A}%{A}%{A}"
+
+label-song = "%artist% - %album% - %title%"
+label-song-maxlen = 150
+label-song-ellipsis = true
+
+bar-progress-fill-foreground = ${settings/colors.mpd-progress}
+bar-progress-empty-foreground = ${settings/colors.bar-empty}
+; bar-progress-indicator-foreground = ${settings/colors.mpd-progress}
+format-online-background = ${settings/colors.label-background}
+format-online-foreground = ${settings/colors.foreground}
+

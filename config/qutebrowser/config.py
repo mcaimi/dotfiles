@@ -39,7 +39,7 @@ c.qt.args = ['ppapi-widevine-path=/usr/lib/qt/plugins/ppapi/libwidevinecdmadapte
 # Force software rendering for QtWebEngine. This is needed for
 # QtWebEngine to work with Nouveau drivers.
 # Type: Bool
-c.qt.force_software_rendering = False
+c.qt.force_software_rendering = "none"
 
 # Always restore open sites when qutebrowser is reopened.
 # Type: Bool
