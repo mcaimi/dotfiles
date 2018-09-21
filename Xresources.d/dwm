@@ -1,6 +1,6 @@
 ! Xresources template for DWM
-dwm.interfacefont: "Iosevka Term Medium:size=12"
-dwm.dmenufont: "Iosevka Term Medium:size=11"
+dwm.interfacefont: ypn envypn:size=12
+dwm.dmenufont: Iosevka Term:size=11
 ! gaps between windows (in pixels)
 dwm.gappx: 2
 ! 1=bar is on top, 0 is at bottom

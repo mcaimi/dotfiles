@@ -2,12 +2,13 @@
 
 # monitors
 set $external DP2
+set $external_home HDMI1
 set $internal eDP1
 
 # i3 font
 set $ft pango:Iosevka Term Medium 11
 set $ft_small pango:Iosevka Term Medium 9
-set $ft_i3bar pango:Iosevka Nerd Font Regular 11
+set $ft_i3bar pango:Iosevka Nerd Font Regular 10
 set $ft_i3bar_small pango:Iosevka Nerd Font Regular 10
 font $ft
 
@@ -300,12 +301,14 @@ bar {
   position top
   height $i3bar_height_top
   output $external
+  output $external_home
   output $internal
   modifier none
   separator_symbol "|"
   workspace_buttons yes
   strip_workspace_numbers no
   tray_output $external
+  tray_output $external_home
   tray_output $internal
   tray_padding 3
   binding_mode_indicator yes

@@ -37,6 +37,7 @@ call plug#begin('~/.neovimbundle/')
 " Plug 'w0rp/ale'
 " Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
+Plug 'fatih/vim-go'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
@@ -147,7 +148,6 @@ endfunc
 "  set t_Co=256
 "endif
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set termguicolors
 
 " load custom color scheme
 syntax enable
@@ -197,11 +197,11 @@ set statusline+=%*
 
 " Auto Commands Configuration
 autocmd! BufWritePost *.py retab! 4
-"autocmd! BufWritePost *.py Neomake
 autocmd VimEnter * GitGutterLineHighlightsDisable
 " autocmd VimEnter * TagbarToggle
 autocmd InsertEnter * set number
 autocmd InsertLeave * set relativenumber
+autocmd InsertLeave *.go :GoFmt
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 autocmd BufNewFile *.py 0r ~/Work/dotfiles/templates/python.spec
@@ -211,7 +211,10 @@ autocmd BufNewFile *.ksprofile 0r ~/Work/dotfiles/templates/ksprofile.spec
 " font setting
 if has('gui_running')
   " set guifont=PragmataTT:h9
-  set guifont=Iosevka Term:h10
+  set guifont=ypn\ envypn\ 11
+  set guioptions-=m "remove menu bar
+  set guioptions-=T "remove toolbar"
+  set guioptions-=r  "scrollbar"
 endif
 
 if !exists('g:airline_symbols')
@@ -245,6 +248,21 @@ if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
+
+" folding
+augroup GO
+  autocmd FileType go set foldmethod=syntax
+  autocmd BufEnter *.go :normal zR<CR>
+augroup END
+
+augroup C
+  autocmd FileType c set foldmethod=syntax
+  autocmd BufEnter *.c :normal zR<CR>
+  autocmd BufEnter *.h :normal zR<CR>
+augroup END
+
+autocmd FileType c set foldmethod=syntax foldenable
+noremap <Leader>2 za<CR>
 
 " convenience maps
 " Wipe all empty lines

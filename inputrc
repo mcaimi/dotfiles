@@ -1,8 +1,12 @@
-set show-mode-in-prompt On
 set colored-completion-prefix On
+set colored-stats On
+
 set completion-query-items 20
 set page-completions On
+set print-completions-horizontally On
+set visible-stats On
+
+set editing-mode vi
+set show-mode-in-prompt On
 set vi-cmd-mode-string :
 set vi-ins-mode-string +
-
-
