@@ -11,7 +11,7 @@ SSH_KEYPATH="$HOME/.ssh/"
 
 # displays
 declare -A DISPLAYS
-DISPLAYS=(["internal"]="LVDS1" ["external"]="VGA1")
+DISPLAYS=(["internal"]="LVDS1" ["external"]="HDMI3")
 
 # ssh keys
 declare -A KEYS

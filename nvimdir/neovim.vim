@@ -151,7 +151,7 @@ set termguicolors
 " load custom color scheme
 syntax enable
 let ayucolor="mirage"
-colorscheme ayu
+colorscheme base16-black-metal-burzum
 
 " improve autocomplete menu color
 highlight Pmenu ctermbg=black gui=bold
@@ -175,7 +175,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_left_alt_sep = '|'
 " let g:airline_right_sep = ' '
 " let g:airline_right_alt_sep = '|'
-let g:airline_theme='base16_eighties'
+let g:airline_theme='angr'
 let g:airline_powerline_fonts = 1
 
 let g:racer_cmd = "/usr/bin/racer"

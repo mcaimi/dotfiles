@@ -1,12 +1,12 @@
 # i3-gaps configuration file
 
 set $internal "LVDS1"
-set $external "VGA1"
+set $external "HDMI3"
 
 # i3 font
-set $sz 10
-set $szbar 11
-set $sz_small 9
+set $sz 12
+set $szbar 12
+set $sz_small 11
 set $ft_i3 Iosevka Term Medium
 set $ft_i3blocks Iosevka Nerd Font Regular
 set $ft_awesome Font Awesome 5 Free

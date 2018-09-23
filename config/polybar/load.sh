@@ -37,7 +37,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Launch bar top & bottom external display
-is_display_connected VGA1
+is_display_connected HDMI3
 if [ $? -eq 0 ]; then
   info "[$(date)]: EXTERNAL DISPLAY: Loading polybars...." $LOGFILE
   #info "[$(date)]: EXTERNAL DISPLAY: Switched to i3blocks, look in i3 config file...." $LOGFILE
