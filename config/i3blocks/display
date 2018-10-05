@@ -32,7 +32,7 @@ if [[ "$activeDisplays" =~ "${hdmiName}" && "$activeDisplays" =~ "${vgaName}" ]]
   echo "VGA1 & HDMI"
   echo ""
 # External, HDMI
-elif [[ "$activeDisplays" =~ "${hdmiName}" ]]; then
+elif [[ "$activeDisplays" =~ "${edpName}" && "$activeDisplays" =~ "$hdmiName" ]]; then
   if [[ "${change}" = "yes" ]]; then
     $(xrandr --output "${edpName}" --off)
     $(xrandr --output "${vgaName}" --off)

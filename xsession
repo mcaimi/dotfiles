@@ -3,12 +3,12 @@
 # let the local user connect to the local X11 server via unix socket. Docker containers use this
 xhost si:localuser:marco
 
+# include functions
+source $HOME/.config/i3scripts/helper.sh
+
 # log file
 XSESSION_LOG="/tmp/xsession-init.log"
 info "Executing .xsession" $XSESSION_LOG
-
-# include functions
-source $HOME/.config/i3scripts/helper.sh
 
 # init state files
 for initfile in ${STATEFILES[@]}; do
