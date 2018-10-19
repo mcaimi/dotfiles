@@ -1,18 +1,26 @@
-# i3-gaps configuration file
+#
+# My i3-gaps configuration file
+# Conveniently separated in sections.
+#
 
-# monitors
+# DISPLAY Adapters
+# list and enumerate all display adapters connected to my
+# laptop. Not all of them can be plugged evetytime
 set $external DP2
 set $external_home HDMI1
 set $internal eDP1
 
-# i3 font
+# FONTS DEFINITION
+# fonts for the interface, windows and bar
 set $ft pango:Iosevka Term Medium 11
 set $ft_small pango:Iosevka Term Medium 9
 set $ft_i3bar pango:Iosevka Nerd Font Regular 11
 set $ft_i3bar_small pango:Iosevka Nerd Font Regular 10
 font $ft
 
-# read colors from xresources database
+# COLORS AND ALPHA VALUES
+# read these colors from xresources database
+# this is nice since i use pywal.
 set_from_resource $darkred     color1  #000000
 set_from_resource $red         color9  #000000
 set_from_resource $darkgreen   color2  #000000
@@ -27,63 +35,49 @@ set_from_resource $darkcyan    color6  #000000
 set_from_resource $cyan        color14 #000000
 set_from_resource $darkwhite   color7  #000000
 set_from_resource $white       color15 #000000
-
-# Use custom colors for black
+# Use custom colors for black, transparent and brightwhite
 set_from_resource $black       color8 #282828
 set_from_resource $darkblack   color0 #1d2021
-set $transparent #00000000
+set $transparent #0000005F #00000000
+set $brightwhite #FFFFFFFF
+# colors & theme settings
+#                       BORDER        BACKGROUND      TEXT         INDICATOR   CHILD_BORDER
+client.focused          $brightwhite  $black          $brightwhite $white      $blue
+client.unfocused        $cyan         $transparent    $brightwhite $black      $black
+client.focused_inactive $yellow       $transparent    $brightwhite $black      $black
+client.urgent           $red          $red            $black       $red        $red
+client.background       $black
 
+# COMMANDS AND ALIASES DEFINITION
+# define aliases for commands and external scripts
 # mod key -> Windows Key on laptop
-set $mod Mod4
-set $alt Mod1
 set $TERMINAL /usr/bin/st
 set $DMENU /usr/bin/rofi -show combi
 set $DMENU_TABS /usr/bin/rofi -show window
 set $DMENU_RUN /usr/bin/rofi -separator-style none -lines 0 -dmenu -p "~ > " -show run
-set $SANDFOX docker start sandfox
-set $TOTP_CMD /usr/local/bin/totp.sh
-set $window_border_thickness 1
+set $TOTP_CMD $HOME/.config/i3scripts/totp.sh
+set $FILEMANAGER /usr/bin/ranger
+
+# i3 SECTION
+# i3 and i3-gaps appearance settings
+set $gaps_inner_px 4
+set $gaps_outer_px 2
+set $gaps_delta 2
+set $window_border_thickness 2
 set $i3bar_height_top 24
 set $i3bar_height_bottom 20
 set $polybar_placeholder_top_height 22
 set $polybar_placeholder_bottom_height 18
-
-# i3-gaps settings
+smart_borders enable
+# smart_gaps on
+popup_during_fullscreen smart
 gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
-popup_during_fullscreen smart
-set $gaps_inner_px 4
-set $gaps_outer_px 2
-set $gaps_delta 2
-smart_borders on
-smart_gaps on
-
-# set window classes properties
-for_window [class="^.*"] border pixel $window_border_thickness
+set $mod Mod4
+set $alt Mod1
 hide_edge_borders both
-for_window [class="(?i).+-256color"] title_format " >_ %title "
 
-# colors & theme settings
-#                       BORDER        BACKGROUND      TEXT        INDICATOR   CHILD_BORDER
-client.focused          $white        $black          $white      $white      $blue
-client.unfocused        $cyan         $transparent    $white      $black      $black
-client.focused_inactive $yellow       $transparent    $white      $black      $black
-client.urgent           $red          $red            $black      $red        $red
-client.background       $black
-
-# Keyboard Shortcuts definitions
-
-# i3 related
-bindsym $mod+Control+c reload
-bindsym $mod+Control+r restart
-bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark Window: ' -f $ft &
-bindsym $mod+g exec i3-input -F '[con_mark=%s] focus' -P 'Go to Marked Window: ' -f $ft &
-
-# behaviour related
-bindsym $mod+q kill
-bindsym $mod+f fullscreen toggle
-
-# Setup Workspaces
+# SETUP WORKSPACES
 # Terminal
 set $ws1 1: 
 # Internet
@@ -103,6 +97,120 @@ set $ws8 8: 
 # Filesystem
 set $ws9 9: 
 
+# WINDOW CLASSES AND PROPERTIES
+# Workspace assignment
+assign [class="(?i)st"] $ws1
+assign [class="(?i).+-256color"] $ws1
+assign [class="(?i)firefox"] $ws2
+assign [class="(?i)qutebrowser"] $ws2
+assign [class="(?i)code"] $ws3
+assign [class="(?i)neovim-gtk"] $ws3
+assign [title="Spotify"] $ws4
+assign [title="neomutt"] $ws5
+assign [class="(?i)protonmail"] $ws5
+assign [class="(?i)zathura"] $ws6
+assign [class="(?i)gummi"] $ws6
+assign [class="(?i)xfreerdp"] $ws7
+assign [class="(?i)virt-manager"] $ws7
+assign [class="(?i)keybase"] $ws8
+assign [class="(?i)thunar"] $ws9
+assign [class="(?i)weechat"] $ws8
+assign [class="(?i)neomutt"] $ws5
+# Window properties by X11 class
+for_window [class="(?i).+-256color"] title_format " >_ %title "
+for_window [class="(?i)mpv"] floating enable
+for_window [class="(?i)vlc"] floating enable
+for_window [class="(?i)gimp"] floating enable
+for_window [class="(?i)zathura"] floating enable
+for_window [window_role="(?i)pop-up"] floating enable
+for_window [window_role="(?i)about"] floating enable
+for_window [class="(?i)ProtonMail Bridge"] floating enable
+for_window [class="(?i)keepassxc"] move to scratchpad
+for_window [class="^.*"] border pixel $window_border_thickness
+
+# i3 DESKTOP MODES DEFINTION
+# Windows size control
+mode "Window_Resize" {
+    bindsym Left resize shrink width 4 px or 4 ppt
+    bindsym Down resize grow height 4 px or 4 ppt
+    bindsym Up resize shrink height 4 px or 4 ppt
+    bindsym Right resize grow width 4 px or 4 ppt
+
+    bindsym h resize shrink width 4 px or 4 ppt
+    bindsym j resize grow height 4 px or 4 ppt
+    bindsym k resize shrink height 4 px or 4 ppt
+    bindsym l resize grow width 4 px or 4 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+r mode "Window_Resize"
+
+# GAPS control
+mode "i3_gaps" {
+  bindsym o mode "i3_gaps_outer"
+  bindsym i mode "i3_gaps_inner"
+
+  bindsym d exec --no-startup-id i3-msg "gaps outer all set $gaps_outer_px" && i3-msg "gaps inner all set $gaps_inner_px"
+  bindsym 0 exec --no-startup-id i3-msg "gaps outer all set 0" && i3-msg "gaps inner all set 0" && i3-msg "smart_borders no-gaps"
+  bindsym b exec --no-startup-id i3-msg "border toggle"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+Shift+g mode "i3_gaps"
+mode "i3_gaps_outer" {
+  bindsym plus exec i3-msg "gaps outer current plus $gaps_delta"
+  bindsym minus exec i3-msg "gaps outer current minus $gaps_delta"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+mode "i3_gaps_inner" {
+  bindsym plus exec i3-msg "gaps inner current plus $gaps_delta"
+  bindsym minus exec i3-msg "gaps inner current minus $gaps_delta"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+# Power management and restart control
+mode "Power_Management" {
+    bindsym l exec --no-startup-id $HOME/.config/i3/i3pm lock
+    bindsym e exec --no-startup-id $HOME/.config/i3/i3pm logout
+    bindsym r exec --no-startup-id $HOME/.config/i3/i3pm reboot
+    bindsym s exec --no-startup-id $HOME/.config/i3/i3pm shutdown
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "Power_Management"
+
+# Display Heads control
+mode "XRandr" {
+    bindsym l exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "extleft" && i3-msg restart
+    bindsym r exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "extright" && i3-msg restart
+    bindsym m exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "mirror" && i3-msg restart
+    bindsym d exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "dock" && i3-msg restart
+    bindsym u exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "undock" && i3-msg restart
+    bindsym p exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg restart
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+x mode "XRandr"
+
+# KEYBOARD SHORTCUTS
+# i3 related
+bindsym $mod+Control+c reload
+bindsym $mod+Control+r restart
+bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark Window: ' -f $ft &
+bindsym $mod+g exec i3-input -F '[con_mark=%s] focus' -P 'Go to Marked Window: ' -f $ft &
+
+# behaviour related
+bindsym $mod+q kill
+bindsym $mod+f fullscreen toggle
+
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -118,22 +226,6 @@ bindsym $alt+Tab workspace back_and_forth
 # Scratchpad
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-
-# Workspace assignment
-assign [class="(?i)st"] $ws1
-assign [class="(?i).+-256color"] $ws1
-assign [class="(?i)firefox"] $ws2
-assign [class="(?i)qutebrowser"] $ws2
-assign [class="(?i)code"] $ws3
-assign [title="Spotify"] $ws4
-assign [title="neomutt"] $ws5
-assign [class="(?i)protonmail"] $ws5
-assign [class="(?i)zathura"] $ws6
-assign [class="(?i)gummi"] $ws6
-assign [class="(?i)xfreerdp"] $ws7
-assign [class="(?i)virt-manager"] $ws7
-assign [class="(?i)keybase"] $ws8
-assign [class="(?i)thunar"] $ws9
 
 # Move containers
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -167,85 +259,17 @@ bindsym $alt+$mod+v split v; exec notify-send "i3: SPLIT HORIZONTALLY"
 bindsym $alt+$mod+h split h; exec notify-send "i3: SPLIT VERTICALLY"
 bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
-# WM Modes
-mode "Window_Resize" {
-    bindsym Left resize shrink width 4 px or 4 ppt
-    bindsym Down resize grow height 4 px or 4 ppt
-    bindsym Up resize shrink height 4 px or 4 ppt
-    bindsym Right resize grow width 4 px or 4 ppt
-
-    bindsym h resize shrink width 4 px or 4 ppt
-    bindsym j resize grow height 4 px or 4 ppt
-    bindsym k resize shrink height 4 px or 4 ppt
-    bindsym l resize grow width 4 px or 4 ppt
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Shift+r mode "Window_Resize"
-
-mode "i3_gaps" {
-  bindsym o mode "i3_gaps_outer"
-  bindsym i mode "i3_gaps_inner"
-
-  bindsym d exec --no-startup-id i3-msg "gaps outer all set $gaps_outer_px" && i3-msg "gaps inner all set $gaps_inner_px"
-  bindsym 0 exec --no-startup-id i3-msg "gaps outer all set 0" && i3-msg "gaps inner all set 0" && i3-msg "smart_borders no-gaps"
-  bindsym b exec --no-startup-id i3-msg "border toggle"
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+Shift+g mode "i3_gaps"
-mode "i3_gaps_outer" {
-  bindsym plus exec i3-msg "gaps outer current plus $gaps_delta"
-  bindsym minus exec i3-msg "gaps outer current minus $gaps_delta"
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-mode "i3_gaps_inner" {
-  bindsym plus exec i3-msg "gaps inner current plus $gaps_delta"
-  bindsym minus exec i3-msg "gaps inner current minus $gaps_delta"
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-
-mode "Power_Management" {
-    bindsym l exec --no-startup-id $HOME/.config/i3/i3pm lock
-    bindsym e exec --no-startup-id $HOME/.config/i3/i3pm logout
-    bindsym r exec --no-startup-id $HOME/.config/i3/i3pm reboot
-    bindsym s exec --no-startup-id $HOME/.config/i3/i3pm shutdown
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Shift+e mode "Power_Management"
-
-mode "XRandr" {
-    bindsym l exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "extleft" && i3-msg restart
-    bindsym r exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "extright" && i3-msg restart
-    bindsym m exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "mirror" && i3-msg restart
-    bindsym d exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "dock" && i3-msg restart
-    bindsym u exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "undock" && i3-msg restart
-    bindsym p exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg restart
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Shift+x mode "XRandr"
-
 # Custom Shortcuts
 # Base behaviour, terminal and dmenu
-bindsym $mod+d exec --no-startup-id $DMENU
+bindsym $mod+d exec --no-startup-id $DMENU -padding 6 -yoffset 24 -location 2 -bw 1 -lines 15
 bindsym Menu exec --no-startup-id $DMENU -padding 6 -yoffset 24 -location 2 -bw 1 -lines 15
 bindsym $mod+w exec --no-startup-id $DMENU_TABS
 bindsym $mod+s exec --no-startup-id $DMENU_RUN
 # st with TMUX, the default
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
-# Plain old st, just the terminal
+# st without tmux, just the terminal... can be useful
 bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
-# TOTP
+# TOTP generator
 bindsym $mod+t exec --no-startup-id $TOTP_CMD &
 
 # Volume & music shortcuts
@@ -258,21 +282,21 @@ bindsym XF86MonBrightnessDown exec xbacklight -10 &
 bindsym XF86MonBrightnessUp exec xbacklight +10 &
 
 # screen lock shortcut
-bindsym $mod+Shift+l exec $HOME/.config/i3lock/i3lock.sh
+bindsym $mod+Shift+l exec $HOME/.config/i3/i3pm lock
 
 # XRandr 
-# randr menu (X11 hotkey)
+# Xrandr menu (X11 hotkey, laptop)
 bindsym XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh &
-# Xrandr menu (alt hotkey)
+# Xrandr menu (alt hotkey, external keyboard when docked)
 bindsym $mod+Shift+Control+x exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh &
 # panic mode (fircefully reverts to the internal laptop monitor)
 bindsym $mod+XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg restart
 
 # custom keybindings for most used applications
-bindsym $mod+r exec --no-startup-id st -e ranger &
+bindsym $mod+r exec --no-startup-id $TERMINAL -e $FILEMANAGER &
+bindsym $mod+Shift+m exec --no-startup-id $TERMINAL -c "neomutt" -e /usr/bin/neomutt &
+bindsym $mod+Shift+w exec --no-startup-id $TERMINAL -c "weechat" -e /usr/bin/weechat &
 
-# NetworkManager menu
-bindsym $mod+Shift+n exec --no-startup-id networkmanager_dmenu &
 # Screenshot menu
 bindsym $mod+Shift+s exec --no-startup-id $HOME/Work/dotfiles/rofi-screenshot.sh &
 
@@ -280,16 +304,7 @@ bindsym $mod+Shift+s exec --no-startup-id $HOME/Work/dotfiles/rofi-screenshot.sh
 bindsym --whole-window $mod+Shift+button2 floating toggle
 bindsym --whole-window $mod+$alt+button2 exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
-# Window properties by X11 class
-for_window [class="(?i)mpv"] floating enable
-for_window [class="(?i)gimp"] floating enable
-for_window [class="(?i)zathura"] floating enable
-for_window [window_role="(?i)pop-up"] floating enable
-for_window [window_role="(?i)about"] floating enable
-for_window [class="(?i)ProtonMail Bridge"] floating enable
-#for_window [class="(?i)keybase"] move to scratchpad
-for_window [class="(?i)keepassxc"] move to scratchpad
-
+# BARS AND OTHER AMENITIES
 # i3bar & i3blocks
 bar {
   mode dock
@@ -318,60 +333,33 @@ bar {
     #
     #<colorclass> <border> <background> <text>
 
-    background $darkblack
-    #statusline $darkwhite
+    background $transparent
+    statusline $brightwhite
+    separator $black
 
-    focused_background $darkblack $darkblack $darkblack
-    focused_statusline $white $darkblack $white
-    focused_separator $darkwhite $darkblack $darkblack
-    active_workspace $darkblack $darkblack $magenta
-    focused_workspace $darkblack $darkblack $white
-    inactive_workspace $darkblack $darkblack $cyan
-    urgent_workspace $darkblack $darkblack $red
-    binding_mode $darkblack $darkred $darkblack
+#    focused_background $transparent $darkblue $white
+#    focused_statusline $transparent $blue $white
+#    focused_separator $darkwhite $darkblack $darkblack
+    active_workspace $darkblack $cyan $brightwhite
+    focused_workspace $darkblack $magenta $brightwhite
+    inactive_workspace $darkblack $blue $brightwhite
+    urgent_workspace $darkblack $red $brightwhite
+    binding_mode $darkblack $darkred $brightwhite
   }
 }
 
-# placeholder for polybar
-#bar {
-#  id bar-top-int
-#  modifier none
-#  tray_output none
-#  output $internal
-#  height $polybar_placeholder_top_height
-#  position top
-#  workspace_buttons no
-#  binding_mode_indicator no
-#  colors {
-#    background $transparent
-#  }
-#}
-#bar {
-#  id bar-bot-int
-#  modifier none
-#  tray_output none
-#  output $internal
-#  height $polybar_placeholder_bottom_height
-#  position bottom
-#  workspace_buttons no
-#  binding_mode_indicator no
-#  colors {
-#   background $transparent
-#  }
-#}
-
-# Exec and startup
+# MAIN STARTUP
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # wal for background & system-wide Xresources
-exec_always --no-startup-id wal --backend colorthief -s -i ~/Pictures/sea1920.jpg &
+exec_always --no-startup-id wal --backend colorthief -s -i ~/Pictures/gunter-adventure-time-wallpaper-gunter-1920x1080-atwallpapers.png &
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # start protonmail bridge
 exec_always --no-startup-id $HOME/.config/i3scripts/start_bridge.sh &
 
-# disable polybar for now.
-#exec_always --no-startup-id $HOME/.config/polybar/load.sh &
-
+# DISABLED SETTINGS
+# polybar.
+# exec_always --no-startup-id $HOME/.config/polybar/load.sh &
 # start conky
 # exec_always --no-startup-id $HOME/.conkystart.sh &
