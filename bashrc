@@ -63,7 +63,7 @@ PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
 # color schemes
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_material-palenight
+base16_black-metal-burzum
 #source $HOME/.base16_theme
 
 # Fuzzy finder
@@ -89,6 +89,9 @@ export PASSWORD_STORE_DIR
 # source functions
 source ~/Work/dotfiles/bash_prompt_functions
 source ~/Work/dotfiles/fastweb-aliases
+
+# JDK
+source /etc/profile.d/jre.sh
 
 # The Fuck
 #eval $(thefuck --alias)

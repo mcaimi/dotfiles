@@ -1,14 +1,3 @@
-; MUST TODO, BUG?, NOT ADDED?:
-;   i3 workspaces, need a padding on left/right, just one space, why is this impossible?
-;
-; TODO:
-;   color background of urgent workspaces and test
-;   add email notification icon
-;   button that runs 'rofi -show run -display-run "[run]"'
-;   better/different bitmap font?
-;   move some more settings regarding appearance to the theme if possible
-;
-
 [settings]
 include-file = ~/.config/polybar/themes/gruvbox
 screenchange-reload = true
@@ -24,8 +13,6 @@ margin = 2
 include-file = ~/.config/polybar/bars/default
 
 include-file = ~/.config/polybar/plugins/i3
-
-; include-file = ~/.config/polybar/plugins/new-workspace
 
 include-file = ~/.config/polybar/plugins/backlight
 

@@ -32,4 +32,3 @@ fi
 # start ssh-agent
 info "Starting ssh-agent" $XSESSION_LOG
 eval $(ssh-agent -s)
-
