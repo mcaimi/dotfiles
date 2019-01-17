@@ -12,8 +12,8 @@ info "[$(date)]: Loading keyboard layout (IT).." $I3LOG
 setxkbmap -layout "it"
 
 # load Xresources
-info "[$(date)]: Loading Xresources into the XRDB.." $I3LOG
-xrdb -merge $HOME/.Xresources
+info "[$(date)]: Merging Xresources into the XRDB.." $I3LOG
+xrdb -merge $HOME/.Xresources; wal -n -i ${I3ENV["wallpaper"]}
 
 # startup dunst
 info "[$(date)]: Starting up DUNST..." $I3LOG

@@ -11,13 +11,17 @@ STATEPATH="/tmp/statepath"
 [[ ! -d $STATEPATH ]] && mkdir -p $STATEPATH
 SSH_KEYPATH="$HOME/.ssh/"
 
+# Misc settings
+declare -A I3ENV
+I3ENV=(["wallpaper"]="$HOME/.config/i3walls/wallpaper")
+
 # Displays
 declare -A DISPLAYS
 DISPLAYS=(["internal"]="eDP1" ["external"]="DP2")
 
 # ssh keys
 declare -A KEYS
-KEYS=(["github"]="id_rsa_github" ["openstack"]="id_rsa_openstack" ["ansible"]="id_rsa_ansible")
+KEYS=(["github"]="id_rsa_github" ["openstack"]="id_rsa_openstack" ["ansible"]="id_rsa_ansible" ["gitlab"]="id_rsa_gitlab")
 
 # networkmanager and other applets that should appear in the systray
 declare -A APPLETS
