@@ -1,7 +1,7 @@
 ! Xterm stuff
 xterm.vt100.metaSendsEscape:  true
 xterm.vt100.backarrowKey:     false
-xterm.vt100.faceName:         TerminessTTF Nerd Font Mono:style=Medium
+xterm.vt100.faceName:         ypn envypn:style=Medium
 xterm.vt100.faceSize:         11
 xterm.vt100.geometry:         160x50
 xterm.vt100.renderFont:       true

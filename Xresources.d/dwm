@@ -9,3 +9,6 @@ dwm.topbar: 0
 dwm.showbar: 1
 ! border pixels
 dwm.borderpx: 2
+! want border corners
+dwm.want_rounded_windows: 1
+dwm.win_corner_radius: 6
