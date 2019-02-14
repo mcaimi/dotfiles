@@ -13,7 +13,7 @@ setxkbmap -layout "it"
 
 # load Xresources
 info "[$(date)]: Merging Xresources into the XRDB.." $I3LOG
-xrdb -merge $HOME/.Xresources; wal -n -i ${I3ENV["wallpaper"]}
+xrdb -merge $HOME/.Xresources; wal -s -n -i ${I3ENV["wallpaper"]}
 
 # startup dunst
 info "[$(date)]: Starting up DUNST..." $I3LOG
@@ -46,3 +46,5 @@ for keyname in ${KEYS[@]}; do
   key_load $keyname 
 done
 
+# setup wallpaper
+feh --bg-fill ${I3ENV["wallpaper"]}

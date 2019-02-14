@@ -351,8 +351,9 @@ bar {
 }
 
 # MAIN STARTUP
-# wal for background & system-wide Xresources
-exec_always --no-startup-id wal -s -i $HOME/.config/i3walls/wallpaper $
+# launch wal to prime the system-wide Xresources database, but do not change termnal colors or set the background image
+# let these be handled by subsequent scripts
+exec_always --no-startup-id /usr/bin/wal -s -n -i $HOME/.config/i3walls/wallpaper $
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 # start systray applets

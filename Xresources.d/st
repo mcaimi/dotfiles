@@ -36,8 +36,8 @@ st.histsize:    2000
 ! opacity==255 means what terminal will be not transparent, 0 - fully transparent
 st.opacity:      240
 ! Defaults taken from base16-twilight colorscheme.
-!st.foreground:   #a7a7a7
-!st.background:   #1e1e1e
+st.foreground:   #a7a7a7
+st.background:   #1e1e1e
 !st.color0:       #1e1e1e
 !st.color1:       #cf6a4c
 !st.color2:       #8f9d6a
