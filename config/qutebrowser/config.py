@@ -87,7 +87,7 @@ c.content.cookies.store = False
 c.content.windowed_fullscreen = True
 
 # Allow websites to request geolocations.
-# Type: Bool
+# Type: BoolAsk
 # Valid values:
 #   - true
 #   - false
@@ -117,11 +117,11 @@ c.content.headers.referer = 'same-domain'
 # User agent to send. Unset to send the default. Note that the value
 # read from JavaScript is always the global value.
 # Type: String
-c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
+c.content.headers.user_agent = ''
 
 # Enable host blocking.
 # Type: Bool
-c.content.host_blocking.enabled = False
+c.content.host_blocking.enabled = True
 
 # List of URLs of lists which contain hosts to block.  The file can be
 # in one of the following formats:  - An `/etc/hosts`-like file - One
@@ -136,6 +136,10 @@ c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/
 
 # Enable JavaScript.
 # Type: Bool
+config.set('content.javascript.enabled', True, 'http://pi.hole/*')
+
+# Enable JavaScript.
+# Type: Bool
 config.set('content.javascript.enabled', True, 'file://*')
 
 # Enable JavaScript.
@@ -145,9 +149,6 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
-
-# javascript whitelists
-config.set('content.javascript.enabled', True, 'http://pi.hole/*')
 
 # Allow locally loaded documents to access remote URLs.
 # Type: Bool
@@ -162,7 +163,11 @@ c.content.local_content_can_access_file_urls = False
 c.content.local_storage = True
 
 # Allow websites to record audio/video.
-# Type: Bool
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
 c.content.media_capture = False
 
 # Allow pdf.js to view PDF files in the browser. Note that the files can

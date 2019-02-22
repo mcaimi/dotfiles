@@ -112,6 +112,7 @@ assign [class="(?i)zathura"] $ws6
 assign [class="(?i)gummi"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
+assign [class="(?i)VirtualBox"] $ws7
 assign [class="(?i)keybase"] $ws8
 assign [class="(?i)signal"] $ws8
 assign [class="(?i)thunar"] $ws9
