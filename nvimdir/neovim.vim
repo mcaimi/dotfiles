@@ -56,6 +56,7 @@ Plug 'blindFS/vim-taskwarrior'
 Plug 'ayu-theme/ayu-vim'
 Plug 'valloric/YouCompleteMe'
 Plug 'junegunn/goyo.vim'
+Plug 'chriskempson/base16-vim'
 Plug 'metalelf0/base16-black-metal-scheme'
 
 call plug#end()
@@ -151,7 +152,8 @@ set termguicolors
 " load custom color scheme
 syntax enable
 let ayucolor="mirage"
-colorscheme base16-black-metal-burzum
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-eighties
 
 " improve autocomplete menu color
 highlight Pmenu ctermbg=black gui=bold
@@ -175,7 +177,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_left_alt_sep = '|'
 " let g:airline_right_sep = ' '
 " let g:airline_right_alt_sep = '|'
-let g:airline_theme='angr'
+let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 
 let g:racer_cmd = "/usr/bin/racer"

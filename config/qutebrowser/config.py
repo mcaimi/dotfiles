@@ -92,8 +92,8 @@ c.downloads.remove_finished = 10000
 c.editor.command = ['st', '-e', 'nvim', '{file}']
 
 # Show a scrollbar.
-# Type: Bool
-c.scrolling.bar = True
+# Type: String
+c.scrolling.bar = 'always'
 
 # Enable smooth scrolling for web pages. Note smooth scrolling does not
 # work with the `:scroll-px` command.

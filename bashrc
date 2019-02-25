@@ -58,7 +58,7 @@ export GOPATH="$HOME/Work/go"
 
 # PATH
 #PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/android-sdk/build-tools/19.0.0:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
-PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
+PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin:/home/marco/.local/bin/
 
 # color schemes
 #BASE16_SHELL=$HOME/.config/base16-shell/
@@ -70,6 +70,9 @@ PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTIONS="--extended --cycle --border --height=25 --inline-info --ansi --prompt='FZF> ' --header='Type in your query:'"
 bind -x '"\C-p": "z=$(fzf);"'
+
+# remap clearscreen
+bind '"\C-l": clear-screen'
 
 # w3m default homepage
 WWW_HOME="https://start.duckduckgo.com"

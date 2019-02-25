@@ -1,17 +1,15 @@
-# i3-gaps configuration file
+# i3-gaps CONFIG FILE
+#
+# SEE ALL SECTIONS FOR INFO
+#
 
+# DISPLAY HEADS DEFNITIONS
+# set and name display heads
 set $internal "LVDS1"
 set $external "HDMI3"
+set $external-vga "DP2"
 
-# i3 font
-set $sz 12
-set $szbar 12
-set $sz_small 11
-set $ft_i3 Iosevka Term Medium
-set $ft_i3blocks Iosevka Nerd Font Regular
-set $ft_awesome Font Awesome 5 Free
-font pango:$ft_i3,$ft_awesome $sz
-
+# COLOR SETTINGS
 # read colors from xresources database
 set_from_resource $darkred     color1  #000000
 set_from_resource $red         color9  #000000
@@ -27,64 +25,99 @@ set_from_resource $darkcyan    color6  #000000
 set_from_resource $cyan        color14 #000000
 set_from_resource $darkwhite   color7  #000000
 set_from_resource $white       color15 #000000
-
-# Use custom colors for black
+# Use custom colors for black, brightwhite and transparent
 set_from_resource $black       color8 #282828
 set_from_resource $darkblack   color0 #1d2021
-set_from_resource $transparent transparent #00000000
+set $transparent #0000007F
+set $brightwhite #FFFFFFFF
+# colors & theme settings
+#                       BORDER        BACKGROUND      TEXT          INDICATOR      CHILD_BORDER
+client.focused          $brightwhite  $black          $brightwhite  $brightwhite   $blue
+client.unfocused        $cyan         $transparent    $brightwhite  $black         $black
+client.focused_inactive $yellow       $transparent    $brightwhite  $black         $black
+client.urgent           $red          $red            $black        $red           $red
+client.background       $black
 
-# mod key -> Windows Key on laptop
+# i3 VARIABLES AND BEHAVIOUR DEFINITIONS
 set $mod Mod4
 set $alt Mod1
 set $TERMINAL /usr/bin/st
 set $ALT_TERMINAL /usr/bin/kitty
-set $DMENU /usr/bin/rofi -show combi
-set $DMENU_TABS /usr/bin/rofi -show window
-set $DMENU_RUN /usr/bin/rofi -separator-style none -lines 0 -dmenu -p "~ > " -show run
-set $SANDFOX docker start sandfox
-set $TOTP_CMD /usr/local/bin/totp.sh
-set $window_border_thickness 3
+set $DMENU rofi -show-icons -location 8 -show combi -padding 2 -xoffset 0 -yoffset 0 -bw 0 -lines 35 -width 25 -font "ypn envypn 11"
+set $DMENU_TABS /usr/bin/rofi -show window -yoffset 0 -location 0 -padding 2 -lines 8 -width 50
+set $DMENU_RUN /usr/bin/rofi -location 0 -separator-style none -padding 6 -lines 0 -dmenu -p "dmenu ~ > " -show run
+set $TOTP_CMD $HOME/.config/i3scripts/totp.sh
+
+# sizes and fonts
+set $font_size 12
+set $font_size_small 11
+set $bar_size 12
+set $i3_font Iosevka Term Medium
+set $bar_font Iosevka Nerd Font Regular
+set $icon_font Font Awesome 5 Free
+font pango:$i3_font,$icon_font $font_size
 
 # i3-gaps settings
-set $gaps_inner_px 8
-set $gaps_outer_px 6
+set $window_border_thickness 2
+set $gaps_inner_px 4
+set $gaps_outer_px 4
 set $gaps_delta 2
 gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
+hide_edge_borders smart
 popup_during_fullscreen smart
 smart_borders on
 smart_gaps on
 
-# i3blocks
+# i3blocks settings
 set $i3blocks_height_top 24
 set $i3blocks_height_bottom 20
-set $polybar_placeholder_top_height 24
-set $polybar_placeholder_bottom_height 20
 
+# WINDOWS AND PLACEMENT OPTIONS
 # set window classes properties
 for_window [class="^.*"] border pixel $window_border_thickness
-hide_edge_borders smart
 for_window [class="(?i).+-256color"] title_format " >_ %title "
+# Window properties by X11 class
+for_window [class="(?i)mpv"] floating enable
+for_window [class="(?i)gimp"] floating enable
+for_window [class="(?i)evince"] floating enable
+for_window [window_role="(?i)pop-up"] floating enable
+for_window [window_role="(?i)about"] floating enable
+for_window [class="(?i)megasync"] floating enable
+for_window [class="(?i)keepassxc"] move to scratchpad
+for_window [class="(?i)glava"] border pixel 0
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
 
-# colors & theme settings
-#                       BORDER        BACKGROUND      TEXT        INDICATOR   CHILD_BORDER
-client.focused          $white        $black          $white      $white      $blue
-client.unfocused        $cyan         $transparent    $white      $black      $black
-client.focused_inactive $yellow       $transparent    $white      $black      $black
-client.urgent           $red          $red            $black      $red        $red
-client.background       $black
+# Workspace assignment
+assign [class="(?i)st"] $ws1
+assign [class="(?i).+-256color"] $ws1
+assign [class="(?i)firefox"] $ws2
+assign [class="(?i)qutebrowser"] $ws2
+assign [class="(?i)code"] $ws3
+assign [title="Spotify"] $ws4
+assign [class="(?i)darktable"] $ws5
+assign [class="(?i)rawtherapee"] $ws5
+assign [class="(?i)gimp"] $ws5
+assign [class="(?I)zathura"] $ws6
+assign [class="(?i)xfreerdp"] $ws7
+assign [class="(?i)virt-manager"] $ws7
+assign [class="(?i)keybase"] $ws8
+assign [class="(?i)signal"] $ws8
+assign [class="(?i)thunar"] $ws9
+assign [class="(?i)retroarch"] $ws0
+assign [title="Steam"] $ws0
 
-# Keyboard Shortcuts definitions
-
-# i3 related
-bindsym $mod+Control+c reload
-bindsym $mod+Control+r restart
-
-# behaviour related
-bindsym $mod+q kill
-bindsym $mod+f fullscreen toggle
-
-# Setup Workspaces
+# WORKSPACES DEFINITION
 # Terminal
 set $ws1 1: Terminal
 # Browser
@@ -119,28 +152,6 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws0
 bindsym $alt+Tab workspace back_and_forth
 
-# Scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-
-# Workspace assignment
-assign [class="(?i)st"] $ws1
-assign [class="(?i).+-256color"] $ws1
-assign [class="(?i)firefox"] $ws2
-assign [class="(?i)qutebrowser"] $ws2
-assign [class="(?i)code"] $ws3
-assign [title="Spotify"] $ws4
-assign [class="(?i)darktable"] $ws5
-assign [class="(?i)rawtherapee"] $ws5
-assign [class="(?i)gimp"] $ws5
-assign [class="(?I)zathura"] $ws6
-assign [class="(?i)xfreerdp"] $ws7
-assign [class="(?i)virt-manager"] $ws7
-assign [class="(?i)keybase"] $ws8
-assign [class="(?i)thunar"] $ws9
-assign [class="(?i)retroarch"] $ws0
-assign [title="Steam"] $ws0
-
 # Move containers
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -151,6 +162,19 @@ bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
+
+# KEYBOARD SHORTCUTS
+# i3 related
+bindsym $mod+Control+c reload
+bindsym $mod+Control+r restart
+
+# behaviour related
+bindsym $mod+q kill
+bindsym $mod+f fullscreen toggle
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 # focus movement
 bindsym $mod+Left focus left
@@ -168,7 +192,6 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+m exec i3-input -F 'mark %s' -l 10 -P 'Mark Active Window: '
 bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 10 -P 'Go to Mark: '
 
-
 # workspace splits
 bindsym $alt+$mod+f floating toggle
 bindsym $alt+$mod+e layout toggle split 
@@ -178,7 +201,52 @@ bindsym $alt+$mod+v split v;exec notify-send "i3: Split Mode: Horizontal"
 bindsym $alt+$mod+h split h;exec notify-send "i3: Split Mode: Vertical"
 bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
-# WM Modes
+# Custom Shortcuts
+# Base behaviour, terminal and dmenu
+bindsym $mod+d exec --no-startup-id $DMENU
+bindsym Menu exec --no-startup-id $DMENU
+bindsym $mod+w exec --no-startup-id $DMENU_TABS
+bindsym $mod+s exec --no-startup-id $DMENU_RUN
+# st with TMUX, the default
+bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
+# alternate terminal
+bindsym $mod+$alt+Return exec --no-startup-id $ALT_TERMINAL
+# Plain old Xst, just the terminal
+bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
+# TOTP
+bindsym $mod+t exec --no-startup-id $TOTP_CMD &
+
+# Volume & music shortcuts
+bindsym XF86AudioMute exec $HOME/.config/i3scripts/pulsectl.py -m &
+bindsym XF86AudioLowerVolume exec $HOME/.config/i3scripts/pulsectl.py -l 5 &
+bindsym XF86AudioRaiseVolume exec $HOME/.config/i3scripts/pulsectl.py -r 5 &
+
+# Screen Backlight
+bindsym XF86MonBrightnessDown exec xbacklight -10 &
+bindsym XF86MonBrightnessUp exec xbacklight +10 &
+
+# screen lock shortcut
+bindsym $mod+Shift+l exec $HOME/.config/i3/i3pm lock
+
+# XRandr 
+# randr menu (X11 hotkey)
+bindsym XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh &
+# Xrandr menu (alt hotkey)
+bindsym $mod+Shift+Control+x exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh &
+# panic mode (fircefully reverts to the internal laptop monitor)
+bindsym $mod+XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg restart
+
+# custom keybindings for most used applications
+bindsym $mod+r exec --no-startup-id st -n 'ranger' -e ranger &
+
+# Screenshot menu
+bindsym $mod+Shift+s exec --no-startup-id $HOME/Work/dotfiles/rofi-screenshot.sh &
+
+# mouse bindings
+bindsym --whole-window $mod+Shift+button2 floating toggle
+bindsym --whole-window $mod+$alt+button2 exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
+
+# WINDOW MANAGER MODES
 mode "Window_Resize" {
     bindsym Left resize shrink width 8 px or 8 ppt
     bindsym Down resize grow height 8 px or 8 ppt
@@ -246,190 +314,61 @@ mode "XRandr" {
 }
 bindsym $mod+Shift+x mode "XRandr"
 
-# Custom Shortcuts
-# Base behaviour, terminal and dmenu
-bindsym $mod+d exec --no-startup-id $DMENU
-bindsym Menu exec --no-startup-id $DMENU
-bindsym $mod+w exec --no-startup-id $DMENU_TABS
-bindsym $mod+s exec --no-startup-id $DMENU_RUN
-# st with TMUX, the default
-bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
-# alternate terminal
-bindsym $mod+$alt+Return exec --no-startup-id $ALT_TERMINAL
-# Plain old Xst, just the terminal
-bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
-# TOTP
-bindsym $mod+t exec --no-startup-id $TOTP_CMD &
-
-# Volume & music shortcuts
-bindsym XF86AudioMute exec $HOME/.config/i3scripts/pulsectl.py -m &
-bindsym XF86AudioLowerVolume exec $HOME/.config/i3scripts/pulsectl.py -l 5 &
-bindsym XF86AudioRaiseVolume exec $HOME/.config/i3scripts/pulsectl.py -r 5 &
-
-# Screen Backlight
-bindsym XF86MonBrightnessDown exec xbacklight -10 &
-bindsym XF86MonBrightnessUp exec xbacklight +10 &
-
-# screen lock shortcut
-bindsym $mod+Shift+l exec $HOME/.config/i3lock/i3lock.sh
-
-# XRandr 
-# randr menu (X11 hotkey)
-bindsym XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh &
-# Xrandr menu (alt hotkey)
-bindsym $mod+Shift+Control+x exec --no-startup-id $HOME/.config/i3scripts/multimon-rofi.sh &
-# panic mode (fircefully reverts to the internal laptop monitor)
-bindsym $mod+XF86Display exec --no-startup-id $HOME/.config/i3scripts/multimon.sh "panic" && i3-msg restart
-
-# custom keybindings for most used applications
-bindsym $mod+r exec --no-startup-id st -e ranger &
-
-# NetworkManager menu
-bindsym $mod+Shift+n exec --no-startup-id networkmanager_dmenu &
-# Screenshot menu
-bindsym $mod+Shift+s exec --no-startup-id $HOME/Work/dotfiles/rofi-screenshot.sh &
-
-# mouse bindings
-bindsym --whole-window $mod+Shift+button2 floating toggle
-bindsym --whole-window $mod+$alt+button2 exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
-
-# Window properties by X11 class
-for_window [class="(?i)mpv"] floating enable
-for_window [class="(?i)gimp"] floating enable
-for_window [class="(?i)evince"] floating enable
-for_window [window_role="(?i)pop-up"] floating enable
-for_window [window_role="(?i)about"] floating enable
-for_window [class="(?i)keepassxc"] move to scratchpad
-for_window [class="(?i)glava"] border pixel 0
-
-# https://github.com/ValveSoftware/steam-for-linux/issues/1040
-for_window [class="^Steam$" title="^Friends$"] floating enable
-for_window [class="^Steam$" title="Steam - News"] floating enable
-for_window [class="^Steam$" title=".* - Chat"] floating enable
-for_window [class="^Steam$" title="^Settings$"] floating enable
-for_window [class="^Steam$" title=".* - event started"] floating enable
-for_window [class="^Steam$" title=".* CD key"] floating enable
-for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
-for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
-for_window [title="^Steam Keyboard$"] floating enable
-
-# i3bar & i3blocks
-#bar {
-#  mode dock
-#  i3bar_command i3bar -t
-#  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
-#  font pango:$ft_i3blocks $szbar
-#  id bar-top
-#  position top
-#  output $external
-#  output $internal
-#  modifier none
-#  separator_symbol ""
-#  tray_output none
-#  workspace_buttons yes
-#  strip_workspace_numbers yes
-#  binding_mode_indicator no
-#  height $i3blocks_height_top
-#  colors {
+# i3BAR & i3BLOCKS
+bar {
+  mode dock
+  i3bar_command i3bar -t
+  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
+  font pango:$bar_font $bar_size
+  id bar-top
+  position top
+  output $external
+  output $external-vga
+  output $internal
+  modifier none
+  separator_symbol ""
+  tray_output $external
+  tray_output $external-vga
+  tray_output $internal
+  tray_padding 3
+  workspace_buttons yes
+  strip_workspace_numbers no
+  binding_mode_indicator yes
+  height $i3blocks_height_top
+  colors {
     #background <color>
     #statusline <color>
     #separator <color>
     #
     #<colorclass> <border> <background> <text>
 
-#    background $darkblack
-    #statusline $darkwhite
+    background $transparent
+    statusline $brightwhite
 
 #    focused_background $darkblack $darkblack $darkblack
 #    focused_statusline $white $darkblack $white
 #    focused_separator $darkwhite $darkblack $darkblack
-#    active_workspace $darkblack $darkblack $magenta
-#    focused_workspace $darkblack $darkblack $white
-#    inactive_workspace $darkblack $darkblack $cyan
-#    urgent_workspace $darkblack $darkblack $red
-#    binding_mode $darkblack $darkred $darkblack
-#  }
-#}
-bar {
-  mode hide
-  i3bar_command i3bar -t
-  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_bottom.conf
-  font pango:$ft_i3blocks $sz_small
-  id bar-bottom
-  output $external
-  output $internal
-  position bottom
-  modifier none
-  #tray_output $external
-  #tray_output $internal
-  #tray_padding 3
-  workspace_buttons no
-  tray_output none
-  #binding_mode_indicator yes
-  height $i3blocks_height_bottom
-  colors {
-   #background <color>
-   #statusline <color>
-   #separator <color>
-   #
-   #<colorclass> <border> <background> <text>
-   background $darkblack
-
-   focused_background $darkblack $darkblack $darkblack
-   focused_statusline $white $darkblack $darkblack
-   focused_separator $darkwhite $darkblack $darkblack
-   active_workspace $darkblack $darkblack $magenta
-   focused_workspace $darkblack $darkblack $white
-   inactive_workspace $darkblack $darkblack $cyan
-   urgent_workspace $darkblack $darkblack $red
-   binding_mode $darkblack $darkblack $white
- }
-}
-bindsym $mod+z bar mode toggle bar-bottom
-
-# placeholder for polybar
-# DISABLED
-bar {
-  id bar-top-int
-  modifier none
-  tray_output none
-  output $internal
-  output $external
-  height $polybar_placeholder_top_height
-  position top
-  workspace_buttons no
-  binding_mode_indicator no
-  colors {
-    background $transparent
+    active_workspace $darkblack $cyan $brightwhite
+    focused_workspace $darkblack $yellow $brightwhite
+    inactive_workspace $darkblack $blue $brightwhite
+    urgent_workspace $darkblack $red $brightwhite
+    binding_mode $darkblack $darkred $brightwhite
   }
 }
-#bar {
-#  id bar-bot-int
-#  modifier none
-#  tray_output none
-#  output $internal
-#  height $polybar_placeholder_bottom_height
-#  position bottom
-#  workspace_buttons no
-#  binding_mode_indicator no
-#  colors {
-#    background $transparent
-#  }
-#}
+bindsym $mod+z bar mode toggle bar-top
 
-# Exec and startup
+# EXEC AND STARTUP
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 
 # feh for background
-exec_always --no-startup-id wal --backend colorthief -i $HOME/.config/i3walls/wallpaper.jpg &
+exec_always --no-startup-id wal --backend colorthief -i $HOME/.config/i3walls/wallpaper &
 
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 
-# polybar top & bottom widgets, only on external display
-exec_always --no-startup-id $HOME/.config/polybar/load.sh &
-
+# DISABLED FEATURES
 # start conky
-# exec_always --no-startup-id $HOME/.conkystart.sh &
+#exec_always --no-startup-id $HOME/.conkystart.sh &
+# polybar top & bottom widgets, only on external display
+#exec_always --no-startup-id $HOME/.config/polybar/load.sh &
