@@ -11,34 +11,29 @@ format = "<label-state> <label-mode>"
 format-prefix = "    "
 
 label-focused = "  %index% "
-label-separator = "|"
+;label-separator = "|"
 label-unfocused = "  %index%  "
 label-urgent = "  %index% "
 
-;;; alternative text/icons for workspaces
-; format-prefix = "  shadowmoor  "
-; format-prefix = "  " ; nintendo switch
-; format-prefix = "  "
-; format-prefix = "  "
-; label-focused = "    "
-; label-focused = "  "
-; label-focused = " %index% "
-; label-unfocused = " %{T3}%{T-} "
-; label-unfocused = "  "
-; label-unfocused = %{T3}%{T-}
-; label-unfocused = "  "
-; label-unfocused = " • "
-; label-urgent = %index%
+;; custom widget colors
+i3-format-prefix-background = ${settings/colors.darkcyan}
+i3-format-prefix-foreground = ${settings/colors.black}
+i3-label-focused-background = ${settings/colors.darkyellow}
+i3-label-focused-foreground = ${settings/colors.black}
+i3-label-unfocused-background = ${settings/colors.lightgrey}
+i3-label-unfocused-foreground = ${settings/colors.white}
+i3-label-urgent-foreground = ${settings/colors.red}
+i3-label-urgent-background = ${settings/colors.white}
 
+;; color config
 format-foreground = ${settings/colors.foreground}
-format-prefix-background = ${settings/colors.i3}
-format-prefix-foreground = ${settings/colors.title-foreground}
-label-focused-foreground = ${settings/colors.i3-focused}
-label-focused-background = ${settings/colors.label-background}
-label-separator-background = ${settings/colors.label-background}
-label-separator-foreground = ${settings/colors.i3-separator}
-label-unfocused-foreground = ${settings/colors.i3-unfocused}
-label-unfocused-background = ${settings/colors.label-background}
-label-urgent-background = ${settings/colors.label-background}
-
-
+format-prefix-background = ${self.i3-format-prefix-background}
+format-prefix-foreground = ${self.i3-format-prefix-foreground}
+label-focused-foreground = ${self.i3-label-focused-foreground}
+label-focused-background = ${self.i3-label-focused-background}
+label-unfocused-foreground = ${self.i3-label-unfocused-foreground}
+label-unfocused-background = ${self.i3-label-unfocused-background}
+label-urgent-background = ${self.i3-label-urgent-background}
+label-urgent-foreground = ${self.i3-label-urgent-foreground}
+;label-separator-background = ${settings/colors.label-background}
+:label-separator-foreground = ${settings/colors.i3-separator}

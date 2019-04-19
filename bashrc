@@ -67,10 +67,6 @@ PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin:/home/marco/.local/bin/
 
 # Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_OPTIONS="--extended --cycle --border --height=25 --inline-info --ansi --prompt='FZF> ' --header='Type in your query:'"
-bind -x '"\C-p": "z=$(fzf);"'
-
 # remap clearscreen
 bind '"\C-l": clear-screen'
 
@@ -81,6 +77,7 @@ export WWW_HOME
 # GPG Agent stuff
 GPG_TTY=$(tty)
 export GPG_TTY
+
 # PASS password-store path
 PASSWORD_STORE_DIR="${HOME}/Work/dotfiles/config/password-store"
 export PASSWORD_STORE_DIR

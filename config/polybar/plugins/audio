@@ -1,33 +1,14 @@
-[module/mpd]
-type = internal/mpd
-host = 127.0.0.1
-port = 6600
-format-online = <icon-prev> <icon-pause> <icon-play> <icon-next> <label-song>
-
-icon-prev = 
-icon-play = 
-icon-pause = 
-icon-next = 
-label-song = %{F#7a1B54}  %{F-} %{F#215d76}%artist:0:20% %{F-} %{F#B8eadb}-%{F-} %{F#602976} %title:0:32% %{F-}
-
-toggle-on-foreground = ${colors.primary}
-toggle-off-foreground = ${colors.secondary}
-toggle-on-background = ${colors.blue}
-toggle-off-background = ${colors.blue}
-
-label-offline = no sound
-
-[module/volume-internal]
-type = internal/volume
+[module/volume]
+type = internal/alsa
 
 format-volume = <label-volume> <bar-volume>
 format-volume-padding = 1
-format-volume-background = ${colors.blue}
+format-volume-background = ${settings/colors.blue}
 label-volume = " "
 
 format-muted-prefix = " "
 format-muted-prefix-padding = 1
-format-muted-background = ${colors.blue}
+format-muted-background = ${settings/colors.red}
 label-muted = "Audio Muted "
 
 bar-volume-width = 10
@@ -45,6 +26,6 @@ bar-volume-fill = -
 bar-volume-fill-font = 0
 bar-volume-empty = -
 bar-volume-empty-font = 0
-bar-volume-empty-foreground = ${colors.primary}
+bar-volume-empty-foreground = ${settings/colors.primary}
 
 

@@ -40,6 +40,9 @@ else
   /usr/bin/xiccd -d :0 &
 fi
 
+# setup xinput properties
+python $HOME/Work/dotfiles/load_xinput_settings.py
+
 # setup ssh keyring
 info "[$(date)]: Setting up SSH keyring..." $I3LOG 
 for keyname in ${KEYS[@]}; do

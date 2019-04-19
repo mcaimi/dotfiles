@@ -2,7 +2,7 @@
 # XRandr integration for Rofi
 
 function _rofi {
-    rofi -lines 12 -tokenize -no-levenshtein-search -dmenu "$@" -p "XRandr >"
+    rofi -lines 12 -tokenize -no-levenshtein-search -dmenu "$@" -p "XRandr >" -yoffset 0 -location 0 -padding 2 -lines 8 -width 50 -font "iosevka term medium 11"
 }
 
 ROFI_MENU_CONTENTS="---\n"

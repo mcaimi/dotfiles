@@ -3,8 +3,8 @@ type = custom/text
 
 content = "    "
 
-content-background = ${settings/colors.mpd-title}
-content-foreground = ${settings/colors.title-foreground}
+;content-background = ${settings/colors.mpd-title}
+;content-foreground = ${settings/colors.title-foreground}
 
 [module/mpd]
 type = internal/mpd
@@ -22,9 +22,9 @@ label-song = "%artist% - %album% - %title%"
 label-song-maxlen = 150
 label-song-ellipsis = true
 
-bar-progress-fill-foreground = ${settings/colors.mpd-progress}
-bar-progress-empty-foreground = ${settings/colors.bar-empty}
+;bar-progress-fill-foreground = ${settings/colors.mpd-progress}
+;bar-progress-empty-foreground = ${settings/colors.bar-empty}
 ; bar-progress-indicator-foreground = ${settings/colors.mpd-progress}
-format-online-background = ${settings/colors.label-background}
-format-online-foreground = ${settings/colors.foreground}
+;format-online-background = ${settings/colors.label-background}
+;format-online-foreground = ${settings/colors.foreground}
 

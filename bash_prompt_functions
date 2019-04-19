@@ -76,7 +76,7 @@ function __git_status_element()
     local ahead_commits="$(echo $remote_diff|awk '{print $2}')"
     # update git status
     [ "$ahead_commits" -ne 0 ] && git_current_repo_status+=" $(__wrap_codepoint $FG_MAGENTA)$GIT_NEED_PUSH_SYMBOL $ahead_commits$(__wrap_codepoint $RESET)"
-    [ "$behind_commits" -ne 0 ] && git_current_repo_status+=" $(__wrap_codepoing $FG_MAGENTA)$GIT_NEED_PULL_SYMBOL $behind_commits$(__wrap_codepoint $RESET)"
+    [ "$behind_commits" -ne 0 ] && git_current_repo_status+=" $(__wrap_codepoint $FG_MAGENTA)$GIT_NEED_PULL_SYMBOL $behind_commits$(__wrap_codepoint $RESET)"
   fi
 
   # print git line
@@ -143,7 +143,7 @@ function draw_ps1()
 {
   # render external elements
   #local prev_cmd_line=$(__previous_command_retcode_element)
-  #local git_status_line=$(__git_status_element)
+  local git_status_line=$(__git_status_element)
   local cwd_element=$(__cwd_element)
   local user_element=$(__user_host_element)
   tmux_running && tmux_git_cmd

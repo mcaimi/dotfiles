@@ -1,3 +1,5 @@
+[settings/colors]
+;;; colors from Xresources Database
 black = ${xrdb:polybar.color0}
 darkgrey = ${xrdb:polybar.color8}
 darkred = ${xrdb:polybar.color1}
@@ -18,10 +20,13 @@ background = ${xrdb:background}
 foreground = ${xrdb:foreground}
 cursorcolor = ${xrdb:cursorColor}
 transparent = ${xrdb:transparent}
-background-alt = ${colors.darkgrey}
-foreground-alt = ${colors.lightgrey}
-primary = ${colors.darkcyan}
-secondary = ${colors.darkmagenta}
-alert = ${colors.yellow}
-urgent = ${colors.red}
-active = ${colors.blue}
+
+;;; colors derived from base
+background-alt = ${settings/colors.darkgrey}
+foreground-alt = ${settings/colors.lightgrey}
+primary = ${settings/colors.darkcyan}
+secondary = ${settings/colors.darkmagenta}
+alert = ${settings/colors.yellow}
+urgent = ${settings/colors.red}
+active = ${settings/colors.blue}
+border =${settings/colors.black}

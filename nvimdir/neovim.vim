@@ -58,6 +58,7 @@ Plug 'valloric/YouCompleteMe'
 Plug 'junegunn/goyo.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'metalelf0/base16-black-metal-scheme'
+Plug 'b4b4r07/vim-ansible-vault'
 
 call plug#end()
 
@@ -208,6 +209,7 @@ autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 autocmd BufNewFile *.py 0r ~/Work/dotfiles/templates/python.spec
 autocmd BufNewFile *.c 0r ~/Work/dotfiles/templates/c.spec
 autocmd BufNewFile *.ksprofile 0r ~/Work/dotfiles/templates/ksprofile.spec
+autocmd BufEnter jenkinsfile* set filetype=groovy
 
 " font setting
 if has('gui_running')

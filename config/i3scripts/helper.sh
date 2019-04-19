@@ -2,7 +2,7 @@
 #
 # Generic desktop library
 # Helper functions
-# 
+#
 
 # load monitor information
 source $HOME/.config/i3scripts/globals.sh

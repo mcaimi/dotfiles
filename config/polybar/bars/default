@@ -1,6 +1,6 @@
 [bar/default]
 ;;; appearance
-bottom = false 
+bottom = false
 border-top-size = 0
 border-bottom-size = 0
 height = 23
@@ -21,13 +21,23 @@ modules-left = i3 xwindow
 modules-center = backlight
 modules-right = volume date time powermenu
 
-; system tray
-; tray-position = right
-; tray-transparent = false
-; tray-background = ${settings/colors.background}
-; tray-maxsize = 20
+;; system tray
+tray-position = right
+tray-background = ${settings/colors.background}
+tray-maxsize = 20
 
 border-color = ${settings/colors.border}
 background = ${settings/colors.background}
 foreground = ${settings/colors.foreground}
+
+; labels
+font-0 = "ypn envypn:style=Regular:size=9;2"
+
+; icons
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
+font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;2"
+
+; dots representing workspaces
+font-4 = "Siji:pixelsize=15;3"
 
