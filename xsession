@@ -38,4 +38,4 @@ info "Starting ssh-agent" $XSESSION_LOG
 eval $(ssh-agent -s)
 
 # set initial screen back lighting level
-xrandr --output ${DISPLAYS["internal"]} --brightness  $(( ${DEFAULT_BACK_LIGHT_VALUE}/100 ))
+xrandr --output ${DISPLAYS["internal"]} --brightness ${DEFAULT_BACK_LIGHT_VALUE}

@@ -3,11 +3,11 @@
 bottom = false
 border-top-size = 0
 border-bottom-size = 0
-height = 22
+height = 24
 width = 100%
 padding-left = 0
 padding-right = 0
-monitor = HDMI3
+monitor = HDMI2
 fixed-center = true
 override-redirect = true
 cursor-click = pointer
@@ -17,8 +17,8 @@ radius-bottom = 0
 ;;; modules available: cpu date filesystem memory i3 mpd-title mpd powermenu temperature time volume xwindow
 module-margin = 0
 modules-left = i3 xwindow
-modules-center = mpd-title mpd
-modules-right = volume date time powermenu
+modules-center = mpd-title mpd wlan eth battery
+modules-right = pulseaudio date time powermenu
 
 ; system tray
 tray-position = right
@@ -30,7 +30,7 @@ background = ${settings/colors.background}
 foreground = ${settings/colors.foreground}
 
 ; labels
-font-0 = "ypn envypn:style=Regular:size=9;2"
+font-0 = "ypn envypn:style=Regular:size=10;2"
 
 ; icons
 font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"

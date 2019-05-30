@@ -3,5 +3,6 @@ type = internal/xbacklight
 format-prefix = "   "
 label = "%percentage%% "
 
-format-background = ${settings/colors.mpd-title}
-format-foreground = ${settings/colors.title-foreground}
+format-padding = 1
+#format-background = ${settings/colors.foreground}
+#format-foreground = ${settings/colors.background}

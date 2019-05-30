@@ -43,6 +43,11 @@ c.qt.force_platform = None
 # Type: Bool
 c.auto_save.session = True
 
+# Automatically start playing `<video>` elements. Note: On Qt < 5.11,
+# this option needs a restart and does not support URL patterns.
+# Type: Bool
+c.content.autoplay = False
+
 # Limit fullscreen to the browser window (does not expand to fill the
 # screen).
 # Type: Bool

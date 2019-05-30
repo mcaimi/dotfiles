@@ -8,9 +8,14 @@ STATEPATH="/tmp/statepath"
 LIDSTATE="/proc/acpi/button/lid/LID/state"
 I3LOG="/tmp/i3-sessionlog"
 SSH_KEYPATH="$HOME/.ssh/"
-DEFAULT_BACK_LIGHT_VALUE=50
 
-#Misc settings
+# default brightness of the main display
+# its value must be in the range 0 < x < 1,
+# where 0 is black and 1 is 100% brightness
+# in this case, default is 0.7 which is 70% brightness
+DEFAULT_BACK_LIGHT_VALUE=0.7
+
+# Misc settings
 declare -A I3ENV
 I3ENV=(["wallpaper"]="$HOME/.config/i3walls/wallpaper")
 

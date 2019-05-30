@@ -15,10 +15,16 @@ include-file = ~/.config/polybar/bars/default
 
 include-file = ~/.config/polybar/plugins/i3
 
+include-file = ~/.config/polybar/plugins/battery
+
+include-file = ~/.config/polybar/plugins/audio
+
 include-file = ~/.config/polybar/plugins/backlight
 
 include-file = ~/.config/polybar/plugins/xwindow
 
 include-file = ~/.config/polybar/plugins/datetime
+
+include-file = ~/.config/polybar/plugins/network
 
 include-file = ~/.config/polybar/plugins/powermenu

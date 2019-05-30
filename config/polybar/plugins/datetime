@@ -1,0 +1,32 @@
+[module/date]
+type = internal/date
+
+date = " %a %m/%d "
+interval = 5
+
+format-padding = ${spacing.padding}
+format-prefix = "    "
+
+label = " %date% "
+
+;format-prefix-background = ${settings/colors.date}
+;format-prefix-foreground = ${settings/colors.title-foreground}
+;label-background = ${settings/colors.label-background}
+
+[module/time]
+type = internal/date
+
+interval = 5
+;;; 12 hour time: " %l:%M %p ", 24 hour time: " %H:%M "
+time = " %H:%M "
+
+format-padding = ${spacing.padding}
+format-prefix = "    "
+
+label = " %time% "
+label-margin-right = ${spacing.padding}
+
+;format-prefix-background = ${settings/colors.time}
+;format-prefix-foreground = ${settings/colors.title-foreground}
+;label-background = ${settings/colors.label-background}
+

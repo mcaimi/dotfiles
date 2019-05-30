@@ -1,0 +1,16 @@
+[module/xwindow]
+type = internal/xwindow
+
+format-padding = ${spacing.padding}
+format-prefix = "    "
+format-prefix-font = 4
+format-prefix-margin-left = ${spacing.padding}
+
+label = "  %title%  "
+label-maxlen = 200
+
+format-prefix-background = ${settings/colors.background}
+format-prefix-foreground = ${settings/colors.foreground}
+label-background = ${settings/colors.background}
+
+

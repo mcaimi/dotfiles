@@ -16,6 +16,8 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 export TERM="screen-256color"
+# fix for badly broken java apps
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in

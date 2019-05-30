@@ -4,7 +4,7 @@
 #
 
 # wait a little for i3 to load completely. ymmv.
-sleep 2
+sleep 1
 
 # source helper functions
 source $HOME/.config/i3scripts/helper.sh
@@ -34,7 +34,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Launch bar top & bottom external display
-is_display_connected HDMI3
+is_display_connected HDMI2
 if [ $? -eq 0 ]; then
   info "[$(date)]: EXTERNAL DISPLAY: Loading polybars...." $LOGFILE
   polybar -c $HOME/.config/polybar/config-ext default-ext &

@@ -26,6 +26,8 @@ include-file = ~/.config/polybar/plugins/mpd-default
 
 include-file = ~/.config/polybar/plugins/audio
 
+include-file = ~/.config/polybar/plugins/battery
+
 include-file = ~/.config/polybar/plugins/datetime
 
 include-file = ~/.config/polybar/plugins/powermenu

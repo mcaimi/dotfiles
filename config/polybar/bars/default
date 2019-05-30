@@ -3,11 +3,11 @@
 bottom = false
 border-top-size = 0
 border-bottom-size = 0
-height = 23
+height = 24
 width = 100%
 padding-left = 0
 padding-right = 0
-monitor = LVDS1
+monitor = eDP1
 fixed-center = true
 override-redirect = true
 cursor-click = pointer
@@ -18,8 +18,8 @@ radius-bottom = 4
 module-margin = 0
 modules-left = i3 xwindow
 ;modules-center = mpd-title mpd
-modules-center = backlight
-modules-right = volume date time powermenu
+modules-center = backlight wlan eth battery
+modules-right = pulseaudio date time powermenu
 
 ;; system tray
 tray-position = right
@@ -31,7 +31,7 @@ background = ${settings/colors.background}
 foreground = ${settings/colors.foreground}
 
 ; labels
-font-0 = "ypn envypn:style=Regular:size=9;2"
+font-0 = "ypn envypn:style=Regular:size=10;2"
 
 ; icons
 font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"

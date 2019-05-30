@@ -184,6 +184,8 @@ let g:airline_powerline_fonts = 1
 let g:racer_cmd = "/usr/bin/racer"
 let $RUST_SRC_PATH="/usr/src/rust/src/"
 
+set cursorcolumn
+
 " let g:deoplete#enable_at_startup = 1
 " let g:deoplete#sources#go#gocode_binary = '/home/marco/Work/go/bin/gocode'
 " let g:deoplete#sources#go#pointer = 1
