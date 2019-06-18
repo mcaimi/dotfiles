@@ -3,8 +3,10 @@
 
 [module/backlight]
 type = internal/xbacklight
-format-prefix = "   "
-label = "%percentage%% "
+label = " %percentage%% "
+label-foreground = ${settings/colors.black}
+label-background = ${settings/colors.cyan}
 
-format-background = ${settings/colors.black}
-format-foreground = ${settings/colors.cyan}
+format-prefix = "  "
+format-foreground = ${settings/colors.black}
+format-background = ${settings/colors.yellow}
