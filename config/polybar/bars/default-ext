@@ -1,42 +1,50 @@
 [bar/default-ext]
-;;; appearance
+;; appearance
 bottom = false
 border-top-size = 0
 border-bottom-size = 0
-height = 24
+
+height = 23
 width = 100%
-padding-left = 0
-padding-right = 0
+
+padding-left = 1
+padding-right = 1
+offset-x = 0
+offset-y = 3
+
 monitor = HDMI2
 fixed-center = true
 override-redirect = true
 cursor-click = pointer
-radius-top = 0
-radius-bottom = 0
 
-;;; modules available: cpu date filesystem memory i3 mpd-title mpd powermenu temperature time volume xwindow
-module-margin = 0
-modules-left = i3 xwindow
-modules-center = mpd-title mpd wlan eth battery
-modules-right = pulseaudio date time powermenu
-
-; system tray
-tray-position = right
-tray-background = ${settings/colors.background}
-tray-maxsize = 20
+radius-top = 2
+radius-bottom = 2
 
 border-color = ${settings/colors.border}
-background = ${settings/colors.background}
+background = ${settings/colors.transparent}
 foreground = ${settings/colors.foreground}
 
-; labels
-font-0 = "ypn envypn:style=Regular:size=10;2"
+;; modules available: cpu date filesystem memory i3 mpd-title mpd powermenu temperature time volume xwindow
+;; see plugins/ for more blocks
+module-margin = 1
+modules-left = powermenu i3 xwindow
+modules-center =
+modules-right = wlan eth pulseaudio battery date time
 
-; icons
+;; system tray
+tray-position = center
+tray-background = ${settings/colors.transparent}
+tray-maxsize = 20
+
+;; BAR-WIDE FONTS
+;; labels
+font-0 = "Iosevka Term Medium:style=Mono:size=10;2"
+;; icons
 font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
 font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
 font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;2"
-
-; dots representing workspaces
+;; dot characters for workspaces
 font-4 = "Siji:pixelsize=15;3"
+;; supplemental glyphs
+font-5 = "RobotoMono Nerd Font:style=Mono:pixelsize=10;2"
 

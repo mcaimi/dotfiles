@@ -1,25 +1,35 @@
+;; LAPTOP BATTERY CONTROLLER MODULE
+
 [module/battery]
 type = internal/battery
 
-; This is useful in case the battery never reports 100% charge
+;; This is useful in case the battery never reports 100% charge
 full-at = 96
 
-; Use the following command to list batteries and adapters:
-; $ ls -1 /sys/class/power_supply/
+;; Use the following command to list batteries and adapters:
+;; $ ls -1 /sys/class/power_supply/
 battery = BAT0
 adapter = AC
 
-; If an inotify event haven't been reported in this many
-; seconds, manually poll for new values.
-;
-; Needed as a fallback for systems that don't report events
-; on sysfs/procfs.
-;
-; Disable polling by setting the interval to 0.
-;
-; Default: 5
+;; If an inotify event haven't been reported in this many
+;; seconds, manually poll for new values.
+;;
+;; Needed as a fallback for systems that don't report events
+;; on sysfs/procfs.
+;;
+;; Disable polling by setting the interval to 0.
+;;
+;; Default: 5
 poll-interval = 5
 
-format-padding = 1
-label-charging = " Charging %percentage%% "
-label-full = " FULL CHARGE: %percentage%% "
+label-charging = "   %percentage%% "
+label-charging-foreground = ${settings/colors.black}
+label-charging-background = ${settings/colors.red}
+
+label-discharging = "   %percentage%% "
+label-discharging-foreground = ${settings/colors.black}
+label-discharging-background = ${settings/colors.yellow}
+
+label-full = "%{B#f9ee98} ⭘ %{B#afc4db} Full %{B-}"
+label-full-foreground = ${settings/colors.black}
+label-full-background = ${settings/colors.cyan}

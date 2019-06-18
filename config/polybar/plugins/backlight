@@ -1,8 +1,10 @@
+;; LCD PANEL BACKLIGH CONTROLLER MODULE
+;; INCLUDE ONLY IN BARS DISPLAYED ON LAPTOP MAIN SCREENS
+
 [module/backlight]
 type = internal/xbacklight
 format-prefix = "   "
 label = "%percentage%% "
 
-format-padding = 1
-#format-background = ${settings/colors.foreground}
-#format-foreground = ${settings/colors.background}
+format-background = ${settings/colors.black}
+format-foreground = ${settings/colors.cyan}

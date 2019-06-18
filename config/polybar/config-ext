@@ -1,8 +1,11 @@
-;;; GLOBAL SETTINGS
+;; GLOBAL SETTINGS
+;; POLYBAR FOR EXTERNAL MONITOR
 
 [settings]
 screenchange-reload = true
 include-file = ~/.config/polybar/themes/colors
+compositing-background = over
+mompositing-foreground = over
 
 [global/wm]
 margin-top = 0
@@ -10,7 +13,7 @@ margin-bottom = 0
 
 [spacing]
 padding = 1
-margin = 2
+margin = 1
 
 ;;; INCLUDE BARS
 
@@ -30,4 +33,7 @@ include-file = ~/.config/polybar/plugins/battery
 
 include-file = ~/.config/polybar/plugins/datetime
 
+include-file = ~/.config/polybar/plugins/network
+
 include-file = ~/.config/polybar/plugins/powermenu
+

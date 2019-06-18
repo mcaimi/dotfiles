@@ -1,29 +1,28 @@
+;; i3 WM CONTROLLER MODULE
 [module/i3]
 type = internal/i3
-
 index-sort = true
 wrapping-scroll = false
 
-format-padding-left = ${spacing.padding}
-format-prefix-margin-left = 0
-format = "<label-state> <label-mode>"
-
-format-prefix = "    "
+format = " <label-state> <label-mode> "
+format-prefix = " i3wm - "
 
 label-focused = "  %index% "
-;label-separator = "|"
 label-unfocused = "  %index%  "
 label-urgent = "  %index% "
 
 ;; custom widget colors
-i3-format-prefix-background = ${settings/colors.darkcyan}
 i3-format-prefix-foreground = ${settings/colors.black}
-i3-label-focused-background = ${settings/colors.darkyellow}
+i3-format-prefix-background = ${settings/colors.yellow}
+
 i3-label-focused-foreground = ${settings/colors.black}
-i3-label-unfocused-background = ${settings/colors.lightgrey}
-i3-label-unfocused-foreground = ${settings/colors.white}
-i3-label-urgent-foreground = ${settings/colors.red}
-i3-label-urgent-background = ${settings/colors.white}
+i3-label-focused-background = ${settings/colors.yellow}
+
+i3-label-unfocused-foreground = ${settings/colors.black}
+i3-label-unfocused-background = ${settings/colors.cyan}
+
+i3-label-urgent-foreground = ${settings/colors.black}
+i3-label-urgent-background = ${settings/colors.red}
 
 ;; color config
 format-foreground = ${settings/colors.foreground}

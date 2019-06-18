@@ -1,7 +1,11 @@
-;;; GLOBAL CONFIGURATION
+;; POLYBAR DEFAULT CONFIGURATION
+;; DISPLAYED ON INTERNAL LAPTOP LCD
+
 [settings]
 screenchange-reload = true
 include-file = ~/.config/polybar/themes/colors
+compositing-background = over
+mompositing-foreground = over
 
 [global/wm]
 margin-top = 0
@@ -9,9 +13,12 @@ margin-bottom = 0
 
 [spacing]
 padding = 1
-margin = 2
+margin = 1
 
+;; INCLUDE BAR CONFIGURATION
 include-file = ~/.config/polybar/bars/default
+
+;; INCLUDE PLUGINS AND MODULES
 
 include-file = ~/.config/polybar/plugins/i3
 

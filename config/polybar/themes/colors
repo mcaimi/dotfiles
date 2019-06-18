@@ -1,5 +1,8 @@
+;; DEFAULT COLORS TO BE USED IN POLYBAR
+;; READ VALUES FROM XRDB, SO YOU NEED TO SET THAT BEFOREHAND
+
 [settings/colors]
-;;; colors from Xresources Database
+;; DEFAULT COLORS
 black = ${xrdb:polybar.color0}
 darkgrey = ${xrdb:polybar.color8}
 darkred = ${xrdb:polybar.color1}
@@ -16,14 +19,18 @@ darkcyan = ${xrdb:polybar.color6}
 cyan = ${xrdb:polybar.color14}
 lightgrey = ${xrdb:polybar.color7}
 white = ${xrdb:polybar.color15}
+
+;; BG/FG COLORS
 background = ${xrdb:background}
 foreground = ${xrdb:foreground}
-cursorcolor = ${xrdb:cursorColor}
-transparent = ${xrdb:transparent}
-
-;;; colors derived from base
 background-alt = ${settings/colors.darkgrey}
 foreground-alt = ${settings/colors.lightgrey}
+cursorcolor = ${xrdb:cursorColor}
+
+;; TRANSPARENT VARIATIONS (ALPHA != 0xFF)
+transparent = ${xrdb:polybar.transparent}
+
+;;; WM RELATED COLORS (EVENTS/ACTIONS ETC)
 primary = ${settings/colors.darkcyan}
 secondary = ${settings/colors.darkmagenta}
 alert = ${settings/colors.yellow}

@@ -1,32 +1,28 @@
+;; DATE AND TIME MODULES
 [module/date]
 type = internal/date
-
-date = " %a %m/%d "
 interval = 5
 
-format-padding = ${spacing.padding}
-format-prefix = "    "
+format-prefix = "  "
+format-prefix-foreground = ${settings/colors.black}
+format-prefix-background = ${settings/colors.yellow}
 
-label = " %date% "
-
-;format-prefix-background = ${settings/colors.date}
-;format-prefix-foreground = ${settings/colors.title-foreground}
-;label-background = ${settings/colors.label-background}
+date = " %a %m/%d/%y "
+label = "%date%"
+label-foreground = ${settings/colors.black}
+label-background = ${settings/colors.cyan}
 
 [module/time]
 type = internal/date
-
 interval = 5
-;;; 12 hour time: " %l:%M %p ", 24 hour time: " %H:%M "
+;; 12 hour time: " %l:%M %p ", 24 hour time: " %H:%M "
+
+format-prefix = "  "
+format-prefix-foreground = ${settings/colors.black}
+format-prefix-background = ${settings/colors.yellow}
+
 time = " %H:%M "
-
-format-padding = ${spacing.padding}
-format-prefix = "    "
-
-label = " %time% "
-label-margin-right = ${spacing.padding}
-
-;format-prefix-background = ${settings/colors.time}
-;format-prefix-foreground = ${settings/colors.title-foreground}
-;label-background = ${settings/colors.label-background}
+label = "%time%"
+label-foreground = ${settings/colors.black}
+label-background = ${settings/colors.cyan}
 

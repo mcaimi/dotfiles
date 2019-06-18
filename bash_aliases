@@ -18,9 +18,13 @@ alias pkgqry="pacman -Qq|sk-tmux --preview='pacman -Qi {}' --reverse --prompt='P
 
 # GIT shortcuts
 alias gl="git log"
+alias ga="git add"
 alias gs="git status"
 alias gsu="git status -uno"
 alias gp="git push"
+alias gpl="git pull"
+alias gc="git commit"
+alias gcm="git commit -m"
 
 # custom scripts
 alias s3b="~/Work/Scripts/backup.sh"

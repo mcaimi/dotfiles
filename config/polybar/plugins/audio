@@ -1,33 +1,36 @@
+;; PULSEAUDIO CONTROLLER MODOULE
+
 [module/pulseaudio]
 type = internal/pulseaudio
 interval = 5
 use-ui-max = false
 
-format-volume = <label-volume> <bar-volume>
-format-volume-padding = 1
-format-volume-background = ${settings/colors.blue}
-label-volume = " "
+;; AUDIO ON SETTINGS
+format-volume = " <bar-volume> <label-volume> "
+format-volume-background = ${settings/colors.cyan}
+format-volume-prefix = "  "
+format-volume-prefix-foreground = ${settings/colors.black}
+format-volume-prefix-background = ${settings/colors.yellow}
+label-volume-foreground = ${settings/colors.black}
 
-format-muted-prefix = " "
-format-muted-prefix-padding = 1
-format-muted-background = ${settings/colors.red}
-label-muted = "Audio Muted "
+;; AUDIO MUTED SETTINGS
+label-muted = " Audio Muted "
+label-muted-foreground = ${settings/colors.black}
+label-muted-background = ${settings/colors.cyan}
+format-muted-prefix = "  "
+format-muted-prefix-foreground = ${settings/colors.black}
+format-muted-prefix-background = ${settings/colors.red}
 
+;; VOLUME SLIDER
 bar-volume-width = 10
-#bar-volume-foreground-0 = ${colors.primary}
-#bar-volume-foreground-1 = ${colors.primary}
-#bar-volume-foreground-2 = ${colors.primary}
-#bar-volume-foreground-3 = ${colors.primary}
-#bar-volume-foreground-4 = ${colors.primary}
-#bar-volume-foreground-5 = ${colors.primary}
-#bar-volume-foreground-6 = ${colors.primary}
 bar-volume-gradient = true
 bar-volume-indicator = >
 bar-volume-indicator-font = 0
-bar-volume-fill = -
+bar-volume-indicator-foreground = ${settings/colors.black}
+bar-volume-fill = "="
 bar-volume-fill-font = 0
+bar-volume-fill-foreground = ${settings/colors.black}
 bar-volume-empty = -
 bar-volume-empty-font = 0
-bar-volume-empty-foreground = ${settings/colors.primary}
-
-
+bar-volume-empty-foreground = ${settings/colors.black}
+bar-volume-background = ${settings/colors.cyan}

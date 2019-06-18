@@ -57,19 +57,19 @@ set $icon_font Font Awesome 5 Free
 font pango:$i3_font,$icon_font $font_size
 
 # i3-gaps settings
-set $window_border_thickness 2
-set $gaps_inner_px 4
-set $gaps_outer_px 4
+set $window_border_thickness 1
+set $gaps_inner_px 2
+set $gaps_outer_px 2
 set $gaps_delta 2
 gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
 hide_edge_borders smart
 popup_during_fullscreen smart
 smart_borders on
-smart_gaps on
+#smart_gaps no
 
 # i3blocks settings
-set $i3blocks_height_top 24
+set $i3blocks_height_top 26
 
 # WINDOWS AND PLACEMENT OPTIONS
 # set window classes properties
@@ -92,19 +92,21 @@ assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
 assign [class="(?i)code"] $ws3
-assign [class="(?i)Spotify"] $ws4
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
 assign [class="(?i)gimp"] $ws5
 assign [class="(?i)zathura"] $ws6
-assign [class="(?i)libreoffice"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
+assign [class="(?i)JDownloader"] $ws7
 assign [class="(?i)keybase"] $ws8
 assign [class="(?i)signal"] $ws8
 assign [class="(?i)telegram-desktop"] $ws8
 assign [class="(?i)thunar"] $ws9
 assign [class="(?i)retroarch"] $ws0
+# workaround for crappy software that do not set properties on window creation
+for_window [class="^Spotify$" instance="^spotify$"] move to workspace $ws4
+for_window [class="(?i)libreoffice"] move to workspace $ws6
 
 # WORKSPACES DEFINITION
 # Terminal
