@@ -3,7 +3,7 @@
 [module/public-ip]
 type = custom/script
 interval = 30
-format = ": <label> "
+format = " <label> "
 format-prefix-foreground = ${colors.black}
 format-prefix-background = ${settings/colors.yellow}
 exec = echo "$(curl --limit-rate 1k -s https://ifcfg.me)" || echo ""
@@ -21,7 +21,7 @@ exec = echo "$(uname -n)"
 type = internal/network
 interface = wireless0
 interval = 3.0
-format-connected = " <ramp-signal> <label-connected> "
+format-connected = "%{T6} <ramp-signal> %{T-}<label-connected> "
 format-connected-foreground = ${settings/colors.white}
 format-connected-background = ${settings/colors.transparent}
 label-connected = "%essid% %{F#aca074}%signal%% %{F-}(%local_ip%)"

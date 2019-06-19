@@ -22,14 +22,14 @@ adapter = AC
 ;; Default: 5
 poll-interval = 5
 
-label-charging = "   %percentage%% "
+label-charging = "%{B#cf6a4c T6}  %{B#afc4db T-} %percentage%% "
 label-charging-foreground = ${settings/colors.black}
 label-charging-background = ${settings/colors.red}
 
-label-discharging = "   %percentage%% "
+label-discharging = "%{B#f9ee98 T6}   %{B#afc4db T-} %percentage%% "
 label-discharging-foreground = ${settings/colors.black}
 label-discharging-background = ${settings/colors.yellow}
 
-label-full = "%{B#f9ee98} ⭘ %{B#afc4db} Full %{B-}"
+label-full = "%{B#8f9d6a} ⭘ %{B#afc4db} Full %{B-}"
 label-full-foreground = ${settings/colors.black}
 label-full-background = ${settings/colors.cyan}
