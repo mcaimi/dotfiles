@@ -5,7 +5,7 @@ index-sort = true
 wrapping-scroll = false
 
 format = " <label-state> <label-mode> "
-format-prefix = " i3wm - "
+format-prefix = " %{T6}i3wm %{T-}"
 
 label-focused = "  %index% "
 label-unfocused = "  %index%  "
@@ -13,7 +13,7 @@ label-urgent = "  %index% "
 
 ;; custom widget colors
 i3-format-prefix-foreground = ${settings/colors.black}
-i3-format-prefix-background = ${settings/colors.yellow}
+i3-format-prefix-background = ${settings/colors.darkcyan}
 
 i3-label-focused-foreground = ${settings/colors.black}
 i3-label-focused-background = ${settings/colors.yellow}

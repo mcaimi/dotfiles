@@ -42,7 +42,9 @@ type = internal/network
 interface = ethernet0
 interval = 3.0
 
+format-connected-prefix = "%{T6}  %{T-}"
 format-connected-prefix-foreground = ${settings/colors.white}
+format-connected-prefix-background = ${settings/colors.transparent}
 label-connected = %local_ip%
 format-disconnected =
 label-disconnected =

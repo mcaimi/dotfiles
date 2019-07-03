@@ -10,7 +10,7 @@ format-volume = " <bar-volume> <label-volume> "
 format-volume-background = ${settings/colors.cyan}
 format-volume-prefix = "  "
 format-volume-prefix-foreground = ${settings/colors.black}
-format-volume-prefix-background = ${settings/colors.yellow}
+format-volume-prefix-background = ${settings/colors.green}
 label-volume-foreground = ${settings/colors.black}
 
 ;; AUDIO MUTED SETTINGS

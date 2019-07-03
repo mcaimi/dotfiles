@@ -26,7 +26,7 @@ label-charging = "%{B#cf6a4c T6}  %{B#afc4db T-} %percentage%% "
 label-charging-foreground = ${settings/colors.black}
 label-charging-background = ${settings/colors.red}
 
-label-discharging = "%{B#f9ee98 T6}   %{B#afc4db T-} %percentage%% "
+label-discharging = "%{B#f9ee98 T6}  %{B#afc4db T-} %percentage%% "
 label-discharging-foreground = ${settings/colors.black}
 label-discharging-background = ${settings/colors.yellow}
 

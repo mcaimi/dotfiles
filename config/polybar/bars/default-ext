@@ -4,13 +4,13 @@ bottom = false
 border-top-size = 0
 border-bottom-size = 0
 
-height = 23
+height = 22
 width = 100%
 
 padding-left = 1
 padding-right = 1
 offset-x = 0
-offset-y = 3
+offset-y = 4
 
 monitor = HDMI2
 fixed-center = true
@@ -38,7 +38,7 @@ tray-maxsize = 20
 
 ;; BAR-WIDE FONTS
 ;; labels
-font-0 = "Iosevka Term Medium:style=Mono:size=10;2"
+font-0 = "Iosevka Term Medium:style=Mono:size=10;3"
 ;; icons
 font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
 font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
@@ -46,5 +46,5 @@ font-3 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;2"
 ;; dot characters for workspaces
 font-4 = "Siji:pixelsize=15;3"
 ;; supplemental glyphs
-font-5 = "RobotoMono Nerd Font:style=Mono:pixelsize=10;2"
+font-5 = "RobotoMono Nerd Font:style=Mono:pixelsize=10;3"
 
