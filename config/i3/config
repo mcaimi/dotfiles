@@ -84,7 +84,6 @@ for_window [window_role="(?i)about"] floating enable
 for_window [class="(?i)megasync"] floating enable
 for_window [class="(?i)keepassxc"] move to scratchpad
 for_window [class="(?i)Protonmail Bridge"] move to scratchpad
-for_window [class="(?i)glava"] border pixel 0
 
 # Workspace assignment
 assign [class="(?i)st"] $ws1
@@ -196,8 +195,8 @@ bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 10 -P 'Go to Mark: '
 
 # workspace splits
 bindsym $alt+$mod+f floating toggle
-bindsym $alt+$mod+e layout toggle split 
-bindsym $alt+$mod+s layout stacking 
+bindsym $alt+$mod+e layout default
+bindsym $alt+$mod+s layout stacking
 bindsym $alt+$mod+w layout tabbed
 bindsym $alt+$mod+v split v;exec notify-send "i3: Split Mode: Horizontal"
 bindsym $alt+$mod+h split h;exec notify-send "i3: Split Mode: Vertical"
