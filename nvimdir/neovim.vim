@@ -33,10 +33,11 @@ call plug#begin('~/.neovimbundle/')
 " Plug('Shougo/vimshell', { 'rev': '3787e5' })
 " Plug('arcticicestudio/nord-vim')
 " Plug 'dim13/smyck.vim'
-" Plug 'Yggdroot/indentLine'
 " Plug 'w0rp/ale'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'bling/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+"
+Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'justinmk/vim-sneak'
@@ -65,13 +66,6 @@ call plug#end()
 " Required:
 filetype plugin indent on
 
-" IndentLine {{
-let g:indentLine_char = ''
-let g:indentLine_first_char = ''
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 0
-" }}
-
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
 set showcmd             " Show (partial) command in status line.
@@ -94,6 +88,9 @@ set modeline            " Enable modeline.
 "set esckeys             " Cursor keys in insert mode.
 set linespace=0         " Set line-spacing to minimum.
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
+set noshowmode          " Prevents showing current editing mode. It's already embedded in lightline"
+set cursorcolumn        " Highlight the text column under the cursor"
+
 
 " More natural splits
 set splitbelow          " Horizontal split below current.
@@ -147,29 +144,46 @@ endfunc
 "if &term == "xterm-256color"
 "  set t_Co=256
 "endif
+
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set termguicolors
 
 " load custom color scheme
 syntax enable
 let ayucolor="mirage"
 let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-eighties
+colorscheme ayu
 
 " improve autocomplete menu color
 highlight Pmenu ctermbg=black gui=bold
 highlight Conceal cterm=bold ctermfg=8 gui=bold guifg=#8F8F8F guibg=#282828
 
 " YouCompleteMe
- let g:ycm_python_binary_path = '/usr/bin/python'
- let g:ycm_server_python_interpreter = '/usr/bin/python'
- let g:ycm_global_ycm_extra_conf = '/home/marco/.config/nvim/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = '/usr/bin/python'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_global_ycm_extra_conf = '/home/marco/.config/nvim/.ycm_extra_conf.py'
 
-" AIRLINE CONFIG
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extension#hunks#enabled = 1
-let g:airline#extension#branch#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+" Lightline Setup
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ ['mode', 'paste' ] , ['gitbranch', 'readonly', 'filename', 'modified' ] ],
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'percent' ],
+    \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \},
+    \ 'component': {
+    \   'charvaluehex': '0x%B'
+    \}
+  \}
+
+"AIRLINE CONFIG
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extension#hunks#enabled = 1
+"let g:airline#extension#branch#enabled = 1
+"let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 " let g:airline#extensions#tabline#right_sep = ' '
@@ -178,13 +192,11 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_left_alt_sep = '|'
 " let g:airline_right_sep = ' '
 " let g:airline_right_alt_sep = '|'
-let g:airline_theme='base16'
-let g:airline_powerline_fonts = 1
+"let g:airline_theme='base16'
+"let g:airline_powerline_fonts = 1
 
 let g:racer_cmd = "/usr/bin/racer"
 let $RUST_SRC_PATH="/usr/src/rust/src/"
-
-set cursorcolumn
 
 " let g:deoplete#enable_at_startup = 1
 " let g:deoplete#sources#go#gocode_binary = '/home/marco/Work/go/bin/gocode'
@@ -219,10 +231,10 @@ if has('gui_running')
   set guifont=Iosevka Term:h10
 endif
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
+"if !exists('g:airline_symbols')
+"  let g:airline_symbols = {}
+"endif
+"let g:airline_symbols.space = "\ua0"
 
 if (has("termguicolors"))
  set termguicolors

@@ -1,0 +1,25 @@
+! Xresources template for DWM
+dwm.interfacefont: Iosevka Term Medium:size=12
+dwm.dmenufont: Iosevka Term Medium:size=11
+! gaps between windows (in pixels)
+dwm.gappx: 2
+! 1=bar is on top, 0 is at bottom
+dwm.bar_position: 1
+! show bar (1 yes, 0 no)
+dwm.showbar: 1
+! border pixels
+dwm.borderpx: 2
+! show systray 1 yes, 0 no
+dwm.showsystray: 1
+! systray pinning fail behaviour: 1 = first monitor, 0 = last monitor
+dwm.systraypinningfailfirst: 1
+! systray pinning: 0 follows current monitor, >0 pin to monitor X
+dwm.systraypinning: 0
+! systray spacing in pixels
+dwm.systrayspacing: 2
+! center the window name in the top bar
+dwm.centerwindowname: 1
+! rounded window corner radius
+dwm.corner_radius: 5
+! round windows mode 0: only floating, 1: only fullscreen, 2: all windows
+dwm.round_windows: 2

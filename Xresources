@@ -14,3 +14,4 @@ Xft.rgba: none
 #include "/home/marco/Work/dotfiles/Xresources.d/st"
 #include "/home/marco/Work/dotfiles/Xresources.d/xterm"
 #include "/home/marco/Work/dotfiles/Xresources.d/polybar"
+#include "/home/marco/Work/dotfiles/Xresources.d/dwm"

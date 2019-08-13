@@ -11,6 +11,11 @@
 # Type: Dict
 c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
 
+# Name of the session to save by default. If this is set to null, the
+# session which was last loaded is saved.
+# Type: SessionName
+c.session.default_name = 'arch-redhat-laptop'
+
 # Load a restored tab as soon as it takes focus.
 # Type: Bool
 c.session.lazy_restore = True
@@ -31,7 +36,7 @@ c.qt.args = ['ppapi-widevine-path=/usr/lib/qt/plugins/ppapi/libwidevinecdmadapte
 #   - qt-quick: Tell Qt Quick to use a software renderer instead of OpenGL. (`QT_QUICK_BACKEND=software`)
 #   - chromium: Tell Chromium to disable GPU support and use Skia software rendering instead. (`--disable-gpu`)
 #   - none: Don't force software rendering.
-c.qt.force_software_rendering = 'qt-quick'
+c.qt.force_software_rendering = 'none'
 
 # Force a Qt platform to use. This sets the `QT_QPA_PLATFORM`
 # environment variable and is useful to force using the XCB plugin when
@@ -85,6 +90,14 @@ c.content.media_capture = False
 # visited pages.
 # Type: Bool
 c.content.private_browsing = False
+
+# Height (in pixels or as percentage of the window) of the completion.
+# Type: PercOrInt
+c.completion.height = '40%'
+
+# Minimum amount of characters needed to update completions.
+# Type: Int
+c.completion.min_chars = 1
 
 # Duration (in milliseconds) to wait before removing finished downloads.
 # If set to -1, downloads are never removed.
@@ -161,11 +174,25 @@ c.scrolling.smooth = True
 #   - tr-TR: Turkish (Turkey)
 #   - uk-UA: Ukrainian (Ukraine)
 #   - vi-VN: Vietnamese (Viet Nam)
-c.spellcheck.languages = []
+c.spellcheck.languages = ['en-US']
 
 # Hide the statusbar unless a message is shown.
 # Type: Bool
 c.statusbar.hide = False
+
+# Switch between tabs using the mouse wheel.
+# Type: Bool
+c.tabs.mousewheel_switching = False
+
+# Position of new tabs opened from another tab. See
+# `tabs.new_position.stacking` for controlling stacking behavior.
+# Type: NewTabPosition
+# Valid values:
+#   - prev: Before the current tab.
+#   - next: After the current tab.
+#   - first: At the beginning.
+#   - last: At the end.
+c.tabs.new_position.related = 'next'
 
 # Position of the tab bar.
 # Type: Position
@@ -178,17 +205,17 @@ c.tabs.position = 'left'
 
 # Format to use for the tab title. The following placeholders are
 # defined:  * `{perc}`: Percentage as a string like `[10%]`. *
-# `{perc_raw}`: Raw percentage, e.g. `10`. * `{title}`: Title of the
-# current web page. * `{title_sep}`: The string ` - ` if a title is set,
-# empty otherwise. * `{index}`: Index of this tab. * `{id}`: Internal
-# tab ID of this tab. * `{scroll_pos}`: Page scroll position. *
+# `{perc_raw}`: Raw percentage, e.g. `10`. * `{current_title}`: Title of
+# the current web page. * `{title_sep}`: The string ` - ` if a title is
+# set, empty otherwise. * `{index}`: Index of this tab. * `{id}`:
+# Internal tab ID of this tab. * `{scroll_pos}`: Page scroll position. *
 # `{host}`: Host of the current web page. * `{backend}`: Either
 # ''webkit'' or ''webengine'' * `{private}`: Indicates when private mode
 # is enabled. * `{current_url}`: URL of the current web page. *
 # `{protocol}`: Protocol (http/https/...) of the current web page. *
 # `{audio}`: Indicator for audio/mute status.
 # Type: FormatString
-c.tabs.title.format = '{index}: {protocol} {title} {private}'
+c.tabs.title.format = '{audio}{private}{index}: {current_title}'
 
 # Format to use for the tab title for pinned tabs. The same placeholders
 # like for `tabs.title.format` are defined.
@@ -200,6 +227,11 @@ c.tabs.title.format_pinned = '{index}'
 # Type: PercOrInt
 c.tabs.width = '15%'
 
+# Hide the window decoration.  This setting requires a restart on
+# Wayland.
+# Type: Bool
+c.window.hide_decoration = True
+
 # Default monospace fonts. Whenever "monospace" is used in a font
 # setting, it's replaced with the fonts listed here.
 # Type: Font
@@ -207,19 +239,43 @@ c.fonts.monospace = '"Iosevka Term Medium", "xos4 Terminus", Terminus, Monospace
 
 # Font used in the completion widget.
 # Type: Font
-c.fonts.completion.entry = '11pt monospace'
+c.fonts.completion.entry = '11pt Iosevka Term Medium'
 
 # Font used in the completion categories.
 # Type: Font
-c.fonts.completion.category = 'bold 10pt monospace'
+c.fonts.completion.category = 'bold 10pt Iosevka Term Medium'
+
+# Font used for the debugging console.
+# Type: QtFont
+c.fonts.debug_console = '10pt Iosevka Term Medium'
+
+# Font used for the downloadbar.
+# Type: Font
+c.fonts.downloads = '10pt Iosevka Term Medium'
+
+# Font used in the keyhint widget.
+# Type: Font
+c.fonts.keyhint = '10pt Iosevka Term Medium'
+
+# Font used for error messages.
+# Type: Font
+c.fonts.messages.error = '10pt Iosevka Term Medium'
+
+# Font used for info messages.
+# Type: Font
+c.fonts.messages.info = '10pt Iosevka Term Medium'
+
+# Font used for warning messages.
+# Type: Font
+c.fonts.messages.warning = '10pt Iosevka Term Medium'
 
 # Font used in the statusbar.
 # Type: Font
-c.fonts.statusbar = '11pt monospace'
+c.fonts.statusbar = '11pt Iosevka Term Medium'
 
 # Font used in the tab bar.
 # Type: QtFont
-c.fonts.tabs = '12pt monospace'
+c.fonts.tabs = '12pt Iosevka Term Medium'
 
 # Font family for standard fonts.
 # Type: FontFamily
