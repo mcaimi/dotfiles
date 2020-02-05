@@ -12,8 +12,8 @@ SSH_KEYPATH="$HOME/.ssh/"
 # default brightness of the main display
 # its value must be in the range 0 < x < 1,
 # where 0 is black and 1 is 100% brightness
-# in this case, default is 0.7 which is 70% brightness
-DEFAULT_BACK_LIGHT_VALUE=0.7
+# in this case, default is 0.9 which is 90% brightness
+DEFAULT_BACK_LIGHT_VALUE=0.9
 
 # Misc settings
 declare -A I3ENV

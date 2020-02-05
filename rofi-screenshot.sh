@@ -2,7 +2,7 @@
 # MAIM integration for Rofi
 
 function _rofi {
-    rofi -lines 10 -tokenize -no-levenshtein-search -dmenu "$@" -p "screenshot >"
+    rofi -location 2 -show combi -padding 2 -xoffset -5 -yoffset 30 -bw 0 -lines 12 -width 35 -font "iosevka term medium 11" -tokenize -no-levenshtein-search -dmenu "$@" -p "screenshot >"
 }
 
 MAIM_DIR="${HOME}/Pictures/Maim"
