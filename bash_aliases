@@ -2,6 +2,7 @@
 
 # some more ls aliases
 alias ll='ls -l'
+alias cat='bat'
 
 # misc os aliases
 alias grep='grep --color=auto'
