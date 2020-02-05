@@ -30,7 +30,7 @@ elif [[ "${METHOD}" = "xbacklight" ]]; then
   curBrightness=$(xbacklight -get)
 fi
 
-if [[ "${curBrightness}" -le 0 ]]; then
+if [[ "${curBrightness%.*}" -le 0 ]]; then
   exit
 fi
 
