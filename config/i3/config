@@ -90,6 +90,7 @@ assign [class="(?i)st"] $ws1
 assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
+assign [class="(?i)brave-browser"] $ws2
 assign [class="(?i)code"] $ws3
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
@@ -100,8 +101,8 @@ assign [class="(?i)virt-manager"] $ws7
 assign [class="(?i)JDownloader"] $ws7
 assign [class="(?i)keybase"] $ws8
 assign [class="(?i)signal"] $ws8
-assign [class="(?i)telegram-desktop"] $ws8
-assign [class="(?i)thunar"] $ws9
+assign [class="(?i)TelegramDesktop"] $ws8
+assign [class="(?i)nemo"] $ws9
 assign [class="(?i)retroarch"] $ws0
 # workaround for crappy software that do not set properties on window creation
 for_window [class="^Spotify$" instance="^spotify$"] move to workspace $ws4
@@ -319,7 +320,7 @@ bindsym $mod+Shift+x mode "XRandr"
 #bar {
 #  mode dock
 #  i3bar_command i3bar -t
-#  status_command i3status-rs $HOME/.config/i3status/config.toml #i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
+#  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
 #  font pango:$bar_font $bar_size
 #  id bar-top
 #  position top
@@ -355,6 +356,7 @@ bindsym $mod+Shift+x mode "XRandr"
 #  }
 #}
 #bindsym $mod+z bar mode toggle bar-top
+#
 bar {
   mode dock
   id bar-top
