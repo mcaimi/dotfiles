@@ -29,16 +29,14 @@ info "[$(date)]: Killed running polybars." $LOGFILE
 is_lid_closed
 if [ $? -ne 0 ]; then 
   info "[$(date)]: INTERNAL DISPLAY: Loading polybars...." $LOGFILE
-  polybar default &
-  #polybar bottom &
+  polybar -c $HOME/.config/polybar/config.ini main &
 fi
 
 # Launch bar top & bottom external display
 is_display_connected HDMI2
 if [ $? -eq 0 ]; then
   info "[$(date)]: EXTERNAL DISPLAY: Loading polybars...." $LOGFILE
-  polybar -c $HOME/.config/polybar/config-ext default-ext &
+  polybar -c $HOME/.config/polybar/config-ext.ini main-ext &
 fi
 
-info "Bars launched..." $LOGFILE
-#
+info "[Polybar] Bars launched." $LOGFILE
