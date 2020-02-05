@@ -7,7 +7,7 @@ st.shell:        /bin/bash
 ! The following options options can be reloaded via USR1 signal.
 !st.font:         ypn envypn:pixelsize=16:antialias=true:autohint=true
 st.font:         Iosevka Term Medium:pixelsize=16:antialias=true:autohint=true
-st.borderperc:   50
+st.borderperc:   100
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:  2
 st.cursorthickness:  2
@@ -33,7 +33,7 @@ st.skippager:     0
 st.histsize:    3957
 
 ! opacity==255 means what terminal will be not transparent, 0 - fully transparent
-st.opacity:      240
+st.opacity:      230
 ! Defaults taken from base16-twilight colorscheme.
 st.foreground:   #a7a7a7
 st.background:   #1e1e1e
@@ -41,7 +41,7 @@ st.color0:       #1e1e1e
 st.color1:       #cf6a4c
 st.color2:       #8f9d6a
 st.color3:       #f9ee98
-st.color4:       #7587a6
+st.color4:       #0587a6
 st.color5:       #9b859d
 st.color6:       #afc4db
 st.color7:       #a7a7a7
