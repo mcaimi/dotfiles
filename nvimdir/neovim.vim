@@ -36,6 +36,8 @@ call plug#begin('~/.neovimbundle/')
 " Plug 'w0rp/ale'
 " Plug 'bling/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
+" Plug 'metalelf0/base16-black-metal-scheme'
+" Plug 'blindFS/vim-taskwarrior'
 "
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
@@ -52,13 +54,10 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
-Plug 'jiangmiao/auto-pairs'
-Plug 'blindFS/vim-taskwarrior'
 Plug 'ayu-theme/ayu-vim'
 Plug 'valloric/YouCompleteMe'
 Plug 'junegunn/goyo.vim'
 Plug 'chriskempson/base16-vim'
-Plug 'metalelf0/base16-black-metal-scheme'
 Plug 'b4b4r07/vim-ansible-vault'
 
 call plug#end()
