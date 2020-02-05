@@ -91,6 +91,14 @@ c.content.media_capture = False
 # Type: Bool
 c.content.private_browsing = False
 
+# Proxy to use. In addition to the listed values, you can use a
+# `socks://...` or `http://...` URL.
+# Type: Proxy
+# Valid values:
+#   - system: Use the system wide proxy.
+#   - none: Don't use any proxy
+c.content.proxy = 'system'
+
 # Height (in pixels or as percentage of the window) of the completion.
 # Type: PercOrInt
 c.completion.height = '40%'
