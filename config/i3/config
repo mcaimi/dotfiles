@@ -57,7 +57,7 @@ set $icon_font Font Awesome 5 Free
 font pango:$i3_font,$icon_font $font_size
 
 # i3-gaps settings
-set $window_border_thickness 1
+set $window_border_thickness 3
 set $gaps_inner_px 2
 set $gaps_outer_px 2
 set $gaps_delta 2

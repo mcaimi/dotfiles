@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPTS="-fs 11 +ls"
-COMMAND="/usr/bin/w3m"
+OPTS="-a \"Aa@\" -d -g -n"
+COMMAND="/usr/bin/surf"
 
-xterm $OPTS -e $COMMAND $1
+$COMMAND $OPTS $1
