@@ -39,6 +39,7 @@ call plug#begin('~/.neovimbundle/')
 " Plug 'metalelf0/base16-black-metal-scheme'
 " Plug 'blindFS/vim-taskwarrior'
 "
+Plug 'Nequo/vim-allomancer'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
@@ -150,7 +151,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax enable
 let ayucolor="mirage"
 let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme ayu
+colorscheme allomancer
 
 " improve autocomplete menu color
 highlight Pmenu ctermbg=black gui=bold

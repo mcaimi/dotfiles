@@ -19,6 +19,17 @@ ENABLED_PLUGINS[0]="tmux-git"
 # in the path prepended by the $BASH_SYMBOL_FOLDER GLYPH
 max_path_len=3
 
+# display a test 256 color pattern
+function bash_test_256_pattern() {
+  echo "TESTING COLOR CAPABILITIES OF THE CURRENT SHELL"
+  for i in {0..255} ; do
+    printf "\x1b[48;5;%sm%3d\e[0m " "$i" "$i"
+    if (((i-15) % 16 == 0 )); then
+        printf "\n";
+    fi
+  done
+}
+
 # check for running tmux processes
 function tmux_running() {
   pgrep tmux 2>&1 >/dev/null
