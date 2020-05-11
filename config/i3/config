@@ -24,6 +24,7 @@ set_from_resource $darkcyan    color6  #000000
 set_from_resource $cyan        color14 #000000
 set_from_resource $darkwhite   color7  #000000
 set_from_resource $white       color15 #000000
+
 # Use custom colors for black, brightwhite and transparent
 set_from_resource $black       color8 #282828
 set_from_resource $darkblack   color0 #1d2021
@@ -42,7 +43,7 @@ client.background       $black
 set $mod Mod4
 set $alt Mod1
 set $TERMINAL /usr/bin/st
-set $DMENU /usr/bin/rofi -show-icons -location 0 -show combi -padding 4 -xoffset 0 -yoffset 0 -bw 0 -lines 15 -width 45 -font "iosevka term medium 11" -columns 2
+set $DMENU /usr/bin/rofi -show-icons -location 0 -show combi -padding 4 -xoffset 0 -yoffset 0 -bw 0 -lines 15 -width 45 -font "iosevka term medium 11"
 set $DMENU_TABS /usr/bin/rofi -show window -yoffset 0 -location 0 -padding 2 -lines 8 -width 50 -font "iosevka term medium 11"
 set $DMENU_RUN /usr/bin/rofi -location 0 -separator-style none -padding 6 -lines 0 -dmenu -p "dmenu ~ > " -show run -font "iosevka term medium 11"
 set $TOTP_CMD $HOME/.config/i3scripts/totp.sh
@@ -74,7 +75,8 @@ set $i3blocks_height_top 26
 # WINDOWS AND PLACEMENT OPTIONS
 # set window classes properties
 for_window [class="^.*"] border pixel $window_border_thickness
-for_window [class="(?i).+-256color"] title_format " >_ %title "
+for_window [class="(?i)st"] title_format " >_ %title "
+
 # Window properties by X11 class
 for_window [class="(?i)mpv"] floating enable
 for_window [class="(?i)gimp"] floating enable
@@ -82,15 +84,16 @@ for_window [class="(?i)evince"] floating enable
 for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)about"] floating enable
 for_window [class="(?i)megasync"] floating enable
-for_window [class="(?i)keepassxc"] move to scratchpad
+for_window [class="(?i)keepassxc"] floating enable
+for_window [class="(?i)spotify"] move to scratchpad
 for_window [class="(?i)Protonmail Bridge"] move to scratchpad
 
 # Workspace assignment
 assign [class="(?i)st"] $ws1
 assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
+assign [class="(?i)chromium"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
-assign [class="(?i)brave-browser"] $ws2
 assign [class="(?i)code"] $ws3
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
@@ -104,8 +107,8 @@ assign [class="(?i)signal"] $ws8
 assign [class="(?i)TelegramDesktop"] $ws8
 assign [class="(?i)nemo"] $ws9
 assign [class="(?i)retroarch"] $ws0
+
 # workaround for crappy software that do not set properties on window creation
-for_window [class="^Spotify$" instance="^spotify$"] move to workspace $ws4
 for_window [class="(?i)libreoffice"] move to workspace $ws6
 
 # WORKSPACES DEFINITION
@@ -317,62 +320,62 @@ mode "XRandr" {
 bindsym $mod+Shift+x mode "XRandr"
 
 # i3BAR & i3BLOCKS
-#bar {
-#  mode dock
-#  i3bar_command i3bar -t
-#  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
-#  font pango:$bar_font $bar_size
-#  id bar-top
-#  position top
-#  output $external
-#  output $internal
-#  modifier none
-#  separator_symbol ""
-#  tray_output $external
-#  tray_output $internal
-#  tray_padding 3
-#  workspace_buttons yes
-#  strip_workspace_numbers no
-#  binding_mode_indicator yes
-#  height $i3blocks_height_top
-#  colors {
-#    #background <color>
-#    #statusline <color>
-#    #separator <color>
-#    #
-#    #<colorclass> <border> <background> <text>
-#
-#    background $transparent
-#    statusline $brightwhite
-#
-##    focused_background $darkblack $darkblack $darkblack
-##    focused_statusline $white $darkblack $white
-##    focused_separator $darkwhite $darkblack $darkblack
-#    active_workspace $darkblack $transparent $brightwhite
-#    focused_workspace $darkblack $transparent $brightwhite
-#    inactive_workspace $darkblack $transparent $brightwhite
-#    urgent_workspace $darkblack $red $brightwhite
-#    binding_mode $darkblack $yellow $brightwhite
-#  }
-#}
-#bindsym $mod+z bar mode toggle bar-top
-#
 bar {
   mode dock
+  i3bar_command i3bar -t
+  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
+  font pango:$bar_font $bar_size
   id bar-top
   position top
-  output $internal
   output $external
+  output $internal
   modifier none
-  tray_output none
-  workspace_buttons no
-  binding_mode_indicator no
+  separator_symbol ""
+  tray_output $external
+  tray_output $internal
+  tray_padding 3
+  workspace_buttons yes
+  strip_workspace_numbers no
+  binding_mode_indicator yes
   height $i3blocks_height_top
   colors {
+    #background <color>
+    #statusline <color>
+    #separator <color>
+    #
+    #<colorclass> <border> <background> <text>
+
     background $transparent
-    statusline $transparent
+    statusline $brightwhite
+
+#    focused_background $darkblack $darkblack $darkblack
+#    focused_statusline $white $darkblack $white
+#    focused_separator $darkwhite $darkblack $darkblack
+    active_workspace $darkblack $transparent $brightwhite
+    focused_workspace $darkblack $transparent $brightwhite
+    inactive_workspace $darkblack $transparent $brightwhite
+    urgent_workspace $darkblack $red $brightwhite
+    binding_mode $darkblack $yellow $brightwhite
   }
 }
+bindsym $mod+z bar mode toggle bar-top
+
+#bar {
+#  mode dock
+#  id bar-top
+#  position top
+#  output $internal
+#  output $external
+#  modifier none
+#  tray_output none
+#  workspace_buttons no
+#  binding_mode_indicator no
+#  height $i3blocks_height_top
+#  colors {
+#    background $transparent
+#    statusline $transparent
+#  }
+#}
 
 # EXEC AND STARTUP
 # setup environment
@@ -388,4 +391,4 @@ exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 # start conky
 #exec_always --no-startup-id $HOME/.conkystart.sh &
 # load polybar
-exec_always --no-startup-id $HOME/.config/polybar/load.sh &
+#exec_always --no-startup-id $HOME/.config/polybar/load.sh &
