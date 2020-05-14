@@ -5,7 +5,7 @@
 
 -- add local load path
 userHome = os.getenv('HOME')
-package.path = package.path .. ";" .. userHome .. "/.conky/?.lua"
+package.path = package.path .. ";" .. userHome .. "/Work/dotfiles/conky/?.lua"
 
 -- require libraries
 require 'cairo'
@@ -57,7 +57,7 @@ function conky_draw_cpu_widget()
     cpu_frequency_ring.radius,
     anchor_x, anchor_y,
     (cpu_frequency_ring.angle0 + CPU_DISPLACEMENT) * RAD_CONVERSION_FACTOR,
-    (cpu_frequency_ring.angle0 + CPU_DISPLACEMENT + (cpufreq_ghz*cpu_frequency_ring.anglef)/3.30) * RAD_CONVERSION_FACTOR,
+    (cpu_frequency_ring.angle0 + CPU_DISPLACEMENT + (cpufreq_ghz*cpu_frequency_ring.anglef)/system_parms.max_cpu_ghz) * RAD_CONVERSION_FACTOR,
     cpu_frequency_ring.fgcolor3, cpu_frequency_ring.fgthickness)
 
   -- draw Core0 load background arcs
@@ -279,9 +279,9 @@ function conky_arc_draw_negative(context, radius, xc, yc, angle1, angle2, color,
 end
 
 -- HELPER FUNCTIONS
--- convert RGB value into r, g, b single color channels
+-- convert RGB value into r, g, b single color channel
 function rgb_to_r_g_b(colour,alpha)
-  return ((colour / 0x10000) % 0x100) / 255., ((colour / 0x100) % 0x100) / 255., (colour % 0x100) / 255., alpha
+  return ((colour >> 24) & 0xFF) / 0xFF, ((colour >> 16) & 0xFF) / 0xFF, ((colour >> 8)& 0xFF) / 0xFF, alpha
 end
 
 -- MAIN FUNCTIONS

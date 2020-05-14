@@ -41,26 +41,26 @@ conky.config = {
 
 conky.text = [[
 ${voffset 20}${font Iosevka Term Medium:regular:size=16}${color yellow}${alignc}Network Interfaces${font}
-${if_up enp0s31f6}
-${color white}${font Iosevka Term Medium}ETHERNET (enp0s31f6)$hr$font
-    ${color white}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed enp0s31f6}
-    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed enp0s31f6}
-    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup enp0s31f6}
-    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown enp0s31f6}
+${if_up ethernet0}
+${color white}${font Iosevka Term Medium}ETHERNET (ethernet0)$hr$font
+    ${color white}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed ethernet0}
+    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed ethernet0}
+    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup ethernet0}
+    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown ethernet0}
 
-    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr enp0s31f6}
+    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr ethernet0}
 ${endif}
-${if_up wlp2s0}
-${color white}${font Iosevka Term Medium}WLAN (wlp2s0)$hr$font
-    ${color white}${font Iosevka Term Medium}ESSID$font${color }$alignr${wireless_essid wlp2s0}
-    ${color white}${font Iosevka Term Medium}Bit Rate$font${color }$alignr${wireless_bitrate wlp2s0}
-    ${color white}${font Iosevka Term Medium}Strength$font${color }$alignr${wireless_link_qual_perc wlp2s0}%
-    ${color white}${font Iosevka Term Medium}        $font${color }$alignr${wireless_link_bar 6,150 wlp2s0}
-    ${color white}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed wlp2s0}
-    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed wlp2s0}
-    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup wlp2s0}
-    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown wlp2s0}
+${if_up wireless0}
+${color white}${font Iosevka Term Medium}WLAN (wireless0)$hr$font
+    ${color white}${font Iosevka Term Medium}ESSID$font${color }$alignr${wireless_essid wireless0}
+    ${color white}${font Iosevka Term Medium}Bit Rate$font${color }$alignr${wireless_bitrate wireless0}
+    ${color white}${font Iosevka Term Medium}Strength$font${color }$alignr${wireless_link_qual_perc wireless0}%
+    ${color white}${font Iosevka Term Medium}        $font${color }$alignr${wireless_link_bar 6,150 wireless0}
+    ${color white}${font Iosevka Term Medium}Rx$font${color }$alignr${downspeed wireless0}
+    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed wireless0}
+    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup wireless0}
+    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown wireless0}
 
-    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr wlp2s0}
+    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr wireless0}
 ${endif}
 ]];
