@@ -136,7 +136,7 @@ function __cwd_element()
 function __user_host_element()
 {
   #local user_element="$(__wrap_codepoint $BG_BASE02)$(__wrap_codepoint $FG_BLUE)$BASH_SYMBOL_USER  \u $(__wrap_codepoint $RESET)"
-  local user_element="$(__wrap_codepoint $FG_BLUE)$BASH_SYMBOL_USER  \u $(__wrap_codepoint $RESET)"
+  local user_element="$(__wrap_codepoint $FG_BLUE)\u $(__wrap_codepoint $RESET)"
 
   # print element
   echo -En $user_element
