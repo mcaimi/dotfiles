@@ -21,7 +21,7 @@ dunst &
 
 # start compton compositor
 info "[$(date)]: Starting up COMPTON.." $I3LOG
-compton --config $HOME/.config/compton.conf -b
+picom --config $HOME/.config/picom.conf -b
 
 # setup xinput properties
 python $HOME/Work/dotfiles/load_xinput_settings.py
