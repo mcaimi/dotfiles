@@ -8,6 +8,10 @@
 set $internal "eDP1"
 set $external "HDMI2"
 
+# IPC SOCKET
+set $i3ipc "/tmp/i3.socket"
+ipc-socket $i3ipc
+
 # COLOR SETTINGS
 # read colors from xresources database
 set_from_resource $darkred     color1  #000000
@@ -84,8 +88,8 @@ for_window [class="(?i)evince"] floating enable
 for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)about"] floating enable
 for_window [class="(?i)megasync"] floating enable
-for_window [class="(?i)keepassxc"] floating enable
-for_window [class="(?i)pavucontrol"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable border normal
+for_window [class="(?i)keepassxc"] floating enable border normal
 
 for_window [class="(?i)spotify"] move to scratchpad
 for_window [class="(?i)Protonmail Bridge"] move to scratchpad
@@ -104,6 +108,7 @@ assign [class="(?i)zathura"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
 assign [class="(?i)JDownloader"] $ws7
+assign [class="(?i)vmware-view"] $ws7
 assign [class="(?i)keybase"] $ws8
 assign [class="(?i)signal"] $ws8
 assign [class="(?i)TelegramDesktop"] $ws8
@@ -115,25 +120,25 @@ for_window [class="(?i)libreoffice"] move to workspace $ws6
 
 # WORKSPACES DEFINITION
 # Terminal
-set $ws1 1 
+set $ws1  Term
 # Browser
-set $ws2 2 
+set $ws2  Web
 # Code
-set $ws3 3 
+set $ws3  Code
 # Media
-set $ws4 4 
+set $ws4  A/V
 # Photography
-set $ws5 5 
+set $ws5  Photo
 # Documents
-set $ws6 6 
+set $ws6  Docs
 # Virtual Machines
-set $ws7 7 
+set $ws7  VM
 # Chat
-set $ws8 8 
+set $ws8  Chat
 # Filesystem
-set $ws9 9 
+set $ws9  Files
 # Games
-set $ws0 0 
+set $ws0  Games
 
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
@@ -201,11 +206,7 @@ bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 10 -P 'Go to Mark: '
 
 # workspace splits
 bindsym $alt+$mod+f floating toggle
-bindsym $alt+$mod+e layout default
-bindsym $alt+$mod+s layout stacking
-bindsym $alt+$mod+w layout tabbed
-bindsym $alt+$mod+v split v;exec notify-send "i3: Split Mode: Horizontal"
-bindsym $alt+$mod+h split h;exec notify-send "i3: Split Mode: Vertical"
+bindsym $alt+$mod+e layout toggle stacking tabbed splitv splith default
 bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
 # Custom Shortcuts
@@ -323,7 +324,8 @@ bindsym $mod+Shift+x mode "XRandr"
 
 # i3BAR & i3BLOCKS
 bar {
-  mode hide
+  mode dock
+  hidden_state show
   i3bar_command i3bar -t
   status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
   font pango:$bar_font $bar_size
@@ -332,7 +334,7 @@ bar {
   output $external
   output $internal
   modifier none
-  separator_symbol ""
+  separator_symbol "|"
   tray_output $external
   tray_output $internal
   tray_padding 3
@@ -389,8 +391,9 @@ exec_always --no-startup-id feh --bg-fill $HOME/.config/i3walls/wallpaper & #--g
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 
-# DISABLED FEATURES
 # start conky
 exec_always --no-startup-id $HOME/Work/dotfiles/conkystart.sh &
+
+# DISABLED FEATURES
 # load polybar
 #exec_always --no-startup-id $HOME/.config/polybar/load.sh &
