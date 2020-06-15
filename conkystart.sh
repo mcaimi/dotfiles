@@ -10,17 +10,17 @@ sleep 3
 nuke conky
 
 # conky network interfaces HUD
-#conky -c /home/marco/.conkyrc-network -d
+conky -c ${HOME}/Work/dotfiles/conkyrc-network -d
 
 # conky network interfaces HUD for bridges and vpn
-#conky -c /home/marco/.conkyrc-network2 -d
+conky -c ${HOME}/Work/dotfiles/conkyrc-network2 -d
 
 # start conky HUD
-conky -c /home/marco/.conkyrc-archlinux -d
+conky -c ${HOME}/Work/dotfiles/conkyrc-archlinux -d
 
-# conky network interfaces HUD for bridges and vpn
-#conky -c /home/marco/.conkyrc-info2 -d
+# conky rss info panel
+conky -c ${HOME}/Work/dotfiles/conkyrc-info -d
 
 # process panel
-#conky -c /home/marco/.conkyrc-processpanel -d
+conky -c ${HOME}/Work/dotfiles/conkyrc-processpanel -d
 

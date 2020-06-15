@@ -2,8 +2,8 @@ conky.config = {
 -- ARCHLINUX CONKY CONFIGURATION 
 
 -- load lua helper scripts
-  lua_load = '~/.conky/conky_helper.lua',
-  lua_load = '~/.conky/conky_widgets.lua',
+  lua_load = '~/Work/dotfiles/conky/conky_helper.lua',
+  lua_load = '~/Work/dotfiles/conky/conky_widgets.lua',
   lua_draw_hook_post = 'cairo_draw_hud',
 
   own_window = true,
@@ -36,21 +36,15 @@ conky.config = {
   own_window_transparent = true,
 
   alignment = 'bottom_middle',
---gap_x 10
---gap_y 10
   override_utf8_locale = false,
   font = 'Iosevka Term Medium:bold:size=9',
   xftalpha = 0.8,
 };
 
 conky.text = [[
-#${goto 242}${voffset 210}${color slate grey}CPU Frequency: ${color }${freq_g}GHz 
-#${goto 242}${voffset 5}${color slate grey}Core1 Load: ${color }${cpu cpu1}% 
-#${goto 242}${voffset 5}${color slate grey}Core2 Load: ${color }${cpu cpu2}%
-#${goto 242}${voffset 5}${color slate grey}Core3 Load: ${color }${cpu cpu3}%
-#${goto 242}${voffset 5}${color slate grey}Core4 Load: ${color }${cpu cpu4}%
-${goto 170}${voffset 154}${color slate grey}OS: ${color }$sysname $kernel ${exec uname -m} ${cpugraph cpu0 10,40 708090 DD4B3E -l}#- ${color slate grey}CPU Temp: ${lua_parse conky_cpu_temp_color}
-${goto 1220}${voffset -45}${font Iosevka Term Medium::size=14}${color yellow}${alignc} ${exec hostname} ${font}
+${goto 180}${voffset 100}${color slate grey}CPU Frequency: ${color }${freq_g}GHz 
+${goto 180}${voffset 5}${color slate grey}OS: ${color }$sysname $kernel ${exec uname -m} ${cpugraph cpu0 10,40 708090 DD4B3E -l}#- ${color slate grey}CPU Temp: ${lua_parse conky_cpu_temp_color}
+${goto 1220}${voffset -15}${font Iosevka Term Medium::size=14}${color yellow}${alignc} ${exec hostname} ${font}
 ${goto 1150}${voffset 1}${color yellow}${time %H:%M} ${color yellow}${time %a, }${color yellow}${time %b %d %G} - ${color yellow}UP ${color yellow}$uptime
 ${goto 1200}${voffset 10}${font Iosevka Term Medium:bold:size=14}${color yellow}${alignc}Filesystems${font}
 

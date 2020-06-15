@@ -3,8 +3,7 @@ conky.config = {
 
   own_window = true,
   own_window_transparent = true,
---own_window_type override
-  own_window_type = 'desktop',
+  own_window_type = 'override',
   own_window_argb_visual = true,
 --own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
   background = true,
@@ -41,14 +40,14 @@ conky.config = {
 
 conky.text = [[
 ${voffset 20}${font Iosevka Term Medium:regular:size=16}${color yellow}${alignc}Bridges and VPN  ${font}
-${if_up docker0}
-${color white}${font Iosevka Term Medium}Docker Container Bridge  $hr$font
-    ${color white}${font Pizzadude Bullets}Rx$font${color }$alignr${downspeed docker0}
-    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed docker0}
-    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup docker0}
-    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown docker0}
+${if_up cni-podman0}
+${color white}${font Iosevka Term Medium}Podman Container Bridge  $hr$font
+    ${color white}${font Pizzadude Bullets}Rx$font${color }$alignr${downspeed cni-podman0}
+    ${color white}${font Iosevka Term Medium}Tx$font${color }$alignr${upspeed cni-podman0}
+    ${color white}${font Iosevka Term Medium}Up$font${color }$alignr${totalup cni-podman0}
+    ${color white}${font Iosevka Term Medium}Dwn$font${color }$alignr${totaldown cni-podman0}
 
-    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr docker0}
+    ${color white}${font Iosevka Term Medium}IP Addr${color }$font$alignr${addr cni-podman0}
 ${endif}
 ${if_up virbr0}
 ${color white}${font Iosevka Term Medium}KVM Virtual Bridge  $hr$font

@@ -50,7 +50,8 @@ xrdb_colors = {
 }
 
 system_parms = {
-  max_cpu_mhz = 2200,
+  max_cpu_mhz = 4200,
+  max_cpu_ghz = 4.20,
   hi_temp_c = 90,
   lo_temp_c = 30,
 }
