@@ -9,7 +9,7 @@ source $HOME/.config/i3scripts/helper.sh
 
 # setup keyboard layout
 info "[$(date)]: Loading keyboard layout (IT).." $I3LOG
-setxkbmap -layout "it"
+setxkbmap -layout "us"
 
 # load Xresources
 info "[$(date)]: Merging Xresources into the XRDB.." $I3LOG
@@ -19,13 +19,9 @@ xrdb -merge $HOME/.Xresources; wal -s -n -i ${I3ENV["wallpaper"]}
 info "[$(date)]: Starting up DUNST..." $I3LOG
 dunst &
 
-# start compton compositor
-info "[$(date)]: Starting up COMPTON.." $I3LOG
-compton --config $HOME/.config/compton.conf -b
-
-# start unclutter
-#info "[$(date)]: Starting up XIDLEHOOK.." $I3LOG
-#xidlehook --time 10 --timer $HOME/.config/i3lock/i3lock.sh --notify 60 --notifier "notify-send \"XIdleHook is about to lock desktop in 60 sec..\"" --canceller "notify-send \"XIdleHook cancelled by user action.\"" --not-when-audio &
+# start picom compositor
+info "[$(date)]: Starting up PICOM.." $I3LOG
+picom --config $HOME/.config/picom.conf -b
 
 # start xiccd if needed
 info "[$(date)]: Checking for XICCD..." $I3LOG
