@@ -5,9 +5,9 @@ st.termname:     screen-256color
 st.shell:        /bin/bash
 
 ! The following options options can be reloaded via USR1 signal.
-st.font:         ypn envypn:pixelsize=16:antialias=true:autohint=true
-!st.font:         Iosevka Term Medium:pixelsize=16:antialias=true:autohint=true
-st.borderperc:   20
+!st.font:         ypn envypn:pixelsize=16:antialias=true:autohint=true
+st.font:         Iosevka Term Medium:pixelsize=16:antialias=true:autohint=true
+st.borderperc:   120
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:  2
 st.cursorthickness:  2
@@ -25,6 +25,7 @@ st.prompt_char:  $
 st.taskbaricon: 0
 st.enable_lua: 1
 st.lua_code_file: /home/marco/.config/lualibs/sthook.lua
+st.unfocused_opacity: 150
 
 st.rows:  46
 st.cols:  160
@@ -33,7 +34,7 @@ st.skippager:     0
 st.histsize:    3957
 
 ! opacity==255 means what terminal will be not transparent, 0 - fully transparent
-st.opacity:      240
+st.opacity:      230
 ! Defaults taken from base16-twilight colorscheme.
 st.foreground:   #a7a7a7
 st.background:   #1e1e1e

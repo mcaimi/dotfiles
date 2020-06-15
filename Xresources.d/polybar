@@ -20,4 +20,5 @@ polybar.color6:      #afc4db
 polybar.color7:      #a7a7a7
 polybar.color8:      #5f5a60
 polybar.color9:      #cf6a4c
+polybar.transparent: #00000000
 

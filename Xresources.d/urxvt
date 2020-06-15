@@ -1,6 +1,6 @@
 URxvt.depth:        24
 URxvt.fading:       75
-URxvt.font:         xft:Iosevka Term Medium:pixelsize=14,xft:TerminessTTF Nerd Font Mono:pixelsize=18
+URxvt.font:         xft:Iosevka Term Medium:pixelsize=14
 URxvt.scrollBar:    0
 URxvt.cursorBlink:  1
 URxvt.termName:     screen-256color

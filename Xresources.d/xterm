@@ -1,11 +1,34 @@
 ! Xterm stuff
-xterm.vt100.metaSendsEscape:  true
-xterm.vt100.backarrowKey:     false
-xterm.vt100.faceName:         TerminessTTF Nerd Font Mono:style=Medium
-xterm.vt100.faceSize:         11
-xterm.vt100.geometry:         160x50
-xterm.vt100.renderFont:       true
-xterm.vt100.utf8:             1
-xterm.vt100.locale:           true
-xterm.title:                  "ArchLinux XTerm Unicode"
-xterm.ttyModes:               erase ^?
+XTerm.vt100.metaSendsEscape:  true
+XTerm.vt100.backarrowKey:     false
+XTerm.vt100.faceName:         Iosevka Nerd Font Mono:style=Medium,Regular
+XTerm.vt100.faceSize:         11
+XTerm.vt100.geometry:         160x50
+XTerm.vt100.renderFont:       true
+XTerm.vt100.utf8:             1
+XTerm.vt100.locale:           true
+XTerm.title:                  "ArchLinux XTerm Unicode"
+XTerm.ttyModes:               erase ^?
+XTerm.color0:      #1e1e1e
+XTerm.color1:      #cf6a4c
+XTerm.color10:     #8f9d6a
+XTerm.color11:     #f9ee98
+XTerm.color12:     #7587a6
+XTerm.color13:     #9b859d
+XTerm.color14:     #afc4db
+XTerm.color15:     #ffffff
+XTerm.color16:     #cda869
+XTerm.color17:     #9b703f
+XTerm.color18:     #323537
+XTerm.color19:     #464b50
+XTerm.color2:      #8f9d6a
+XTerm.color20:     #838184
+XTerm.color21:     #c3c3c3
+XTerm.color3:      #f9ee98
+XTerm.color4:      #7587a6
+XTerm.color5:      #9b859d
+XTerm.color6:      #afc4db
+XTerm.color7:      #a7a7a7
+XTerm.color8:      #5f5a60
+XTerm.color9:      #cf6a4c
+
