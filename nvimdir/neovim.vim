@@ -2,6 +2,7 @@
 runtime! archlinux.vim
 " enable syntax highlighting
 syntax on
+syntax enable
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
@@ -33,10 +34,13 @@ call plug#begin('~/.neovimbundle/')
 " Plug('Shougo/vimshell', { 'rev': '3787e5' })
 " Plug('arcticicestudio/nord-vim')
 " Plug 'dim13/smyck.vim'
-" Plug 'Yggdroot/indentLine'
 " Plug 'w0rp/ale'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'bling/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'blindFS/vim-taskwarrior'
+"
+Plug 'Nequo/vim-allomancer'
+Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'justinmk/vim-sneak'
@@ -52,24 +56,16 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
-Plug 'blindFS/vim-taskwarrior'
 Plug 'ayu-theme/ayu-vim'
-Plug 'valloric/YouCompleteMe'
 Plug 'junegunn/goyo.vim'
 Plug 'chriskempson/base16-vim'
-Plug 'metalelf0/base16-black-metal-scheme'
+Plug 'b4b4r07/vim-ansible-vault'
+Plug 'valloric/YouCompleteMe'
 
 call plug#end()
 
 " Required:
 filetype plugin indent on
-
-" IndentLine {{
-let g:indentLine_char = ''
-let g:indentLine_first_char = ''
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 0
-" }}
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -93,6 +89,9 @@ set modeline            " Enable modeline.
 "set esckeys             " Cursor keys in insert mode.
 set linespace=0         " Set line-spacing to minimum.
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
+set noshowmode          " Prevents showing current editing mode. It's already embedded in lightline"
+set cursorcolumn        " Highlight the text column under the cursor"
+
 
 " More natural splits
 set splitbelow          " Horizontal split below current.
@@ -146,29 +145,46 @@ endfunc
 "if &term == "xterm-256color"
 "  set t_Co=256
 "endif
+
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set termguicolors
 
 " load custom color scheme
-syntax enable
 let ayucolor="mirage"
 let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-eighties
+colorscheme allomancer
 
 " improve autocomplete menu color
 highlight Pmenu ctermbg=black gui=bold
 highlight Conceal cterm=bold ctermfg=8 gui=bold guifg=#8F8F8F guibg=#282828
+highlight Comment cterm=italic
 
 " YouCompleteMe
- let g:ycm_python_binary_path = '/usr/bin/python'
- let g:ycm_server_python_interpreter = '/usr/bin/python'
- let g:ycm_global_ycm_extra_conf = '/home/marco/.config/nvim/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = '/usr/bin/python'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_global_ycm_extra_conf = '/home/marco/.config/nvim/.ycm_extra_conf.py'
 
-" AIRLINE CONFIG
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extension#hunks#enabled = 1
-let g:airline#extension#branch#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+" Lightline Setup
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ ['mode', 'paste' ] , ['gitbranch', 'readonly', 'filename', 'modified' ] ],
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'percent' ],
+    \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \},
+    \ 'component': {
+    \   'charvaluehex': '0x%B'
+    \}
+  \}
+
+"AIRLINE CONFIG
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extension#hunks#enabled = 1
+"let g:airline#extension#branch#enabled = 1
+"let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 " let g:airline#extensions#tabline#right_sep = ' '
@@ -177,8 +193,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_left_alt_sep = '|'
 " let g:airline_right_sep = ' '
 " let g:airline_right_alt_sep = '|'
-let g:airline_theme='base16'
-let g:airline_powerline_fonts = 1
+"let g:airline_theme='base16'
+"let g:airline_powerline_fonts = 1
 
 let g:racer_cmd = "/usr/bin/racer"
 let $RUST_SRC_PATH="/usr/src/rust/src/"
@@ -208,17 +224,18 @@ autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 autocmd BufNewFile *.py 0r ~/Work/dotfiles/templates/python.spec
 autocmd BufNewFile *.c 0r ~/Work/dotfiles/templates/c.spec
 autocmd BufNewFile *.ksprofile 0r ~/Work/dotfiles/templates/ksprofile.spec
+autocmd BufEnter jenkinsfile* set filetype=groovy
 
 " font setting
 if has('gui_running')
   " set guifont=PragmataTT:h9
-  set guifont=Iosevka Term:h10
+  set guifont=Source Code Pro:h10
 endif
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
+"if !exists('g:airline_symbols')
+"  let g:airline_symbols = {}
+"endif
+"let g:airline_symbols.space = "\ua0"
 
 if (has("termguicolors"))
  set termguicolors
