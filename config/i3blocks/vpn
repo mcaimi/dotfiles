@@ -1,9 +1,11 @@
 #!/bin/bash
 
-VPNC_FILE='/var/run/vpnc.pid'
+TUN_INTERFACE="tun0"
 
-if [[ -e "${VPNC_FILE}" ]]; then
-  echo "on"
-  echo "on"
+IFSTATE=$(ip link show ${TUN_INTERFACE} |awk '$0 ~ /UP/ {print $2}'|wc -l)
+
+if [[ $IFSTATE -eq 1 ]]; then
+  echo "protonvpn up"
+  echo "protonvpn up"
   echo ""
 fi
