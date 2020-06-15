@@ -80,7 +80,7 @@ function __git_status_element()
   fi
 
   # print git line
-  echo -En "$git_current_repo_status\n"
+  echo -En "$git_current_repo_status"
 }
 
 # Previous command return code element
@@ -125,7 +125,7 @@ function __cwd_element()
 function __user_host_element()
 {
   #local user_element="$(__wrap_codepoint $BG_BASE02)$(__wrap_codepoint $FG_BLUE)$BASH_SYMBOL_USER  \u $(__wrap_codepoint $RESET)"
-  local user_element="$(__wrap_codepoint $FG_BLUE)$BASH_SYMBOL_USER  \u $(__wrap_codepoint $RESET)"
+  local user_element="$(__wrap_codepoint $FG_BLUE)\u $(__wrap_codepoint $RESET)"
 
   # print element
   echo -En $user_element
@@ -143,10 +143,10 @@ function draw_ps1()
 {
   # render external elements
   #local prev_cmd_line=$(__previous_command_retcode_element)
-  #local git_status_line=$(__git_status_element)
+  local git_status_line=$(__git_status_element)
   local cwd_element=$(__cwd_element)
   local user_element=$(__user_host_element)
-  tmux_running && tmux_git_cmd
+  # tmux_running && tmux_git_cmd
 
   # render top PS1 element
   local user_section="$user_element$cwd_element"
@@ -155,7 +155,7 @@ function draw_ps1()
   local git_element="$git_status_line"
 
   # build final PS1
-  local ps1_elements="$user_section $BASH_SYMBOL_FORWARD_ARROW $(__wrap_codepoint $RESET)\n >> "
+  local ps1_elements="$user_section $BASH_SYMBOL_FORWARD_ARROW $(__wrap_codepoint $RESET) $git_element \n >> "
 
   PS1=$ps1_elements
 }
