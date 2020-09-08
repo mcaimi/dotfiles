@@ -58,7 +58,7 @@ set $icon_font Font Awesome 5 Free
 font pango:$i3_font,$icon_font $font_size
 
 # i3-gaps settings
-set $window_border_thickness 1
+set $window_border_thickness 0
 set $gaps_inner_px 2
 set $gaps_outer_px 2
 set $gaps_delta 2
@@ -66,7 +66,7 @@ gaps inner $gaps_inner_px
 gaps outer $gaps_outer_px
 hide_edge_borders smart
 popup_during_fullscreen smart
-smart_borders on
+#smart_borders on
 #smart_gaps no
 
 # i3blocks settings
@@ -78,18 +78,18 @@ for_window [class="^.*"] border pixel $window_border_thickness
 for_window [class="(?i)st"] title_format " >_ %title "
 
 # Window properties by X11 class
-for_window [class="(?i)mpv"] floating enable border normal
-for_window [class="(?i)vlc"] floating enable border normal
+for_window [class="(?i)mpv"] floating enable
+for_window [class="(?i)vlc"] floating enable
 for_window [class="(?i)gimp"] floating enable
 for_window [class="(?i)evince"] floating enable
 for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)about"] floating enable
-for_window [class="(?i)megasync"] floating enable border pixel 0
-for_window [class="(?i)pavucontrol"] floating enable border normal
-for_window [class="(?i)keepassxc"] floating enable border normal
+for_window [class="(?i)megasync"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable
+for_window [class="(?i)keepassxc"] floating enable
 
-for_window [class="(?i)spotify"] move to scratchpad
-for_window [class="(?i)Protonmail Bridge"] move to scratchpad
+for_window [class="(?i)spotify"] move to $ws4 border pixel 0
+for_window [class="(?i)Protonmail Bridge"] move to scratchpad border pixel 0
 
 # Workspace assignment
 assign [class="(?i)st"] $ws1
@@ -98,6 +98,7 @@ assign [class="(?i)firefox"] $ws2
 assign [class="(?i)chromium"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
 assign [class="(?i)code"] $ws3
+assign [class="(?i)spotify"] $ws4
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
 assign [class="(?i)gimp"] $ws5
@@ -112,6 +113,7 @@ assign [class="(?i)TelegramDesktop"] $ws8
 assign [class="(?i)nemo"] $ws9
 assign [class="(?i)retroarch"] $ws0
 assign [class="(?i)dosbox"] $ws0
+assign [class="(?i)Steam"] $ws0
 
 # workaround for crappy software that do not set properties on window creation
 for_window [class="(?i)libreoffice"] move to workspace $ws6
@@ -166,6 +168,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 # i3 related
 bindsym $mod+Control+c reload
 bindsym $mod+Control+r restart
+floating_modifier $alt+Control
 
 # behaviour related
 bindsym $mod+q kill
