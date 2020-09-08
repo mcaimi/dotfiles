@@ -22,11 +22,14 @@ dwm.centerwindowname: 1
 ! rounded window corner radius
 dwm.corner_radius: 5
 ! round windows mode 0: only floating, 1: only fullscreen, 2: all windows
-dwm.round_windows: 2
+dwm.round_windows: 0
 ! animate windows placement
-dwm.animate_windows: 1
+dwm.animate_windows: 0
 ! animation target fps
 dwm.frames_per_second: 60
 ! animation duration in seconds
 dwm.animation_duration: 2
-
+! custom bar
+dwm.custombar: 1
+! bar class
+dwm.custombar_class: Polybar
