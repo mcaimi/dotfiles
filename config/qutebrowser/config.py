@@ -53,11 +53,6 @@ c.auto_save.session = True
 # Type: Bool
 c.content.autoplay = False
 
-# Limit fullscreen to the browser window (does not expand to fill the
-# screen).
-# Type: Bool
-c.content.windowed_fullscreen = True
-
 # Allow websites to request geolocations.
 # Type: BoolAsk
 # Valid values:
@@ -66,9 +61,81 @@ c.content.windowed_fullscreen = True
 #   - ask
 c.content.geolocation = False
 
+# User agent to send.  The following placeholders are defined:  *
+# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+# The underlying WebKit version (set to a fixed value   with
+# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+# QtWebEngine. * `{upstream_browser_version}`: The corresponding
+# Safari/Chrome version. * `{qutebrowser_version}`: The currently
+# running qutebrowser version.  The default value is equal to the
+# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
+# read from JavaScript is always the global value.
+# Type: FormatString
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
+
+# User agent to send.  The following placeholders are defined:  *
+# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+# The underlying WebKit version (set to a fixed value   with
+# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+# QtWebEngine. * `{upstream_browser_version}`: The corresponding
+# Safari/Chrome version. * `{qutebrowser_version}`: The currently
+# running qutebrowser version.  The default value is equal to the
+# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
+# read from JavaScript is always the global value.
+# Type: FormatString
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
+
+# User agent to send.  The following placeholders are defined:  *
+# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+# The underlying WebKit version (set to a fixed value   with
+# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+# QtWebEngine. * `{upstream_browser_version}`: The corresponding
+# Safari/Chrome version. * `{qutebrowser_version}`: The currently
+# running qutebrowser version.  The default value is equal to the
+# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
+# read from JavaScript is always the global value.
+# Type: FormatString
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
+
+# User agent to send.  The following placeholders are defined:  *
+# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+# The underlying WebKit version (set to a fixed value   with
+# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+# QtWebEngine. * `{upstream_browser_version}`: The corresponding
+# Safari/Chrome version. * `{qutebrowser_version}`: The currently
+# running qutebrowser version.  The default value is equal to the
+# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
+# read from JavaScript is always the global value.
+# Type: FormatString
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://docs.google.com/*')
+
+# Load images automatically in web pages.
+# Type: Bool
+config.set('content.images', True, 'chrome-devtools://*')
+
+# Load images automatically in web pages.
+# Type: Bool
+config.set('content.images', True, 'devtools://*')
+
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'file://*')
+
+# Enable JavaScript.
+# Type: Bool
+config.set('content.javascript.enabled', True, 'chrome-devtools://*')
+
+# Enable JavaScript.
+# Type: Bool
+config.set('content.javascript.enabled', True, 'devtools://*')
 
 # Enable JavaScript.
 # Type: Bool
@@ -99,6 +166,15 @@ c.content.private_browsing = False
 #   - none: Don't use any proxy
 c.content.proxy = 'system'
 
+# Allow websites to register protocol handlers via
+# `navigator.registerProtocolHandler`.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+config.set('content.register_protocol_handler', False, 'https://mail.google.com?extsrc=mailto&url=%25s')
+
 # Height (in pixels or as percentage of the window) of the completion.
 # Type: PercOrInt
 c.completion.height = '40%'
@@ -113,7 +189,7 @@ c.completion.min_chars = 1
 c.downloads.remove_finished = 10000
 
 # Editor (and arguments) to use for the `open-editor` command. The
-# following placeholders are defined: * `{file}`: Filename of the file
+# following placeholders are defined:  * `{file}`: Filename of the file
 # to be edited. * `{line}`: Line in which the caret is found in the
 # text. * `{column}`: Column in which the caret is found in the text. *
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
@@ -184,10 +260,6 @@ c.scrolling.smooth = True
 #   - vi-VN: Vietnamese (Viet Nam)
 c.spellcheck.languages = ['en-US']
 
-# Hide the statusbar unless a message is shown.
-# Type: Bool
-c.statusbar.hide = False
-
 # Switch between tabs using the mouse wheel.
 # Type: Bool
 c.tabs.mousewheel_switching = False
@@ -240,10 +312,11 @@ c.tabs.width = '15%'
 # Type: Bool
 c.window.hide_decoration = True
 
-# Default monospace fonts. Whenever "monospace" is used in a font
-# setting, it's replaced with the fonts listed here.
-# Type: Font
-c.fonts.monospace = '"Iosevka Term Medium", "xos4 Terminus", Terminus, Monospace, "DejaVu Sans Mono", Monaco, "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", Courier, "Liberation Mono", monospace, Fixed, Consolas, Terminal'
+# Default font families to use. Whenever "default_family" is used in a
+# font setting, it's replaced with the fonts listed here. If set to an
+# empty value, a system-specific monospace default is used.
+# Type: List of Font, or Font
+c.fonts.default_family = '10pt Iosevka Term Medium'
 
 # Font used in the completion widget.
 # Type: Font
@@ -280,10 +353,6 @@ c.fonts.messages.warning = '10pt Iosevka Term Medium'
 # Font used in the statusbar.
 # Type: Font
 c.fonts.statusbar = '11pt Iosevka Term Medium'
-
-# Font used in the tab bar.
-# Type: QtFont
-c.fonts.tabs = '12pt Iosevka Term Medium'
 
 # Font family for standard fonts.
 # Type: FontFamily
