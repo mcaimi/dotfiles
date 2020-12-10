@@ -34,7 +34,7 @@ st.skippager:     0
 st.histsize:    3957
 
 ! opacity==255 means what terminal will be not transparent, 0 - fully transparent
-st.opacity:      230
+st.opacity:      245
 ! Defaults taken from base16-twilight colorscheme.
 st.foreground:   #a7a7a7
 st.background:   #1e1e1e
