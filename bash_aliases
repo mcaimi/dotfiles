@@ -2,11 +2,13 @@
 
 # some more ls aliases
 alias ll='ls -l'
+alias catp='bat -p'
 alias grep='grep --color=auto'
 alias vim='nvim'
 alias s3b="~/Work/Scripts/backup.sh"
 alias pict="feh --draw-filename --draw-exif -g 1280x800 "
 alias mount="mount | column -t"
+alias cat="bat"
 
 # Pacman and yaourt aliases
 alias pacman='sudo pacman'
