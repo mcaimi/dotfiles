@@ -26,7 +26,7 @@ set_from_resource $white       color15 #000000
 # Use custom colors for black, brightwhite and transparent
 set_from_resource $black       color8 #282828
 set_from_resource $darkblack   color0 #1d2021
-set $transparent #0000007F
+set $transparent #00000000
 set $brightwhite #FFFFFFFF
 # colors & theme settings
 #                       BORDER        BACKGROUND      TEXT          INDICATOR      CHILD_BORDER
@@ -56,7 +56,7 @@ set $icon_font Font Awesome 5 Free
 font pango:$i3_font,$icon_font $font_size
 
 # i3-gaps settings
-set $window_border_thickness 3
+set $window_border_thickness 0
 set $gaps_inner_px 2
 set $gaps_outer_px 2
 set $gaps_delta 2
@@ -83,12 +83,12 @@ for_window [class="(?i)dolphin-emu"] floating enable
 for_window [class="(?i)transmission-gtk"] floating enable border normal
 for_window [window_role="(?i)pop-up"] floating enable
 for_window [window_role="(?i)about"] floating enable
-for_window [class="(?i)megasync"] floating enable border pixel 0
+for_window [class="(?i)megasync"] floating enable border normal
 for_window [class="Spotify"] floating enable border normal
 for_window [class="(?i)keepassxc"] floating enable border normal
 for_window [class="(?i)pavucontrol"] floating enable border normal
 for_window [class="(?i)Protonmail Bridge"] move to scratchpad
-for_window [class="(?i)ObinsKit"] move to scratchpad
+for_window [class="(?i)ObinsKit"] move to scratchpad border normal
 # STEAM
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$" title="^Friends$"] floating enable
@@ -107,14 +107,14 @@ assign [class="(?i)st"] $ws1
 assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
-assign [class="(?i)code"] $ws3
+assign [class="(?i)vscodium"] $ws3
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
 assign [class="(?i)gimp"] $ws5
 assign [class="(?I)zathura"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
-assign [class="(?i)keybase"] $ws8
+assign [class="(?i)telegram-desktop"] $ws8
 assign [class="(?i)signal"] $ws8
 assign [class="(?i)nemo"] $ws9
 assign [class="(?i)retroarch"] $ws0
@@ -329,44 +329,46 @@ mode "XRandr" {
 bindsym $mod+Shift+x mode "XRandr"
 
 # i3BAR & i3BLOCKS
-bar {
-  mode dock
-  i3bar_command i3bar -t
-  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
-  font pango:$bar_font $bar_size
-  id bar-top
-  position top
-  output $internal
-  modifier none
-  separator_symbol ""
-  tray_output $internal
-  tray_padding 3
-  workspace_buttons yes
-  strip_workspace_numbers no
-  binding_mode_indicator yes
-  height $i3blocks_height_top
-  colors {
-    #background <color>
-    #statusline <color>
-    #separator <color>
-    #
-    #<colorclass> <border> <background> <text>
-
-    background $transparent
-    statusline $brightwhite
-
-    focused_background $darkblack $darkblack $darkblack
-    focused_statusline $white $darkblack $white
-    focused_separator $darkwhite $darkblack $darkblack
-    active_workspace $darkblack $transparent $brightwhite
-    focused_workspace $darkblack $transparent $brightwhite
-    inactive_workspace $darkblack $transparent $brightwhite
-    urgent_workspace $darkblack $red $brightwhite
-    binding_mode $darkblack $yellow $brightwhite
-  }
-}
-bindsym $mod+z bar mode toggle bar-top
-
+gaps top 30
+# 
+#bar {
+#  mode dock
+#  i3bar_command i3bar -t
+#  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
+#  font pango:$bar_font $bar_size
+#  id bar-top
+#  position top
+#  output $internal
+#  modifier none
+#  separator_symbol ""
+#  tray_output $internal
+#  tray_padding 3
+#  workspace_buttons yes
+#  strip_workspace_numbers no
+#  binding_mode_indicator yes
+#  height $i3blocks_height_top
+#  colors {
+#    #background <color>
+#    #statusline <color>
+#    #separator <color>
+#    #
+#    #<colorclass> <border> <background> <text>
+#
+#    background $transparent
+#    statusline $brightwhite
+#
+#    focused_background $darkblack $darkblack $darkblack
+#    focused_statusline $white $darkblack $white
+#    focused_separator $darkwhite $darkblack $darkblack
+#    active_workspace $darkblack $transparent $brightwhite
+#    focused_workspace $darkblack $transparent $brightwhite
+#    inactive_workspace $darkblack $transparent $brightwhite
+#    urgent_workspace $darkblack $red $brightwhite
+#    binding_mode $darkblack $yellow $brightwhite
+#  }
+#}
+#bindsym $mod+z bar mode toggle bar-top
+#
 # placeholder bar for polybar
 #bar {
 #  position top
@@ -388,8 +390,8 @@ exec_always --no-startup-id feh --bg-fill $HOME/.config/i3walls/wallpaper # --ge
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 
 # start conky
-exec_always --no-startup-id $HOME/.conkystart.sh &
+#exec_always --no-startup-id $HOME/.conkystart.sh &
 
 # DISABLED FEATURES
 # load polybar
-#exec_always --no-startup-id $HOME/.config/polybar/load.sh &
+exec_always --no-startup-id $HOME/.config/polybar/load.sh &
