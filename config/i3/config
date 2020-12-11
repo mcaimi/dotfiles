@@ -34,8 +34,8 @@ set $brightwhite #FFFFFFFF
 # colors & theme settings
 #                       BORDER        BACKGROUND      TEXT          INDICATOR      CHILD_BORDER
 client.focused          $brightwhite  $black          $brightwhite  $brightwhite   $blue
-client.unfocused        $cyan         $transparent    $brightwhite  $black         $black
-client.focused_inactive $yellow       $transparent    $brightwhite  $black         $black
+client.unfocused        $cyan         $black          $brightwhite  $black         $black
+client.focused_inactive $yellow       $black          $brightwhite  $black         $black
 client.urgent           $red          $red            $black        $red           $red
 client.background       $black
 
@@ -51,7 +51,7 @@ set $TOTP_CMD $HOME/.config/i3scripts/totp.sh
 # sizes and fonts
 set $font_size 12
 set $font_size_small 11
-set $bar_size 12
+set $bar_size 11
 set $i3_font Iosevka Term Medium
 set $bar_font Iosevka Nerd Font Regular
 set $icon_font Font Awesome 5 Free
@@ -97,7 +97,7 @@ assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)chromium"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
-assign [class="(?i)code"] $ws3
+assign [class="(?i)VSCodium"] $ws3
 assign [class="(?i)spotify"] $ws4
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
@@ -335,7 +335,7 @@ bindsym $mod+Shift+x mode "XRandr"
 #  output $external
 #  output $internal
 #  modifier none
-#  separator_symbol "|"
+# # separator_symbol "|"
 #  tray_output $external
 #  tray_output $internal
 #  tray_padding 3
@@ -351,7 +351,7 @@ bindsym $mod+Shift+x mode "XRandr"
 #    #<colorclass> <border> <background> <text>
 #
 #    background $transparent
-#    statusline $brightwhite
+#    statusline $transparent
 #
 ##    focused_background $darkblack $darkblack $darkblack
 #    focused_statusline $white $darkblack $white
@@ -364,24 +364,25 @@ bindsym $mod+Shift+x mode "XRandr"
 #  }
 #}
 #bindsym $mod+z bar mode toggle bar-top
-
-bar {
-  mode dock
-  id bar-top
-  position top
-  output $internal
-  output $external
-  modifier none
-  tray_output none
-  workspace_buttons no
-  binding_mode_indicator no
-  height $i3blocks_height_top
-  colors {
-    background $transparent
-    statusline $transparent
-  }
-}
-
+#
+#bar {
+#  mode dock
+#  id bar-top
+#  position top
+#  output $internal
+#  output $external
+#  modifier none
+#  tray_output none
+#  workspace_buttons no
+#  binding_mode_indicator no
+#  height $i3blocks_height_top
+#  colors {
+#    background $transparent
+#    statusline $transparent
+#  }
+#}
+gaps top 26
+#
 # EXEC AND STARTUP
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
