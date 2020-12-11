@@ -151,7 +151,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 #   - true
 #   - false
 #   - ask
-c.content.media_capture = False
+#c.content.media_capture = False
 
 # Open new windows in private browsing mode which does not record
 # visited pages.
