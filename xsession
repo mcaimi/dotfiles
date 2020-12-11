@@ -30,7 +30,7 @@ if [ $? -eq 0 ]; then
   xrandr --output ${DISPLAYS["internal"]} --off --output ${DISPLAYS["external"]} --auto --primary
 else # office mode: eDP1 is primary display, DP2 is secondary display left of eDP1
   info "Starting in multimonitor mode: Internal Monitor online & primary, External Monitor online left of eDP1" $XSESSION_LOG
-  xrandr --output ${DISPLAYS["internal"]} --auto --primary --output ${DISPLAYS["external"]} --auto --left-of ${DISPLAYS["internal"]}
+  xrandr --output ${DISPLAYS["internal"]} --auto --output ${DISPLAYS["external"]} --auto --primary --left-of ${DISPLAYS["internal"]}
 fi
 
 # start ssh-agent
