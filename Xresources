@@ -12,6 +12,6 @@ Xft.rgba: none
 #include "/home/marco/.config/colorthemes/special"
 #include "/home/marco/Work/dotfiles/Xresources.d/rofi"
 #include "/home/marco/Work/dotfiles/Xresources.d/st"
-#include "/home/marco/Work/dotfiles/Xresources.d/xterm"
-#include "/home/marco/Work/dotfiles/Xresources.d/polybar"
+! #include "/home/marco/Work/dotfiles/Xresources.d/xterm"
+! #include "/home/marco/Work/dotfiles/Xresources.d/polybar"
 #include "/home/marco/Work/dotfiles/Xresources.d/dwm"
