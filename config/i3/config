@@ -112,6 +112,7 @@ assign [class="(?i)JDownloader"] $ws7
 assign [class="(?i)vmware-view"] $ws7
 assign [class="(?i)keybase"] $ws8
 assign [class="(?i)signal"] $ws8
+assign [class="(?i)slack"] $ws8
 assign [class="(?i)TelegramDesktop"] $ws8
 assign [class="(?i)nemo"] $ws9
 assign [class="(?i)retroarch"] $ws0
