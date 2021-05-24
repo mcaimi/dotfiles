@@ -30,6 +30,9 @@ alias gcm="git commit -m"
 # custom scripts
 alias s3b="~/Work/Scripts/backup.sh"
 
+# cloud
+alias k="kubectl"
+
 # VPN definitions
 [ -e $HOME/Work/dotfiles/aliases-vpn ] && source $HOME/Work/dotfiles/aliases-vpn
 

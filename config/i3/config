@@ -99,6 +99,7 @@ assign [class="(?i)firefox"] $ws2
 assign [class="(?i)chromium"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
 assign [class="(?i)VSCodium"] $ws3
+assign [class="(?i)Lens"] $ws3
 assign [class="(?i)spotify"] $ws4
 assign [class="(?i)spotify"] $ws4
 assign [class="(?i)com.github.needleandthread.vocal"] $ws4

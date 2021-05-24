@@ -365,3 +365,5 @@ c.fonts.web.family.serif = None
 # Font family for sans-serif fonts.
 # Type: FontFamily
 c.fonts.web.family.sans_serif = 'DejaVu Sans'
+
+config.load_autoconfig()
