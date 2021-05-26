@@ -3,7 +3,7 @@
 ROFICONFIG="$HOME/.config/rofi"
 
 function _rofi {
-    rofi -location 3 -show combi -lines 5 -width 35 -theme $ROFICONFIG/menu.rasi -tokenize -no-levenshtein-search -dmenu "$@" -p "wireless >"
+    rofi -location 3 -show combi -theme $ROFICONFIG/wifi.rasi -tokenize -no-levenshtein-search -dmenu "$@" -p "wireless >"
 }
 
 OFI_MENU_CONTENTS+="---\n"

@@ -45,7 +45,7 @@ set $alt Mod1
 set $TERMINAL /usr/bin/st
 set $RASIDIR ~/.config/rofi
 set $DMENU /usr/bin/rofi -location 0 -show combi -lines 15 -width 35 -theme $RASIDIR/menu.rasi
-set $DMENU_TABS /usr/bin/rofi -location 0 -show window -lines 8 -theme $RASIDIR/menu.rasi
+set $DMENU_TABS /usr/bin/rofi -location 0 -show window -lines 8 -theme $RASIDIR/window.rasi
 set $TOTP_CMD $HOME/.config/i3scripts/totp.sh
 
 # sizes and fonts
