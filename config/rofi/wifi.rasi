@@ -8,10 +8,9 @@ window {
   border:                         0px 0px 2px 0px;
   border-color:                   @ac;
   border-radius:                  0px;
-  width:                          450px;
-  location:                       center;
-  x-offset:                       0;
-  y-offset:                       0;
+  width:                          300px;
+  x-offset:                       -10;
+  y-offset:                       28;
 }
 
 prompt {
@@ -22,19 +21,8 @@ prompt {
   font:                           "Iosevka 8";
 }
 
-entry {
-  background-color:               @al;
-  text-color:                     @bar;
-  placeholder-color:              @bar;
-  expand:                         true;
-  horizontal-align:               0;
-  placeholder:                    "type to search...";
-  padding:                        0px 0px 0px 10px;
-  blink:                          true;
-}
-
 inputbar {
-  children:                       [ prompt, entry ];
+  children:                       [ prompt ];
   background-color:               @ac;
   text-color:                     @bar;
   expand:                         false;
@@ -49,8 +37,8 @@ listview {
   background-color:               @al;
   padding:                        0px;
   columns:                        1;
-  lines:                          15;
-  spacing:                        5px;
+  lines:                          8;
+  spacing:                        2px;
   cycle:                          true;
   dynamic:                        true;
   layout:                         vertical;
@@ -71,7 +59,7 @@ element {
   text-color:                     @fg;
   orientation:                    horizontal;
   border-radius:                  0px;
-  padding:                        10px;
+  padding:                        4px;
 }
 
 element-icon {
