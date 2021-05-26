@@ -1,2 +1,2 @@
-rofi.font: iosevka term medium 11
-rofi.theme: slate.rasi
+rofi.font: Iosevka 9
+rofi.theme: menu.rasi
