@@ -1,8 +1,10 @@
 #!/bin/bash
 
-# some more ls aliases
+# aliases for modern commands
 alias ll='ls -l'
 alias cat='bat'
+alias pst='procs -t'
+alias top='gtop'
 
 # misc os aliases
 alias grep='grep --color=auto'
