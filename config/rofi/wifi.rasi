@@ -9,8 +9,8 @@ window {
   border-color:                   @ac;
   border-radius:                  0px;
   width:                          300px;
-  x-offset:                       -10;
-  y-offset:                       28;
+//  x-offset:                       -10;
+//  y-offset:                       28;
 }
 
 prompt {
