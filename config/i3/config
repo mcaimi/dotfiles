@@ -41,15 +41,15 @@ set $mod Mod4
 set $alt Mod1
 set $TERMINAL /usr/bin/st
 set $ALT_TERMINAL /usr/bin/kitty
-set $DMENU rofi -show-icons -location 0 -show combi -padding 2 -xoffset 0 -yoffset 0 -bw 0 -lines 15 -width 45 -columns 1 -font "iosevka term medium 11"
-set $DMENU_TABS /usr/bin/rofi -show window -yoffset 0 -location 0 -padding 2 -lines 8 -width 50 -font "iosevka term medium 11"
-set $DMENU_RUN /usr/bin/rofi -location 0 -separator-style none -padding 6 -lines 0 -dmenu -p "dmenu ~ > " -show run -font "iosevka term medium 11"
+set $ROFIDIR ~/.config/rofi
+set $DMENU rofi -location 0 -show combi -theme $ROFIDIR/menu.rasi
+set $DMENU_TABS /usr/bin/rofi -location 0 -show window -theme $ROFIDIR/window.rasi
 set $TOTP_CMD $HOME/.config/i3scripts/totp.sh
 
 # sizes and fonts
-set $font_size 12
-set $font_size_small 11
-set $bar_size 12
+set $font_size 13
+set $font_size_small 12
+set $bar_size 13
 set $i3_font Iosevka Term Medium
 set $bar_font Iosevka Nerd Font Regular
 set $icon_font Font Awesome 5 Free
@@ -68,7 +68,7 @@ smart_borders on
 #smart_gaps on
 
 # i3blocks settings
-set $i3blocks_height_top 26
+set $i3blocks_height_top 28
 set $i3blocks_height_bottom 20
 
 # WINDOWS AND PLACEMENT OPTIONS
@@ -220,7 +220,6 @@ bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.
 bindsym $mod+d exec --no-startup-id $DMENU
 bindsym Menu exec --no-startup-id $DMENU
 bindsym $mod+w exec --no-startup-id $DMENU_TABS
-bindsym $mod+s exec --no-startup-id $DMENU_RUN
 # st with TMUX, the default
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
 # alternate terminal
@@ -329,62 +328,67 @@ mode "XRandr" {
 bindsym $mod+Shift+x mode "XRandr"
 
 # i3BAR & i3BLOCKS
-gaps top 30
-# 
-#bar {
-#  mode dock
-#  i3bar_command i3bar -t
-#  status_command i3blocks -c $HOME/.config/i3blocks/i3blocks_top.conf
-#  font pango:$bar_font $bar_size
-#  id bar-top
-#  position top
-#  output $internal
-#  modifier none
-#  separator_symbol ""
-#  tray_output $internal
-#  tray_padding 3
-#  workspace_buttons yes
-#  strip_workspace_numbers no
-#  binding_mode_indicator yes
-#  height $i3blocks_height_top
-#  colors {
-#    #background <color>
-#    #statusline <color>
-#    #separator <color>
-#    #
-#    #<colorclass> <border> <background> <text>
+bar {
+  mode dock
+  hidden_state hide
+  i3bar_command i3bar -t
+  status_command bumblebee-status -m cpu memory arandr dunst pasink pasource nic date time -p time.format="%H:%M CW %V" date.format="%a, %b %d %Y" nic.exclude="virbr*,cni*,lo,veth*" -t nord-powerline
+  font pango:$bar_font $bar_size
+  id bar-top
+  position top
+  output $internal
+  modifier none
+  separator_symbol ""
+  tray_output none
+  tray_padding 3
+  workspace_buttons yes
+  strip_workspace_numbers no
+  binding_mode_indicator yes
+  height $i3blocks_height_top
+  colors {
+    #background <color>
+    #statusline <color>
+    #separator <color>
+    #
+    #<colorclass> <border> <background> <text>
+
+    background $transparent
+    statusline $brightwhite
+
+    focused_background $darkblack $darkblack $darkblack
+    focused_statusline $white $darkblack $white
+    focused_separator $darkwhite $darkblack $darkblack
+    active_workspace $darkblack $transparent $brightwhite
+    focused_workspace $darkblack $transparent $brightwhite
+    inactive_workspace $darkblack $transparent $brightwhite
+    urgent_workspace $darkblack $red $brightwhite
+    binding_mode $darkblack $yellow $brightwhite
+  }
+}
+bindsym $mod+z bar mode toggle bar-top
+
+#gaps top 30
 #
-#    background $transparent
-#    statusline $brightwhite
-#
-#    focused_background $darkblack $darkblack $darkblack
-#    focused_statusline $white $darkblack $white
-#    focused_separator $darkwhite $darkblack $darkblack
-#    active_workspace $darkblack $transparent $brightwhite
-#    focused_workspace $darkblack $transparent $brightwhite
-#    inactive_workspace $darkblack $transparent $brightwhite
-#    urgent_workspace $darkblack $red $brightwhite
-#    binding_mode $darkblack $yellow $brightwhite
-#  }
-#}
-#bindsym $mod+z bar mode toggle bar-top
-#
-# placeholder bar for polybar
-#bar {
-#  position top
-#  tray_output none
-#  binding_mode_indicator no
-#  workspace_buttons no
-#  modifier none
-#  height $i3blocks_height_top
-#}
+bar {
+  mode invisible
+  hidden_state hide
+  id bar-bottom
+  position bottom
+  tray_output $internal
+  tray_padding 3
+  binding_mode_indicator no
+  workspace_buttons no
+  modifier none
+  height $i3blocks_height_top
+}
+bindsym $mod+x bar mode toggle bar-bottom
 
 # EXEC AND STARTUP
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
 
 # feh for background
-exec_always --no-startup-id feh --bg-fill $HOME/.config/i3walls/wallpaper # --geometry +0+1000 &
+exec_always --no-startup-id wal -s -i $HOME/.config/i3walls/wallpaper # --geometry +0+1000 &
 
 # start systray applets
 exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
@@ -394,4 +398,4 @@ exec_always --no-startup-id $HOME/.config/i3/start_applets.sh &
 
 # DISABLED FEATURES
 # load polybar
-exec_always --no-startup-id $HOME/.config/polybar/load.sh &
+#exec_always --no-startup-id $HOME/.config/polybar/load.sh &

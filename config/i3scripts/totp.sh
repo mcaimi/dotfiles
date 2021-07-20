@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function _rofi {
-    rofi -location 3 -show combi -padding 2 -xoffset -5 -yoffset 30 -bw 0 -lines 20 -width 35 -font "iosevka term medium 11" -tokenize -no-levenshtein-search -dmenu "$@" -p "token >"
+    rofi -location 3 -show combi -xoffset -5 -yoffset 32 -lines 20 -theme $HOME/.config/rofi/totp.rasi  -tokenize -no-levenshtein-search -dmenu "$@" -p "token >"
 }
 
 ROFI_MENU_CONTENTS="---\n"

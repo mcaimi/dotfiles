@@ -24,5 +24,5 @@ KEYS=(["github"]="id_rsa_github" ["openstack"]="id_rsa_openstack" ["ansible"]="i
 # networkmanager and other applets that should appear in the systray
 declare -A APPLETS
 #APPLETS=(["COMPTRAY"]="comptray" ["PROTONMAILBRIDGE"]="protonmail-bridge" ["MEGASYNC"]="megasync" ["OBINSKIT"]="/usr/bin/obinskit")
-APPLETS=(["COMPTRAY"]="comptray" ["PROTONMAILBRIDGE"]="protonmail-bridge" ["OBINSKIT"]="/usr/bin/obinskit" ["NMAPPLET"]="nm-applet")
+APPLETS=(["COMPTRAY"]="comptray" ["PROTONMAILBRIDGE"]="protonmail-bridge" ["OBINSKIT"]="/usr/bin/obinskit --no-sandbox" ["NMAPPLET"]="nm-applet")
 
