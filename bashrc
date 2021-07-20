@@ -38,7 +38,7 @@ fi
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
     eval "`dircolors -b`"
-    alias ls='ls --color=auto'
+#    alias ls='ls --color=auto'
     alias dir='ls --color=auto --format=vertical'
     alias vdir='ls --color=auto --format=long'
 fi
@@ -54,7 +54,7 @@ export SSH_KEYS_HOMEDIR="${HOME}/.ssh"
 
 # override the dreaded XDG_CONFIG_HOME
 export XDG_CONFIG_HOME="$HOME/.config"
-export GOPATH="$HOME/Work/go"
+export GOPATH="$HOME/Work/Sources/Go"
 
 # PATH
 #PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/android-sdk/build-tools/19.0.0:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin

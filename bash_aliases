@@ -7,8 +7,11 @@ alias grep='grep --color=auto'
 alias vim='nvim'
 alias s3b="~/Work/Scripts/backup.sh"
 alias pict="feh --draw-filename --draw-exif -g 1280x800 "
-alias mount="mount | column -t"
+alias cmount="mount | column -t"
 alias cat="bat"
+alias top='gtop'
+alias pr='procs -t'
+alias df='duf'
 
 # Pacman and yaourt aliases
 alias pacman='sudo pacman'
