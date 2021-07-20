@@ -15,7 +15,11 @@ endif
 set path+=./**
 
 " load vimrc settings from lua script
-lua require('settings')
+lua require('vim_settings')
+" load vim keybindings
+lua require('vim_keybindings')
+" load vim autocommands
+lua require('vim_autocommands')
 
 " bootstrap packer
 lua require('plugin.bootstrap_packer')
@@ -102,42 +106,11 @@ autocmd! BufWritePost *.py retab! 4
 autocmd VimEnter * GitGutterLineHighlightsDisable
 autocmd InsertEnter * set number
 autocmd InsertLeave * set relativenumber
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
-autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
+autocmd FileType python set ai sw=4 ts=4 sta et fo=croql
 autocmd BufNewFile *.py 0r ~/Work/dotfiles/templates/python.spec
 autocmd BufNewFile *.c 0r ~/Work/dotfiles/templates/c.spec
 autocmd BufNewFile *.ksprofile 0r ~/Work/dotfiles/templates/ksprofile.spec
 autocmd BufEnter jenkinsfile* set filetype=groovy
-autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2
-
-" Remapping of some custom commands
-map <C-t> :TagbarToggle<CR>
-map <C-^> :lopen<CR>
-map <C-?> :copen<CR>
-map <C-G> :GitGutterToggle<CR>
-map <C-u> :PackerSync<CR>
-map <F5> :UndotreeToggle<CR>
-
-" convenience maps
-noremap <Leader>1 :g/^\s*$/d_<CR>
-noremap <Leader>w :w<CR>
-noremap <Leader>q :wq<CR>
-noremap <Leader>a :bp<CR>
-noremap <Leader>s :bn<CR>
-noremap <Leader>c :bd<CR>
-noremap <F3> :NERDTreeToggle<CR>
-
-" dashboard remaps
-nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
-nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
-nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
-nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
-nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
-nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Function calls at the end of vim load phase
 call NumberToggle()
