@@ -37,6 +37,7 @@ o.smartcase = true          -- ... unless the query has capital letters.
 o.gdefault = true           -- Use 'g' flag by default with :s/foo/bar/.
 o.magic = true              -- Use 'magic' patterns (extended regular expressions).
 o.list = true               -- Show problematic characters.
+o.rnu = true                -- Set relative numbers for line numbering
 o.updatetime = 500
 
 -- More natural splits

@@ -16,11 +16,6 @@ set path+=./**
 
 " load vimrc settings from lua script
 lua require('vim_settings')
-" load vim keybindings
-lua require('vim_keybindings')
-" load vim autocommands
-lua require('vim_autocommands')
-
 " bootstrap packer
 lua require('plugin.bootstrap_packer')
 " load plugins
@@ -35,6 +30,10 @@ lua require('plugin_config.dashboard_config')
 lua require('plugin_config.treesitter_config')
 " configure language server installer
 lua require('plugin_config.lsp_config')
+" load vim keybindings
+lua require('vim_keybindings')
+" load vim autocommands
+lua require('vim_autocommands')
 
 " load custom color scheme
 let ayucolor="mirage"
@@ -81,37 +80,12 @@ if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
+" improve autocomplete menu color
 " Also highlight all tabs and trailing whitespace characters.
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\|\t/
-
-" relative/normal line numbering choice function
-" Relative numbering
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set nornu
-    set number
-  else
-    set rnu
-  endif
-endfunc
-
-" improve autocomplete menu color
 highlight Pmenu ctermbg=black gui=bold
 highlight Conceal cterm=bold ctermfg=8 gui=bold guifg=#8F8F8F guibg=#282828
 highlight Comment cterm=italic
 
-" Auto Commands Configuration
-autocmd! BufWritePost *.py retab! 4
-autocmd VimEnter * GitGutterLineHighlightsDisable
-autocmd InsertEnter * set number
-autocmd InsertLeave * set relativenumber
-autocmd FileType python set ai sw=4 ts=4 sta et fo=croql
-autocmd BufNewFile *.py 0r ~/Work/dotfiles/templates/python.spec
-autocmd BufNewFile *.c 0r ~/Work/dotfiles/templates/c.spec
-autocmd BufNewFile *.ksprofile 0r ~/Work/dotfiles/templates/ksprofile.spec
-autocmd BufEnter jenkinsfile* set filetype=groovy
-
-" Function calls at the end of vim load phase
-call NumberToggle()
-
+" EOF

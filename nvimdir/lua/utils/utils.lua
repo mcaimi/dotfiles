@@ -24,8 +24,8 @@ end
 
 -- run an autocommand
 local function autocmd(cmdlist)
-  for _, tbl in ipairs(cmdlist) do
-    nvim_cmd('autocmd' .. table.concat(tbl, ' '))
+  if type(cmdlist) == "table" then
+    nvim_cmd('autocmd ' .. table.concat(cmdlist, ' '))
   end
 end
 
@@ -34,12 +34,12 @@ local function autocmd_clear() nvim_cmd('autocmd!') end
 
 -- define an autogroup in vim
 local function autogroup(group_name, cmdlist)
-  nvim_cmd('autogroup' .. group_name)
+  nvim_cmd('augroup ' .. group_name)
   autocmd_clear()
   for _, cmdtable in ipairs(cmdlist) do
     autocmd(cmdtable)
   end
-  nvim_cmd('autogroup END')
+  nvim_cmd('augroup END')
 end
 
 M.contains = contains
