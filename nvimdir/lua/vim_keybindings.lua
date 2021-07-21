@@ -7,11 +7,11 @@ local options = { noremap = true }
 -- mappings
 -- <mode> <lhand_map> <rhand_map> <options>
 local plugin_command_mapping = {
-  {'n', '<C-t>', ':TagBarToggle<CR>', options},
+  {'n', '<C-t>', ':TagnarToggle<CR>', options},
   {'n', '<C-G>', ':GitGutterToggle<CR>', options},
   {'n', '<C-u>', ':PackerSync<CR>', options},
   {'n', '<F3>', ':NERDTreeToggle<CR>', options},
-  {'n', '<F5>', ':UndoTreeToggle<CR>', options},
+  {'n', '<F5>', ':UndotreeToggle<CR>', options},
   {'n', '<Leader>fh', ':DashboardFindHistory<CR>', { noremap = true, silent = true }},
   {'n', '<Leader>ff', ':DashboardFindFile<CR>', { noremap = true, silent = true }},
   {'n', '<Leader>tc', ':DashboardChangeColorscheme<CR>', { noremap = true, silent = true }},
