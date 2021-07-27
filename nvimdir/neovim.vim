@@ -67,7 +67,7 @@ let g:dashboard_custom_shortcut={
 let g:peekup_open = '<Leader>]'
 
 " Required for ftplugins
-filetype plugin indent on
+filetype plugin on
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
