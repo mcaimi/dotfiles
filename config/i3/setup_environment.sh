@@ -9,7 +9,7 @@ source $HOME/.config/i3scripts/helper.sh
 
 # setup keyboard layout
 info "[$(date)]: Loading keyboard layout (IT).." $I3LOG
-setxkbmap -layout "it"
+setxkbmap -layout "us"
 
 # load Xresources
 info "[$(date)]: Merging Xresources into the XRDB.." $I3LOG

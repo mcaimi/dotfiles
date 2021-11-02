@@ -2,7 +2,8 @@
 # XRandr integration for Rofi
 
 function _rofi {
-    rofi -lines 12 -tokenize -no-levenshtein-search -dmenu "$@" -p "XRandr >" -yoffset 30 -location 3 -padding 2 -lines 8 -width 20 -font "iosevka term medium 11"
+    #rofi -lines 12 -tokenize -no-levenshtein-search -dmenu "$@" -p "XRandr >" -yoffset 30 -location 3 -padding 2 -lines 8 -width 20 -font "iosevka term medium 11"
+    dmenu -l 12 -p "MULTI MONITOR >" -c -bw 2
 }
 
 ROFI_MENU_CONTENTS="---\n"
@@ -17,7 +18,7 @@ ROFI_MENU_CONTENTS+="6: Reset (Panic Mode)\n"
 ROFI_MENU_CONTENTS+="---\n"
 ROFI_MENU_CONTENTS+="Select an entry and press Return.\n"
 
-COMMAND_SELECTION=$(echo -e $ROFI_MENU_CONTENTS|_rofi|awk -F: '{print $1}')
+COMMAND_SELECTION=$(echo -e "$ROFI_MENU_CONTENTS"|_rofi|awk -F: '{print $1}')
 
 # run xrandr with selected layout configuration
 case $COMMAND_SELECTION in
