@@ -12,12 +12,12 @@ local function loadPlugins()
   -- syntax highlight and completion plugin
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use {
-    'nvim-lua/completion-nvim',
+    'hrsh7th/cmp-nvim-lsp',
     opt = false,
-    requires = {{'hrsh7th/vim-vsnip', opt = false}, {'hrsh7th/vim-vsnip-integ', opt = false}}
+    requires = {{'hrsh7th/nvim-cmp', opt = false}, { 'neovim/nvim-lspconfig', opt = false}}
   }
   use {
-    'kabouzeid/nvim-lspinstall',
+    'williamboman/nvim-lsp-installer',
     opt = false,
     requires = { 'neovim/nvim-lspconfig', opt = false },
   }
