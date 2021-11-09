@@ -2,7 +2,8 @@
 # XRandr integration for Rofi
 
 function _rofi {
-    rofi -lines 12 -tokenize -no-levenshtein-search -dmenu "$@" -p "XRandr >"
+    #rofi -lines 12 -tokenize -no-levenshtein-search -dmenu "$@" -p "XRandr >"
+    dmenu -l 12 -bw 2 -c -p "MULTIMON >"
 }
 
 ROFI_MENU_CONTENTS="---\n"

@@ -41,9 +41,7 @@ set $mod Mod4
 set $alt Mod1
 set $TERMINAL /usr/bin/st
 set $ALT_TERMINAL /usr/bin/kitty
-set $ROFIDIR ~/.config/rofi
-set $DMENU rofi -location 0 -show combi -theme $ROFIDIR/menu.rasi
-set $DMENU_TABS /usr/bin/rofi -location 0 -show window -theme $ROFIDIR/window.rasi
+set $DMENU dmenu_run -l 15 -bw 2 -c -p "DMENU >"
 set $TOTP_CMD $HOME/.config/i3scripts/totp.sh
 
 # sizes and fonts
@@ -208,8 +206,8 @@ bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 10 -P 'Go to Mark: '
 
 # workspace splits
 bindsym $alt+$mod+f floating toggle
-bindsym $alt+$mod+e layout toggle split 
-bindsym $alt+$mod+s layout stacking 
+bindsym $alt+$mod+e layout toggle split
+bindsym $alt+$mod+s layout stacking
 bindsym $alt+$mod+w layout tabbed
 bindsym $alt+$mod+v split v;exec notify-send "i3: Split Mode: Horizontal"
 bindsym $alt+$mod+h split h;exec notify-send "i3: Split Mode: Vertical"
@@ -219,7 +217,6 @@ bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.
 # Base behaviour, terminal and dmenu
 bindsym $mod+d exec --no-startup-id $DMENU
 bindsym Menu exec --no-startup-id $DMENU
-bindsym $mod+w exec --no-startup-id $DMENU_TABS
 # st with TMUX, the default
 bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
 # alternate terminal
@@ -332,17 +329,16 @@ bar {
   mode dock
   hidden_state hide
   i3bar_command i3bar -t
-  status_command bumblebee-status -m cpu memory arandr dunst pasink pasource nic date time -p time.format="%H:%M CW %V" date.format="%a, %b %d %Y" nic.exclude="virbr*,cni*,lo,veth*" -t nord-powerline
+  status_command bumblebee-status -m cpu memory arandr dunst pasink pasource nic date time -p time.format="%H:%M CW %V" date.format="%a, %b %d %Y" nic.exclude="virbr*,cni*,lo,veth*" -t onedark-powerline
   font pango:$bar_font $bar_size
-  id bar-top
+  id topbar
   position top
   output $internal
   modifier none
   separator_symbol ""
   tray_output none
-  tray_padding 3
   workspace_buttons yes
-  strip_workspace_numbers no
+  strip_workspace_numbers yes
   binding_mode_indicator yes
   height $i3blocks_height_top
   colors {
@@ -365,15 +361,18 @@ bar {
     binding_mode $darkblack $yellow $brightwhite
   }
 }
-bindsym $mod+z bar mode toggle bar-top
+bindsym $mod+z bar mode toggle topbar
 
 #gaps top 30
 #
 bar {
   mode invisible
   hidden_state hide
-  id bar-bottom
+  id bottombar
+  status_command ~/.config/i3scripts/sleep.sh
+  font pango:$bar_font $bar_size
   position bottom
+  output $internal
   tray_output $internal
   tray_padding 3
   binding_mode_indicator no
@@ -381,8 +380,8 @@ bar {
   modifier none
   height $i3blocks_height_top
 }
-bindsym $mod+x bar mode toggle bar-bottom
-
+bindsym $mod+x bar mode toggle bottombar
+#
 # EXEC AND STARTUP
 # setup environment
 exec_always --no-startup-id $HOME/.config/i3/setup_environment.sh &
