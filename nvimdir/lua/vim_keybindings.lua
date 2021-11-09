@@ -7,7 +7,7 @@ local options = { noremap = true }
 -- mappings
 -- <mode> <lhand_map> <rhand_map> <options>
 local plugin_command_mapping = {
-  {'n', '<C-t>', ':TagnarToggle<CR>', options},
+  {'n', '<C-t>', ':TagbarToggle<CR>', options},
   {'n', '<C-G>', ':GitGutterToggle<CR>', options},
   {'n', '<C-u>', ':PackerSync<CR>', options},
   {'n', '<F3>', ':NERDTreeToggle<CR>', options},
@@ -18,6 +18,7 @@ local plugin_command_mapping = {
   {'n', '<Leader>fa', ':DashboardFindWord<CR>', { noremap = true, silent = true }},
   {'n', '<Leader>fb', ':DashboardJumpMark<CR>', { noremap = true, silent = true }},
   {'n', '<Leader>cn', ':DashboardNewFile<CR>', { noremap = true, silent = true }},
+  {'n', '<Leader>+', ':lua require(\'plugin_config.lsp_config\').install_lsp_servers()<CR>', options},
 }
 local command_mapping = {
   {'n', '<C-^>', ':lopen<CR>', options},
