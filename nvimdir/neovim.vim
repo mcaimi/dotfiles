@@ -14,10 +14,10 @@ if &compatible
 endif
 set path+=./**
 
-" load vimrc settings from lua script
-lua require('vim_settings')
 " bootstrap packer
 lua require('plugin.bootstrap_packer')
+" load vimrc settings from lua script
+lua require('vim_settings')
 " load plugins
 lua require('plugin.plugins')
 " configure lualine
@@ -30,6 +30,8 @@ lua require('plugin_config.dashboard_config')
 lua require('plugin_config.treesitter_config')
 " configure language server installer
 lua require('plugin_config.lsp_config')
+" configure autocomplete
+lua require('plugin_config.nvim_cmp_config')
 " load vim keybindings
 lua require('vim_keybindings')
 " load vim autocommands
