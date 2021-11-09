@@ -9,9 +9,7 @@ alias s3b="~/Work/Scripts/backup.sh"
 alias pict="feh --draw-filename --draw-exif -g 1280x800 "
 alias cmount="mount | column -t"
 alias cat="bat"
-alias top='gtop'
 alias pr='procs -t'
-alias df='duf'
 
 # Pacman and yaourt aliases
 alias pacman='sudo pacman'
