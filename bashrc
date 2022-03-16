@@ -56,15 +56,15 @@ export SSH_KEYS_HOMEDIR="${HOME}/.ssh"
 
 # override the dreaded XDG_CONFIG_HOME
 export XDG_CONFIG_HOME="$HOME/.config"
-export GOPATH="$HOME/Work/go"
+export GOPATH="$HOME/Work/Sources/golang"
 
 # PATH
 #PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/android-sdk/build-tools/19.0.0:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin
-PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin:/home/marco/.local/bin/
+PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin:/home/marco/.local/bin/:${HOME}/.krew/bin
 
 # color schemes
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+#BASE16_SHELL=$HOME/.config/base16-shell/
+#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 #source $HOME/.base16_theme
 
 # Fuzzy finder
