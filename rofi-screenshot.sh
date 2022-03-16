@@ -5,7 +5,7 @@
 
 function _rofi {
     #rofi -location 0 -show combi -theme $RASIDIR/screenshot.rasi -lines 22 -width 45 -tokenize -no-levenshtein-search -dmenu "$@" -p "screenshot >"
-    dmenu -l 15 -p "SCREENSHOT >"
+    dmenu -l 15 -p "SCREENSHOT >" -bw 2
 }
 
 MAIM_DIR="${HOME}/Pictures/Maim"
