@@ -1,10 +1,10 @@
 ! Xresources template for DWM
-dwm.interfacefont: Iosevka Term Medium 12
+dwm.interfacefont: Iosevka Nerd Font 12
 dwm.dmenufont: Iosevka Term Medium:size=11
 ! gaps between windows (in pixels)
 dwm.gappx: 2
 ! 1=bar is on top, 0 is at bottom
-dwm.bar_position: 1
+dwm.bar_position: 0
 ! show bar (1 yes, 0 no)
 dwm.showbar: 1
 ! border pixels
@@ -17,19 +17,21 @@ dwm.systraypinningfailfirst: 1
 dwm.systraypinning: 0
 ! systray spacing in pixels
 dwm.systrayspacing: 2
+! space between bar and windows
+dwm.bar_win_spacing: 2
 ! center the window name in the top bar
-dwm.centerwindowname: 1
+dwm.centerwindowname: 0
 ! rounded window corner radius
-dwm.corner_radius: 5
+dwm.corner_radius: 0
 ! round windows mode 0: only floating, 1: only fullscreen, 2: all windows
 dwm.round_windows: 0
-! animate windows placement
-dwm.animate_windows: 0
-! animation target fps
-dwm.frames_per_second: 60
-! animation duration in seconds
-dwm.animation_duration: 2
-! custom bar
-dwm.custombar: 1
-! bar class
-dwm.custombar_class: Polybar
+! set dwm bar height. 0 means default value
+dwm.bar_height: 22
+! normal and selected fg, bg and border colors
+dwm.normbackground: "#222222"
+dwm.normborder: "#444444"
+dwm.normforeground: "#bbbbbb"
+dwm.selforeground: "#005577"
+dwm.selbackground: "#eeeeee"
+dwm.selborder: "#005577"
+

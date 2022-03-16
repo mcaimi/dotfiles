@@ -5,8 +5,8 @@ st.termname:     screen-256color
 st.shell:        /bin/bash
 
 ! The following options options can be reloaded via USR1 signal.
-!st.font:         Iosevka Term Medium:pixelsize=16:antialias=true:autohint=true
-st.font:          Spleen 16x32:style=Medium:pixelsize=18:antialias=true:autohint=true
+st.font:         Iosevka Term Medium:pixelsize=16:antialias=true:autohint=true
+!st.font:          Spleen 16x32:style=Medium:pixelsize=18:antialias=true:autohint=true
 st.sparefonts: Iosevka Nerd Font:pixelsize=12:antialias=true:autohint=true,Envy Code R:pixelsize=12:antialias=true:autohint=true,Symbols Nerd Font:pixelsize=12:antialias=true:autohint=true
 st.borderperc:   140
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
