@@ -33,7 +33,7 @@ set $brightwhite #FFFFFFFF
 
 # colors & theme settings
 #                       BORDER        BACKGROUND      TEXT          INDICATOR      CHILD_BORDER
-client.focused          $brightwhite  $black          $black        $brightwhite   $blue
+client.focused          $brightwhite  $black          $brightwhite  $black         $blue
 client.unfocused        $cyan         $black          $brightwhite  $black         $black
 client.focused_inactive $yellow       $black          $brightwhite  $black         $black
 client.urgent           $red          $red            $black        $red           $red
@@ -42,9 +42,6 @@ client.background       $black
 # i3 VARIABLES AND BEHAVIOUR DEFINITIONS
 set $mod Mod4
 set $alt Mod1
-set $TERMINAL /usr/bin/st
-set $DMENU dmenu_run -l 20 -p "DMENU >" -c -bw 2
-set $TOTP_CMD $HOME/.config/i3scripts/totp.sh
 
 # sizes and fonts
 set $font_size 12
@@ -54,6 +51,15 @@ set $i3_font Iosevka Term Medium
 set $bar_font Iosevka Nerd Font Regular
 set $icon_font Font Awesome 5 Free
 font pango:$i3_font,$icon_font $font_size
+
+# i3blocks settings
+set $i3blocks_height_top 24
+
+# aliases
+set $TERMINAL /usr/bin/st
+set $DMENU dmenu_run -h "$i3blocks_height_top" -p "DMENU >" -bw 2
+set $TOTP_CMD $HOME/.config/i3scripts/totp.sh
+set $WIFI_SCRIPT $HOME/.config/i3scripts/wifi.sh
 
 # i3-gaps settings
 set $window_border_thickness 0
@@ -66,9 +72,6 @@ hide_edge_borders smart
 popup_during_fullscreen smart
 smart_borders on
 #smart_gaps no
-
-# i3blocks settings
-set $i3blocks_height_top 24
 
 # WINDOWS AND PLACEMENT OPTIONS
 # set window classes properties
@@ -85,10 +88,11 @@ for_window [window_role="(?i)about"] floating enable
 for_window [class="(?i)megasync"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable border normal
 for_window [class="(?i)keepassxc"] floating enable border normal
+for_window [class="(?i)pytoken-gui.py"] floating enable
 
 for_window [class="(?i)spotify"] move to $ws4 border pixel 0
-for_window [class="(?i)ario"] floating enable
-for_window [class="(?i)Protonmail Bridge"] move to scratchpad border normal
+for_window [class="(?i)ario"] floating enable move to $ws4
+for_window [class="(?i)^proton.*bridge$"] floating enable move to scratchpad border normal
 for_window [class="(?i)obinskit"] move to scratchpad border normal
 
 # Workspace assignment
@@ -96,6 +100,8 @@ assign [class="(?i)st"] $ws1
 assign [class="(?i).+-256color"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
+assign [class="(?i)vscodium"] $ws3
+assign [class="(?i)iaito"] $ws3
 assign [class="(?i)spotify"] $ws4
 assign [class="(?i)com.github.needleandthread.vocal"] $ws4
 assign [class="(?i)darktable"] $ws5
@@ -116,25 +122,25 @@ assign [class="(?i)Steam"] $ws0
 
 # WORKSPACES DEFINITION
 # Terminal
-set $ws1 1 
+set $ws1 1  Term
 # Browser
-set $ws2 2 
+set $ws2 2  Web
 # Code
-set $ws3 3 
+set $ws3 3  Dev
 # Media
-set $ws4 4 
+set $ws4 4  Music
 # Photography
-set $ws5 5 
+set $ws5 5  Photo
 # Documents
-set $ws6 6 
+set $ws6 6  Docs
 # Virtual Machines
-set $ws7 7 
+set $ws7 7  VMs
 # Chat
-set $ws8 8 
+set $ws8 8  Chat
 # Filesystem
-set $ws9 9 
+set $ws9 9  Sys
 # Games
-set $ws0 0 
+set $ws0 0  Game
 
 # workspaces shortcuts
 bindsym $mod+1 workspace $ws1
@@ -209,7 +215,6 @@ bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.
 # Custom Shortcuts
 # Base behaviour, terminal and dmenu
 bindsym $mod+d exec --no-startup-id $DMENU
-bindsym $mod+w exec --no-startup-id $DMENU_TABS
 bindsym XF86Tools exec --no-startup-id $TOTP_CMD
 bindsym XF86Favorites exec --no-startup-id $HOME/.config/i3/i3pm lock
 
@@ -222,6 +227,7 @@ bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux
 bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
 # TOTP
 bindsym $mod+t exec --no-startup-id $TOTP_CMD &
+bindsym $mod+w exec --no-startup-id $WIFI_SCRIPT &
 
 # Volume & music shortcuts
 bindsym XF86AudioMute exec $HOME/.config/i3scripts/pulsectl.py -m &
@@ -323,7 +329,7 @@ bar {
   mode dock
   hidden_state hide
   i3bar_command i3bar -t
-  status_command bumblebee-status -m arandr dunst nic pasink pasource bluetooth2 battery_upower time -p time.format="%H:%M" nic.exclude="lo,cni*,veth*,vnet*,virbr*" -t nord-powerline
+  status_command bumblebee-status -m pihole pasink pasource nic bluetooth2 battery_upower time -p pulseaudio.percent_change="5" pulseaudio.limit="100" pihole.address="http://pi.hole/" pihole.pwhash="${PWHASH}" time.format="%H:%M" nic.exclude="lo,cni*,veth*,vnet*,virbr*" -t nord-colorful
   font pango:$bar_font $bar_size
   id bar-top
   position top
@@ -334,7 +340,7 @@ bar {
   tray_output none
   tray_padding 3
   workspace_buttons yes
-  strip_workspace_numbers no
+  strip_workspace_numbers yes
   binding_mode_indicator yes
   height $i3blocks_height_top
   colors {
@@ -353,8 +359,8 @@ bar {
     active_workspace $darkblack $transparent $brightwhite
     focused_workspace $darkblack $transparent $brightwhite
     inactive_workspace $darkblack $transparent $brightwhite
-    urgent_workspace $darkblack $red $brightwhite
-    binding_mode $darkblack $yellow $brightwhite
+    urgent_workspace $darkblack $red $darkblack
+    binding_mode $darkblack $yellow $darkblack
   }
 }
 bindsym $mod+z bar mode toggle bar-top

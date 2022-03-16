@@ -3,7 +3,7 @@
 
 function _rofi {
     #rofi -lines 12 -tokenize -no-levenshtein-search -dmenu "$@" -p "XRandr >" -yoffset 30 -location 3 -padding 2 -lines 8 -width 20 -font "iosevka term medium 11"
-    dmenu -l 12 -p "MULTI MONITOR >" -c -bw 2
+    dmenu -l 12 -p "MULTI MONITOR >" -bw 2
 }
 
 ROFI_MENU_CONTENTS="---\n"

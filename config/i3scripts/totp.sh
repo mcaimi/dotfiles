@@ -4,7 +4,7 @@
 
 function _rofi {
     #rofi -location 3 -show combi -theme $ROFIDIR/totp.rasi -xoffset -2 -yoffset 30 -tokenize -no-levenshtein-search -dmenu "$@" -p "token >"
-    dmenu -l 20 -p "TOTP >" -c -bw 2
+    dmenu -l 20 -p "TOTP >" -bw 2
 }
 
 ROFI_MENU_CONTENTS="---\n"

@@ -4,7 +4,7 @@ ROFICONFIG="$HOME/.config/rofi"
 
 function _rofi {
     #rofi -location 3 -show combi -theme $ROFICONFIG/wifi.rasi -xoffset -2 -yoffset 30 -tokenize -no-levenshtein-search -dmenu "$@" -p "wireless >"
-    dmenu -l 14
+    dmenu -l 14 -bw 2 -p "WIRELESS NETWORKS"
 }
 
 OFI_MENU_CONTENTS+="---\n"
