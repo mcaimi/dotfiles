@@ -67,7 +67,31 @@ c.content.autoplay = False
 # Allow websites to read canvas elements. Note this is needed for some
 # websites to work properly.
 # Type: Bool
-c.content.canvas_reading = False
+c.content.canvas_reading = True
+
+# Which cookies to accept. With QtWebEngine, this setting also controls
+# other features with tracking capabilities similar to those of cookies;
+# including IndexedDB, DOM storage, filesystem API, service workers, and
+# AppCache. Note that with QtWebKit, only `all` and `never` are
+# supported as per-domain values. Setting `no-3rdparty` or `no-
+# unknown-3rdparty` per-domain on QtWebKit will have the same effect as
+# `all`. If this setting is used with URL patterns, the pattern gets
+# applied to the origin/first party URL of the page making the request,
+# not the request URL. With QtWebEngine 5.15.0+, paths will be stripped
+# from URLs, so URL patterns using paths will not match. With
+# QtWebEngine 5.15.2+, subdomains are additionally stripped as well, so
+# you will typically need to set this setting for `example.com` when the
+# cookie is set on `somesubdomain.example.com` for it to work properly.
+# To debug issues with this setting, start qutebrowser with `--debug
+# --logfilter network --debug-flag log-cookies` which will show all
+# cookies being set.
+# Type: String
+# Valid values:
+#   - all: Accept all cookies.
+#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
+#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
+#   - never: Don't accept cookies at all.
+c.content.cookies.accept = 'no-3rdparty'
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -117,33 +141,9 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 #   - never: Don't accept cookies at all.
 config.set('content.cookies.accept', 'all', 'devtools://*')
 
-# Which cookies to accept. With QtWebEngine, this setting also controls
-# other features with tracking capabilities similar to those of cookies;
-# including IndexedDB, DOM storage, filesystem API, service workers, and
-# AppCache. Note that with QtWebKit, only `all` and `never` are
-# supported as per-domain values. Setting `no-3rdparty` or `no-
-# unknown-3rdparty` per-domain on QtWebKit will have the same effect as
-# `all`. If this setting is used with URL patterns, the pattern gets
-# applied to the origin/first party URL of the page making the request,
-# not the request URL. With QtWebEngine 5.15.0+, paths will be stripped
-# from URLs, so URL patterns using paths will not match. With
-# QtWebEngine 5.15.2+, subdomains are additionally stripped as well, so
-# you will typically need to set this setting for `example.com` when the
-# cookie is set on `somesubdomain.example.com` for it to work properly.
-# To debug issues with this setting, start qutebrowser with `--debug
-# --logfilter network --debug-flag log-cookies` which will show all
-# cookies being set.
-# Type: String
-# Valid values:
-#   - all: Accept all cookies.
-#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
-#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
-#   - never: Don't accept cookies at all.
-c.content.cookies.accept = 'no-3rdparty'
-
 # Store cookies.
 # Type: Bool
-c.content.cookies.store = False
+c.content.cookies.store = True
 
 # Default encoding to use for websites. The encoding must be a string
 # describing an encoding such as _utf-8_, _iso-8859-1_, etc.
@@ -227,6 +227,41 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 
+# Enable the ad/host blocker
+# Type: Bool
+c.content.blocking.enabled = True
+
+# List of URLs to host blocklists for the host blocker.  Only used when
+# the simple host-blocker is used (see `content.blocking.method`).  The
+# file can be in one of the following formats:  - An `/etc/hosts`-like
+# file - One host per line - A zip-file of any of the above, with either
+# only one file, or a file   named `hosts` (with any extension).  It's
+# also possible to add a local file or directory via a `file://` URL. In
+# case of a directory, all files in the directory are read as adblock
+# lists.  The file `~/.config/qutebrowser/blocked-hosts` is always read
+# if it exists.
+# Type: List of Url
+c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+
+# Block subdomains of blocked hosts. Note: If only a single subdomain is
+# blocked but should be allowed, consider using
+# `content.blocking.whitelist` instead.
+# Type: Bool
+c.content.blocking.hosts.block_subdomains = True
+
+# Which method of blocking ads should be used.  Support for Adblock Plus
+# (ABP) syntax blocklists using Brave's Rust library requires the
+# `adblock` Python package to be installed, which is an optional
+# dependency of qutebrowser. It is required when either `adblock` or
+# `both` are selected.
+# Type: String
+# Valid values:
+#   - auto: Use Brave's ABP-style adblocker if available, host blocking otherwise
+#   - adblock: Use Brave's ABP-style adblocker
+#   - hosts: Use hosts blocking
+#   - both: Use both hosts blocking and Brave's ABP-style adblocker
+c.content.blocking.method = 'auto'
+
 # List of URLs to ABP-style adblocking rulesets.  Only used when Brave's
 # ABP-style adblocker is used (see `content.blocking.method`).  You can
 # find an overview of available lists here:
@@ -236,7 +271,7 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/53
 # extracting it from the `location` parameter of the subscribe URL and
 # URL-decoding it).
 # Type: List of Url
-c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt']
+c.content.blocking.adblock.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts', 'https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt']
 
 # Load images automatically in web pages.
 # Type: Bool
@@ -298,7 +333,8 @@ c.content.private_browsing = False
 # Proxy to use. In addition to the listed values, you can use a
 # `socks://...` or `http://...` URL. Note that with QtWebEngine, it will
 # take a couple of seconds until the change is applied, if this value is
-# changed at runtime.
+# changed at runtime. Authentication for SOCKS proxies isn't supported
+# due to Chromium limitations.
 # Type: Proxy
 # Valid values:
 #   - system: Use the system wide proxy.
@@ -314,9 +350,37 @@ c.content.proxy = 'system'
 #   - ask
 config.set('content.register_protocol_handler', False, 'https://mail.google.com?extsrc=mailto&url=%25s')
 
+# Number of commands to save in the command history. 0: no history / -1:
+# unlimited
+# Type: Int
+c.completion.cmd_history_max_items = 40
+
 # Height (in pixels or as percentage of the window) of the completion.
 # Type: PercOrInt
 c.completion.height = '40%'
+
+# Shrink the completion to be smaller than the configured size if there
+# are no scrollbars.
+# Type: Bool
+c.completion.shrink = True
+
+# Format of timestamps (e.g. for the history completion). See
+# https://sqlite.org/lang_datefunc.html and
+# https://docs.python.org/3/library/datetime.html#strftime-strptime-
+# behavior for allowed substitutions, qutebrowser uses both sqlite and
+# Python to format its timestamps.
+# Type: String
+c.completion.timestamp_format = '%Y-%m-%d %H:%M'
+
+# Number of URLs to show in the web history. 0: no history / -1:
+# unlimited
+# Type: Int
+c.completion.web_history.max_items = 30
+
+# Delay (in milliseconds) before updating completions after typing a
+# character.
+# Type: Int
+c.completion.delay = 0
 
 # Minimum amount of characters needed to update completions.
 # Type: Int
