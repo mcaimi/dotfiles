@@ -28,10 +28,10 @@ dwm.round_windows: 0
 ! set dwm bar height. 0 means default value
 dwm.bar_height: 22
 ! normal and selected fg, bg and border colors
-dwm.normbackground: "#222222"
-dwm.normborder: "#444444"
-dwm.normforeground: "#bbbbbb"
-dwm.selforeground: "#005577"
-dwm.selbackground: "#eeeeee"
-dwm.selborder: "#005577"
+dwm.normbackground: #222222
+dwm.normborder: #444444
+dwm.normforeground: #bbbbbb
+dwm.selforeground: #005577
+dwm.selbackground: #eeeeee
+dwm.selborder: #005577
 
