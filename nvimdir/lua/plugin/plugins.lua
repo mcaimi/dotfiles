@@ -52,7 +52,7 @@ local function loadPlugins()
 
   -- statusline & tabline
   use {
-    'akinsho/nvim-bufferline.lua',
+    'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     opt = false
   }

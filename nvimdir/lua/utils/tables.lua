@@ -13,6 +13,7 @@ local lang_list = {
   'gopls',
   'pylsp',
   'texlab',
+  'rust_analyzer',
 }
 
 M.supported_languages = lang_list
