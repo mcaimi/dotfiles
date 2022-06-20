@@ -3,3 +3,5 @@ set vi-cmd-mode-string @
 set vi-ins-mode-string ^
 set colored-stats On
 set colored-completion-prefix On
+# zsh-ish emulation
+TAB:menu-complete

@@ -4,7 +4,6 @@
 alias ll='ls -l'
 alias cat='bat'
 alias pst='procs -t'
-alias top='gtop'
 alias cw='wal -n -s -t -e'
 
 # misc os aliases
@@ -14,6 +13,7 @@ alias pastebin='curl -F c=@- https://ptpb.pw/'
 alias pict="feh --draw-filename --draw-exif -g 1280x800 "
 alias mount="mount | column -t"
 alias vsh="virsh -c qemu:///system"
+alias vconn="virt-viewer -c qemu:///system -a"
 
 # pacman quick shortcuts
 alias pacman='sudo pacman'
@@ -38,6 +38,8 @@ alias s3b="~/Work/Scripts/backup.sh"
 alias k="kubectl"
 alias ap="ansible-playbook"
 alias t="terraform"
+alias qute="qutebrowser -B $HOME/.config/qutebrowser/mcaimi -C $HOME/.config/qutebrowser/mcaimi/config.py"
+alias qute-redhat="qutebrowser -B $HOME/.config/qutebrowser/redhat -C $HOME/.config/qutebrowser/redhat/config.py"
 
 # VPN definitions
 [ -e $HOME/Work/dotfiles/aliases-vpn ] && source $HOME/Work/dotfiles/aliases-vpn
