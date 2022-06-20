@@ -89,6 +89,7 @@ for_window [class="(?i)megasync"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable border normal
 for_window [class="(?i)keepassxc"] floating enable border normal
 for_window [class="(?i)pytoken-gui.py"] floating enable
+for_window [class="tabbed" instance="(?i)qmedia"] floating enable border normal
 
 for_window [class="(?i)spotify"] move to $ws4 border pixel 0
 for_window [class="(?i)ario"] floating enable move to $ws4
@@ -110,6 +111,7 @@ assign [class="(?i)gimp"] $ws5
 assign [class="(?i)zathura"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
+assign [class="(?i)virt-viewer"] $ws7
 assign [class="(?i)JDownloader"] $ws7
 assign [class="(?i)vmware-view"] $ws7
 assign [class="(?i)signal"] $ws8
@@ -208,7 +210,7 @@ bindsym $mod+m exec i3-input -F 'mark %s' -l 10 -P 'Mark Active Window: '
 bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 10 -P 'Go to Mark: '
 
 # workspace splits
-bindsym $alt+$mod+f floating toggle
+bindsym $alt+$mod+f floating toggle border normal
 bindsym $alt+$mod+e layout toggle stacking tabbed splitv splith default
 bindsym $mod+Shift+f exec --no-startup-id $HOME/.config/i3scripts/i3_fullscreen.sh &
 
@@ -329,7 +331,7 @@ bar {
   mode dock
   hidden_state hide
   i3bar_command i3bar -t
-  status_command bumblebee-status -m pihole pasink pasource nic bluetooth2 battery_upower time -p pulseaudio.percent_change="5" pulseaudio.limit="100" pihole.address="http://pi.hole/" pihole.pwhash="${PWHASH}" time.format="%H:%M" nic.exclude="lo,cni*,veth*,vnet*,virbr*" -t nord-colorful
+  status_command bumblebee-status -m pihole pasink pasource nic battery_upower time -p pulseaudio.percent_change="5" pulseaudio.limit="100" pihole.address="http://pi.hole/" pihole.pwhash="${PWHASH}" time.format="%H:%M" nic.exclude="lo,cni*,veth*,vnet*,virbr*" -t gruvbox
   font pango:$bar_font $bar_size
   id bar-top
   position top
