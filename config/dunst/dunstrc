@@ -125,7 +125,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%a: %s</b>\n%b"
+    format = "%I<b>%a: %s</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -179,10 +179,10 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    dmenu = /usr/bin/rofi -dmenu -p dunst:
+    dmenu = dmenu_run -bw 2 -p DUNST
 
     # Browser for opening urls in context menu.
-    browser = sandfox -new-tab
+    browser = qutebrowser
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
