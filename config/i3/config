@@ -103,12 +103,14 @@ assign [class="(?i)firefox"] $ws2
 assign [class="(?i)qutebrowser"] $ws2
 assign [class="(?i)vscodium"] $ws3
 assign [class="(?i)iaito"] $ws3
+assign [class="(?i)imhex"] $ws3
 assign [class="(?i)spotify"] $ws4
 assign [class="(?i)com.github.needleandthread.vocal"] $ws4
 assign [class="(?i)darktable"] $ws5
 assign [class="(?i)rawtherapee"] $ws5
 assign [class="(?i)gimp"] $ws5
 assign [class="(?i)zathura"] $ws6
+assign [class="(?i)obsidian"] $ws6
 assign [class="(?i)xfreerdp"] $ws7
 assign [class="(?i)virt-manager"] $ws7
 assign [class="(?i)virt-viewer"] $ws7
@@ -355,9 +357,9 @@ bar {
     background $transparent
     statusline $transparent
 
-#    focused_background $darkblack $darkblack $darkblack
-    focused_statusline $white $darkblack $white
-    focused_separator $darkwhite $darkblack $darkblack
+    focused_background $darkblack $darkblack $darkblack
+    focused_statusline $white $black $white
+    focused_separator $darkwhite $darkblack $darkwhite
     active_workspace $darkblack $transparent $brightwhite
     focused_workspace $darkblack $transparent $brightwhite
     inactive_workspace $darkblack $transparent $brightwhite

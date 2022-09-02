@@ -7,7 +7,7 @@ function _rofi {
     dmenu -l 14 -bw 2 -p "WIRELESS NETWORKS"
 }
 
-OFI_MENU_CONTENTS+="---\n"
+ROFI_MENU_CONTENTS+="---\n"
 
 # read networks from wpa_supplicant configuration
 while read input_line

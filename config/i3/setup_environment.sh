@@ -13,7 +13,7 @@ setxkbmap -layout "us"
 
 # load Xresources
 info "[$(date)]: Merging Xresources into the XRDB.." $I3LOG
-xrdb -merge $HOME/.Xresources; [[ -e $HOME/.cache/wal/colors.Xresources ]] && xrdb -merge $HOME/.cache/wal/colors.Xresources
+xrdb -merge $HOME/.Xresources; [[ -e $HOME/.cache/wal/colors.Xresources ]] && xrdb -merge $HOME/.cache/wal/colors.Xresources; i3-msg reload
 
 # startup dunst
 info "[$(date)]: Starting up DUNST..." $I3LOG
