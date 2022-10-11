@@ -38,7 +38,7 @@ lua require('vim_keybindings')
 lua require('vim_autocommands')
 
 " load custom color scheme
-let ayucolor="mirage"
+" let ayucolor="mirage"
 colorscheme ayu
 if (has("termguicolors"))
  set termguicolors
@@ -55,16 +55,7 @@ if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
-" dashboard menu settings
-let g:dashboard_custom_shortcut={
-\ 'last_session'       : '<Leader> s l',
-\ 'find_history'       : '<Leader> f h',
-\ 'find_file'          : '<Leader> f f',
-\ 'new_file'           : '<Leader> c n',
-\ 'change_colorscheme' : '<Leader> t c',
-\ 'find_word'          : '<Leader> f a',
-\ 'book_marks'         : '<Leader> f b',
-\ }
+
 " peekup
 let g:peekup_open = '<Leader>2'
 
@@ -84,8 +75,9 @@ endif
 
 " improve autocomplete menu color
 " Also highlight all tabs and trailing whitespace characters.
-highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
-match ExtraWhitespace /\s\+$\|\t/
+" highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+" match ExtraWhitespace /\s\+$\|\t/
+"
 highlight Pmenu ctermbg=black gui=bold
 highlight Conceal cterm=bold ctermfg=8 gui=bold guifg=#8F8F8F guibg=#282828
 highlight Comment cterm=italic
