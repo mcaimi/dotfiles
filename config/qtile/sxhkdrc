@@ -1,0 +1,24 @@
+# sxhkdrc for use with qtile
+#########################################################
+
+# reload sxhkd
+mod4 + shift + x
+  pkill -USR1 -x sxhkd
+
+## Custom Scripts and Keybindings
+# TOTP
+{XF86Tools, mod4 + shift + t }
+  ~/.config/qtile/scripts/totp.sh
+
+# power menu
+mod4 + shift + e
+  ~/.config/qtile/scripts/powermenu.sh
+
+# screenshot and selection capture
+mod4 + ctrl + s
+  ~/.config/qtile/scripts/screenshot.sh
+
+# call multimonitor tool
+{XF86Display, mod4 + ctrl + m }
+  ~/.config/qtile/scripts/multimon-rofi.sh
+
