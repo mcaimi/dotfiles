@@ -6,7 +6,7 @@ local utils = require('utils.tables')
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = cmp_lsp.update_capabilities(capabilities)
+capabilities = cmp_lsp.default_capabilities(capabilities)
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = utils.supported_languages
