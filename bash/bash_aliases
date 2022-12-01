@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# aliases for modern commands
+alias ls='lsd'
+alias ll='ls -l'
+alias cat='bat'
+alias pst='procs -t'
+alias cw='wal -n -s -t -e'
+
+# misc os aliases
+alias grep='grep --color=auto'
+alias vim='nvim'
+alias pastebin='curl -F c=@- https://ptpb.pw/'
+alias mount="mount | column -t"
+
+# GIT shortcuts
+alias gl="git log"
+alias ga="git add"
+alias gs="git status"
+alias gsu="git status -uno"
+alias gp="git push"
+alias gpl="git pull"
+alias gco="git commit"
+alias gcm="git commit -S -m"
+
+# cloud
+alias k="kubectl"
+alias ap="ansible-playbook"
+alias t="terraform"
+
+# source private config
+[ -e $HOME/Work/dotfiles/private/private-env ] && source $HOME/Work/dotfiles/private/private-env
+[ -e $HOME/Work/dotfiles/private/private-aliases ] && source $HOME/Work/dotfiles/private/private-aliases
+

@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # define paths
-source ~/Work/dotfiles/bash_paths
+source ~/Work/dotfiles/bash/bash_paths
 
 # source symbols
-source ~/Work/dotfiles/bash_symbols
+source ~/Work/dotfiles/bash/bash_symbols
 
 # source color theme
-source ~/Work/dotfiles/bash_colorscheme
+source ~/Work/dotfiles/bash/bash_colorscheme
 
 # tmux plugins to run
 declare -a ENABLED_PLUGINS
-ENABLED_PLUGINS[0]="tmux-git"
+#ENABLED_PLUGINS[0]="tmux-git"
 
 # switches
 # Max Path Length to draw before prepending <..> to the CWD element

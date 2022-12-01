@@ -1,0 +1,5 @@
+source $HOME/.bashrc
+
+[[ ! -e $HOME/Work/dotfiles/motd ]] && neofetch > $HOME/Work/dotfiles/motd
+
+/bin/cat $HOME/Work/dotfiles/motd

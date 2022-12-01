@@ -1,5 +1,9 @@
 #!/bin/bash
 # Default paths definitions
 
+# Misc Software
 KEYSTONE_PROFILES_PATH="$HOME/Work/OpenstackRC/"
 TMUX_PLUGINS_PATH="$HOME/.tmux/plugins/"
+
+# GO Lang
+GOPATH="$HOME/Work/Sources/golang"
