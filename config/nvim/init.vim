@@ -1,6 +1,5 @@
-" Load archlinux commons
-runtime! archlinux.vim
-
+" NeoVIM main config file
+"
 " enable syntax highlighting
 syntax enable
 
@@ -38,11 +37,8 @@ lua require('vim_keybindings')
 lua require('vim_autocommands')
 
 " load custom color scheme
-" let ayucolor="mirage"
 colorscheme ayu
-if (has("termguicolors"))
- set termguicolors
-endif
+
 " GUI font setting
 if has('gui_running')
   set guifont=Iosevka:h10

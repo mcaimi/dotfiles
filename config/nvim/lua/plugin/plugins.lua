@@ -53,12 +53,12 @@ local function loadPlugins()
   -- statusline & tabline
   use {
     'akinsho/bufferline.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
+    requires = 'nvim-tree/nvim-web-devicons',
     opt = false
   }
   use {
     'hoob3rt/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = false},
+    requires = {'nvim-tree/nvim-web-devicons', opt = false},
     opt = false
   }
 
