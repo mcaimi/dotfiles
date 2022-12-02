@@ -1,5 +1,5 @@
 source $HOME/.bashrc
 
-[[ ! -e $HOME/Work/dotfiles/motd ]] && neofetch > $HOME/Work/dotfiles/motd
+[[ ! -e $HOME/Work/dotfiles/motd ]] && fastfetch --load-config $HOME/.config/fastfetch/macos > $HOME/Work/dotfiles/motd
 
 /bin/cat $HOME/Work/dotfiles/motd
