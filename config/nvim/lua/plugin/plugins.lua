@@ -17,9 +17,9 @@ local function loadPlugins()
     requires = {{'hrsh7th/nvim-cmp', opt = false}, { 'neovim/nvim-lspconfig', opt = false}}
   }
   use {
-    'williamboman/nvim-lsp-installer',
+    'williamboman/mason.nvim',
     opt = false,
-    requires = { 'neovim/nvim-lspconfig', opt = false },
+    requires = {{ 'mfussenegger/nvim-dap', opt=false }, {'jose-elias-alvarez/null-ls.nvim', opt=false } , { 'williamboman/mason-lspconfig.nvim', opt=false }, { 'neovim/nvim-lspconfig', opt = false }},
   }
 
   -- features plugins
@@ -39,6 +39,10 @@ local function loadPlugins()
   }
   use {
     'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('plugin_config.dashboard_config').init_dash()
+    end,
     requires = { 'nvim-telescope/telescope.nvim' }
   }
   use 'mbbill/undotree'

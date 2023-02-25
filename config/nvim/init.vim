@@ -23,8 +23,6 @@ lua require('plugin.plugins')
 lua require('plugin_config.lualine_config')
 " configure bufferline
 lua require('plugin_config.bufferline_config')
-" configure dashboard
-lua require('plugin_config.dashboard_config')
 " configure treesitter
 lua require('plugin_config.treesitter_config')
 " configure language server installer

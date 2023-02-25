@@ -5,15 +5,15 @@ M = {}
 -- nvim_lsp and cmp backends
 local lang_list = {
   'clangd',
-  'dockerls',
+--  'dockerls',
   'jdtls',
-  'bashls',
-  'yamlls',
-  'sumneko_lua',
+--  'bashls',
+--  'yamlls',
   'gopls',
   'pylsp',
   'texlab',
   'rust_analyzer',
+  'lua_ls',
 }
 
 M.supported_languages = lang_list
