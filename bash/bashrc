@@ -34,6 +34,9 @@ esac
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# load local paths paths
+source ~/Work/dotfiles/bash/bash_paths
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -65,7 +68,7 @@ export SSH_KEYS_HOMEDIR="${HOME}/.ssh"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # PATH
-PATH=$PATH:$GOPATH/bin:/home/marco/.local/bin/:${HOME}/.krew/bin
+PATH=$PATH:$GOPATH/bin:$HOMEBIN:${HOME}/.krew/bin
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 

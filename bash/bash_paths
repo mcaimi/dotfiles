@@ -7,3 +7,6 @@ TMUX_PLUGINS_PATH="$HOME/.tmux/plugins/"
 
 # GO Lang
 GOPATH="$HOME/Work/Sources/golang"
+
+# Local home binaries
+HOMEBIN="$HOME/.local/bin"

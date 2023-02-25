@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# define paths
-source ~/Work/dotfiles/bash/bash_paths
-
 # source symbols
 source ~/Work/dotfiles/bash/bash_symbols
 
