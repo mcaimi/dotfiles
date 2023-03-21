@@ -61,9 +61,13 @@ local function loadPlugins()
     opt = false
   }
   use {
-    'hoob3rt/lualine.nvim',
-    requires = {'nvim-tree/nvim-web-devicons', opt = false},
-    opt = false
+    'glepnir/galaxyline.nvim',
+    branch = 'main',
+    config = function()
+      require('plugin_config.gline_config')
+    end,
+    -- some optional icons
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
   }
 
   -- vim imported plugins

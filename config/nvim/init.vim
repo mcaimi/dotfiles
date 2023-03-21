@@ -19,8 +19,6 @@ lua require('plugin.bootstrap_packer')
 lua require('vim_settings')
 " load plugins
 lua require('plugin.plugins')
-" configure lualine
-lua require('plugin_config.lualine_config')
 " configure bufferline
 lua require('plugin_config.bufferline_config')
 " configure treesitter
