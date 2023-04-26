@@ -12,9 +12,19 @@ local function loadPlugins()
   -- syntax highlight and completion plugin
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use {
-    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/nvim-cmp',
     opt = false,
-    requires = {{'hrsh7th/nvim-cmp', opt = false}, { 'neovim/nvim-lspconfig', opt = false}}
+    requires = {{'hrsh7th/cmp-nvim-lsp', opt = false},
+                { 'hrsh7th/cmp-buffer', opt = false},
+                { 'hrsh7th/cmp-path', opt = false},
+                { 'hrsh7th/cmp-cmdline', opt = false},
+                { 'neovim/nvim-lspconfig', opt = false},
+              }
+  }
+  use {
+    'hrsh7th/vim-vsnip',
+    opt=false,
+    requires = {{'hrsh7th/cmp-vsnip', opt = false }}
   }
   use {
     'williamboman/mason.nvim',

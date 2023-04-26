@@ -43,13 +43,13 @@ gls.left[4] ={
   },
 }
 
-gls.left[5] = {
-  FileName = {
-    provider = 'FileName',
-    condition = condition.buffer_not_empty,
-    highlight = {colors.magenta,colors.bg,'bold'}
-  }
-}
+--gls.left[5] = {
+--  FileName = {
+--    provider = 'FileName',
+--    condition = condition.buffer_not_empty,
+--    highlight = {colors.magenta,colors.bg,'bold'}
+--  }
+--}
 
 gls.left[6] = {
   LineInfo = {
@@ -101,17 +101,48 @@ gls.left[11] = {
 }
 
 gls.mid[1] = {
-  ShowLspClient = {
-    provider = 'GetLspClient',
-    condition = function ()
-      local tbl = {['dashboard'] = true,['']=true}
-      if tbl[vim.bo.filetype] then
-        return false
-      end
-      return true
-    end,
-    icon = ' LSP:',
-    highlight = {colors.cyan,colors.bg,'bold'}
+  GitIcon = {
+    provider = function() return '  ' end,
+    condition = condition.check_git_workspace,
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.violet,colors.bg,'bold'},
+  }
+}
+
+gls.mid[2] = {
+  GitBranch = {
+    provider = 'GitBranch',
+    separator = ' ',
+    condition = condition.check_git_workspace,
+    highlight = {colors.violet,colors.bg,'bold'},
+  }
+}
+
+gls.mid[3] = {
+  DiffAdd = {
+    provider = 'DiffAdd',
+    condition = condition.hide_in_width,
+    icon = '  ',
+    highlight = {colors.green,colors.bg},
+  }
+}
+
+gls.mid[4] = {
+  DiffModified = {
+    provider = 'DiffModified',
+    condition = condition.hide_in_width,
+    icon = '  ',
+    highlight = {colors.orange,colors.bg},
+  }
+}
+
+gls.mid[5] = {
+  DiffRemove = {
+    provider = 'DiffRemove',
+    condition = condition.hide_in_width,
+    icon = '  ',
+    highlight = {colors.red,colors.bg},
   }
 }
 
@@ -136,49 +167,21 @@ gls.right[2] = {
 }
 
 gls.right[3] = {
-  GitIcon = {
-    provider = function() return '  ' end,
-    condition = condition.check_git_workspace,
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.violet,colors.bg,'bold'},
+  ShowLspClient = {
+    provider = 'GetLspClient',
+    condition = function ()
+      local tbl = {['dashboard'] = true,['']=true}
+      if tbl[vim.bo.filetype] then
+        return false
+      end
+      return true
+    end,
+    icon = ' LSP:',
+    highlight = {colors.cyan,colors.bg,'bold'}
   }
 }
 
 gls.right[4] = {
-  GitBranch = {
-    provider = 'GitBranch',
-    condition = condition.check_git_workspace,
-    highlight = {colors.violet,colors.bg,'bold'},
-  }
-}
-
-gls.right[5] = {
-  DiffAdd = {
-    provider = 'DiffAdd',
-    condition = condition.hide_in_width,
-    icon = '  ',
-    highlight = {colors.green,colors.bg},
-  }
-}
-gls.right[6] = {
-  DiffModified = {
-    provider = 'DiffModified',
-    condition = condition.hide_in_width,
-    icon = ' 柳',
-    highlight = {colors.orange,colors.bg},
-  }
-}
-gls.right[7] = {
-  DiffRemove = {
-    provider = 'DiffRemove',
-    condition = condition.hide_in_width,
-    icon = '  ',
-    highlight = {colors.red,colors.bg},
-  }
-}
-
-gls.right[8] = {
   RainbowBlue = {
     provider = function() return ' ▊' end,
     highlight = {colors.blue,colors.bg}

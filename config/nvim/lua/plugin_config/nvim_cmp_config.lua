@@ -8,17 +8,13 @@ local utils = require('utils.tables')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_lsp.default_capabilities(capabilities)
 
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = utils.supported_languages
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    -- on_attach = my_custom_on_attach,
-    capabilities = capabilities,
-  }
-end
-
 -- nvim-cmp setup
 cmp.setup {
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -47,5 +43,16 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'vsnip'},
   },
 }
+
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = utils.supported_languages
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    -- on_attach = my_custom_on_attach,
+    capabilities = capabilities,
+  }
+end
+
