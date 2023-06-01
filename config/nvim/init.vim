@@ -33,7 +33,7 @@ lua require('vim_keybindings')
 lua require('vim_autocommands')
 
 " load custom color scheme
-colorscheme ayu
+colorscheme github_dark
 
 " GUI font setting
 if has('gui_running')

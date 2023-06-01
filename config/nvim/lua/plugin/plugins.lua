@@ -88,7 +88,7 @@ local function loadPlugins()
   use 'npxbr/glow.nvim'
 
   -- themes and colors
-  use 'ayu-theme/ayu-vim'
+  use 'projekt0n/github-nvim-theme'
 end
 
 -- run packer
