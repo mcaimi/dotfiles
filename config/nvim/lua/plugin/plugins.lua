@@ -63,6 +63,10 @@ local function loadPlugins()
     opt = true,
     cmd = { 'Goyo' }
   }
+  use {
+    'folke/noice.nvim',
+    opt=true
+  }
 
   -- statusline & tabline
   use {
@@ -88,7 +92,13 @@ local function loadPlugins()
   use 'npxbr/glow.nvim'
 
   -- themes and colors
-  use 'projekt0n/github-nvim-theme'
+  use {
+    "kyazdani42/blue-moon",
+    config = function()
+      vim.opt.termguicolors = true
+      vim.cmd "colorscheme blue-moon"
+    end
+  }
 end
 
 -- run packer
