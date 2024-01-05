@@ -1,3 +1,4 @@
+-l macos
 
 --separator "  "
 
@@ -18,5 +19,5 @@
 --wm-key "  "
 --shell-key "  "
 --terminal-key "  󰞷"
---terminal-font-key "  "
+--font-key "  "
 --packages-key "  "
