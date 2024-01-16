@@ -75,10 +75,9 @@ local function loadPlugins()
     opt = false
   }
   use {
-    'glepnir/galaxyline.nvim',
-    branch = 'main',
+    'nvim-lualine/lualine.nvim',
     config = function()
-      require('plugin_config.gline_config')
+      require('plugin_config.lualine_config')
     end,
     -- some optional icons
     requires = { 'nvim-tree/nvim-web-devicons', opt = true },
@@ -93,10 +92,24 @@ local function loadPlugins()
 
   -- themes and colors
   use {
-    "kyazdani42/blue-moon",
+    "Shatur/neovim-ayu",
     config = function()
       vim.opt.termguicolors = true
-      vim.cmd "colorscheme blue-moon"
+      require('ayu').setup({
+        mirage = true,
+        overrides = {
+          Normal = { bg = "None" },
+          ColorColumn = { bg = "None" },
+          SignColumn = { bg = "None" },
+          Folded = { bg = "None" },
+          FoldColumn = { bg = "None" },
+          CursorLine = { bg = "None" },
+          CursorColumn = { bg = "None" },
+          WhichKeyFloat = { bg = "None" },
+          VertSplit = { bg = "None" },
+        },
+      })
+      require('ayu').colorscheme()
     end
   }
 end
