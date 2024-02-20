@@ -15,8 +15,6 @@ set path+=./**
 
 " bootstrap packer
 lua require('plugin.bootstrap_packer')
-" load vimrc settings from lua script
-lua require('vim_settings')
 " load plugins
 lua require('plugin.plugins')
 " configure bufferline
@@ -27,15 +25,12 @@ lua require('plugin_config.treesitter_config')
 lua require('plugin_config.lsp_config')
 " configure autocomplete
 lua require('plugin_config.nvim_cmp_config')
+" load vimrc settings from lua script
+lua require('vim_settings')
 " load vim keybindings
 lua require('vim_keybindings')
 " load vim autocommands
 lua require('vim_autocommands')
-
-" GUI font setting
-if has('gui_running')
-  set guifont=Iosevka:h10
-endif
 
 " Post-load plugin setup
 let g:undotree_WindowLayout=2

@@ -42,9 +42,15 @@ local function autogroup(group_name, cmdlist)
   nvim_cmd('augroup END')
 end
 
+-- Helper function for transparency formatting
+local function alpha(t_value)
+  return string.format("%x", math.floor(255 * (t_value or 0.8)))
+end
+
 M.contains = contains
 M.autogroup = autogroup
 M.create_mapping = create_mapping
+M.alpha = alpha
 M.nvim_cmd = nvim_cmd
 
 return M

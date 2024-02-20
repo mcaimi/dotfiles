@@ -48,8 +48,7 @@ local function loadPlugins()
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
   use {
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
+    'nvimdev/dashboard-nvim',
     config = function()
       require('plugin_config.dashboard_config').init_dash()
     end,
@@ -91,25 +90,11 @@ local function loadPlugins()
   use 'npxbr/glow.nvim'
 
   -- themes and colors
+  use "rebelot/kanagawa.nvim"
   use {
     "Shatur/neovim-ayu",
     config = function()
       vim.opt.termguicolors = true
-      require('ayu').setup({
-        mirage = true,
-        overrides = {
-          Normal = { bg = "None" },
-          ColorColumn = { bg = "None" },
-          SignColumn = { bg = "None" },
-          Folded = { bg = "None" },
-          FoldColumn = { bg = "None" },
-          CursorLine = { bg = "None" },
-          CursorColumn = { bg = "None" },
-          WhichKeyFloat = { bg = "None" },
-          VertSplit = { bg = "None" },
-        },
-      })
-      require('ayu').colorscheme()
     end
   }
 end

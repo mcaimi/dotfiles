@@ -12,12 +12,6 @@ local plugin_command_mapping = {
   {'n', '<C-u>', ':PackerSync<CR>', options},
   {'n', '<F3>', ':NERDTreeToggle<CR>', options},
   {'n', '<F5>', ':UndotreeToggle<CR>', options},
-  {'n', '<Leader>fh', ':DashboardFindHistory<CR>', { noremap = true, silent = true }},
-  {'n', '<Leader>ff', ':DashboardFindFile<CR>', { noremap = true, silent = true }},
-  {'n', '<Leader>tc', ':DashboardChangeColorscheme<CR>', { noremap = true, silent = true }},
-  {'n', '<Leader>fa', ':DashboardFindWord<CR>', { noremap = true, silent = true }},
-  {'n', '<Leader>fb', ':DashboardJumpMark<CR>', { noremap = true, silent = true }},
-  {'n', '<Leader>cn', ':DashboardNewFile<CR>', { noremap = true, silent = true }},
 }
 local command_mapping = {
   {'n', '<C-^>', ':lopen<CR>', options},

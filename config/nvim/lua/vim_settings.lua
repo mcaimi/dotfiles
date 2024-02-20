@@ -1,6 +1,11 @@
 -- vim configuration main settings file
 -- this is a direct port of some of my old vimrc settings
 
+-- utils module
+local u = require("utils.utils")
+
+-- global namespace
+local g = vim.g
 -- global options
 local o = vim.o
 -- window options
@@ -51,3 +56,42 @@ o.sidescrolloff = 5         -- Show next 5 columns while side-scrolling.
 -- completion options
 o.completeopt = 'menuone,noinsert,noselect'
 o.shortmess = 'c'
+
+-- config options for neovide
+if g.neovide then
+  -- theme settings
+  o.termguicolors = true
+  vim.cmd [[colorscheme kanagawa-dragon]]
+
+  o.guifont = "Spleen 32x64:h14"
+  o.linespace = 1
+  g.neovide_padding_top = 1
+  g.neovide_padding_bottom = 1
+  g.neovide_padding_right = 1
+  g.neovide_padding_left = 1
+
+  -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+  g.neovide_transparency = 0.9
+  g.transparency = 0.9
+  g.neovide_transparency = "#3d3d3d" .. u.alpha(g.transparency)
+  g.neovide_window_blurred = true
+  g.neovide_floating_blur_amount_x = 2.0
+  g.neovide_floating_blur_amount_y = 2.0
+
+else
+  require('ayu').setup({
+    mirage = true,
+    overrides = {
+      Normal = { bg = "None" },
+      ColorColumn = { bg = "None" },
+      SignColumn = { bg = "None" },
+      Folded = { bg = "None" },
+      FoldColumn = { bg = "None" },
+      CursorLine = { bg = "None" },
+      CursorColumn = { bg = "None" },
+      WhichKeyFloat = { bg = "None" },
+      VertSplit = { bg = "None" },
+    },
+  })
+  require('ayu').colorscheme()
+end
