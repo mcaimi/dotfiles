@@ -1,3 +1,4 @@
 source $HOME/.bashrc
 
-fastfetch --load-config $HOME/.config/fastfetch/macos
+[[ "z$TERM_PROGRAM" == "ztmux" ]] && fastfetch --load-config $HOME/.config/fastfetch/macos
+
